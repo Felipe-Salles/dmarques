@@ -1,7 +1,8 @@
 ---
 phase: 1
 slug: foundation-ci-gate
-status: draft
+status: approved
+reviewed_at: 2026-09-05
 shadcn_initialized: false
 preset: none
 created: 2026-09-05
@@ -376,11 +377,13 @@ The token contract is built so later phases add **zero** new tokens for anything
 
 ## Checker Sign-Off
 
-- [ ] Dimension 1 Copywriting: PASS
-- [ ] Dimension 2 Visuals: PASS
-- [ ] Dimension 3 Color: PASS
-- [ ] Dimension 4 Typography: PASS
-- [ ] Dimension 5 Spacing: PASS
-- [ ] Dimension 6 Registry Safety: PASS
+- [x] Dimension 1 Copywriting: PASS
+- [x] Dimension 2 Visuals: PASS
+- [x] Dimension 3 Color: PASS
+- [x] Dimension 4 Typography: FLAG — Phase 1 renders 2 sizes / 2 weights (compliant). `tokens.css` declares a 10-step ramp + 4 weights (design-derived, researcher discretion). Phase 3 UI-SPEC must enforce ≤4 sizes / ≤2 weights per surface; hold that spec hard on Dimension 4.
+- [x] Dimension 5 Spacing: FLAG — static rungs all on the 4px grid and the Phase 1 page uses only clean values. Fluid `--space-section` upper bound (130px) is off-grid and the scale is broader than 4/8/16/24/32/48/64; both carried from the locked design, neither exercised in Phase 1. Reword the "every value is a multiple of 4" claim to carve out the `clamp()` tokens; Phase 3 confirms grid alignment where they land.
+- [x] Dimension 6 Registry Safety: PASS
 
-**Approval:** pending
+**Approval:** approved 2026-09-05 (2 non-blocking FLAGs — handoff notes for the Phase 3 UI-SPEC, not Phase 1 blockers)
+
+**Cross-doc reconciliation for the planner:** adopt the UI-SPEC font-weight load set — Outfit `[400, 500, 600, 700]` + DM Sans `[400, 500]` — over RESEARCH.md's `astro.config.mjs` sample (Outfit `[300..800]`), per PERF-04, unless a Phase 3 refinement needs 300/800.
