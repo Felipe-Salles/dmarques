@@ -292,17 +292,102 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 
 ## Traceability
 
-Preenchida na criação do roadmap.
+Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly one phase.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (todos) | — | Pending |
+| INFRA-01 | Phase 1 | Pending |
+| INFRA-02 | Phase 1 | Pending |
+| INFRA-03 | Phase 1 | Pending |
+| INFRA-04 | Phase 1 | Pending |
+| INFRA-05 | Phase 1 | Pending |
+| INFRA-06 | Phase 1 | Pending |
+| INFRA-07 | Phase 1 | Pending |
+| INFRA-08 | Phase 1 | Pending |
+| INFRA-09 | Phase 1 | Pending |
+| INFRA-10 | Phase 1 | Pending |
+| CONTENT-01 | Phase 2 | Pending |
+| CONTENT-02 | Phase 2 | Pending |
+| CONTENT-03 | Phase 2 | Pending |
+| CONTENT-04 | Phase 2 | Pending |
+| CONTENT-05 | Phase 2 | Pending |
+| SITE-01 | Phase 3 | Pending |
+| SITE-02 | Phase 3 | Pending |
+| SITE-03 | Phase 3 | Pending |
+| SITE-04 | Phase 3 | Pending |
+| SITE-05 | Phase 3 | Pending |
+| SITE-06 | Phase 3 | Pending |
+| SITE-07 | Phase 3 | Pending |
+| SITE-08 | Phase 3 | Pending |
+| SITE-09 | Phase 3 | Pending |
+| ANIM-01 | Phase 4 | Pending |
+| ANIM-02 | Phase 3 | Pending |
+| ANIM-03 | Phase 4 | Pending |
+| ANIM-04 | Phase 4 | Pending |
+| ANIM-05 | Phase 4 | Pending |
+| ANIM-06 | Phase 4 | Pending |
+| ANIM-07 | Phase 3 | Pending |
+| ANIM-08 | Phase 3 | Pending |
+| ANIM-09 | Phase 4 | Pending |
+| FORM-01 | Phase 5 | Pending |
+| FORM-02 | Phase 5 | Pending |
+| FORM-03 | Phase 5 | Pending |
+| FORM-04 | Phase 5 | Pending |
+| FORM-05 | Phase 5 | Pending |
+| FORM-06 | Phase 5 | Pending |
+| FORM-07 | Phase 5 | Pending |
+| FORM-08 | Phase 5 | Pending |
+| FORM-09 | Phase 5 | Pending |
+| FORM-10 | Phase 5 | Pending |
+| FORM-11 | Phase 5 | Pending |
+| FORM-12 | Phase 5 | Pending |
+| FORM-13 | Phase 5 | Pending |
+| LGPD-01 | Phase 5 | Pending |
+| LGPD-02 | Phase 5 | Pending |
+| LGPD-03 | Phase 5 | Pending |
+| LGPD-04 | Phase 5 | Pending |
+| LGPD-05 | Phase 5 | Pending |
+| LGPD-06 | Phase 5 | Pending |
+| LGPD-07 | Phase 5 | Pending |
+| SEO-01 | Phase 6 | Pending |
+| SEO-02 | Phase 3 | Pending |
+| SEO-03 | Phase 6 | Pending |
+| SEO-04 | Phase 6 | Pending |
+| SEO-05 | Phase 6 | Pending |
+| SEO-06 | Phase 6 | Pending |
+| SEO-07 | Phase 6 | Pending |
+| SEO-08 | Phase 6 | Pending |
+| A11Y-01 | Phase 3 | Pending |
+| A11Y-02 | Phase 3 | Pending |
+| A11Y-03 | Phase 3 | Pending |
+| A11Y-04 | Phase 3 | Pending |
+| A11Y-05 | Phase 3 | Pending |
+| A11Y-06 | Phase 3 | Pending |
+| A11Y-07 | Phase 3 | Pending |
+| SEC-01 | Phase 7 | Pending |
+| SEC-02 | Phase 7 | Pending |
+| SEC-03 | Phase 7 | Pending |
+| SEC-04 | Phase 7 | Pending |
+| SEC-05 | Phase 7 | Pending |
+| SEC-06 | Phase 7 | Pending |
+| SEC-07 | Phase 1 (runs every phase) | Pending |
+| SEC-08 | Phase 5 (statement written in ROADMAP.md) | Pending |
+| SEC-09 | Phase 5 | Pending |
+| SEC-10 | Phase 7 | Pending |
+| PERF-01 | Phase 1 (gate runs every phase) | Pending |
+| PERF-02 | Phase 1 | Pending |
+| PERF-03 | Phase 1 | Pending |
+| PERF-04 | Phase 1 | Pending |
+| PERF-05 | Phase 3 | Pending |
 
 **Coverage:**
-- v1 requirements: 78 total
-- Mapped to phases: 0 ⚠️
-- Unmapped: 78 ⚠️
+- v1 requirements: 83 total (the earlier "78 total" was a miscount; 83 IDs are
+  enumerated above)
+- Mapped to phases: 83 / 83 ✓
+- Unmapped: 0 ✓
+- Cross-cutting: SEC-07 and PERF-01 have Phase 1 as their home but execute at
+  every phase boundary — each phase's success criteria require both to pass.
 
 ---
 *Requirements defined: 2026-09-05*
-*Last updated: 2026-09-05 after initial definition*
+*Last updated: 2026-09-05 after roadmap creation (traceability mapped, count corrected 78 → 83)*
