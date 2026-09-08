@@ -4,8 +4,8 @@ milestone: v1.0
 milestone_name: milestone
 status: executing
 stopped_at: Phase 1 UI-SPEC approved
-last_updated: "2026-09-08T15:21:37.119Z"
-last_activity: 2026-09-08 -- Phase 1 planning complete
+last_updated: "2026-09-08T16:41:07.889Z"
+last_activity: 2026-09-08 -- Phase 01 execution started
 progress:
   total_phases: 7
   completed_phases: 0
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-09-05)
 
 **Core value:** Um visitante entende em segundos o que a Dmarques faz, confia na agência e pede um orçamento — com um site que carrega rápido e nunca sai do ar.
-**Current focus:** Phase 1 — Foundation & CI Gate
+**Current focus:** Phase 01 — foundation-ci-gate
 
 ## Current Position
 
-Phase: 1 of 7 (Foundation & CI Gate)
-Plan: 0 of TBD in current phase
-Status: Ready to execute
-Last activity: 2026-09-08 -- Phase 1 planning complete
+Phase: 01 (foundation-ci-gate) — EXECUTING
+Plan: 1 of 8
+Status: Executing Phase 01
+Last activity: 2026-09-08 -- Phase 01 execution started
 
 Progress: [░░░░░░░░░░] 0%
 
