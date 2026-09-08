@@ -1,0 +1,23 @@
+---
+import { Font } from 'astro:assets';
+import Analytics from '@vercel/analytics/astro';
+import '../styles/tokens.css';
+import '../styles/base.css';
+
+const { title = 'Dmarques — Soluções Web' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <Font cssVariable="--font-display" preload={[{ weight: 700, style: 'normal' }]} />
+    <Font cssVariable="--font-body" preload={[{ weight: 400, style: 'normal' }]} />
+  </head>
+  <body>
+    <slot />
+    <Analytics />
+  </body>
+</html>
