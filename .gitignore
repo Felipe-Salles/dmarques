@@ -1,1 +1,6 @@
 arquivos de design/.thumbnail
+node_modules/
+dist/
+.vercel/
+.astro/
+.lighthouseci/

@@ -1,5 +1,5 @@
-import { defineConfig, envField, fontProviders } from 'astro/config';
 import vercel from '@astrojs/vercel';
+import { defineConfig, envField, fontProviders } from 'astro/config';
 
 export default defineConfig({
   site: 'https://agenciadmarques.com.br',

@@ -10,8 +10,10 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "sync": "astro sync",
+    "check": "astro sync && astro check",
+    "format": "prettier --write \"**/*.astro\" && biome format --write .",
+    "lint": "biome check ."
   },
   "dependencies": {
     "@astrojs/vercel": "11.0.10",
