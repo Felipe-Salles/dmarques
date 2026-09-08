@@ -8,19 +8,19 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 
 ### Infraestrutura & Build (INFRA)
 
-- [ ] **INFRA-01**: Projeto Astro 7 com `output: 'static'` e adapter
+- [x] **INFRA-01**: Projeto Astro 7 com `output: 'static'` e adapter
   `@astrojs/vercel`, gerando HTML pré-renderado para todas as páginas exceto o
   endpoint do formulário
-- [ ] **INFRA-02**: Desenvolvedor consegue rodar o site localmente com um comando
+- [x] **INFRA-02**: Desenvolvedor consegue rodar o site localmente com um comando
   (`pnpm dev`) e gerar build de produção com `pnpm build`
-- [ ] **INFRA-03**: Fontes Outfit e DM Sans self-hosted (Astro Fonts API /
+- [x] **INFRA-03**: Fontes Outfit e DM Sans self-hosted (Astro Fonts API /
   Fontsource) — nenhuma requisição a Google Fonts em produção
 - [ ] **INFRA-04**: Tokens de design (cores, fontes, raios, sombras) definidos
   como CSS custom properties em um único arquivo, consumidos por todos os
   componentes
-- [ ] **INFRA-05**: `build.inlineStylesheets: 'never'` — todo CSS sai como arquivo
+- [x] **INFRA-05**: `build.inlineStylesheets: 'never'` — todo CSS sai como arquivo
   externo (pré-requisito da CSP estrita)
-- [ ] **INFRA-06**: Segredos de servidor declarados via `astro:env`
+- [x] **INFRA-06**: Segredos de servidor declarados via `astro:env`
   (`context: 'server', access: 'secret'`); `RESEND_API_KEY` nunca presente no
   bundle do cliente
 - [ ] **INFRA-07**: Deploy contínuo na Vercel via integração Git, com preview
@@ -296,12 +296,12 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| INFRA-01 | Phase 1 | Pending |
-| INFRA-02 | Phase 1 | Pending |
-| INFRA-03 | Phase 1 | Pending |
+| INFRA-01 | Phase 1 | Complete |
+| INFRA-02 | Phase 1 | Complete |
+| INFRA-03 | Phase 1 | Complete |
 | INFRA-04 | Phase 1 | Pending |
-| INFRA-05 | Phase 1 | Pending |
-| INFRA-06 | Phase 1 | Pending |
+| INFRA-05 | Phase 1 | Complete |
+| INFRA-06 | Phase 1 | Complete |
 | INFRA-07 | Phase 1 | Pending |
 | INFRA-08 | Phase 1 | Pending |
 | INFRA-09 | Phase 1 | Pending |

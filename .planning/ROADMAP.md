@@ -91,7 +91,7 @@ Not part of v1. Closes the residual-risk statement above.
 Plans:
 **Wave 1**
 
-- [ ] 01-01-PLAN.md — Astro + Vercel scaffold and every root config file (pinned stack, astro.config.mjs, vercel.json)
+- [x] 01-01-PLAN.md — Astro + Vercel scaffold and every root config file (pinned stack, astro.config.mjs, vercel.json)
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
@@ -217,7 +217,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & CI Gate | 0/8 | Planned | - |
+| 1. Foundation & CI Gate | 1/8 | In Progress|  |
 | 2. Content Collections | 0/TBD | Not started | - |
 | 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 0/TBD | Not started | - |
 | 4. Progressive-Enhancement Effects | 0/TBD | Not started | - |

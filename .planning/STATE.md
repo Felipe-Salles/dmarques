@@ -4,13 +4,13 @@ milestone: v1.0
 milestone_name: milestone
 status: executing
 stopped_at: Phase 1 UI-SPEC approved
-last_updated: "2026-09-08T16:41:07.889Z"
-last_activity: 2026-09-08 -- Phase 01 execution started
+last_updated: "2026-09-08T22:14:29.003Z"
+last_activity: 2026-09-08
 progress:
   total_phases: 7
   completed_phases: 0
   total_plans: 8
-  completed_plans: 0
+  completed_plans: 1
   percent: 0
 ---
 
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-09-05)
 ## Current Position
 
 Phase: 01 (foundation-ci-gate) — EXECUTING
-Plan: 1 of 8
-Status: Executing Phase 01
-Last activity: 2026-09-08 -- Phase 01 execution started
+Plan: 2 of 8
+Status: Ready to execute
+Last activity: 2026-09-08
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [█░░░░░░░░░] 13%
 
 ## Performance Metrics
 
@@ -52,6 +52,7 @@ Progress: [░░░░░░░░░░] 0%
 - Trend: —
 
 *Updated after each plan completion*
+| Phase 01 P01 | 30 | 3 tasks | 10 files |
 
 ## Accumulated Context
 
@@ -66,6 +67,9 @@ Relevant to current work:
 - Cloudflare (WAF / edge rate-limiting / DDoS / Turnstile) deferred to Milestone 2 — v1 residual-risk statement recorded in ROADMAP.md (SEC-08).
 - Security review at the end of every phase via a versioned checklist artifact in `.planning/` (SEC-07); no phase closes with an open High finding.
 - Lighthouse mobile >=95 (all four categories) enforced in CI from Phase 1 (PERF-01 / INFRA-09).
+- [Phase ?]: Phase 1 uses exact version pins for all deps except @astrojs/check (~0.9); pnpm-lock.yaml committed
+- [Phase ?]: pnpm-workspace.yaml added to allow the esbuild native postinstall (pnpm 11 blocks build scripts by default)
+- [Phase ?]: Biome uses single-quote JS + design-folder exclusion so astro.config.mjs passes lint without changing plan-mandated quote style
 
 ### Open Decisions To Resolve Before Their Phase
 
@@ -92,6 +96,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-09-05T20:11:24.044Z
+Last session: 2026-09-08T22:12:55.861Z
 Stopped at: Phase 1 UI-SPEC approved
-Resume file: .planning/phases/01-foundation-ci-gate/01-UI-SPEC.md
+Resume file: None
