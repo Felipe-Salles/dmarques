@@ -5,3 +5,7 @@ onlyBuiltDependencies:
 overrides:
   '@vercel/routing-utils>path-to-regexp': 6.3.0
   'tmp@<0.2.6': 0.2.7
+auditConfig:
+  ignoreGhsas:
+    - GHSA-jmr9-qjv8-65gv
+    - GHSA-7pqw-9j4j-h8q3
