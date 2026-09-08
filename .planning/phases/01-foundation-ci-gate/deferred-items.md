@@ -32,3 +32,8 @@ Also present but below the gate threshold: 1 low, 3 moderate.
 3. Consider whether the CI `pnpm audit --audit-level=high` step (01-04) and `security-check.sh` check 1 should be allowed to be red on `main` until (1)/(2) land, or whether 01-04 lands after the triage.
 
 This item belongs to plan 01-08 (security run file) and/or a follow-up dependency-hardening pass.
+
+**Resolution (orchestrator, Felipe's decision 2026-09-08 — "overrides + allowlist"):**
+- Step 1 DONE — commit `656d5be`. `pnpm-workspace.yaml` `overrides`: `@vercel/routing-utils>path-to-regexp: 6.3.0`, `tmp@<0.2.6: 0.2.7`. `pnpm run check` 0 errors, `pnpm build` confirms the Vercel adapter still routes with 0 functions. `pnpm audit --audit-level=high` now reports **2 HIGH** (both `extract-zip`), down from 4.
+- Step 2 → 01-04: the two `extract-zip` advisories (GHSA-jmr9-qjv8-65gv, GHSA-7pqw-9j4j-h8q3) are allowlisted in the CI audit step as documented, dev/CI-only exceptions; `01-08` records them as accepted `Med` findings in `.planning/security/runs/phase-01.md` with a target date (revisit when `extract-zip >=2.0.2` or a fixed `@puppeteer/browsers` publishes).
+- Step 3 → 01-04: CI `pnpm audit` runs `--audit-level=high` with the 2 allowlisted advisories excluded, so the gate is green on the resolved tree and still blocks any *new* HIGH.
