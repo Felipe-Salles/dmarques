@@ -15,7 +15,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   (`pnpm dev`) e gerar build de produção com `pnpm build`
 - [x] **INFRA-03**: Fontes Outfit e DM Sans self-hosted (Astro Fonts API /
   Fontsource) — nenhuma requisição a Google Fonts em produção
-- [ ] **INFRA-04**: Tokens de design (cores, fontes, raios, sombras) definidos
+- [x] **INFRA-04**: Tokens de design (cores, fontes, raios, sombras) definidos
   como CSS custom properties em um único arquivo, consumidos por todos os
   componentes
 - [x] **INFRA-05**: `build.inlineStylesheets: 'never'` — todo CSS sai como arquivo
@@ -232,7 +232,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   TBT < 200 ms, INP < 200 ms
 - [ ] **PERF-03**: Peso de JavaScript na rota da landing < 20 KB (budget no CI);
   nenhum framework de UI, nenhuma biblioteca de animação
-- [ ] **PERF-04**: Fontes com `font-display: swap` e fallback com métricas
+- [x] **PERF-04**: Fontes com `font-display: swap` e fallback com métricas
   ajustadas para não causar CLS; duas famílias/pesos críticos com `preload`
 - [ ] **PERF-05**: Nenhuma otimização de imagem em runtime (sem Vercel Image
   Optimization) — tudo processado no build com Sharp
@@ -299,7 +299,7 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | INFRA-01 | Phase 1 | Complete |
 | INFRA-02 | Phase 1 | Complete |
 | INFRA-03 | Phase 1 | Complete |
-| INFRA-04 | Phase 1 | Pending |
+| INFRA-04 | Phase 1 | Complete |
 | INFRA-05 | Phase 1 | Complete |
 | INFRA-06 | Phase 1 | Complete |
 | INFRA-07 | Phase 1 | Pending |
@@ -377,7 +377,7 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | PERF-01 | Phase 1 (gate runs every phase) | Pending |
 | PERF-02 | Phase 1 | Pending |
 | PERF-03 | Phase 1 | Pending |
-| PERF-04 | Phase 1 | Pending |
+| PERF-04 | Phase 1 | Complete |
 | PERF-05 | Phase 3 | Pending |
 
 **Coverage:**

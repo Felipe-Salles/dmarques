@@ -4,13 +4,13 @@ milestone: v1.0
 milestone_name: milestone
 status: executing
 stopped_at: Phase 1 UI-SPEC approved
-last_updated: "2026-09-08T22:14:29.003Z"
+last_updated: "2026-09-08T22:28:37.340Z"
 last_activity: 2026-09-08
 progress:
   total_phases: 7
   completed_phases: 0
   total_plans: 8
-  completed_plans: 1
+  completed_plans: 2
   percent: 0
 ---
 
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-09-05)
 ## Current Position
 
 Phase: 01 (foundation-ci-gate) — EXECUTING
-Plan: 2 of 8
+Plan: 3 of 8
 Status: Ready to execute
 Last activity: 2026-09-08
 
-Progress: [█░░░░░░░░░] 13%
+Progress: [███░░░░░░░] 25%
 
 ## Performance Metrics
 
@@ -53,6 +53,7 @@ Progress: [█░░░░░░░░░] 13%
 
 *Updated after each plan completion*
 | Phase 01 P01 | 30 | 3 tasks | 10 files |
+| Phase 01 P02 | 20min | 3 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -70,6 +71,9 @@ Relevant to current work:
 - [Phase ?]: Phase 1 uses exact version pins for all deps except @astrojs/check (~0.9); pnpm-lock.yaml committed
 - [Phase ?]: pnpm-workspace.yaml added to allow the esbuild native postinstall (pnpm 11 blocks build scripts by default)
 - [Phase ?]: Biome uses single-quote JS + design-folder exclusion so astro.config.mjs passes lint without changing plan-mandated quote style
+- [Phase 1]: STATIC_DIR resolved to .vercel/output/static (dist/ also emitted); later plans use the fallback "${STATIC_DIR:-.vercel/output/static}"
+- [Phase 1]: Analytics ships as the @vercel/analytics/astro <Analytics /> component (2.0.1 exports ./astro), not inject() or the adapter webAnalytics option
+- [Phase 1]: Astro Fonts API injects inline <style> @font-face blocks by design; INFRA-05 met via external token/page CSS; blocks are CSP-hashable via security.csp in Phase 7
 
 ### Open Decisions To Resolve Before Their Phase
 
@@ -96,6 +100,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-09-08T22:12:55.861Z
+Last session: 2026-09-08T22:26:54.962Z
 Stopped at: Phase 1 UI-SPEC approved
 Resume file: None

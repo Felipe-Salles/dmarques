@@ -95,7 +95,7 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 01-02-PLAN.md — Design tokens, base styles, BaseLayout and the pt-BR placeholder page; resolve STATIC_DIR
+- [x] 01-02-PLAN.md — Design tokens, base styles, BaseLayout and the pt-BR placeholder page; resolve STATIC_DIR
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
@@ -217,7 +217,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & CI Gate | 1/8 | In Progress|  |
+| 1. Foundation & CI Gate | 2/8 | In Progress|  |
 | 2. Content Collections | 0/TBD | Not started | - |
 | 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 0/TBD | Not started | - |
 | 4. Progressive-Enhancement Effects | 0/TBD | Not started | - |
