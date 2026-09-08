@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Phase 1 UI-SPEC approved
-last_updated: "2026-09-08T22:46:39.000Z"
+stopped_at: Completed 01-04-PLAN.md
+last_updated: "2026-09-08T23:44:36.499Z"
 last_activity: 2026-09-08
 progress:
   total_phases: 7
   completed_phases: 0
   total_plans: 8
-  completed_plans: 3
+  completed_plans: 4
   percent: 0
 ---
 
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-09-05)
 ## Current Position
 
 Phase: 01 (foundation-ci-gate) — EXECUTING
-Plan: 4 of 8
+Plan: 5 of 8
 Status: Ready to execute
 Last activity: 2026-09-08
 
-Progress: [████░░░░░░] 38%
+Progress: [█████░░░░░] 50%
 
 ## Performance Metrics
 
@@ -55,6 +55,7 @@ Progress: [████░░░░░░] 38%
 | Phase 01 P01 | 30 | 3 tasks | 10 files |
 | Phase 01 P02 | 20min | 3 tasks | 5 files |
 | Phase 01 P03 | 25min | 3 tasks | 5 files |
+| Phase 01 P04 | 20min | 3 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -78,6 +79,9 @@ Relevant to current work:
 - [Phase ?]: [Phase 1] Gate scripts scripts/js-weight-check.sh + scripts/security-check.sh authored; one script for humans and CI (D-11); .gitattributes pins *.sh to eol=lf so the gate cannot drift between Windows and CI
 - [Phase ?]: [Phase 1] security-check.sh check 3 permits Astro Fonts API inline @font-face <style> blocks (reports count); FAILs only on page/token/bundle CSS inlined
 - [Phase ?]: [Phase 1] SEC-07 gabarito at .planning/security/SECURITY-CHECKLIST.md: hard no-open-High rule + exactly 7 mechanical items mapped to security-check.sh checks + D-12 findings table; per-phase runs in .planning/security/runs/phase-NN.md
+- [Phase ?]: [Phase 1] CI gate authored: ci.yml (verify + dependency-review jobs) blocks PRs on sync/check/build/pnpm audit --audit-level=high/js-weight/security-check --ci; lighthouse.yml runs lhci against the Vercel preview URL via deployment_status with the x-vercel-protection-bypass header
+- [Phase ?]: [Phase 1] GitHub Actions pinned to API-verified major tags: checkout@v7, setup-node@v7, pnpm/action-setup@v6, treosh/lighthouse-ci-action@v12; dependency-review-action@v5.0.0 (no moving major tag published)
+- [Phase ?]: [Phase 1] PERF-02 INP clause consciously deferred: TBT<=200ms is the Lighthouse lab proxy; field INP<200ms monitored via Vercel Analytics post-launch (compensating control), recorded in 01-04-SUMMARY and copied to security run file by plan 08
 
 ### Open Decisions To Resolve Before Their Phase
 
@@ -96,7 +100,7 @@ None yet.
 
 yet.
 
-- 01-03: pnpm audit --audit-level=high reports 4 pre-existing HIGH advisories from the 01-01 dep tree (path-to-regexp, tmp, extract-zip x2); security-check.sh check 1 correctly FAILs. extract-zip has no patched release. Triage before Phase 1 close per SEC-07 no-open-High rule - see phases/01-foundation-ci-gate/deferred-items.md D1
+- 01-03 (RESOLVED by orchestrator, Felipe's decision - overrides + allowlist): pnpm-workspace.yaml carries overrides (path-to-regexp 6.3.0, tmp 0.2.7) + auditConfig.ignoreGhsas for the 2 unfixable dev/CI-only extract-zip advisories (GHSA-jmr9-qjv8-65gv, GHSA-7pqw-9j4j-h8q3). `pnpm audit --audit-level=high` now exits 0 on the resolved tree; the 01-04 CI audit step is a plain blocking run (no `|| true`). Plan 08 records the 2 extract-zip GHSAs as accepted Med findings with a target date in .planning/security/runs/phase-01.md. See deferred-items.md D1.
 
 ## Deferred Items
 
@@ -106,6 +110,6 @@ yet.
 
 ## Session Continuity
 
-Last session: 2026-09-08T22:46:30.025Z
-Stopped at: Phase 1 UI-SPEC approved
+Last session: 2026-09-08T23:44:36.429Z
+Stopped at: Completed 01-04-PLAN.md
 Resume file: None

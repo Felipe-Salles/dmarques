@@ -106,11 +106,11 @@ Job-level `env` on `verify`. `js-weight-check.sh` receives it as `"$STATIC_DIR"`
 
 Each task was committed atomically:
 
-1. **Task 1: Author lighthouserc.json and record the PERF-02 INP deferral** - `TASK1_HASH` (feat)
-2. **Task 2: Author .github/workflows/ci.yml** - `TASK2_HASH` (chore)
-3. **Task 3: Author .github/workflows/lighthouse.yml** - `TASK3_HASH` (chore)
+1. **Task 1: Author lighthouserc.json and record the PERF-02 INP deferral** - `df0f6b8` (feat)
+2. **Task 2: Author .github/workflows/ci.yml** - `c84652c` (chore)
+3. **Task 3: Author .github/workflows/lighthouse.yml** - `4d15ae9` (chore)
 
-**Plan metadata:** `META_HASH` (docs: complete plan)
+**Plan metadata:** `docs(01-04): complete lighthouse-config-ci-workflows plan` (final commit)
 
 ## Files Created/Modified
 
@@ -175,6 +175,19 @@ Matches the plan's `<threat_model>`; no new security-relevant surface.
 - **Plan 07** (branch protection): confirm the exact reported check contexts from a live PR (`verify`, `dependency-review`, `lhci`) before writing them into the branch-protection `contexts` array; if `deployment_status` proves unusable as a required check, the documented fallback is a local `sirv-cli` Lighthouse run inside `ci.yml`.
 - **Plan 08** (SEC-07 run file): copy the PERF-02 INP-deferral sentence verbatim into `.planning/security/runs/phase-01.md`; the deferred-items D1 HIGH-advisory triage is already resolved (overrides + allowlist) — record the two `extract-zip` GHSAs as accepted `Med` findings with a target date.
 - Branch is still `master` (rename to `main` owned by plan 05).
+
+## Self-Check: PASSED
+
+- `lighthouserc.json` - FOUND
+- `.github/workflows/ci.yml` - FOUND
+- `.github/workflows/lighthouse.yml` - FOUND
+- `.planning/phases/01-foundation-ci-gate/01-04-SUMMARY.md` - FOUND
+- Commit `df0f6b8` (Task 1) - FOUND in git history
+- Commit `c84652c` (Task 2) - FOUND in git history
+- Commit `4d15ae9` (Task 3) - FOUND in git history
+- `lighthouserc.json` parses, no `preset`, four categories at 0.95 (error), TBT 200 - verified
+- `ci.yml` / `lighthouse.yml` valid YAML (js-yaml), 0 comment lines each - verified
+- PERF-02 INP-deferral sentence present verbatim in this SUMMARY - verified
 
 ---
 *Phase: 01-foundation-ci-gate*

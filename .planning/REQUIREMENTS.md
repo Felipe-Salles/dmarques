@@ -25,9 +25,9 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   bundle do cliente
 - [ ] **INFRA-07**: Deploy contínuo na Vercel via integração Git, com preview
   deploy por pull request
-- [ ] **INFRA-08**: Pipeline de CI que roda `astro check`, build, `pnpm audit` e
+- [x] **INFRA-08**: Pipeline de CI que roda `astro check`, build, `pnpm audit` e
   Dependency Review, bloqueando merge em caso de falha
-- [ ] **INFRA-09**: Lighthouse CI no CI (preset mobile, CPU 4x, Slow 4G) exigindo
+- [x] **INFRA-09**: Lighthouse CI no CI (preset mobile, CPU 4x, Slow 4G) exigindo
   ≥ 95 em Performance, SEO, Best Practices e Accessibility contra o preview
 - [ ] **INFRA-10**: Conta/repо Vercel endurecidos — 2FA, branch de produção
   protegida, Deployment Protection nos previews, spend cap com alerta de uso
@@ -226,9 +226,9 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 
 ### Performance (PERF)
 
-- [ ] **PERF-01**: Lighthouse ≥ 95 nas quatro categorias no preset mobile com CPU
+- [x] **PERF-01**: Lighthouse ≥ 95 nas quatro categorias no preset mobile com CPU
   4x e Slow 4G, medido no CI a cada PR
-- [ ] **PERF-02**: Orçamentos de Web Vitals respeitados: LCP < 2,5 s, CLS < 0,05,
+- [x] **PERF-02**: Orçamentos de Web Vitals respeitados: LCP < 2,5 s, CLS < 0,05,
   TBT < 200 ms, INP < 200 ms
 - [x] **PERF-03**: Peso de JavaScript na rota da landing < 20 KB (budget no CI);
   nenhum framework de UI, nenhuma biblioteca de animação
@@ -303,8 +303,8 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | INFRA-05 | Phase 1 | Complete |
 | INFRA-06 | Phase 1 | Complete |
 | INFRA-07 | Phase 1 | Pending |
-| INFRA-08 | Phase 1 | Pending |
-| INFRA-09 | Phase 1 | Pending |
+| INFRA-08 | Phase 1 | Complete |
+| INFRA-09 | Phase 1 | Complete |
 | INFRA-10 | Phase 1 | Pending |
 | CONTENT-01 | Phase 2 | Pending |
 | CONTENT-02 | Phase 2 | Pending |
@@ -374,8 +374,8 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | SEC-08 | Phase 5 (statement written in ROADMAP.md) | Pending |
 | SEC-09 | Phase 5 | Pending |
 | SEC-10 | Phase 7 | Pending |
-| PERF-01 | Phase 1 (gate runs every phase) | Pending |
-| PERF-02 | Phase 1 | Pending |
+| PERF-01 | Phase 1 (gate runs every phase) | Complete |
+| PERF-02 | Phase 1 | Complete |
 | PERF-03 | Phase 1 | Complete |
 | PERF-04 | Phase 1 | Complete |
 | PERF-05 | Phase 3 | Pending |

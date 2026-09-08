@@ -100,7 +100,7 @@ Plans:
 **Wave 3** *(blocked on Wave 2 completion)*
 
 - [x] 01-03-PLAN.md — js-weight-check.sh, security-check.sh and the SEC-07 checklist gabarito
-- [ ] 01-04-PLAN.md — lighthouserc.json and the ci.yml / lighthouse.yml workflows
+- [x] 01-04-PLAN.md — lighthouserc.json and the ci.yml / lighthouse.yml workflows
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
@@ -217,7 +217,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & CI Gate | 3/8 | In Progress|  |
+| 1. Foundation & CI Gate | 4/8 | In Progress|  |
 | 2. Content Collections | 0/TBD | Not started | - |
 | 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 0/TBD | Not started | - |
 | 4. Progressive-Enhancement Effects | 0/TBD | Not started | - |
