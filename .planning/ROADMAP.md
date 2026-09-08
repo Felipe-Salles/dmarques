@@ -77,7 +77,17 @@ Not part of v1. Closes the residual-risk statement above.
   3. CI blocks any merge that fails `astro check`, build, `pnpm audit`, GitHub Dependency Review, the landing-route JS-weight budget (<20 KB, no UI framework / no animation library), or the Lighthouse mobile run (preset mobile, 4x CPU, Slow 4G) scoring <95 in Performance, SEO, Best Practices, or Accessibility, with Web Vitals budgets asserted (LCP <2.5 s, CLS <0.05, TBT <200 ms, INP <200 ms).
   4. Outfit and DM Sans are self-hosted (zero Google Fonts requests in production) with metrics-adjusted fallbacks and `preload` on the two critical files; `RESEND_API_KEY` and other server secrets are declared in the `astro:env` secret schema and a CI grep of `dist/` for secret names and `re_` returns nothing.
   5. Design tokens live in one CSS custom-properties file consumed by all components, `build.inlineStylesheets` is `never`, `BaseLayout.astro` and an empty `vercel.json` exist, and the SEC-07 security-review checklist artifact exists in `.planning/` with its first run passing and no open High finding.
-**Plans**: TBD
+**Plans**: 8 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Astro + Vercel scaffold and every root config file (pinned stack, astro.config.mjs, vercel.json)
+- [ ] 01-02-PLAN.md — Design tokens, base styles, BaseLayout and the pt-BR placeholder page; resolve STATIC_DIR
+- [ ] 01-03-PLAN.md — js-weight-check.sh, security-check.sh and the SEC-07 checklist gabarito
+- [ ] 01-04-PLAN.md — lighthouserc.json and the ci.yml / lighthouse.yml workflows
+- [ ] 01-05-PLAN.md — Public GitHub repo, workflow token scope, master to main rename, first push (human-gated)
+- [ ] 01-06-PLAN.md — Vercel link, Deployment Protection, bypass secret, spend-cap decision (human-gated)
+- [ ] 01-07-PLAN.md — Prove the gates block and pass, capture check contexts, lock branch protection
+- [ ] 01-08-PLAN.md — SEC-07 phase-01 run file and sign-off
 
 ### Phase 2: Content Collections
 **Goal**: All site copy and portfolio cases live as typed, build-validated content collections with no CMS and no admin surface.
@@ -160,7 +170,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & CI Gate | 0/TBD | Not started | - |
+| 1. Foundation & CI Gate | 0/8 | Planned | - |
 | 2. Content Collections | 0/TBD | Not started | - |
 | 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 0/TBD | Not started | - |
 | 4. Progressive-Enhancement Effects | 0/TBD | Not started | - |
