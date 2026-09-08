@@ -230,7 +230,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   4x e Slow 4G, medido no CI a cada PR
 - [ ] **PERF-02**: Orçamentos de Web Vitals respeitados: LCP < 2,5 s, CLS < 0,05,
   TBT < 200 ms, INP < 200 ms
-- [ ] **PERF-03**: Peso de JavaScript na rota da landing < 20 KB (budget no CI);
+- [x] **PERF-03**: Peso de JavaScript na rota da landing < 20 KB (budget no CI);
   nenhum framework de UI, nenhuma biblioteca de animação
 - [x] **PERF-04**: Fontes com `font-display: swap` e fallback com métricas
   ajustadas para não causar CLS; duas famílias/pesos críticos com `preload`
@@ -376,7 +376,7 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | SEC-10 | Phase 7 | Pending |
 | PERF-01 | Phase 1 (gate runs every phase) | Pending |
 | PERF-02 | Phase 1 | Pending |
-| PERF-03 | Phase 1 | Pending |
+| PERF-03 | Phase 1 | Complete |
 | PERF-04 | Phase 1 | Complete |
 | PERF-05 | Phase 3 | Pending |
 
