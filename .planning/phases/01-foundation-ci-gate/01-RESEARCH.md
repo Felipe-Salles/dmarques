@@ -724,24 +724,31 @@ Success criterion 5 requires the file to exist and be empty. Security headers + 
 | A7 | The `deployment_status` GitHub event from the Vercel integration can carry the Lighthouse check as a **required status check** on the PR (posts against the PR head SHA). | Pattern 3 | If it doesn't reliably associate with the PR SHA, fall back to the local-static-server Lighthouse run inside `ci.yml` (with the analytics-404 mitigation). |
 | A8 | `pnpm audit --audit-level=high` + `dependency-review-action` `fail-on-severity: high` is the right threshold for a solo low-traffic marketing site. | Pitfall 7 | If Felipe wants `moderate` as the bar, both thresholds move together; more PRs will block on unfixable transitive advisories. Confirm during execution. |
 
-## Open Questions
+## Open Questions (RESOLVED)
+
+Every question below has a named owning task in the Phase 1 plan set that resolves it at execution time. None remains unowned.
 
 1. **Which directory holds the servable static site after `pnpm build` with `@astrojs/vercel` + `output: 'static'` — `dist/`, `.vercel/output/static/`, or both?**
    - What we know: the adapter writes `.vercel/output/{config.json,static/}`; Astro's normal build target is `dist/`; older reports show `dist/` still present with the static Vercel adapter.
    - What's unclear: whether current `@astrojs/vercel@11` leaves `dist/` in place.
    - Recommendation: Wave 0 task — run `pnpm build`, `ls -la dist .vercel/output/static`, and set a single `STATIC_DIR` variable consumed by `js-weight-check.sh`, `security-check.sh`, and the local Lighthouse fallback. Update the success-criteria wording if it's not `dist/`.
+   - Resolved by: **plan 01-02 Task 3** — runs the build, resolves and exports `STATIC_DIR`, and records the value in `01-02-SUMMARY.md`. Documented default until it is resolved: `.vercel/output/static`.
 
 2. **Spend cap: accept Hobby's structural cap, or upgrade to Pro for real Spend Management?** (see Assumption A1)
    - Recommendation: surface to Felipe during execution as a Claude's-Discretion escalation (CONTEXT lists "exact spend-cap amount" as needing his confirmation anyway). Default path: stay Hobby, no payment method on file, enable usage-limit email notifications, document "hard cap = no billing relationship" in `phase-01.md`. Note the SEC-08 statement may need a one-line adjustment to reflect the Hobby reality.
+   - Resolved by: **plan 01-06 Task 1** — a blocking `checkpoint:decision` with Felipe (`hobby-structural` / `upgrade-pro` / `hobby-now-pro-at-launch`), followed by the matching SEC-08 wording correction in `.planning/ROADMAP.md`.
 
 3. **Does `@vercel/analytics@2.0.1` export a first-class Astro `<Analytics />` component (`@vercel/analytics/astro`)?** (see Assumption A5)
    - Recommendation: check `node_modules/@vercel/analytics/package.json` `exports` at implementation; prefer the component if present, else `inject()`.
+   - Resolved by: **plan 01-02 Task 2** — inspects the `exports` map in `node_modules/@vercel/analytics/package.json` before writing the include, and records the chosen form in `01-02-SUMMARY.md`.
 
 4. **Exact required-status-check context strings.**
    - Recommendation: run one throwaway PR, `gh pr checks <n>`, copy the exact names into the branch-protection `contexts` array, then re-apply protection.
+   - Resolved by: **plan 01-07 Task 1b (Phase C)** — captures the strings from the live throwaway PR; plan 01-07 Task 2 writes them verbatim into the branch-protection payload.
 
 5. **`treosh/lighthouse-ci-action` major version.**
    - Recommendation: verify the latest tag during execution (`gh api repos/treosh/lighthouse-ci-action/releases/latest`); pin to a full SHA or major tag. `@v12` in Pattern 3 is a placeholder.
+   - Resolved by: **plan 01-04 Task 3** — resolves the current tag via `gh api repos/treosh/lighthouse-ci-action/releases/latest`, pins it, and records it in `01-04-SUMMARY.md`.
 
 ## Environment Availability
 
