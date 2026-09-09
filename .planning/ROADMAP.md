@@ -104,7 +104,7 @@ Plans:
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
-- [ ] 01-05-PLAN.md — Public GitHub repo, workflow token scope, master to main rename, first push (human-gated)
+- [x] 01-05-PLAN.md — Public GitHub repo, workflow token scope, master to main rename, first push (human-gated)
 
 **Wave 5** *(blocked on Wave 4 completion)*
 
@@ -217,7 +217,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & CI Gate | 4/8 | In Progress|  |
+| 1. Foundation & CI Gate | 5/8 | In Progress|  |
 | 2. Content Collections | 0/TBD | Not started | - |
 | 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 0/TBD | Not started | - |
 | 4. Progressive-Enhancement Effects | 0/TBD | Not started | - |

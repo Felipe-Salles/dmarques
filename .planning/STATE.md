@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 01-04-PLAN.md
-last_updated: "2026-09-08T23:44:36.499Z"
-last_activity: 2026-09-08
+stopped_at: Completed 01-05-PLAN.md
+last_updated: "2026-09-09T02:29:11.641Z"
+last_activity: 2026-09-09
 progress:
   total_phases: 7
   completed_phases: 0
   total_plans: 8
-  completed_plans: 4
+  completed_plans: 5
   percent: 0
 ---
 
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-09-05)
 ## Current Position
 
 Phase: 01 (foundation-ci-gate) — EXECUTING
-Plan: 5 of 8
+Plan: 6 of 8
 Status: Ready to execute
-Last activity: 2026-09-08
+Last activity: 2026-09-09
 
-Progress: [█████░░░░░] 50%
+Progress: [██████░░░░] 63%
 
 ## Performance Metrics
 
@@ -56,6 +56,7 @@ Progress: [█████░░░░░] 50%
 | Phase 01 P02 | 20min | 3 tasks | 5 files |
 | Phase 01 P03 | 25min | 3 tasks | 5 files |
 | Phase 01 P04 | 20min | 3 tasks | 3 files |
+| Phase 01 P05 | 10min | 3 tasks | 0 files |
 
 ## Accumulated Context
 
@@ -82,6 +83,9 @@ Relevant to current work:
 - [Phase ?]: [Phase 1] CI gate authored: ci.yml (verify + dependency-review jobs) blocks PRs on sync/check/build/pnpm audit --audit-level=high/js-weight/security-check --ci; lighthouse.yml runs lhci against the Vercel preview URL via deployment_status with the x-vercel-protection-bypass header
 - [Phase ?]: [Phase 1] GitHub Actions pinned to API-verified major tags: checkout@v7, setup-node@v7, pnpm/action-setup@v6, treosh/lighthouse-ci-action@v12; dependency-review-action@v5.0.0 (no moving major tag published)
 - [Phase ?]: [Phase 1] PERF-02 INP clause consciously deferred: TBT<=200ms is the Lighthouse lab proxy; field INP<200ms monitored via Vercel Analytics post-launch (compensating control), recorded in 01-04-SUMMARY and copied to security run file by plan 08
+- [Phase 01]: Public repo Felipe-Salles/dmarques created; master renamed to main; full Phase 1 tree pushed at 75a90ea. Felipe approved PUBLIC visibility, the rename and the first push (2026-09-08)
+- [Phase 01]: pnpm audit severity threshold confirmed at high (Felipe, 2026-09-08); per plan Task 3 no edit made to scripts/security-check.sh or .github/workflows/ci.yml
+- [Phase 01]: gh token for account Felipe-Salles now carries the workflow scope; .github/workflows/* pushes succeed for plans 05-08
 
 ### Open Decisions To Resolve Before Their Phase
 
@@ -110,6 +114,6 @@ yet.
 
 ## Session Continuity
 
-Last session: 2026-09-08T23:44:36.429Z
-Stopped at: Completed 01-04-PLAN.md
+Last session: 2026-09-09T02:29:05.489Z
+Stopped at: Completed 01-05-PLAN.md
 Resume file: None
