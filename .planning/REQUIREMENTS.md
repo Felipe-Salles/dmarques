@@ -23,13 +23,13 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 - [x] **INFRA-06**: Segredos de servidor declarados via `astro:env`
   (`context: 'server', access: 'secret'`); `RESEND_API_KEY` nunca presente no
   bundle do cliente
-- [ ] **INFRA-07**: Deploy contínuo na Vercel via integração Git, com preview
+- [x] **INFRA-07**: Deploy contínuo na Vercel via integração Git, com preview
   deploy por pull request
 - [x] **INFRA-08**: Pipeline de CI que roda `astro check`, build, `pnpm audit` e
   Dependency Review, bloqueando merge em caso de falha
 - [x] **INFRA-09**: Lighthouse CI no CI (preset mobile, CPU 4x, Slow 4G) exigindo
   ≥ 95 em Performance, SEO, Best Practices e Accessibility contra o preview
-- [ ] **INFRA-10**: Conta/repо Vercel endurecidos — 2FA, branch de produção
+- [x] **INFRA-10**: Conta/repо Vercel endurecidos — 2FA, branch de produção
   protegida, Deployment Protection nos previews, spend cap com alerta de uso
 
 ### Conteúdo (CONTENT)
@@ -302,10 +302,10 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | INFRA-04 | Phase 1 | Complete |
 | INFRA-05 | Phase 1 | Complete |
 | INFRA-06 | Phase 1 | Complete |
-| INFRA-07 | Phase 1 | Pending |
+| INFRA-07 | Phase 1 | Complete |
 | INFRA-08 | Phase 1 | Complete |
 | INFRA-09 | Phase 1 | Complete |
-| INFRA-10 | Phase 1 | Pending |
+| INFRA-10 | Phase 1 | Complete |
 | CONTENT-01 | Phase 2 | Pending |
 | CONTENT-02 | Phase 2 | Pending |
 | CONTENT-03 | Phase 2 | Pending |
