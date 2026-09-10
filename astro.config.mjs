@@ -30,7 +30,7 @@ export default defineConfig({
       name: 'DM Sans',
       cssVariable: '--font-body',
       weights: [400, 500],
-      styles: ['normal', 'italic'],
+      styles: ['normal'],
       subsets: ['latin'],
       fallbacks: ['system-ui', 'sans-serif'],
       optimizedFallbacks: true,
