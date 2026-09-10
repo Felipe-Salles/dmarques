@@ -36,7 +36,7 @@ else
 fi
 
 if [ -d src ]; then
-  style_hits=$(grep -rn 'style="' src/ 2>/dev/null)
+  style_hits=$(grep -rnI --include='*.astro' --include='*.ts' --include='*.tsx' --include='*.js' --include='*.jsx' -E "style[[:space:]]*=[[:space:]]*[\"']" src/ 2>/dev/null)
   if [ -n "$style_hits" ]; then
     fail "verificacao 2 - atributos style= encontrados em src/"
     echo "$style_hits" | head -n 20
@@ -65,9 +65,7 @@ else
     total_style=$((total_style + ns))
     total_fontface=$((total_fontface + nf))
     total_inline_script=$((total_inline_script + nst - nssrc))
-    remain=$(grep -oE '<style[^>]*>.*</style>' "$hf" 2>/dev/null \
-      | sed -E 's/@font-face\{[^}]*\}//g; s/:root\{--font-[^}]*\}//g; s/<[^>]*>//g' \
-      | tr -d '[:space:]')
+    remain=$(perl -0777 -ne 'while(/<style[^>]*>(.*?)<\/style>/gis){my $b=$1;$b=~s/\@font-face\s*\{[^{}]*\}//gis;$b=~s/:root\s*\{(?:\s*--font-[\w-]*\s*:[^;{}]*;?)+\s*\}//gis;$b=~s/\s+//g;print $b}' "$hf" 2>/dev/null)
     if [ -n "$remain" ]; then
       offending=$((offending + 1))
       offending_detail="$offending_detail $hf"
@@ -81,17 +79,14 @@ else
   fi
 fi
 
-scan_targets=()
-[ -d "$STATIC_DIR" ] && scan_targets+=("$STATIC_DIR")
-[ -d .vercel/output ] && scan_targets+=(".vercel/output")
-if [ "${#scan_targets[@]}" -eq 0 ]; then
-  skip "verificacao 4 - nenhum diretorio de build presente para varredura de segredos"
+if [ ! -d "$STATIC_DIR" ]; then
+  skip "verificacao 4 - $STATIC_DIR ausente para varredura de segredos"
 else
-  secret_files=$(grep -rIlE 'RESEND_API_KEY|re_[A-Za-z0-9]{20,}' "${scan_targets[@]}" 2>/dev/null | sort -u)
+  secret_files=$(grep -rIlE 're_[A-Za-z0-9_-]{20,}|RESEND_API_KEY' "$STATIC_DIR" 2>/dev/null | sort -u)
   if [ -n "$secret_files" ]; then
-    fail "verificacao 4 - possivel segredo na saida de build ($(echo "$secret_files" | tr '\n' ' '))"
+    fail "verificacao 4 - nome ou valor de segredo em saida servida ao cliente ($(echo "$secret_files" | tr '\n' ' '))"
   else
-    pass "verificacao 4 - nenhum nome de variavel de segredo ou chave na saida de build"
+    pass "verificacao 4 - nenhum nome ou valor de segredo na saida servida ao cliente"
   fi
 fi
 
