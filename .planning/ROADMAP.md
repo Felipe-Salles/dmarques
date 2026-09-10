@@ -119,7 +119,7 @@ Plans:
 
 **Wave 7** *(blocked on Wave 6 completion)*
 
-- [ ] 01-08-PLAN.md — SEC-07 phase-01 run file and sign-off
+- [x] 01-08-PLAN.md — SEC-07 phase-01 run file and sign-off
 
 ### Phase 2: Content Collections
 
@@ -220,7 +220,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & CI Gate | 7/8 | In Progress|  |
+| 1. Foundation & CI Gate | 8/8 | In Progress | - |
 | 2. Content Collections | 0/TBD | Not started | - |
 | 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 0/TBD | Not started | - |
 | 4. Progressive-Enhancement Effects | 0/TBD | Not started | - |
