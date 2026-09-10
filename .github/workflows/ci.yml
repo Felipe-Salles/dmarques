@@ -25,6 +25,7 @@ jobs:
       - run: bash scripts/js-weight-check.sh "$STATIC_DIR"
       - run: bash scripts/security-check.sh --ci
   dependency-review:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7

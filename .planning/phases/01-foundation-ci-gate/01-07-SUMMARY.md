@@ -199,6 +199,12 @@ The secret value is not available to this executor. Task 3 verifies the Producti
 
 With `enforce_admins: false` (deliberate, T-07-05), a fast-forward `git push origin main` by the admin `gh` token is accepted with `remote: Bypassed rule violations` — the required-PR and required-checks rules are reported but not enforced for admins. A **force-push is still rejected** (`allow_force_pushes: false` holds for admins too), and force-restoring `main` was refused. The plan's Task 2 acceptance criterion assumed the direct push would be rejected outright; empirically only force-pushes and deletions are hard-blocked for the admin. The protective value for the intended threat (an *unreviewed force-push / history rewrite / branch deletion* by anyone, and any push by a *non-admin*) stands. The scratch commit `327e6a2` was neutralised with revert `a737176`; `main` content is unchanged from `8d9eecc`. Revisit `enforce_admins` if a second contributor joins.
 
+### 7. [Rule 1 - Bug] `ci.yml` `dependency-review` job gated to `pull_request` events
+
+- **Found during:** Task 3 — the first `push` to `main` (the squash-merge `8eef802`) ran `ci.yml` and the `dependency-review` job failed with `Both a base ref and head ref must be provided … or by running a pull_request/pull_request_target/merge_group workflow`. `actions/dependency-review-action` only operates with PR refs; `ci.yml` (authored in plan 04) triggers on `pull_request` **and** `push: branches: [main]`, so the job was structurally doomed to red on every main push while `verify` stayed green.
+- **Fix (commit on `main`, direct admin push):** added `if: github.event_name == 'pull_request'` to the `dependency-review` job. It still runs — and still gates — on every PR (where it is a required status check); it is simply skipped on direct main pushes where it cannot function. Comment-free YAML (D-04) preserved. `main` was never functionally broken (`verify` passed, the Production deploy succeeded); this removes a spurious red mark from future main-push runs.
+- **Scope note:** the defect predates this plan (plan-04 `ci.yml`), but it first manifested here and is squarely in this plan's "the CI gate" subject, so it is fixed rather than deferred.
+
 ## Requirements
 
 - **INFRA-07** (continuous Vercel deploy via Git integration; preview deploy per PR) — **complete**. PR #1 produced a Vercel **preview** deployment on every push (the `Vercel` check, target URLs `dmarques-*-felipe-salles-projects.vercel.app`); the Task 3 squash-merge produces the **Production** deployment.
