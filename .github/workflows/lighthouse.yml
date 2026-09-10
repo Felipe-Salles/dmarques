@@ -12,8 +12,6 @@ jobs:
       - uses: actions/checkout@v7
       - uses: treosh/lighthouse-ci-action@v12
         with:
-          urls: ${{ github.event.deployment_status.target_url }}
+          urls: ${{ github.event.deployment_status.target_url }}?x-vercel-protection-bypass=${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}&x-vercel-set-bypass-cookie=true
           configPath: ./lighthouserc.json
           uploadArtifacts: true
-        env:
-          LHCI_EXTRA_HEADERS: '{"x-vercel-protection-bypass":"${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}"}'
