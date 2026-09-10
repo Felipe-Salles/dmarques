@@ -115,7 +115,7 @@ Plans:
 
 **Wave 6** *(blocked on Wave 5 completion)*
 
-- [ ] 01-07-PLAN.md — Prove the gates block and pass, capture check contexts, lock branch protection
+- [x] 01-07-PLAN.md — Prove the gates block and pass, capture check contexts, lock branch protection
 
 **Wave 7** *(blocked on Wave 6 completion)*
 
@@ -220,7 +220,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & CI Gate | 6/8 | In Progress|  |
+| 1. Foundation & CI Gate | 7/8 | In Progress|  |
 | 2. Content Collections | 0/TBD | Not started | - |
 | 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 0/TBD | Not started | - |
 | 4. Progressive-Enhancement Effects | 0/TBD | Not started | - |
