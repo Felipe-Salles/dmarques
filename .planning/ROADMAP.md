@@ -111,7 +111,7 @@ Plans:
 
 **Wave 5** *(blocked on Wave 4 completion)*
 
-- [ ] 01-06-PLAN.md — Vercel link, Deployment Protection, bypass secret, spend-cap decision (human-gated)
+- [x] 01-06-PLAN.md — Vercel link, Deployment Protection, bypass secret, spend-cap decision (human-gated)
 
 **Wave 6** *(blocked on Wave 5 completion)*
 
@@ -220,7 +220,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & CI Gate | 5/8 | In Progress|  |
+| 1. Foundation & CI Gate | 6/8 | In Progress|  |
 | 2. Content Collections | 0/TBD | Not started | - |
 | 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 0/TBD | Not started | - |
 | 4. Progressive-Enhancement Effects | 0/TBD | Not started | - |

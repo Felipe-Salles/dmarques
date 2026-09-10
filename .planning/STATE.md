@@ -3,8 +3,8 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 01-05-PLAN.md
-last_updated: "2026-09-09T02:29:11.641Z"
+stopped_at: Completed 01-06-PLAN.md
+last_updated: "2026-09-10T02:18:58.407Z"
 last_activity: 2026-09-09
 progress:
   total_phases: 7
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-09-05)
 ## Current Position
 
 Phase: 01 (foundation-ci-gate) — EXECUTING
-Plan: 6 of 8
+Plan: 7 of 8
 Status: Ready to execute
 Last activity: 2026-09-09
 
-Progress: [██████░░░░] 63%
+Progress: [███████░░░] 75%
 
 ## Performance Metrics
 
@@ -86,6 +86,7 @@ Relevant to current work:
 - [Phase 01]: Public repo Felipe-Salles/dmarques created; master renamed to main; full Phase 1 tree pushed at 75a90ea. Felipe approved PUBLIC visibility, the rename and the first push (2026-09-08)
 - [Phase 01]: pnpm audit severity threshold confirmed at high (Felipe, 2026-09-08); per plan Task 3 no edit made to scripts/security-check.sh or .github/workflows/ci.yml
 - [Phase 01]: gh token for account Felipe-Salles now carries the workflow scope; .github/workflows/* pushes succeed for plans 05-08
+- [Phase 01 / 01-06]: Vercel project felipe-salles-projects/dmarques (prj_79OkHSNj4o6iS62XwhsFuadjEErG, team_J7rCzdvtFEpWYOgeVz1mEi79) linked via Git integration, production branch main, framework astro. Standard Deployment Protection (ssoProtection all_except_custom_domains) gates preview + production; gitForkProtection true. VERCEL_AUTOMATION_BYPASS_SECRET mirrored to GitHub Actions. First prod deploy 47323f1 READY at https://dmarques-3g4hn76v2-felipe-salles-projects.vercel.app. Spend-cap decision: hobby-structural (SEC-08 bullet in ROADMAP corrected). 2FA active on both accounts. Task 3 visual checks deferred to 01-08. Deviation: Claude drove the Vercel setup via CLI+API at Felipe's request (D-03 framing).
 
 ### Open Decisions To Resolve Before Their Phase
 
