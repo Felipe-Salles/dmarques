@@ -1,8 +1,8 @@
 ---
 phase: 01-foundation-ci-gate
 verified: 2026-09-10T00:00:00Z
-status: human_needed
-score: 5/5 must-haves verified
+status: passed
+score: 5/5 must-haves verified  (3 human-confirmation items resolved 2026-09-10: bypass secret rotated, 2FA attested, spend cap documented — see 01-HUMAN-UAT.md status: resolved)
 overrides_applied: 0
 re_verification:
   previous_status: none

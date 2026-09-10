@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-stopped_at: Completed 01-08-PLAN.md Task 1 (SEC-07 run file); Task 2 sign-off pending
-last_updated: "2026-09-10T16:09:51.570Z"
+status: ready_to_plan
+stopped_at: Phase 01 complete (8/8) — ready to discuss Phase 2
+last_updated: 2026-09-10T19:31:22.790Z
 last_activity: 2026-09-10
 progress:
   total_phases: 7
   completed_phases: 0
   total_plans: 8
   completed_plans: 8
-  percent: 88
+  percent: 0
 ---
 
 # Project State
@@ -21,13 +21,13 @@ progress:
 See: .planning/PROJECT.md (updated 2026-09-05)
 
 **Core value:** Um visitante entende em segundos o que a Dmarques faz, confia na agência e pede um orçamento — com um site que carrega rápido e nunca sai do ar.
-**Current focus:** Phase 01 — foundation-ci-gate
+**Current focus:** Phase 2 — content collections
 
 ## Current Position
 
-Phase: 01 (foundation-ci-gate) — EXECUTING (awaiting Phase 1 security sign-off)
-Plan: 8 of 8
-Status: 01-08 Task 1 complete — SEC-07 run file .planning/security/runs/phase-01.md authored (6 PASS / 1 FAIL / 0 SKIP local; CI lhci authoritative and green; 7 findings P01-001..P01-007, none High). Task 2 (Felipe's "aprovado" sign-off, checkpoint:human-verify gate=blocking) is PENDING; the orchestrator appends the sign-off line and closes the phase.
+Phase: 2
+Plan: Not started
+Status: Ready to plan
 Last activity: 2026-09-10
 
 Progress: [█████████░] 88%
@@ -36,7 +36,7 @@ Progress: [█████████░] 88%
 
 **Velocity:**
 
-- Total plans completed: 0
+- Total plans completed: 8
 - Average duration: —
 - Total execution time: 0 hours
 
@@ -44,7 +44,7 @@ Progress: [█████████░] 88%
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| - | - | - | - |
+| 01 | 8 | - | - |
 
 **Recent Trend:**
 
