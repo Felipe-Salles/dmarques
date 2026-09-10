@@ -29,7 +29,15 @@ findings:
   warning: 13
   info: 7
   total: 23
-status: issues_found
+status: partially_resolved
+resolution:
+  resolved_at: 2026-09-10
+  fixed: 8
+  wont_fix: 4
+  open: 11
+  fixed_findings: [CR-01, CR-03, WR-02, WR-03, WR-04, WR-07, WR-08, WR-09]
+  wont_fix_findings: [CR-02, WR-01, WR-06, WR-12]
+  open_findings: [WR-05, WR-10, WR-11, WR-13, IN-01, IN-02, IN-03, IN-04, IN-05, IN-06, IN-07]
 ---
 
 # Phase 1: Code Review Report
@@ -64,6 +72,11 @@ No structural pre-pass (`<structural_findings>`) was supplied.
 ## Critical Issues
 
 ### CR-01: JS-weight gate ignores inline `<script>` — budget check passes vacuously
+
+**Status:** fixed (commit `a0825d7`) — inline `<script>` blocks without `src=`
+are now gzipped and added to the route total; a referenced-but-missing external
+script is a hard failure. Verified against `.vercel/output/static`: inline loader
+measured at 1302 B gz, total well under the 20480 B budget, exit 0.
 
 **File:** `scripts/js-weight-check.sh:32-49`
 **Issue:** The script only collects scripts that have a `src="....js"` attribute
@@ -104,6 +117,14 @@ were measured, exit non-zero.
 
 ### CR-02: `security-check.sh` uploads the Vercel bypass secret to LHCI public storage
 
+**Status:** wont_fix — `treosh/lighthouse-ci-action` without `temporaryPublicStorage`
+and without an LHCI server does not invoke `lhci upload`, so there is no
+public GCS upload from this path. The real artifact-leak vector was CR-03
+(`uploadArtifacts: true`), which is now fixed. The `security-check.sh` checks 6/7
+only run locally/with `PREVIEW_URL` and use `lighthouserc.json`, which has no
+`upload` block; the residual hardening (pin `--upload.target`) is tracked as a
+future nicety, not a live leak.
+
 **File:** `scripts/security-check.sh:117-129`
 **Issue:** When `PREVIEW_URL` and `VERCEL_AUTOMATION_BYPASS_SECRET` are both set
 (the mode the script documents for checks 6/7), line 122 injects the secret as
@@ -125,6 +146,12 @@ Add an `upload` block to `lighthouserc.json` pinning `target: "filesystem"` so a
 bare `autorun` can never fall back to public storage.
 
 ### CR-03: `lighthouse.yml` persists the bypass secret into a downloadable CI artifact
+
+**Status:** fixed (commit `8ddcce5`) — `uploadArtifacts` set to `false`, so the
+`.lighthouseci/` directory (whose `lhr-*.json` carry the unredacted
+`configSettings.extraHeaders` bypass secret) is no longer published as a workflow
+artifact. The gate's pass/fail assertion and the score numbers in the job log are
+unaffected.
 
 **File:** `.github/workflows/lighthouse.yml:21-26`
 **Issue:** Step "Verify protection-bypass..." writes
@@ -151,6 +178,13 @@ config file, and scrub `extraHeaders` from any report before upload:
 
 ### WR-01: Toolchain / action versions are ahead of any known release
 
+**Status:** wont_fix — the `verify`, `dependency-review`, and `lhci` jobs are all
+currently GREEN on GitHub, so `checkout@v7`, `setup-node@v7`,
+`pnpm/action-setup@v6`, `dependency-review-action@v5.0.0`, and the
+`packageManager: pnpm@11.15.1` spec all resolve. 01-01 deliberately pinned to the
+installed pnpm 11; the CLAUDE.md "pnpm 9.x" line is the stale side. Changing a
+working pinned version risks breaking the pipeline for no proven benefit.
+
 **File:** `.github/workflows/ci.yml:14-16,31-32`, `package.json:6`
 **Issue:** `actions/checkout@v7`, `actions/setup-node@v7`, `pnpm/action-setup@v6`,
 `actions/dependency-review-action@v5.0.0` are 1–3 major versions beyond the latest
@@ -165,6 +199,12 @@ version (ideally a full commit SHA for the actions). Reconcile the pnpm major wi
 CLAUDE.md.
 
 ### WR-02: `security-check.sh` check 3 CSS-inline detection is line-based and greedy
+
+**Status:** fixed (commit `671e866`) — check 3 now extracts each `<style>` block
+with a newline-aware, non-greedy Perl parser. A multi-line non-`@font-face` block
+FAILs instead of slipping through (verified with a fixture), and the `:root`
+whitelist only accepts blocks whose every declaration is a `--font-*` custom
+property. Current build still PASSes.
 
 **File:** `scripts/security-check.sh:68-81`
 **Issue:** `grep -oE '<style[^>]*>.*</style>'` only matches when a full
@@ -182,6 +222,13 @@ tested after normalisation.
 
 ### WR-03: check 4 scans function bundles for the secret *name* → false CI failure in Phase 5
 
+**Status:** fixed (commit `671e866`) — check 4 now scans only `$STATIC_DIR`
+(client-served output), for both the secret NAME (`RESEND_API_KEY`) and a real key
+VALUE pattern (`re_[A-Za-z0-9_-]{20,}`). Server function bundles are no longer
+scanned, so the Phase-5 form function importing `RESEND_API_KEY` from
+`astro:env/server` will not false-FAIL. Verified with fixtures for both
+name-in-client-asset and value-in-client-asset.
+
 **File:** `scripts/security-check.sh:84-96`
 **Issue:** `scan_targets` includes `.vercel/output` (superset of the static dir,
 including `functions/`), and the pattern matches the literal `RESEND_API_KEY`. The
@@ -194,6 +241,15 @@ and only for the value pattern (`re_[A-Za-z0-9_-]{20,}`). Drop `RESEND_API_KEY`
 from the client-asset scan or restrict it to `$STATIC_DIR`.
 
 ### WR-04: check 2 `style="` scan is trivially bypassable and can false-positive
+
+**Status:** fixed (commit `671e866`) — check 2 now uses
+`grep -rnI --include='*.astro' --include='*.ts' --include='*.tsx' --include='*.js'
+--include='*.jsx' -E "style[[:space:]]*=[[:space:]]*[\"']" src/`, catching
+single-quoted `style='...'` and `style =` spacing while scoping to source file
+types (no `node_modules`/build output, no "Binary file matches" noise). Deviation
+from the review's suggestion: `*.css` is intentionally excluded, because CSS
+attribute selectors like `[style="x"]` would otherwise false-FAIL — exactly the
+risk this finding flags.
 
 **File:** `scripts/security-check.sh:39`
 **Issue:** `grep -rn 'style="' src/` misses `style='...'`, `style = "`, and
@@ -221,6 +277,12 @@ regions) or add `eslint-plugin-astro` for `.astro` only, and turn on `noConsole`
 
 ### WR-06: `lighthouserc.json` downgrades SEO to `warn`, contradicting the ≥95 requirement
 
+**Status:** wont_fix — `categories:seo = warn` is a deliberate decision from plan
+01-07. The protected preview injects `X-Robots-Tag: noindex`, so `is-crawlable`
+fails on preview, and page metadata (`<meta name="description">`, canonical, OG)
+is Phase 6 scope. Phase 6 restores this to `error` against production. Not
+reverting here.
+
 **File:** `lighthouserc.json:19`, `src/layouts/BaseLayout.astro:12-18`
 **Issue:** CLAUDE.md requires "Lighthouse ≥ 95 em todas as categorias", but
 `categories:seo` is `["warn", { "minScore": 0.95 }]` while performance,
@@ -232,6 +294,11 @@ a `title`-driven `<meta property="og:title">`) to `BaseLayout`.
 
 ### WR-07: DM Sans italic is shipped but never used
 
+**Status:** fixed (commit `2754885`) — `styles: ['normal', 'italic']` reduced to
+`styles: ['normal']` for DM Sans. Build now copies 6 woff2 (was 8) and the built
+`index.html` contains no `font-style:italic` rules. UI-SPEC weight set is Outfit
+400/500/600/700 + DM Sans 400/500; no phase in the current roadmap needs italic.
+
 **File:** `astro.config.mjs:32`
 **Issue:** `styles: ['normal', 'italic']` for DM Sans produces two extra italic
 `.woff2` files plus italic `@font-face` + fallback-metric rules in the inline
@@ -241,6 +308,12 @@ font CSS on every page (confirmed in the built `index.html`). Nothing in
 **Fix:** `styles: ['normal']` until an italic style is actually needed.
 
 ### WR-08: `@fontsource-variable/outfit` and `@fontsource/dm-sans` are unused dependencies
+
+**Status:** fixed (commit `14d80d3`) — both packages removed from
+`devDependencies` and `pnpm-lock.yaml` refreshed (`pnpm install`, `Packages: -2`).
+`pnpm build` still self-hosts both families via `fontProviders.fontsource()`
+(6 woff2 after WR-07, zero `fonts.googleapis.com` / `fonts.gstatic.com`
+requests), confirming the packages were dead.
 
 **File:** `package.json:26-27`
 **Issue:** Fonts are resolved via `fontProviders.fontsource()` in
@@ -254,6 +327,12 @@ them. They are dead devDependencies that enlarge the tree `pnpm audit` /
 fallback and wire a real import path.
 
 ### WR-09: `tsconfig.json` type-checks build output and design assets
+
+**Status:** fixed (commit `2b9ab16`) — `exclude` is now
+`["dist", ".vercel", ".lighthouseci", "arquivos de design"]`. `.astro/` is left in
+scope so the generated `astro:*` ambient types (incl. `.astro/types.d.ts`) still
+load — the caveat in the fix brief. `pnpm run check` reports 0 errors / 0 warnings
+/ 0 hints (was 2 hints from `arquivos de design/support.js`).
 
 **File:** `tsconfig.json:3-4`
 **Issue:** `"include": ["**/*"]` with only `"exclude": ["dist"]` means `astro
@@ -287,6 +366,12 @@ creating GitHub Deployments at all.
 sanity check that the workflow actually ran for recent preview deploys.
 
 ### WR-12: Third-party and first-party Actions pinned by mutable tags
+
+**Status:** wont_fix — same rationale as WR-01: the `verify`, `dependency-review`,
+and `lhci` jobs are GREEN, so every `uses:` tag resolves today. Re-pinning working
+actions to SHAs (and wiring Dependabot for `github-actions`) is a supply-chain
+hardening task with no live failure to fix; deferred rather than risking the
+pipeline mid-phase.
 
 **File:** `.github/workflows/ci.yml:14,15,16,31,32`, `.github/workflows/lighthouse.yml:12,22`
 **Issue:** Every `uses:` references a moving major tag (`@v7`, `@v6`, `@v12`).
