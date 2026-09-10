@@ -23,4 +23,4 @@ jobs:
         with:
           urls: ${{ github.event.deployment_status.target_url }}
           configPath: ${{ runner.temp }}/lighthouserc.ci.json
-          uploadArtifacts: true
+          uploadArtifacts: false
