@@ -33,9 +33,12 @@ gap is knowingly accepted for v1, mitigated by the following compensating contro
 - A **Vercel WAF rate-limit rule on `/api/*`** enforces limiting at the edge
   (no serverless-statelessness gap).
 
-- **Vercel Spend Management** is configured with a hard spend cap and usage alerts,
-  so an attack degrades gracefully (form off) instead of an unbounded bill or
-  account suspension.
+- The project stays on the **Vercel Hobby plan with no payment method on file**, so
+  spend is structurally capped at $0 — the project pauses when the free-tier ceiling
+  is reached rather than incurring a bill, and usage notifications fire at 75% and
+  100%. This is weaker than the Pro-only Spend Management feature: there is no
+  configurable USD cap, no tunable auto-pause action, and no "form off, site up"
+  graceful degradation. Milestone 2 revisits this alongside the Cloudflare layer.
 
 - **DNS is kept at low TTL** with no registrar lock-in, so Cloudflare can be put in
   front quickly if v1 is attacked (Milestone 2 pulled forward).
