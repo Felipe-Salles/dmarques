@@ -117,7 +117,11 @@ fi
 if [ -z "$PREVIEW_URL" ]; then
   skip "verificacao 7 - nenhuma URL de preview disponivel; gate do Lighthouse adiado"
 else
-  if pnpm exec lhci autorun --collect.url="$PREVIEW_URL" --config=./lighthouserc.json; then
+  lhci_args=(--collect.url="$PREVIEW_URL" --config=./lighthouserc.json)
+  if [ -n "$BYPASS" ]; then
+    lhci_args+=(--collect.settings.extraHeaders="{\"x-vercel-protection-bypass\":\"$BYPASS\"}")
+  fi
+  if pnpm exec lhci autorun "${lhci_args[@]}"; then
     pass "verificacao 7 - gate do Lighthouse aprovado"
   else
     fail "verificacao 7 - gate do Lighthouse reprovado"
