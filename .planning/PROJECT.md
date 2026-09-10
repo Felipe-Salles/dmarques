@@ -17,7 +17,16 @@ um orçamento — com um site que carrega rápido e nunca sai do ar.
 
 ### Validated
 
-(None yet — ship to validate)
+- **Fase 1 (Foundation & CI Gate) — 2026-09-10.** Scaffold Astro 7 estático + adapter
+  Vercel, fontes self-hosted (Outfit/DM Sans, zero Google Fonts), design tokens em um
+  CSS, `BaseLayout` pt-BR + página placeholder. Pipeline de CI bloqueante no repo
+  público `Felipe-Salles/dmarques` (`astro check` + build + `pnpm audit` + Dependency
+  Review + gate de peso de JS <20 KB + Lighthouse mobile ≥95 em Perf/A11y/Best
+  Practices contra a preview da Vercel), branch protection em `main`, Deployment
+  Protection + bypass secret, e o ritual SEC-07 (checklist versionada + run datado por
+  fase, sem achado High em aberto). Todo INFRA-*, PERF-01..04 e SEC-07 da Fase 1
+  contabilizados (INP de campo e SEO ≥95 vs produção conscientemente adiados para
+  monitoramento pós-launch e Fase 6).
 
 ### Active
 
@@ -136,4 +145,4 @@ de rate-limiting, mitigação de DDoS/flood de requisições e Turnstile (captch
 formulário de orçamento.
 
 ---
-*Last updated: 2026-09-05 after initialization*
+*Last updated: 2026-09-10 after Phase 1 completion*
