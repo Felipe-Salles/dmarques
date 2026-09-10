@@ -617,3 +617,7 @@ Nenhuma linha é `High`. Nenhuma linha é `High` + `Aberto`.
 ## Linha de fechamento — regra dura
 
 A Fase 1 **satisfaz** a regra dura do gabarito ("Nenhuma fase fecha com achado High em aberto."): os sete achados registrados são `Med` (2, ambos aceitos, dev/CI-only sem fix publicado) ou `Low` (5), cada um com severidade, status, ação, prazo realista e responsável `Felipe Salles`. As seis verificações mecânicas de 1 a 6 passam localmente; a verificação 7 reprova apenas nesta máquina por poluição de antivírus + tooling Windows, enquanto o gate autoritativo de Lighthouse (job `lhci` do CI) está verde com Performance 1.00 / Accessibility 1.00 / Best Practices 0.96 e LCP 1543 ms / CLS 0 / TBT 0 ms. Sujeito à assinatura de Felipe (Task 2), a Fase 1 pode fechar.
+
+## Sign-off
+
+Revisão de segurança da Fase 1 aprovada por **Felipe Salles** em **2026-09-10**. Nenhum achado High em aberto; os cinco critérios de sucesso da Fase 1 do ROADMAP confirmados contra a evidência registrada, com a cláusula de INP do critério 3 reconhecida explicitamente como adiada para monitoramento de campo (Vercel Analytics pós-lançamento). A Fase 1 está fechada.
