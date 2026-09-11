@@ -686,13 +686,15 @@ git checkout -- src/content/faq/prazo-projeto.yaml
 | A4 | `.webp` placeholder source under `src/content/cases/` is processed by `astro:assets`/Sharp at build with no runtime component (PERF-05 safe). | Pitfall 4 | Low. Standard `astro:assets` behavior; the actual `<Image>` wiring is Phase 3, so any surprise surfaces there. |
 | A5 | `astro check` (project script = `astro sync && astro check`) plus `pnpm build` in CI is sufficient automated validation for this phase; no test framework needed. | Validation Architecture | Low. If the team later wants a unit-level guard, add the negative-test shell snippet to `scripts/`. |
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Field granularity for `services` / `differentiators`** — one `titulo` + `descricao`
    pair (proposed) vs. splitting out a short label / eyebrow.
    - What we know: the design has exactly a heading + one sentence per card; CONTEXT leaves
      precise fields to discretion.
    - Recommendation: ship `titulo` + `descricao` only; add fields later (cheap YAML edit).
+   - **RESOLVED:** `titulo` + `descricao` only, no eyebrow/short-label field — see 02-01-PLAN.md
+     Task 3 (schema fields) and Task 2 (`&lt;content_source&gt;` copy tables).
 
 2. **`cases.tipo` — include it at all in v1?** The schema example adds `tipo:
    z.enum(PROJECT_TYPE_VALUES)` to exercise CONTENT-05's "defined once, reused" from both
@@ -702,13 +704,19 @@ git checkout -- src/content/faq/prazo-projeto.yaml
    - Recommendation: keep `tipo` on `cases` (cheap, proves reuse). Drop if Felipe/planner
      see it as scope creep — CONTENT-05 is still satisfied by the schema-side
      `z.enum(PROJECT_TYPE_VALUES)` import alone.
+   - **RESOLVED:** kept — see 02-02-PLAN.md Task 2 (`tipo: z.enum(PROJECT_TYPE_VALUES)` in the
+     `cases` schema, `tipo: site-institucional` in the entry).
 
 3. **Placeholder cover art** — dimensions/format are discretionary. Proposed 1600×1000 `.webp`
    < 150 KB, branded (dark `#0A0A12` bg, `#6C4CFF` accent, "D" mark). Needs Felipe's eye
    during execution, and a `coverAlt` string.
+   - **RESOLVED:** proposal adopted as specified — see 02-02-PLAN.md Task 1 (generation spec)
+     and 02-04-PLAN.md Task 1 (Felipe's approval checkpoint for the art and `coverAlt`).
 
 4. **Barrel (`src/content/index.ts`) — adopt?** Recommended (Pattern 3) for the `order` sort
    and the literal single-source of `faq`. Discretionary per CONTEXT.
+   - **RESOLVED:** adopted — see 02-02-PLAN.md Task 3 (`getServices`/`getProcess`/
+     `getDifferentiators`/`getFaq`/`getCases` accessors, `byOrder` comparator).
 
 ## Environment Availability
 
