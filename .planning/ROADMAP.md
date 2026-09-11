@@ -133,7 +133,24 @@ Plans:
   3. The `faq` collection is the single source that feeds both the visible FAQ section and the `FAQPage` JSON-LD, and the "tipo de projeto" enum is defined once and reused as the quote-form allow-list.
   4. The SEC-07 checklist run for this phase passes with no open High finding (no new inline surface, `pnpm audit` clean, every added dependency justified in the phase notes).
 
-**Plans**: TBD
+**Plans**: 4 plans
+
+Plans:
+**Wave 1**
+
+- [ ] 02-01-PLAN.md — "tipo de projeto" enum module, 16 design-verbatim YAML entries, strict Zod schemas for services / process / differentiators / faq
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [ ] 02-02-PLAN.md — branded placeholder cover, the single "projeto próprio" case in Markdown, the `cases` collection, and the order-sorted consumption barrel
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
+- [ ] 02-03-PLAN.md — one-time negative tests proving a bad key / missing field fails the build, plus the SEC-07 phase-02 run file
+
+**Wave 4** *(blocked on Wave 3 completion)*
+
+- [ ] 02-04-PLAN.md — Felipe approves the case art / alt text / copy and signs off SEC-07 (human-gated)
 
 ### Phase 3: Static Zero-JS Sections + CSP-safe Refactor + A11y
 
@@ -221,7 +238,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation & CI Gate | 8/8 | Complete | 2026-09-10 |
-| 2. Content Collections | 0/TBD | Not started | - |
+| 2. Content Collections | 0/4 | Not started | - |
 | 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 0/TBD | Not started | - |
 | 4. Progressive-Enhancement Effects | 0/TBD | Not started | - |
 | 5. Form Backend + Enhancement + LGPD | 0/TBD | Not started | - |
