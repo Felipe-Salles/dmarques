@@ -97,3 +97,7 @@ None - no external service configuration required.
 ---
 *Phase: 02-content-collections*
 *Completed: 2026-09-15*
+
+## Self-Check: PASSED
+
+All created files verified present (`src/content/cases/dmarques-cover.webp`, `src/content/cases/dmarques.md`, `src/content.config.ts`, `src/content/index.ts`, this SUMMARY.md); all four commit hashes (`7462c3b`, `754ee6a`, `e516c6a`, `7532fe5`) verified present in `git log --oneline --all`.
