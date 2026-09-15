@@ -34,7 +34,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 
 ### Conteúdo (CONTENT)
 
-- [ ] **CONTENT-01**: Conteúdo de serviços, processo, diferenciais e FAQ em Astro
+- [x] **CONTENT-01**: Conteúdo de serviços, processo, diferenciais e FAQ em Astro
   Content Collections (YAML), validado por schema Zod no build
 - [x] **CONTENT-02**: Cases de portfólio em Content Collection (Markdown) com capa
   via helper `image()`, estrutura problema → solução → resultado
@@ -306,7 +306,7 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | INFRA-08 | Phase 1 | Complete |
 | INFRA-09 | Phase 1 | Complete |
 | INFRA-10 | Phase 1 | Complete |
-| CONTENT-01 | Phase 2 | Pending |
+| CONTENT-01 | Phase 2 | Complete |
 | CONTENT-02 | Phase 2 | Complete |
 | CONTENT-03 | Phase 2 | Complete |
 | CONTENT-04 | Phase 2 | Complete |

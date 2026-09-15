@@ -146,7 +146,7 @@ Plans:
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 02-03-PLAN.md — one-time negative tests proving a bad key / missing field fails the build, plus the SEC-07 phase-02 run file
+- [x] 02-03-PLAN.md — one-time negative tests proving a bad key / missing field fails the build, plus the SEC-07 phase-02 run file
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
@@ -238,7 +238,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation & CI Gate | 8/8 | Complete | 2026-09-10 |
-| 2. Content Collections | 2/4 | In Progress|  |
+| 2. Content Collections | 3/4 | In Progress|  |
 | 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 0/TBD | Not started | - |
 | 4. Progressive-Enhancement Effects | 0/TBD | Not started | - |
 | 5. Form Backend + Enhancement + LGPD | 0/TBD | Not started | - |

@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 02-02-PLAN.md
-last_updated: "2026-09-15T20:37:38.262Z"
+stopped_at: Completed 02-03-PLAN.md
+last_updated: "2026-09-15T20:45:41.054Z"
 last_activity: 2026-09-15
 progress:
   total_phases: 7
   completed_phases: 1
   total_plans: 12
-  completed_plans: 10
+  completed_plans: 11
   percent: 14
 ---
 
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-09-05)
 ## Current Position
 
 Phase: 02 (content-collections) — EXECUTING
-Plan: 2 of 4
+Plan: 3 of 4
 Status: Ready to execute
 Last activity: 2026-09-15
 
-Progress: [████████░░] 83%
+Progress: [█████████░] 92%
 
 ## Performance Metrics
 
@@ -60,6 +60,7 @@ Progress: [████████░░] 83%
 | Phase 01 P07 | 3h | 4 tasks | 6 files |
 | Phase 01 P08 | 50min | 1 tasks | 1 files |
 | Phase 02 P02 | 20min | 3 tasks | 4 files |
+| Phase 02 P03 | 25min | 2 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -96,6 +97,7 @@ Relevant to current work:
 - [Phase 01 / 01-07]: Deviations — (1) Dependency graph + Dependabot enabled on the repo (dependency-review required it: "Dependency review is not supported on this repository"). (2) lighthouse.yml rewritten: LHCI_EXTRA_HEADERS is a no-op on treosh/lighthouse-ci-action@v12 / @lhci/cli; replaced with a curl HTTP-200 bypass pre-check + jq-injected `ci.collect.settings.extraHeaders` in a runtime lighthouserc.ci.json. (3) VERCEL_AUTOMATION_BYPASS_SECRET was corrupted by an earlier `gh secret set --body -` (stdin) call on Windows git-bash; re-set via `--body "<value>"` argument form — never use the stdin form for `gh secret set` on this machine. (4) `ci.yml` `dependency-review` job gated with `if: github.event_name == 'pull_request'` — the action needs PR refs and failed on the squash-merge push to main; it still gates every PR (required status check), skipped on direct main pushes. PR #1 squash-merged as `8eef802`; SUMMARY addendum + this ci.yml fix pushed to protected main as `c34e28a` / `e1407cc` via admin fast-forward (docs + workflow-config only). Production deployment for `8eef802` = success (`https://dmarques-26mf2txeo-felipe-salles-projects.vercel.app`); unauth curl -> 302 SSO.
 - [Phase ?]: [Phase 01 / 01-08]: SEC-07 Phase 1 run file created at .planning/security/runs/phase-01.md (verbatim security-check.sh --ci stdout 6 PASS / 1 FAIL / 0 SKIP exit 1; all 7 gabarito items answered; PERF-02 INP-deferral sentence verbatim; out-of-git config record; D-12 findings table P01-001..P01-007, none High). Local check 7 FAILs on this machine only (Windows chrome-launcher EPERM + host antivirus script injection); authoritative Lighthouse gate is CI lhci job, green (Perf 1.00 / A11y 1.00 / BP 0.96; LCP 1543 ms / CLS 0 / TBT 0 ms). scripts/security-check.sh NOT modified. Task 2 (Felipe sign-off, checkpoint:human-verify gate=blocking) PENDING — no sign-off line appended, phase.complete NOT run, Phase 1 not closed.
 - [Phase 02]: Placeholder cover generated from vector shapes only (no <text>), rasterized to WebP with the Sharp already bundled inside astro@7.3.1 (resolved via node_modules/.pnpm + createRequire) -- zero new dependency
+- [Phase 02]: [02-03]: SEC-07 phase-02 run filed at .planning/security/runs/phase-02.md (verbatim security-check.sh --ci 5 PASS / 0 FAIL / 2 SKIP, exit 0, no phase-02 preview yet). Two extract-zip advisories carried forward from Phase 1 as P02-001/P02-002 (dependency tree unchanged); two Low findings P02-003/P02-004 filed for Phase 3 (HTML-escape case fields) and Phase 6 (JSON-encode FAQ strings). No open High. Negative-test evidence recorded: unknown-key and missing-order probes both fail pnpm build non-zero, reverted cleanly, clean build exits 0.
 
 ### Open Decisions To Resolve Before Their Phase
 
@@ -125,6 +127,6 @@ yet.
 
 ## Session Continuity
 
-Last session: 2026-09-15T20:37:37.111Z
-Stopped at: Completed 02-02-PLAN.md
+Last session: 2026-09-15T20:45:40.949Z
+Stopped at: Completed 02-03-PLAN.md
 Resume file: None
