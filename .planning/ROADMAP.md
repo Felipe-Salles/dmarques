@@ -56,7 +56,7 @@ Milestone 2 (Cloudflare layer) closes this statement.
 - Decimal phases (2.1, 2.2): Urgent insertions (marked INSERTED)
 
 - [x] **Phase 1: Foundation & CI Gate** (2026-09-10) - Astro + Vercel static scaffold, self-hosted fonts, design tokens, BaseLayout, preview deploys, Lighthouse CI + audit gates, Vercel lockdown, security-review checklist artifact
-- [ ] **Phase 2: Content Collections** - All copy and portfolio cases as typed, build-validated Astro Content Collections (no CMS)
+- [x] **Phase 2: Content Collections** - All copy and portfolio cases as typed, build-validated Astro Content Collections (no CMS) (completed 2026-09-15)
 - [ ] **Phase 3: Static Zero-JS Sections + CSP-safe Refactor + A11y** - The 9 design sections + privacy/thank-you/404 pages as fully static HTML, every inline style converted to token CSS, accessibility and AA contrast fixed
 - [ ] **Phase 4: Progressive-Enhancement Effects** - Scroll reveal, cursor glow, particle canvas, and reduced-motion handling as small vanilla islands
 - [ ] **Phase 5: Form Backend + Enhancement + LGPD** - Working quote form (no-JS + enhanced) via Resend behind layered spam/abuse defenses, shipped with the Privacy Policy page and inline data-use notice
@@ -150,7 +150,7 @@ Plans:
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
-- [ ] 02-04-PLAN.md — Felipe approves the case art / alt text / copy and signs off SEC-07 (human-gated)
+- [x] 02-04-PLAN.md — Felipe approves the case art / alt text / copy and signs off SEC-07 (human-gated)
 
 ### Phase 3: Static Zero-JS Sections + CSP-safe Refactor + A11y
 
@@ -238,7 +238,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation & CI Gate | 8/8 | Complete | 2026-09-10 |
-| 2. Content Collections | 3/4 | In Progress|  |
+| 2. Content Collections | 4/4 | Complete   | 2026-09-15 |
 | 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 0/TBD | Not started | - |
 | 4. Progressive-Enhancement Effects | 0/TBD | Not started | - |
 | 5. Form Backend + Enhancement + LGPD | 0/TBD | Not started | - |
