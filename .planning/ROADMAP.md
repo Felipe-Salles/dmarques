@@ -142,7 +142,7 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 02-02-PLAN.md — branded placeholder cover, the single "projeto próprio" case in Markdown, the `cases` collection, and the order-sorted consumption barrel
+- [x] 02-02-PLAN.md — branded placeholder cover, the single "projeto próprio" case in Markdown, the `cases` collection, and the order-sorted consumption barrel
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
@@ -238,7 +238,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation & CI Gate | 8/8 | Complete | 2026-09-10 |
-| 2. Content Collections | 1/4 | In Progress|  |
+| 2. Content Collections | 2/4 | In Progress|  |
 | 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 0/TBD | Not started | - |
 | 4. Progressive-Enhancement Effects | 0/TBD | Not started | - |
 | 5. Form Backend + Enhancement + LGPD | 0/TBD | Not started | - |

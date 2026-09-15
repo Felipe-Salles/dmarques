@@ -36,13 +36,13 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 
 - [ ] **CONTENT-01**: Conteúdo de serviços, processo, diferenciais e FAQ em Astro
   Content Collections (YAML), validado por schema Zod no build
-- [ ] **CONTENT-02**: Cases de portfólio em Content Collection (Markdown) com capa
+- [x] **CONTENT-02**: Cases de portfólio em Content Collection (Markdown) com capa
   via helper `image()`, estrutura problema → solução → resultado
-- [ ] **CONTENT-03**: 1–2 entradas de case reais ou honestamente rotuladas
+- [x] **CONTENT-03**: 1–2 entradas de case reais ou honestamente rotuladas
   ("projeto próprio" / "demo") publicadas na v1
-- [ ] **CONTENT-04**: FAQ é fonte única — o mesmo conteúdo alimenta a seção visível
+- [x] **CONTENT-04**: FAQ é fonte única — o mesmo conteúdo alimenta a seção visível
   e o JSON-LD `FAQPage`
-- [ ] **CONTENT-05**: O enum "tipo de projeto" do conteúdo é a mesma allow-list
+- [x] **CONTENT-05**: O enum "tipo de projeto" do conteúdo é a mesma allow-list
   usada na validação do formulário
 
 ### Seções da Página (SITE)
@@ -307,10 +307,10 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | INFRA-09 | Phase 1 | Complete |
 | INFRA-10 | Phase 1 | Complete |
 | CONTENT-01 | Phase 2 | Pending |
-| CONTENT-02 | Phase 2 | Pending |
-| CONTENT-03 | Phase 2 | Pending |
-| CONTENT-04 | Phase 2 | Pending |
-| CONTENT-05 | Phase 2 | Pending |
+| CONTENT-02 | Phase 2 | Complete |
+| CONTENT-03 | Phase 2 | Complete |
+| CONTENT-04 | Phase 2 | Complete |
+| CONTENT-05 | Phase 2 | Complete |
 | SITE-01 | Phase 3 | Pending |
 | SITE-02 | Phase 3 | Pending |
 | SITE-03 | Phase 3 | Pending |
