@@ -1,6 +1,7 @@
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
+import { PROJECT_TYPE_VALUES } from './content/project-types';
 
 const SERVICE_ICONS = ['sites', 'sistemas', 'solucoes-web', 'automacoes'] as const;
 
@@ -42,4 +43,20 @@ const faq = defineCollection({
   }),
 });
 
-export const collections = { services, process, differentiators, faq };
+const cases = defineCollection({
+  loader: glob({ base: './src/content/cases', pattern: '**/*.md' }),
+  schema: ({ image }) =>
+    z.strictObject({
+      titulo: z.string().min(3).max(80),
+      rotulo: z.enum(['projeto próprio', 'demo']),
+      tipo: z.enum(PROJECT_TYPE_VALUES),
+      cover: image(),
+      coverAlt: z.string().min(5).max(160),
+      problema: z.string().min(40).max(600),
+      solucao: z.string().min(40).max(600),
+      resultado: z.string().min(40).max(600),
+      order: z.number().int().nonnegative(),
+    }),
+});
+
+export const collections = { services, process, differentiators, faq, cases };
