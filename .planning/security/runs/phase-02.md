@@ -152,6 +152,12 @@ Ambas registradas como achados `Low` na tabela abaixo (`P02-003`, `P02-004`), co
 fase-alvo — não bloqueiam o fechamento da Fase 2 porque nenhuma delas é exercida por código desta
 fase.
 
+## Aprovação do case (plano 02-04)
+
+Felipe Salles aprovou, sem alteração, a capa placeholder (`src/content/cases/dmarques-cover.webp`),
+o `coverAlt`, e a copy `problema`/`solucao`/`resultado` mais o corpo do case
+`src/content/cases/dmarques.md`, incluindo o rótulo `projeto próprio` como único case da v1.
+
 ## Tabela de achados (esquema D-12)
 
 Convenção de ID: `P02-NNN`. Vocabulário de severidade: `Low` / `Med` / `High`. Responsável
@@ -177,3 +183,9 @@ fase 2 foi publicado — consistente com a interface documentada no plano
 (`== resumo: 5 PASS / 0 FAIL / 2 SKIP ==` era o resultado esperado sem `PREVIEW_URL`). Nenhuma
 dependência, asset de terceiros ou segredo novo foi introduzido; `package.json` e
 `pnpm-lock.yaml` permanecem byte-idênticos ao fechamento da Fase 1.
+
+## Sign-off
+
+Revisão de segurança da Fase 2 aprovada por **Felipe Salles** em **2026-09-15**. Nenhum achado
+High em aberto; as quatro linhas registradas (`P02-001`–`P02-004`) são `Med`/`Low` com
+responsável e prazo. A Fase 2 está fechada.
