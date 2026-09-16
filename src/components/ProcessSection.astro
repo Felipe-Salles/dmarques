@@ -1,0 +1,175 @@
+---
+import { getProcess } from '../content';
+
+const process = await getProcess();
+---
+
+<section id="processo" class="process">
+  <div class="process-inner">
+    <div class="process-intro" data-reveal="1">
+      <span class="process-eyebrow">Processo</span>
+      <h2>Método claro, do primeiro contato à entrega</h2>
+      <p>Quatro etapas, sempre nesta ordem. Você sabe o que está acontecendo e o que vem depois.</p>
+    </div>
+    <ol class="process-track">
+      {
+        process.map((item) => (
+          <li class="process-step" data-reveal="1">
+            <div class="process-step-track" aria-hidden="true">
+              <span class="process-step-dot" />
+              <span class="process-step-connector" />
+            </div>
+            <span class="process-step-number">{item.data.numero}</span>
+            <h3>{item.data.titulo}</h3>
+            <p>{item.data.descricao}</p>
+          </li>
+        ))
+      }
+    </ol>
+    <p class="process-closing" data-reveal="1">
+      Agência nova, método definido: <span>nada começa antes de estar combinado</span>
+    </p>
+  </div>
+</section>
+
+<style>
+  .process {
+    position: relative;
+    z-index: var(--z-section);
+    background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-blue) 55%, var(--color-bg) 100%);
+    padding: var(--space-section) var(--space-gutter);
+    overflow: hidden;
+  }
+
+  .process-inner {
+    position: relative;
+    max-width: 1220px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(3rem, 5vw, 4.375rem);
+  }
+
+  .process-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-4);
+  }
+
+  .process-eyebrow {
+    font-family: var(--font-text);
+    font-size: var(--text-2xs);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--color-accent-light);
+  }
+
+  .process-intro h2 {
+    margin: 0;
+    max-width: 46.25rem;
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-bold);
+    font-size: clamp(1.75rem, 3.4vw, 3.125rem);
+    line-height: var(--leading-heading);
+    letter-spacing: var(--tracking-tight);
+    color: var(--color-text-strong);
+    text-wrap: balance;
+  }
+
+  .process-intro p {
+    margin: 0;
+    max-width: 32.5rem;
+    font-family: var(--font-text);
+    font-size: var(--text-base);
+    line-height: 1.65;
+    color: var(--color-text-muted);
+  }
+
+  .process-track {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+    gap: clamp(1.5rem, 3vw, 2.25rem);
+  }
+
+  .process-step {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .process-step-track {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .process-step-dot {
+    width: 9px;
+    height: 9px;
+    flex: none;
+    border-radius: var(--radius-circle);
+    background: var(--color-accent);
+    box-shadow: var(--shadow-accent);
+  }
+
+  .process-step-connector {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--color-accent-glow), var(--color-border));
+  }
+
+  .process-step:last-child .process-step-connector {
+    background: var(--color-border);
+  }
+
+  .process-step-number {
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text-faint);
+  }
+
+  .process-step h3 {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--text-xl);
+    line-height: var(--leading-heading);
+    letter-spacing: -0.015em;
+    color: var(--color-text-strong);
+  }
+
+  .process-step p {
+    margin: 0;
+    font-family: var(--font-text);
+    font-size: var(--text-sm);
+    line-height: var(--leading-body);
+    color: var(--color-text-muted);
+  }
+
+  .process-closing {
+    margin: 0;
+    align-self: center;
+    max-width: 47.5rem;
+    text-align: center;
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-semibold);
+    font-size: clamp(1.1875rem, 2vw, 1.625rem);
+    line-height: 1.45;
+    letter-spacing: -0.02em;
+    color: var(--color-text-strong);
+    text-wrap: balance;
+  }
+
+  .process-closing span {
+    color: var(--color-accent);
+  }
+</style>
