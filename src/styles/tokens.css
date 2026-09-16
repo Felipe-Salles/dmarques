@@ -74,7 +74,7 @@
   --space-24: 6rem;
   --space-section: clamp(5rem, 9vw, 8.125rem);
   --space-gutter: clamp(1.25rem, 4vw, 3.5rem);
-  --nav-height: 84px;
+  --nav-height: 86px;
 
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -110,4 +110,10 @@
   --dur-reveal: 0.7s;
   --ease-standard: ease;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (min-width: 860px) {
+  :root {
+    --nav-height: 68px;
+  }
 }
