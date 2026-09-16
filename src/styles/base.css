@@ -29,6 +29,10 @@ picture {
   max-width: 100%;
 }
 
+a {
+  text-decoration: none;
+}
+
 :focus-visible {
   outline: 3px solid var(--color-accent);
   outline-offset: var(--focus-ring-offset);
