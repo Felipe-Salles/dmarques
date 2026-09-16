@@ -17,6 +17,7 @@
   --color-accent-surface: rgba(108, 76, 255, 0.12);
   --color-accent-border: rgba(108, 76, 255, 0.35);
   --color-accent-glow: rgba(108, 76, 255, 0.35);
+  --color-accent-glow-faint: rgba(108, 76, 255, 0.16);
   --color-accent-glow-soft: rgba(108, 76, 255, 0.2);
   --color-accent-glow-strong: rgba(108, 76, 255, 0.55);
 
