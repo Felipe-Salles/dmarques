@@ -1,0 +1,177 @@
+---
+---
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-grid">
+      <div class="site-footer-brand">
+        <a href="/" class="site-footer-wordmark">
+          <span class="site-footer-logo-mark" aria-hidden="true">D</span>
+          <span class="site-footer-logo-text">Dmarques</span>
+        </a>
+        <p>Sites, sistemas, soluções web e automações sob medida.</p>
+      </div>
+
+      <div class="site-footer-column">
+        <span class="site-footer-label">Navegação</span>
+        <nav aria-label="Navegação do rodapé">
+          <a href="#servicos">Serviços</a>
+          <a href="#processo">Como trabalhamos</a>
+          <a href="#diferenciais">Diferenciais</a>
+          <a href="#sobre">Sobre</a>
+        </nav>
+      </div>
+
+      <div class="site-footer-column">
+        <span class="site-footer-label">Contato</span>
+        <a href="https://wa.me/5516996111785" target="_blank" rel="noopener noreferrer"
+          >(16) 99611-1785</a
+        >
+        <a href="mailto:felipe.salles1@hotmail.com">felipe.salles1@hotmail.com</a>
+        <a href="https://instagram.com/felipe.salles1" target="_blank" rel="noopener noreferrer"
+          >@felipe.salles1</a
+        >
+        <span class="site-footer-static">Ibitinga · SP</span>
+      </div>
+    </div>
+
+    <div class="site-footer-divider" aria-hidden="true"></div>
+    <p class="site-footer-copyright">© 2026 Dmarques Soluções Web. Todos os direitos reservados.</p>
+    <span class="site-footer-watermark" aria-hidden="true">DMARQUES</span>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    position: relative;
+    z-index: var(--z-section);
+    background: var(--color-bg-black);
+    padding: clamp(3.75rem, 7vw, 5.625rem) var(--space-gutter) 0;
+    overflow: hidden;
+  }
+
+  .site-footer-inner {
+    position: relative;
+    max-width: 1220px;
+    margin-inline: auto;
+  }
+
+  .site-footer-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+    gap: clamp(1.875rem, 4vw, 3.5rem);
+  }
+
+  .site-footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .site-footer-wordmark {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    color: var(--color-text-strong);
+  }
+
+  .site-footer-logo-mark {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-md);
+    background: var(--color-accent);
+    color: var(--color-text-on-accent);
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--text-sm);
+  }
+
+  .site-footer-logo-text {
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--text-base);
+  }
+
+  .site-footer-brand p {
+    margin: 0;
+    max-width: 15.625rem;
+    font-family: var(--font-text);
+    font-size: var(--text-sm);
+    line-height: var(--leading-body);
+    color: var(--color-text-muted);
+  }
+
+  .site-footer-column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .site-footer-column nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .site-footer-label {
+    font-family: var(--font-text);
+    font-size: var(--text-2xs);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .site-footer-column a,
+  .site-footer-static {
+    font-family: var(--font-text);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    transition: color var(--dur-fast) var(--ease-standard);
+  }
+
+  .site-footer-column a:hover,
+  .site-footer-column a:focus-visible {
+    color: var(--color-accent-light);
+  }
+
+  .site-footer-divider {
+    position: relative;
+    z-index: 2;
+    margin-top: clamp(3.125rem, 6vw, 5rem);
+    height: 1px;
+    background: var(--color-border);
+  }
+
+  .site-footer-copyright {
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    padding: var(--space-6) 0 var(--space-6);
+    text-align: center;
+    font-family: var(--font-text);
+    font-size: var(--text-xs);
+    color: var(--color-text-faint);
+  }
+
+  .site-footer-watermark {
+    position: absolute;
+    left: 50%;
+    bottom: -0.16em;
+    transform: translateX(-50%);
+    z-index: 1;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: clamp(4rem, 17vw, 14.375rem);
+    line-height: 0.8;
+    letter-spacing: -0.05em;
+    color: var(--color-surface);
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+  }
+</style>
