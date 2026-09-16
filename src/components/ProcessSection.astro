@@ -5,6 +5,7 @@ const process = await getProcess();
 ---
 
 <section id="processo" class="process">
+  <div class="process-glow" aria-hidden="true"></div>
   <div class="process-inner">
     <div class="process-intro" data-reveal="1">
       <span class="process-eyebrow">Processo</span>
@@ -43,11 +44,25 @@ const process = await getProcess();
       var(--color-bg) 100%
     );
     padding: var(--space-section) var(--space-gutter);
+    margin-top: var(--space-12);
     overflow: hidden;
+  }
+
+  .process-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(68.75rem, 130%);
+    height: 43.75rem;
+    background: radial-gradient(circle, var(--color-accent-glow) 0%, transparent 62%);
+    pointer-events: none;
+    z-index: var(--z-glow);
   }
 
   .process-inner {
     position: relative;
+    z-index: 6;
     max-width: 1220px;
     margin-inline: auto;
     display: flex;
@@ -121,7 +136,7 @@ const process = await getProcess();
     flex: none;
     border-radius: var(--radius-circle);
     background: var(--color-accent);
-    box-shadow: var(--shadow-accent);
+    box-shadow: var(--shadow-dot-glow);
   }
 
   .process-step-connector {
