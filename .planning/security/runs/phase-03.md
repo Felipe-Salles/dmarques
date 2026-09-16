@@ -172,4 +172,13 @@ A Fase 3 **satisfaz** a regra dura do gabarito ("Nenhuma fase fecha com achado H
 
 ## Sign-off
 
-_(preenchido após o checkpoint humano da Task 3 do plano 03-09)_
+**Checkpoint reprovado em 2026-09-16.** Felipe testou o preview do PR #2 manualmente e aprovou
+teclado/sem-JS/reduced-motion/âncoras/páginas utilitárias/404, mas **reprovou o item de
+contraste e fidelidade visual geral (item 6 do checkpoint)** com 15 pontos específicos —
+transcrição literal completa em `03-09-SUMMARY.md`, mapeamento causa-raiz-e-correção em
+`03-UI-GAPS.md`. Nenhum dos 15 itens era uma falha de segurança; todos eram fidelidade
+visual/CSS (cores, glows, sublinhados, espaçamento, tamanho de fonte). Correções aplicadas nos
+commits `d841af9`..`dadbbfd` na mesma sessão. **Fase 3 permanece ABERTA** até nova rodada do
+checkpoint confirmar "aprovado" — a regra dura de SEC-07 ("nenhuma fase fecha com achado High em
+aberto") continua satisfeita (nenhum dos 15 itens é um achado de segurança), mas o checkpoint da
+Task 3 do plano 03-09 é um gate independente e bloqueante que ainda não foi satisfeito.
