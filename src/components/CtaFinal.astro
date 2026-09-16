@@ -47,7 +47,7 @@
     width: min(1000px, 130%);
     height: 640px;
     overflow: hidden;
-    background: radial-gradient(circle, var(--color-accent-glow-strong) 0%, transparent 60%);
+    background: radial-gradient(circle, var(--color-accent-glow-soft) 0%, transparent 60%);
     pointer-events: none;
     z-index: var(--z-glow);
     animation: dmPulse 7s ease-in-out infinite;
@@ -55,6 +55,7 @@
 
   .cta-final-block {
     position: relative;
+    z-index: 6;
     max-width: 51.25rem;
     margin-inline: auto;
     display: flex;
