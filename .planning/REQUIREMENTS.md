@@ -60,11 +60,11 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   são CSS real, não atributos do editor de design
 - [x] **SITE-05**: Navegação por âncora (#servicos, #processo, #sobre, #contato)
   com `scroll-margin-top` para o alvo não ficar sob o cabeçalho
-- [ ] **SITE-06**: Navegação mobile operável por teclado, sem framework JS
+- [x] **SITE-06**: Navegação mobile operável por teclado, sem framework JS
   (linha rolável ou disclosure `<details>`), sem prender foco
-- [ ] **SITE-07**: Página de agradecimento (`/obrigado`) para o fluxo do
+- [x] **SITE-07**: Página de agradecimento (`/obrigado`) para o fluxo do
   formulário sem JS
-- [ ] **SITE-08**: Página 404 com identidade visual e link para a home
+- [x] **SITE-08**: Página 404 com identidade visual e link para a home
 - [x] **SITE-09**: Imagens via `astro:assets` com dimensões explícitas e formatos
   AVIF/WebP; imagem do hero com `fetchpriority="high"`
 
@@ -156,7 +156,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 
 - [ ] **SEO-01**: `<title>`, meta description (~150 chars, cita Ibitinga, sites,
   sistemas, automação) e `<link rel="canonical">` absoluto por página
-- [ ] **SEO-02**: `<html lang="pt-BR">`
+- [x] **SEO-02**: `<html lang="pt-BR">`
 - [ ] **SEO-03**: Open Graph + Twitter Card completos e imagem de compartilhamento
   1200×630 estática (< 300 KB) desenhada, servida de `public/`
 - [ ] **SEO-04**: `sitemap.xml` (via `@astrojs/sitemap`) e `robots.txt` (libera
@@ -173,13 +173,13 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 
 ### Acessibilidade (A11Y)
 
-- [ ] **A11Y-01**: Skip link ("Pular para o conteúdo") como primeiro elemento
+- [x] **A11Y-01**: Skip link ("Pular para o conteúdo") como primeiro elemento
   focável, visível ao receber foco, apontando para `<main id>`
-- [ ] **A11Y-02**: Landmarks semânticos (`header`/`nav`/`main`/`footer`), um único
+- [x] **A11Y-02**: Landmarks semânticos (`header`/`nav`/`main`/`footer`), um único
   `<h1>`, hierarquia de headings correta
 - [x] **A11Y-03**: `:focus-visible` visível em todo elemento interativo, com
   contraste ≥ 3:1 tanto nas seções escuras quanto nas claras
-- [ ] **A11Y-04**: Tudo que é interativo é operável por teclado, sem armadilha de
+- [x] **A11Y-04**: Tudo que é interativo é operável por teclado, sem armadilha de
   foco (inclui nav mobile)
 - [ ] **A11Y-05**: Texto alternativo real no retrato do fundador; render do hero,
   canvas e glow marcados como decorativos (`alt=""` / `aria-hidden`)
@@ -316,9 +316,9 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | SITE-03 | Phase 3 | Pending |
 | SITE-04 | Phase 3 | Pending |
 | SITE-05 | Phase 3 | Complete |
-| SITE-06 | Phase 3 | Pending |
-| SITE-07 | Phase 3 | Pending |
-| SITE-08 | Phase 3 | Pending |
+| SITE-06 | Phase 3 | Complete |
+| SITE-07 | Phase 3 | Complete |
+| SITE-08 | Phase 3 | Complete |
 | SITE-09 | Phase 3 | Complete |
 | ANIM-01 | Phase 4 | Pending |
 | ANIM-02 | Phase 3 | Complete |
@@ -350,17 +350,17 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | LGPD-06 | Phase 5 | Pending |
 | LGPD-07 | Phase 5 | Pending |
 | SEO-01 | Phase 6 | Pending |
-| SEO-02 | Phase 3 | Pending |
+| SEO-02 | Phase 3 | Complete |
 | SEO-03 | Phase 6 | Pending |
 | SEO-04 | Phase 6 | Pending |
 | SEO-05 | Phase 6 | Pending |
 | SEO-06 | Phase 6 | Pending |
 | SEO-07 | Phase 6 | Pending |
 | SEO-08 | Phase 6 | Pending |
-| A11Y-01 | Phase 3 | Pending |
-| A11Y-02 | Phase 3 | Pending |
+| A11Y-01 | Phase 3 | Complete |
+| A11Y-02 | Phase 3 | Complete |
 | A11Y-03 | Phase 3 | Complete |
-| A11Y-04 | Phase 3 | Pending |
+| A11Y-04 | Phase 3 | Complete |
 | A11Y-05 | Phase 3 | Pending |
 | A11Y-06 | Phase 3 | Complete |
 | A11Y-07 | Phase 3 | Complete |
