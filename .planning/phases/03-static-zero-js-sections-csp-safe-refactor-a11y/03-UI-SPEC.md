@@ -1,10 +1,11 @@
 ---
 phase: 3
 slug: static-zero-js-sections-csp-safe-refactor-a11y
-status: draft
+status: approved
 shadcn_initialized: false
 preset: none
 created: 2026-09-16
+reviewed_at: 2026-09-16
 ---
 
 # Phase 3 — UI Design Contract
@@ -293,12 +294,12 @@ All three use `BaseLayout` with `<main id="conteudo">`, no `prerender` export ne
 
 ## Checker Sign-Off
 
-- [ ] Dimension 1 Copywriting: PASS
-- [ ] Dimension 2 Visuals: PASS
-- [ ] Dimension 3 Color: PASS
-- [ ] Dimension 4 Typography: PASS
-- [ ] Dimension 5 Spacing: PASS
-- [ ] Dimension 6 Registry Safety: PASS
+- [x] Dimension 1 Copywriting: PASS
+- [x] Dimension 2 Visuals: PASS (resolved — Hero focal-point statement added)
+- [x] Dimension 3 Color: PASS
+- [x] Dimension 4 Typography: FLAG (non-blocking — locked via CONTEXT.md D-15; table is the exhaustive permitted set, no ad hoc growth)
+- [x] Dimension 5 Spacing: PASS (resolved — 4px-alignment note added)
+- [x] Dimension 6 Registry Safety: PASS
 
 **Approval:** pending
 </content>
