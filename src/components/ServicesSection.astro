@@ -46,7 +46,10 @@ const lastOrder = Math.max(...services.map((item) => item.data.order));
       {
         services.map((item) => (
           <article
-            class:list={['services-card', { 'services-card-accent': item.data.order === lastOrder }]}
+            class:list={[
+              'services-card',
+              { 'services-card-accent': item.data.order === lastOrder },
+            ]}
             data-reveal="1"
           >
             <svg
@@ -62,12 +65,18 @@ const lastOrder = Math.max(...services.map((item) => item.data.order));
             >
               {iconShapes[item.data.icon].map((shape) =>
                 shape.tag === 'rect' ? (
-                  <rect x={shape.x} y={shape.y} width={shape.width} height={shape.height} rx={shape.rx} />
+                  <rect
+                    x={shape.x}
+                    y={shape.y}
+                    width={shape.width}
+                    height={shape.height}
+                    rx={shape.rx}
+                  />
                 ) : shape.tag === 'circle' ? (
                   <circle cx={shape.cx} cy={shape.cy} r={shape.r} />
                 ) : (
                   <path d={shape.d} />
-                )
+                ),
               )}
             </svg>
             <div class="services-card-copy">
@@ -157,7 +166,11 @@ const lastOrder = Math.max(...services.map((item) => item.data.order));
   }
 
   .services-card-accent {
-    background: linear-gradient(180deg, var(--color-accent-surface) 0%, rgba(255, 255, 255, 0.015) 100%);
+    background: linear-gradient(
+      180deg,
+      var(--color-accent-surface) 0%,
+      rgba(255, 255, 255, 0.015) 100%
+    );
     border-color: var(--color-accent-border);
   }
 

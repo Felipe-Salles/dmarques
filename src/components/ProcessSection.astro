@@ -36,7 +36,12 @@ const process = await getProcess();
   .process {
     position: relative;
     z-index: var(--z-section);
-    background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-blue) 55%, var(--color-bg) 100%);
+    background: linear-gradient(
+      180deg,
+      var(--color-bg) 0%,
+      var(--color-bg-blue) 55%,
+      var(--color-bg) 100%
+    );
     padding: var(--space-section) var(--space-gutter);
     overflow: hidden;
   }
