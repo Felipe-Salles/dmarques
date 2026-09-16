@@ -156,13 +156,14 @@ import { PROJECT_TYPES } from '../content/project-types';
     width: min(900px, 110%);
     height: 600px;
     overflow: hidden;
-    background: radial-gradient(circle, var(--color-accent-glow) 0%, transparent 62%);
+    background: radial-gradient(circle, var(--color-accent-glow-soft) 0%, transparent 62%);
     pointer-events: none;
     z-index: var(--z-glow);
   }
 
   .contact-inner {
     position: relative;
+    z-index: 6;
     max-width: 1160px;
     margin-inline: auto;
     display: grid;
@@ -240,14 +241,14 @@ import { PROJECT_TYPES } from '../content/project-types';
     align-self: flex-start;
     display: inline-flex;
     align-items: center;
-    gap: var(--space-3);
-    padding: var(--space-4) var(--space-6);
+    gap: var(--space-4);
+    padding: var(--space-5) var(--space-8);
     border-radius: var(--radius-pill);
     background: var(--color-surface-raised);
     border: 1px solid var(--color-border-strong);
     color: var(--color-text-strong);
     font-family: var(--font-text);
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     font-weight: var(--font-weight-semibold);
     transition:
       border-color var(--dur-fast) var(--ease-standard),
@@ -337,7 +338,7 @@ import { PROJECT_TYPES } from '../content/project-types';
   }
 
   .contact-field textarea {
-    resize: vertical;
+    resize: none;
   }
 
   .contact-field input:focus-visible,
