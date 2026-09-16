@@ -1,0 +1,117 @@
+---
+---
+
+<section class="cta-final">
+  <div class="cta-final-glow" aria-hidden="true"></div>
+  <div class="cta-final-block" data-reveal="1">
+    <h2>Vamos construir algo <span>sólido</span> juntos</h2>
+    <p>Conte o que você precisa. Quem responde é quem vai desenvolver.</p>
+    <a
+      href="https://wa.me/5516996111785"
+      class="cta-final-link"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Começar um projeto
+      <svg
+        aria-hidden="true"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.6"
+        stroke-linecap="round"
+      >
+        <path d="M5 12h13"></path>
+        <path d="M12.5 6l6 6-6 6"></path>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<style>
+  .cta-final {
+    position: relative;
+    z-index: var(--z-section);
+    background: var(--color-bg);
+    padding: clamp(5.625rem, 11vw, 10rem) var(--space-gutter);
+  }
+
+  .cta-final-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(1000px, 130%);
+    height: 640px;
+    overflow: hidden;
+    background: radial-gradient(circle, var(--color-accent-glow-strong) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: var(--z-glow);
+    animation: dmPulse 7s ease-in-out infinite;
+  }
+
+  .cta-final-block {
+    position: relative;
+    max-width: 51.25rem;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-6);
+  }
+
+  .cta-final-block h2 {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-bold);
+    font-size: clamp(2.125rem, 5vw, 4.25rem);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    color: var(--color-text-strong);
+    text-wrap: balance;
+  }
+
+  .cta-final-block h2 span {
+    color: var(--color-accent);
+  }
+
+  .cta-final-block p {
+    margin: 0;
+    max-width: 30rem;
+    font-family: var(--font-text);
+    font-size: var(--text-lg);
+    line-height: var(--leading-body);
+    color: var(--color-text-muted);
+    text-wrap: pretty;
+  }
+
+  .cta-final-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-5) var(--space-8);
+    border-radius: var(--radius-pill);
+    background: var(--color-accent);
+    color: var(--color-text-on-accent);
+    font-family: var(--font-text);
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-semibold);
+    box-shadow: var(--shadow-accent);
+    transition:
+      background-color var(--dur-fast) var(--ease-standard),
+      box-shadow var(--dur-fast) var(--ease-standard);
+  }
+
+  .cta-final-link:hover,
+  .cta-final-link:focus-visible {
+    background: var(--color-accent-hover);
+    box-shadow: var(--shadow-accent-lg);
+  }
+
+  .cta-final-link svg {
+    flex: none;
+  }
+</style>
