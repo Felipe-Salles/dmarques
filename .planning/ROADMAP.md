@@ -165,8 +165,30 @@ Plans:
   4. All raster images go through `astro:assets` with explicit dimensions and AVIF/WebP, the hero LCP image uses `fetchpriority="high"`, no image is optimized at runtime (build-time Sharp only), and with JavaScript disabled the whole page is visible (reveal hidden state gated on a `.js-ready` class + `prefers-reduced-motion: no-preference`).
   5. Lighthouse mobile stays >=95 in all four categories on the preview and the SEC-07 checklist run passes with no open High finding.
 
-**Plans**: TBD
+**Plans**: 9 plans
 **UI hint**: yes
+
+Plans:
+**Wave 1**
+
+- [ ] 03-01-PLAN.md — sharp@0.35.4 como devDependency explicita + os dois assets placeholder branded (hero 4:3, retrato 4:5)
+- [ ] 03-02-PLAN.md — correcoes de contraste em tokens.css (--focus-ring, --color-text-faint), token --nav-height e os contratos globais de base.css (foco, scroll, reveal inerte, reduced-motion)
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [ ] 03-03-PLAN.md — SiteHeader.astro (skip link, nav por ancora, disclosure details mobile) + as rotas /obrigado, /politica-de-privacidade e /404
+- [ ] 03-04-PLAN.md — HeroBleed.astro ("03 Bleed" com LCP priorizado) + AboutSection.astro (retrato com alt real)
+- [ ] 03-05-PLAN.md — ServicesSection.astro + ProcessSection.astro (consumo das collections, icones SVG inline)
+- [ ] 03-06-PLAN.md — DifferentiatorsSection.astro (secao clara, contraste recalculado) + FaqSection.astro
+- [ ] 03-07-PLAN.md — ContactSection.astro (formulario estatico de 5 campos) + CtaFinal.astro + SiteFooter.astro
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
+- [ ] 03-08-PLAN.md — composicao de index.astro com as 9 secoes, medicao definitiva de --nav-height e bateria completa de gates locais
+
+**Wave 4** *(blocked on Wave 3 completion)*
+
+- [ ] 03-09-PLAN.md — verificacao em preview real (404 ao vivo, Lighthouse, headers), execucao SEC-07 fase 3 e aceite do Felipe (human-gated)
 
 ### Phase 4: Progressive-Enhancement Effects
 
@@ -239,7 +261,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 |-------|----------------|--------|-----------|
 | 1. Foundation & CI Gate | 8/8 | Complete | 2026-09-10 |
 | 2. Content Collections | 4/4 | Complete   | 2026-09-15 |
-| 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 0/TBD | Not started | - |
+| 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 0/9 | Planned | - |
 | 4. Progressive-Enhancement Effects | 0/TBD | Not started | - |
 | 5. Form Backend + Enhancement + LGPD | 0/TBD | Not started | - |
 | 6. SEO / Metadata / Structured Data | 0/TBD | Not started | - |
