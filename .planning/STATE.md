@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 03-01-PLAN.md
-last_updated: "2026-09-16T05:34:47.570Z"
+stopped_at: Completed 03-02-PLAN.md
+last_updated: "2026-09-16T05:40:16.649Z"
 last_activity: 2026-09-16
 progress:
   total_phases: 7
   completed_phases: 2
   total_plans: 21
-  completed_plans: 13
+  completed_plans: 14
   percent: 29
 ---
 
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-09-05)
 ## Current Position
 
 Phase: 03 (static-zero-js-sections-csp-safe-refactor-a11y) — EXECUTING
-Plan: 2 of 9
+Plan: 3 of 9
 Status: Ready to execute
 Last activity: 2026-09-16
 
-Progress: [██████░░░░] 62%
+Progress: [███████░░░] 67%
 
 ## Performance Metrics
 
@@ -63,6 +63,7 @@ Progress: [██████░░░░] 62%
 | Phase 02 P02 | 20min | 3 tasks | 4 files |
 | Phase 02 P03 | 25min | 2 tasks | 1 files |
 | Phase 03 P01 | 5min | 2 tasks tasks | 4 files files |
+| Phase 03 P02 | 6min | 3 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -101,6 +102,8 @@ Relevant to current work:
 - [Phase 02]: Placeholder cover generated from vector shapes only (no <text>), rasterized to WebP with the Sharp already bundled inside astro@7.3.1 (resolved via node_modules/.pnpm + createRequire) -- zero new dependency
 - [Phase 02]: [02-03]: SEC-07 phase-02 run filed at .planning/security/runs/phase-02.md (verbatim security-check.sh --ci 5 PASS / 0 FAIL / 2 SKIP, exit 0, no phase-02 preview yet). Two extract-zip advisories carried forward from Phase 1 as P02-001/P02-002 (dependency tree unchanged); two Low findings P02-003/P02-004 filed for Phase 3 (HTML-escape case fields) and Phase 6 (JSON-encode FAQ strings). No open High. Negative-test evidence recorded: unknown-key and missing-order probes both fail pnpm build non-zero, reverted cleanly, clean build exits 0.
 - [Phase 03]: 03-01: sharp@0.35.4 promoted to explicit devDependency (matches version already resolved transitively via astro@7.3.1, confirmed via pnpm why sharp); astro.config.mjs and pnpm-workspace.yaml untouched (imageService stays build-time only per PERF-05/SITE-09). Two branded vector-only WebP placeholders added: src/assets/hero-render-placeholder.webp (1920x1440) and src/assets/founder-portrait-placeholder.webp (960x1200), generated via a scratchpad one-off script (never committed) run with node --input-type=module against project cwd so the bare sharp import resolves.
+- [Phase 03 / 03-02]: global :focus-visible uses outline (not the --focus-ring box-shadow token) because outline survives overflow:hidden ancestors in the hero/CTA-final sections; --focus-ring stays reserved for form inputs
+- [Phase 03 / 03-02]: tokens color-text-faint raised to alpha .47 and focus-ring switched to opaque var(color-accent) via a scratchpad-only WCAG contrast solver (D-13); nav-height token added as a provisional 84px value pending 03-08 measurement
 
 ### Open Decisions To Resolve Before Their Phase
 
@@ -130,6 +133,6 @@ yet.
 
 ## Session Continuity
 
-Last session: 2026-09-16T05:34:47.437Z
-Stopped at: Completed 03-01-PLAN.md
+Last session: 2026-09-16T05:40:16.534Z
+Stopped at: Completed 03-02-PLAN.md
 Resume file: None

@@ -130,3 +130,7 @@ None - no external service configuration required.
 ---
 *Phase: 03-static-zero-js-sections-csp-safe-refactor-a11y*
 *Completed: 2026-09-16*
+
+## Self-Check: PASSED
+
+All created/modified files confirmed on disk (src/styles/tokens.css, src/styles/base.css, this SUMMARY.md); all task commit hashes (fab5f42, 7c35150, 071e315) confirmed present in git log.

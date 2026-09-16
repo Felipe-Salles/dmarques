@@ -58,7 +58,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 - [ ] **SITE-04**: Nenhum atributo `style=""` de autor no código-fonte —
   `grep -r 'style="' src/` não retorna nada; estados `:hover`/`:focus-visible`
   são CSS real, não atributos do editor de design
-- [ ] **SITE-05**: Navegação por âncora (#servicos, #processo, #sobre, #contato)
+- [x] **SITE-05**: Navegação por âncora (#servicos, #processo, #sobre, #contato)
   com `scroll-margin-top` para o alvo não ficar sob o cabeçalho
 - [ ] **SITE-06**: Navegação mobile operável por teclado, sem framework JS
   (linha rolável ou disclosure `<details>`), sem prender foco
@@ -73,7 +73,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 - [ ] **ANIM-01**: Reveal ao rolar — `opacity` + `translateY` com stagger, via um
   único IntersectionObserver, elemento deixa de ser observado após disparar, com
   fallback por timeout (~2,6 s)
-- [ ] **ANIM-02**: Estado inicial oculto do reveal só se aplica com classe
+- [x] **ANIM-02**: Estado inicial oculto do reveal só se aplica com classe
   `.js-ready` no `<html>` E `prefers-reduced-motion: no-preference` — sem JS ou
   com erro de JS, a página fica 100% visível
 - [ ] **ANIM-03**: Glow que segue o cursor — gradiente radial fixo via
@@ -88,9 +88,9 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   data-saver
 - [ ] **ANIM-06**: Keyframes `dmFloat` e `dmPulse` com `animation: none` sob
   reduced-motion; elementos legíveis sem a animação
-- [ ] **ANIM-07**: Cada estado `:hover` tem um `:focus-visible` equivalente;
+- [x] **ANIM-07**: Cada estado `:hover` tem um `:focus-visible` equivalente;
   transições só em `transform`/`opacity`/`box-shadow`/`border-color`, ≤ 300 ms
-- [ ] **ANIM-08**: `scroll-behavior: smooth` vira `auto` sob reduced-motion
+- [x] **ANIM-08**: `scroll-behavior: smooth` vira `auto` sob reduced-motion
 - [ ] **ANIM-09**: Nenhuma animação anima propriedades que causam layout; sem
   parallax/scroll-jacking; sem preloader/splash
 
@@ -177,15 +177,15 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   focável, visível ao receber foco, apontando para `<main id>`
 - [ ] **A11Y-02**: Landmarks semânticos (`header`/`nav`/`main`/`footer`), um único
   `<h1>`, hierarquia de headings correta
-- [ ] **A11Y-03**: `:focus-visible` visível em todo elemento interativo, com
+- [x] **A11Y-03**: `:focus-visible` visível em todo elemento interativo, com
   contraste ≥ 3:1 tanto nas seções escuras quanto nas claras
 - [ ] **A11Y-04**: Tudo que é interativo é operável por teclado, sem armadilha de
   foco (inclui nav mobile)
 - [ ] **A11Y-05**: Texto alternativo real no retrato do fundador; render do hero,
   canvas e glow marcados como decorativos (`alt=""` / `aria-hidden`)
-- [ ] **A11Y-06**: Contraste de texto ≥ WCAG AA — tokens de branco translúcido de
+- [x] **A11Y-06**: Contraste de texto ≥ WCAG AA — tokens de branco translúcido de
   baixa opacidade elevados ao mínimo necessário (com aprovação de design)
-- [ ] **A11Y-07**: Todas as animações respeitam `prefers-reduced-motion`, com um
+- [x] **A11Y-07**: Todas as animações respeitam `prefers-reduced-motion`, com um
   caminho reduzido que ainda pareça acabado (fades limpos, não "sem movimento")
 
 ### Segurança (SEC)
@@ -315,19 +315,19 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | SITE-02 | Phase 3 | Pending |
 | SITE-03 | Phase 3 | Pending |
 | SITE-04 | Phase 3 | Pending |
-| SITE-05 | Phase 3 | Pending |
+| SITE-05 | Phase 3 | Complete |
 | SITE-06 | Phase 3 | Pending |
 | SITE-07 | Phase 3 | Pending |
 | SITE-08 | Phase 3 | Pending |
 | SITE-09 | Phase 3 | Complete |
 | ANIM-01 | Phase 4 | Pending |
-| ANIM-02 | Phase 3 | Pending |
+| ANIM-02 | Phase 3 | Complete |
 | ANIM-03 | Phase 4 | Pending |
 | ANIM-04 | Phase 4 | Pending |
 | ANIM-05 | Phase 4 | Pending |
 | ANIM-06 | Phase 4 | Pending |
-| ANIM-07 | Phase 3 | Pending |
-| ANIM-08 | Phase 3 | Pending |
+| ANIM-07 | Phase 3 | Complete |
+| ANIM-08 | Phase 3 | Complete |
 | ANIM-09 | Phase 4 | Pending |
 | FORM-01 | Phase 5 | Pending |
 | FORM-02 | Phase 5 | Pending |
@@ -359,11 +359,11 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | SEO-08 | Phase 6 | Pending |
 | A11Y-01 | Phase 3 | Pending |
 | A11Y-02 | Phase 3 | Pending |
-| A11Y-03 | Phase 3 | Pending |
+| A11Y-03 | Phase 3 | Complete |
 | A11Y-04 | Phase 3 | Pending |
 | A11Y-05 | Phase 3 | Pending |
-| A11Y-06 | Phase 3 | Pending |
-| A11Y-07 | Phase 3 | Pending |
+| A11Y-06 | Phase 3 | Complete |
+| A11Y-07 | Phase 3 | Complete |
 | SEC-01 | Phase 7 | Pending |
 | SEC-02 | Phase 7 | Pending |
 | SEC-03 | Phase 7 | Pending |

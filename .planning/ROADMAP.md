@@ -172,7 +172,7 @@ Plans:
 **Wave 1**
 
 - [x] 03-01-PLAN.md — sharp@0.35.4 como devDependency explicita + os dois assets placeholder branded (hero 4:3, retrato 4:5)
-- [ ] 03-02-PLAN.md — correcoes de contraste em tokens.css (--focus-ring, --color-text-faint), token --nav-height e os contratos globais de base.css (foco, scroll, reveal inerte, reduced-motion)
+- [x] 03-02-PLAN.md — correcoes de contraste em tokens.css (--focus-ring, --color-text-faint), token --nav-height e os contratos globais de base.css (foco, scroll, reveal inerte, reduced-motion)
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
@@ -261,7 +261,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 |-------|----------------|--------|-----------|
 | 1. Foundation & CI Gate | 8/8 | Complete | 2026-09-10 |
 | 2. Content Collections | 4/4 | Complete   | 2026-09-15 |
-| 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 1/9 | In Progress|  |
+| 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 2/9 | In Progress|  |
 | 4. Progressive-Enhancement Effects | 0/TBD | Not started | - |
 | 5. Form Backend + Enhancement + LGPD | 0/TBD | Not started | - |
 | 6. SEO / Metadata / Structured Data | 0/TBD | Not started | - |
