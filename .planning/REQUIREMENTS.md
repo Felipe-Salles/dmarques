@@ -65,7 +65,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 - [ ] **SITE-07**: Página de agradecimento (`/obrigado`) para o fluxo do
   formulário sem JS
 - [ ] **SITE-08**: Página 404 com identidade visual e link para a home
-- [ ] **SITE-09**: Imagens via `astro:assets` com dimensões explícitas e formatos
+- [x] **SITE-09**: Imagens via `astro:assets` com dimensões explícitas e formatos
   AVIF/WebP; imagem do hero com `fetchpriority="high"`
 
 ### Animações & Movimento (ANIM)
@@ -234,7 +234,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   nenhum framework de UI, nenhuma biblioteca de animação
 - [x] **PERF-04**: Fontes com `font-display: swap` e fallback com métricas
   ajustadas para não causar CLS; duas famílias/pesos críticos com `preload`
-- [ ] **PERF-05**: Nenhuma otimização de imagem em runtime (sem Vercel Image
+- [x] **PERF-05**: Nenhuma otimização de imagem em runtime (sem Vercel Image
   Optimization) — tudo processado no build com Sharp
 
 ## v2 Requirements
@@ -319,7 +319,7 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | SITE-06 | Phase 3 | Pending |
 | SITE-07 | Phase 3 | Pending |
 | SITE-08 | Phase 3 | Pending |
-| SITE-09 | Phase 3 | Pending |
+| SITE-09 | Phase 3 | Complete |
 | ANIM-01 | Phase 4 | Pending |
 | ANIM-02 | Phase 3 | Pending |
 | ANIM-03 | Phase 4 | Pending |
@@ -378,7 +378,7 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | PERF-02 | Phase 1 | Complete |
 | PERF-03 | Phase 1 | Complete |
 | PERF-04 | Phase 1 | Complete |
-| PERF-05 | Phase 3 | Pending |
+| PERF-05 | Phase 3 | Complete |
 
 **Coverage:**
 - v1 requirements: 83 total (the earlier "78 total" was a miscount; 83 IDs are
