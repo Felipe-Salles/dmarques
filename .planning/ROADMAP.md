@@ -184,7 +184,7 @@ Plans:
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 03-08-PLAN.md — composicao de index.astro com as 9 secoes, medicao definitiva de --nav-height e bateria completa de gates locais
+- [x] 03-08-PLAN.md — composicao de index.astro com as 9 secoes, medicao definitiva de --nav-height e bateria completa de gates locais
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
@@ -261,7 +261,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 |-------|----------------|--------|-----------|
 | 1. Foundation & CI Gate | 8/8 | Complete | 2026-09-10 |
 | 2. Content Collections | 4/4 | Complete   | 2026-09-15 |
-| 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 7/9 | In Progress|  |
+| 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 8/9 | In Progress|  |
 | 4. Progressive-Enhancement Effects | 0/TBD | Not started | - |
 | 5. Form Backend + Enhancement + LGPD | 0/TBD | Not started | - |
 | 6. SEO / Metadata / Structured Data | 0/TBD | Not started | - |
