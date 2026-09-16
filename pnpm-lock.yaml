@@ -37,6 +37,9 @@ importers:
       prettier-plugin-astro:
         specifier: 0.14.1
         version: 0.14.1
+      sharp:
+        specifier: 0.35.4
+        version: 0.35.4(@types/node@26.5.0)
       typescript:
         specifier: 5.9.3
         version: 5.9.3
@@ -3539,8 +3542,7 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@img/colour@1.1.0':
-    optional: true
+  '@img/colour@1.1.0': {}
 
   '@img/sharp-darwin-arm64@0.35.4':
     optionalDependencies:
@@ -5647,7 +5649,6 @@ snapshots:
       '@img/sharp-win32-ia32': 0.35.4
       '@img/sharp-win32-x64': 0.35.4
       '@types/node': 26.5.0
-    optional: true
 
   shebang-command@2.0.0:
     dependencies:
