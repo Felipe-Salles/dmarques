@@ -22,7 +22,7 @@
   --color-text-strong: rgba(255, 255, 255, 0.92);
   --color-text: rgba(255, 255, 255, 0.82);
   --color-text-muted: rgba(255, 255, 255, 0.66);
-  --color-text-faint: rgba(255, 255, 255, 0.45);
+  --color-text-faint: rgba(255, 255, 255, 0.47);
   --color-text-on-accent: #ffffff;
 
   --color-light-bg: #f2f3f6;
@@ -74,6 +74,7 @@
   --space-24: 6rem;
   --space-section: clamp(5rem, 9vw, 8.125rem);
   --space-gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --nav-height: 84px;
 
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -93,7 +94,7 @@
   --blur-glass: 18px;
   --blur-nav: 14px;
 
-  --focus-ring: 0 0 0 3px rgba(108, 76, 255, 0.5);
+  --focus-ring: 0 0 0 3px var(--color-accent);
   --focus-ring-offset: 2px;
 
   --z-below: -1;
