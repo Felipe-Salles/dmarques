@@ -1,0 +1,135 @@
+---
+import { getDifferentiators } from '../content';
+
+const differentiators = await getDifferentiators();
+---
+
+<section id="diferenciais" class="differentiators">
+  <div class="differentiators-inner">
+    <div class="differentiators-intro" data-reveal="1">
+      <span class="differentiators-eyebrow">Diferenciais</span>
+      <h2>Por que trabalhar<br /><span>com a gente</span></h2>
+      <p>
+        Quatro compromissos que não dependem de tempo de mercado — só de como a gente
+        escolhe trabalhar.
+      </p>
+    </div>
+    <div class="differentiators-grid">
+      {
+        differentiators.map((item) => (
+          <article class="differentiators-tile" data-reveal="1">
+            <span class="differentiators-number">{String(item.data.order).padStart(2, '0')}</span>
+            <h3>{item.data.titulo}</h3>
+            <p>{item.data.descricao}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .differentiators {
+    position: relative;
+    z-index: var(--z-section);
+    background: var(--color-light-bg);
+    padding: var(--space-section) var(--space-gutter);
+  }
+
+  .differentiators-inner {
+    max-width: 1220px;
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+    align-items: start;
+  }
+
+  .differentiators-intro {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    position: sticky;
+    top: var(--space-10);
+  }
+
+  .differentiators-eyebrow {
+    font-family: var(--font-text);
+    font-size: var(--text-2xs);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  .differentiators-intro h2 {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-bold);
+    font-size: clamp(1.875rem, 3.4vw, 2.875rem);
+    line-height: 1.06;
+    letter-spacing: var(--tracking-tight);
+    color: var(--color-light-text-strong);
+  }
+
+  .differentiators-intro h2 span {
+    color: var(--color-light-text-muted);
+  }
+
+  .differentiators-intro p {
+    margin: 0;
+    max-width: 23.75rem;
+    font-family: var(--font-text);
+    font-size: var(--text-sm);
+    line-height: 1.65;
+    color: var(--color-light-text-muted);
+  }
+
+  .differentiators-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+    gap: 1px;
+    background: var(--color-light-border);
+  }
+
+  .differentiators-tile {
+    background: var(--color-light-bg);
+    padding: clamp(1.5rem, 2.4vw, 2.125rem);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    transition: box-shadow var(--dur-slow) var(--ease-standard);
+  }
+
+  .differentiators-tile:hover,
+  .differentiators-tile:focus-within {
+    background: var(--color-light-surface);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .differentiators-number {
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-accent);
+  }
+
+  .differentiators-tile h3 {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--text-lg);
+    line-height: var(--leading-heading);
+    letter-spacing: -0.01em;
+    color: var(--color-light-text-strong);
+  }
+
+  .differentiators-tile p {
+    margin: 0;
+    font-family: var(--font-text);
+    font-size: var(--text-sm);
+    line-height: var(--leading-body);
+    color: var(--color-light-text-muted);
+  }
+</style>
