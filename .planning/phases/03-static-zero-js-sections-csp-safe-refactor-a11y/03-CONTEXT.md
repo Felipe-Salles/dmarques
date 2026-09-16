@@ -126,6 +126,22 @@ in the same pass.
   don't change the base `--color-accent` used for solid-fill buttons/borders,
   keeping brand identity intact everywhere contrast isn't actually failing.
 
+### Typography scale (UI-SPEC checker sign-off)
+- **D-15:** The full type scale already shipped in `tokens.css` since Phase 1
+  — **~7 font sizes** (`--text-2xs` 11px through `--text-5xl`, plus the Hero/
+  CTA-final `clamp(34–36px, 5vw, 68px)` headline and the section `<h2>`
+  `clamp(28px, 3.4vw, 50px)`) and **4 font weights** (regular 400, medium 500,
+  semibold 600, bold 700) — is **kept as-is, not consolidated** to a generic
+  4-size/2-weight scale. Felipe approved this explicitly when the Phase 3
+  UI-SPEC checker flagged it as exceeding the standard design-quality
+  guideline: SITE-02 requires the Hero "03 Bleed" be reproduced *faithfully*,
+  which depends on the same hierarchy (eyebrow label → H1 → body → CTA label)
+  the original design uses throughout every section, and the scale is already
+  live in production since Phase 1 — collapsing it now would be a visual
+  regression, not a simplification. This is a locked decision, not an open
+  gray area — the UI-SPEC and planner should treat the existing `tokens.css`
+  type scale as correct and complete for this phase.
+
 ### Claude's Discretion
 Planner / researcher decide, unless a real trade-off surfaces for Felipe:
 - Exact recalculated opacity/hex values for every `--color-text*` /
