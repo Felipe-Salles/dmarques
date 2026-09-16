@@ -55,6 +55,8 @@ Already established in `tokens.css` (rem-based, all multiples of 4px). This phas
 | `--space-section` | `clamp(5rem, 9vw, 8.125rem)` | Vertical section padding (all 9 sections use this) |
 | `--space-gutter` | `clamp(1.25rem, 4vw, 3.5rem)` | Horizontal section padding |
 
+**Why the scale extends beyond the canonical 4/8/16/24/32/48/64 set:** `--space-3` (12px), `--space-5` (20px), and the `--space-10`–`--space-24` range (40–96px) fill in extra stops between and beyond the canonical values. Every one of them remains strictly 4px-aligned (a multiple of 4) — this is additional granularity for card gaps and section-to-section rhythm inherited from the Phase 1 token system, not a break from 8-point discipline. This is a documentation gap being closed here, not a design defect; no non-4px-aligned value exists anywhere in `tokens.css`.
+
 **Exceptions this phase:**
 - The mobile nav `<summary>` hamburger trigger must have a **minimum 44×44px hit area** (pad the icon with `--space-3`/`--space-4` as needed) even though the design's icon glyph itself is smaller — this is a touch-target accessibility floor (A11Y-04), not a token change.
 - `--nav-height` (used by `scroll-margin-top`, see Anchor Nav Contract below) does not exist yet as a token. Add it to `tokens.css` once the header component's real rendered height is measured — do not guess a placeholder and forget to revisit (flagged as Open Question 3 in `03-RESEARCH.md`).
@@ -63,7 +65,7 @@ Already established in `tokens.css` (rem-based, all multiples of 4px). This phas
 
 ## Typography
 
-The existing token scale (`--text-2xs` 11px through `--text-5xl` 60px, weights `--font-weight-regular` 400 / `--font-weight-medium` 500 / `--font-weight-semibold` 600 / `--font-weight-bold` 700) already exceeds the generic "3-4 sizes / 2 weights" guideline — this is intentional and locked from Phase 1, because SITE-02 requires the Hero to be reproduced **faithfully**, and the design's own type scale spans eyebrow labels through a 68px hero headline. Do not collapse it. The table below is the **role-to-token contract** every section must follow — no ad hoc pixel values outside it.
+**Locked decision — CONTEXT.md D-15:** this phase's type scale — 7 font sizes (`--text-2xs` 11px through `--text-5xl` 60px, plus the Hero/CTA-final `clamp(34–36px, 5vw, 68px)` headline and the section `<h2>` `clamp(28px, 3.4vw, 50px)`) and 4 font weights (`--font-weight-regular` 400 / `--font-weight-medium` 500 / `--font-weight-semibold` 600 / `--font-weight-bold` 700) — exceeds the generic "3-4 sizes / 2 weights" design-quality guideline. Felipe explicitly approved keeping the full existing scale as-is when the Phase 3 UI-SPEC checker first flagged this; the approval is recorded as **D-15** in `03-CONTEXT.md` (§ "Typography scale (UI-SPEC checker sign-off)"): SITE-02 requires the Hero "03 Bleed" be reproduced **faithfully**, this scale has shipped live in production since Phase 1, and collapsing it now would be a visual regression, not a simplification. This is a **resolved, signed-off decision** — not an open gray area for a future checker run to re-flag — and the table below is the **role-to-token contract** every section must follow, with no ad hoc pixel values outside it.
 
 | Role | Font | Size | Weight | Line height | Notes |
 |------|------|------|--------|-------------|-------|
@@ -145,6 +147,8 @@ All other existing `--color-text*` tokens (`--color-text-strong` .92, `--color-t
 
 One `.astro` component per design section (matches `03-RESEARCH.md`'s recommended structure). Design source line ranges are reference-only — never copy the markup verbatim (see Pitfall 5, DC-editor-only syntax).
 
+**Primary visual anchor (Hero):** the H1 headline plus its accent-highlighted word/phrase (`--color-accent`/`--color-accent-light`, large-text contrast exception) draws the eye first, followed by the hero render image (right-bleed, `border-radius: 24px 0 0 24px`) and then the primary CTA ("Começar um projeto") — in that reading order. This reading order governs `HeroBleed.astro`'s layout weight (headline typography > image > CTA) and should not be reshuffled by later phases.
+
 | Component | Design source lines | Content source | Data-reveal groups |
 |---|---|---|---|
 | `SiteHeader.astro` | 147–160 | static markup (logo, nav links, CTA pill) | not revealed (always visible, sticky context) |
@@ -162,7 +166,7 @@ One `.astro` component per design section (matches `03-RESEARCH.md`'s recommende
 - One `<h1>` total — Hero headline ("Sites e sistemas que fazem seu negócio funcionar melhor").
 - `<h2>` per section: Serviços ("Tecnologia sob medida..."), Processo ("Método claro..."), Diferenciais ("Por que trabalhar com a gente"), Sobre ("Felipe Salles"), Contato ("Vamos falar sobre o seu projeto"), FAQ ("As dúvidas que sempre aparecem"), CTA final ("Vamos construir algo sólido juntos").
 - `<h3>` per repeating unit: service cards, process steps, differentiator tiles, and **FAQ questions** (treat each FAQ question bubble as an `<h3>`, keeping the section scannable for screen-reader users navigating by heading — the answer bubble stays a plain `<p>`).
-- Rodapé and nav are not headings (landmarks: `<header>`, `<nav>`, `<footer>`).
+- Rodapé e nav não são headings (landmarks: `<header>`, `<nav>`, `<footer>`).
 
 ---
 
@@ -297,3 +301,5 @@ All three use `BaseLayout` with `<main id="conteudo">`, no `prerender` export ne
 - [ ] Dimension 6 Registry Safety: PASS
 
 **Approval:** pending
+</content>
+</invoke>
