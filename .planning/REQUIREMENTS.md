@@ -47,15 +47,15 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 
 ### Seções da Página (SITE)
 
-- [ ] **SITE-01**: Landing one-page com as 9 seções do design, em ordem: Hero
+- [x] **SITE-01**: Landing one-page com as 9 seções do design, em ordem: Hero
   (03 Bleed), Serviços, Como trabalhamos, Diferenciais, Sobre, Contato, FAQ, CTA
   final, Rodapé
 - [x] **SITE-02**: Hero "03 Bleed" reproduzido fielmente — nav, headline, dois
   CTAs ("Começar um projeto" e WhatsApp), área do render 3D sangrando na borda,
   card de depoimento em glass
-- [ ] **SITE-03**: Todas as seções renderizam com zero JavaScript de cliente
+- [x] **SITE-03**: Todas as seções renderizam com zero JavaScript de cliente
   (markup `.astro` puro consumindo as collections)
-- [ ] **SITE-04**: Nenhum atributo `style=""` de autor no código-fonte —
+- [x] **SITE-04**: Nenhum atributo `style=""` de autor no código-fonte —
   `grep -r 'style="' src/` não retorna nada; estados `:hover`/`:focus-visible`
   são CSS real, não atributos do editor de design
 - [x] **SITE-05**: Navegação por âncora (#servicos, #processo, #sobre, #contato)
@@ -311,10 +311,10 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | CONTENT-03 | Phase 2 | Complete |
 | CONTENT-04 | Phase 2 | Complete |
 | CONTENT-05 | Phase 2 | Complete |
-| SITE-01 | Phase 3 | Pending |
+| SITE-01 | Phase 3 | Complete |
 | SITE-02 | Phase 3 | Complete |
-| SITE-03 | Phase 3 | Pending |
-| SITE-04 | Phase 3 | Pending |
+| SITE-03 | Phase 3 | Complete |
+| SITE-04 | Phase 3 | Complete |
 | SITE-05 | Phase 3 | Complete |
 | SITE-06 | Phase 3 | Complete |
 | SITE-07 | Phase 3 | Complete |

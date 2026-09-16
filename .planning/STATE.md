@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 03-04-PLAN.md
-last_updated: "2026-09-16T06:02:28.126Z"
+stopped_at: Completed 03-05-PLAN.md
+last_updated: "2026-09-16T06:08:44.968Z"
 last_activity: 2026-09-16
 progress:
   total_phases: 7
   completed_phases: 2
   total_plans: 21
-  completed_plans: 16
+  completed_plans: 17
   percent: 29
 ---
 
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-09-05)
 ## Current Position
 
 Phase: 03 (static-zero-js-sections-csp-safe-refactor-a11y) — EXECUTING
-Plan: 5 of 9
+Plan: 6 of 9
 Status: Ready to execute
 Last activity: 2026-09-16
 
-Progress: [████████░░] 76%
+Progress: [████████░░] 81%
 
 ## Performance Metrics
 
@@ -66,6 +66,7 @@ Progress: [████████░░] 76%
 | Phase 03 P02 | 6min | 3 tasks | 2 files |
 | Phase 03 P03 | 12min | 2 tasks | 4 files |
 | Phase 03 P04 | 12min | 2 tasks | 2 files |
+| Phase 03 P05 | 10min | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -109,6 +110,8 @@ Relevant to current work:
 - [Phase 03 / 03-03]: mobile nav panel positioned absolute against .site-header (position:relative), not against .nav-toggle, so the details disclosure renders a true full-width dropdown per the UI-SPEC contract
 - [Phase 03 / 03-03]: utility pages' wrapper class renamed .stack -> .content-block to avoid a false-positive substring match against literal 'stack' in the 404 diagnostic-leak acceptance grep (T-03-03); no functional change
 - [Phase 03 / 03-04]: HeroBleed primary CTA uses var(--color-accent) fill at rest per PLAN.md token contract (not the design source's white-fill styling); hero glow gradient uses the transparent keyword instead of an rgba() literal to avoid hard-coded RGB channels
+- [Phase 03]: [Phase 03 / 03-05]: ServicesSection icons stored as structured shape data (Record<enum, {tag,...}[]>) rendered as real <rect>/<circle>/<path> elements, not a raw-HTML-string map + set:html, to satisfy the plan's own set:html prohibition
+- [Phase 03]: [Phase 03 / 03-05]: ProcessSection closing-quote span kept on var(--color-accent); clamp(19px,2vw,26px) floor stays above the 18.66px large-text contrast threshold at every breakpoint
 
 ### Open Decisions To Resolve Before Their Phase
 
@@ -138,6 +141,6 @@ yet.
 
 ## Session Continuity
 
-Last session: 2026-09-16T06:02:27.953Z
-Stopped at: Completed 03-04-PLAN.md
+Last session: 2026-09-16T06:08:44.850Z
+Stopped at: Completed 03-05-PLAN.md
 Resume file: None
