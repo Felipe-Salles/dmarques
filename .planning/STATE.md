@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 03-03-PLAN.md
-last_updated: "2026-09-16T05:49:24.669Z"
+stopped_at: Completed 03-04-PLAN.md
+last_updated: "2026-09-16T06:02:28.126Z"
 last_activity: 2026-09-16
 progress:
   total_phases: 7
   completed_phases: 2
   total_plans: 21
-  completed_plans: 15
+  completed_plans: 16
   percent: 29
 ---
 
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-09-05)
 ## Current Position
 
 Phase: 03 (static-zero-js-sections-csp-safe-refactor-a11y) — EXECUTING
-Plan: 4 of 9
+Plan: 5 of 9
 Status: Ready to execute
 Last activity: 2026-09-16
 
-Progress: [███████░░░] 71%
+Progress: [████████░░] 76%
 
 ## Performance Metrics
 
@@ -65,6 +65,7 @@ Progress: [███████░░░] 71%
 | Phase 03 P01 | 5min | 2 tasks tasks | 4 files files |
 | Phase 03 P02 | 6min | 3 tasks | 2 files |
 | Phase 03 P03 | 12min | 2 tasks | 4 files |
+| Phase 03 P04 | 12min | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -107,6 +108,7 @@ Relevant to current work:
 - [Phase 03 / 03-02]: tokens color-text-faint raised to alpha .47 and focus-ring switched to opaque var(color-accent) via a scratchpad-only WCAG contrast solver (D-13); nav-height token added as a provisional 84px value pending 03-08 measurement
 - [Phase 03 / 03-03]: mobile nav panel positioned absolute against .site-header (position:relative), not against .nav-toggle, so the details disclosure renders a true full-width dropdown per the UI-SPEC contract
 - [Phase 03 / 03-03]: utility pages' wrapper class renamed .stack -> .content-block to avoid a false-positive substring match against literal 'stack' in the 404 diagnostic-leak acceptance grep (T-03-03); no functional change
+- [Phase 03 / 03-04]: HeroBleed primary CTA uses var(--color-accent) fill at rest per PLAN.md token contract (not the design source's white-fill styling); hero glow gradient uses the transparent keyword instead of an rgba() literal to avoid hard-coded RGB channels
 
 ### Open Decisions To Resolve Before Their Phase
 
@@ -136,6 +138,6 @@ yet.
 
 ## Session Continuity
 
-Last session: 2026-09-16T05:49:24.563Z
-Stopped at: Completed 03-03-PLAN.md
+Last session: 2026-09-16T06:02:27.953Z
+Stopped at: Completed 03-04-PLAN.md
 Resume file: None

@@ -50,7 +50,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 - [ ] **SITE-01**: Landing one-page com as 9 seções do design, em ordem: Hero
   (03 Bleed), Serviços, Como trabalhamos, Diferenciais, Sobre, Contato, FAQ, CTA
   final, Rodapé
-- [ ] **SITE-02**: Hero "03 Bleed" reproduzido fielmente — nav, headline, dois
+- [x] **SITE-02**: Hero "03 Bleed" reproduzido fielmente — nav, headline, dois
   CTAs ("Começar um projeto" e WhatsApp), área do render 3D sangrando na borda,
   card de depoimento em glass
 - [ ] **SITE-03**: Todas as seções renderizam com zero JavaScript de cliente
@@ -181,7 +181,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   contraste ≥ 3:1 tanto nas seções escuras quanto nas claras
 - [x] **A11Y-04**: Tudo que é interativo é operável por teclado, sem armadilha de
   foco (inclui nav mobile)
-- [ ] **A11Y-05**: Texto alternativo real no retrato do fundador; render do hero,
+- [x] **A11Y-05**: Texto alternativo real no retrato do fundador; render do hero,
   canvas e glow marcados como decorativos (`alt=""` / `aria-hidden`)
 - [x] **A11Y-06**: Contraste de texto ≥ WCAG AA — tokens de branco translúcido de
   baixa opacidade elevados ao mínimo necessário (com aprovação de design)
@@ -312,7 +312,7 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | CONTENT-04 | Phase 2 | Complete |
 | CONTENT-05 | Phase 2 | Complete |
 | SITE-01 | Phase 3 | Pending |
-| SITE-02 | Phase 3 | Pending |
+| SITE-02 | Phase 3 | Complete |
 | SITE-03 | Phase 3 | Pending |
 | SITE-04 | Phase 3 | Pending |
 | SITE-05 | Phase 3 | Complete |
@@ -361,7 +361,7 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | A11Y-02 | Phase 3 | Complete |
 | A11Y-03 | Phase 3 | Complete |
 | A11Y-04 | Phase 3 | Complete |
-| A11Y-05 | Phase 3 | Pending |
+| A11Y-05 | Phase 3 | Complete |
 | A11Y-06 | Phase 3 | Complete |
 | A11Y-07 | Phase 3 | Complete |
 | SEC-01 | Phase 7 | Pending |
