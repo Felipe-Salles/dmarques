@@ -90,9 +90,13 @@ import heroRender from '../assets/hero-render-placeholder.webp';
     z-index: var(--z-section);
     background: var(--color-bg);
     padding-top: 26px;
+    min-height: calc(100svh - var(--nav-height));
+    display: flex;
+    align-items: center;
   }
 
   .hero-grid {
+    width: 100%;
     max-width: 1320px;
     margin-inline: auto;
     display: grid;
@@ -168,21 +172,19 @@ import heroRender from '../assets/hero-render-placeholder.webp';
     gap: var(--space-3);
     padding: var(--space-4) var(--space-6);
     border-radius: var(--radius-pill);
-    background: var(--color-accent);
-    color: var(--color-text-on-accent);
+    background: var(--color-text-on-accent);
+    color: var(--color-bg);
     font-family: var(--font-text);
     font-size: var(--text-sm);
     font-weight: var(--font-weight-semibold);
-    box-shadow: var(--shadow-accent);
-    transition:
-      background-color var(--dur-fast) var(--ease-standard),
-      box-shadow var(--dur-fast) var(--ease-standard);
+    transition: background-color var(--dur-fast) var(--ease-standard),
+      color var(--dur-fast) var(--ease-standard);
   }
 
   .cta-primary:hover,
   .cta-primary:focus-visible {
-    background: var(--color-accent-hover);
-    box-shadow: var(--shadow-accent-lg);
+    background: var(--color-accent);
+    color: var(--color-text-on-accent);
   }
 
   .cta-primary svg {
@@ -193,23 +195,21 @@ import heroRender from '../assets/hero-render-placeholder.webp';
     display: inline-flex;
     align-items: center;
     gap: var(--space-3);
-    padding: var(--space-3) var(--space-5);
-    border-radius: var(--radius-pill);
-    border: 1px solid var(--color-border-strong);
-    background: transparent;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--color-border-strong);
     color: var(--color-text);
     font-family: var(--font-text);
     font-size: var(--text-sm);
     font-weight: var(--font-weight-medium);
     transition:
       border-color var(--dur-fast) var(--ease-standard),
-      background-color var(--dur-fast) var(--ease-standard);
+      color var(--dur-fast) var(--ease-standard);
   }
 
   .cta-secondary:hover,
   .cta-secondary:focus-visible {
+    color: var(--color-accent-light);
     border-color: var(--color-accent);
-    background: var(--color-accent-surface);
   }
 
   .cta-secondary svg {
