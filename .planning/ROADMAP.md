@@ -179,7 +179,7 @@ Plans:
 - [x] 03-03-PLAN.md — SiteHeader.astro (skip link, nav por ancora, disclosure details mobile) + as rotas /obrigado, /politica-de-privacidade e /404
 - [x] 03-04-PLAN.md — HeroBleed.astro ("03 Bleed" com LCP priorizado) + AboutSection.astro (retrato com alt real)
 - [x] 03-05-PLAN.md — ServicesSection.astro + ProcessSection.astro (consumo das collections, icones SVG inline)
-- [ ] 03-06-PLAN.md — DifferentiatorsSection.astro (secao clara, contraste recalculado) + FaqSection.astro
+- [x] 03-06-PLAN.md — DifferentiatorsSection.astro (secao clara, contraste recalculado) + FaqSection.astro
 - [ ] 03-07-PLAN.md — ContactSection.astro (formulario estatico de 5 campos) + CtaFinal.astro + SiteFooter.astro
 
 **Wave 3** *(blocked on Wave 2 completion)*
@@ -261,7 +261,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 |-------|----------------|--------|-----------|
 | 1. Foundation & CI Gate | 8/8 | Complete | 2026-09-10 |
 | 2. Content Collections | 4/4 | Complete   | 2026-09-15 |
-| 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 5/9 | In Progress|  |
+| 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 6/9 | In Progress|  |
 | 4. Progressive-Enhancement Effects | 0/TBD | Not started | - |
 | 5. Form Backend + Enhancement + LGPD | 0/TBD | Not started | - |
 | 6. SEO / Metadata / Structured Data | 0/TBD | Not started | - |
