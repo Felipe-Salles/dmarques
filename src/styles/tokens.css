@@ -17,12 +17,14 @@
   --color-accent-surface: rgba(108, 76, 255, 0.12);
   --color-accent-border: rgba(108, 76, 255, 0.35);
   --color-accent-glow: rgba(108, 76, 255, 0.35);
+  --color-accent-glow-faint: rgba(108, 76, 255, 0.16);
+  --color-accent-glow-soft: rgba(108, 76, 255, 0.2);
   --color-accent-glow-strong: rgba(108, 76, 255, 0.55);
 
-  --color-text-strong: rgba(255, 255, 255, 0.92);
+  --color-text-strong: #ffffff;
   --color-text: rgba(255, 255, 255, 0.82);
   --color-text-muted: rgba(255, 255, 255, 0.66);
-  --color-text-faint: rgba(255, 255, 255, 0.45);
+  --color-text-faint: rgba(255, 255, 255, 0.47);
   --color-text-on-accent: #ffffff;
 
   --color-light-bg: #f2f3f6;
@@ -74,6 +76,7 @@
   --space-24: 6rem;
   --space-section: clamp(5rem, 9vw, 8.125rem);
   --space-gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --nav-height: 86px;
 
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -90,10 +93,11 @@
   --shadow-accent: 0 12px 40px rgba(108, 76, 255, 0.4);
   --shadow-accent-lg: 0 22px 66px rgba(108, 76, 255, 0.6);
   --shadow-glow: 0 0 46px rgba(108, 76, 255, 0.22);
+  --shadow-dot-glow: 0 0 18px rgba(108, 76, 255, 0.9);
   --blur-glass: 18px;
   --blur-nav: 14px;
 
-  --focus-ring: 0 0 0 3px rgba(108, 76, 255, 0.5);
+  --focus-ring: 0 0 0 3px var(--color-accent);
   --focus-ring-offset: 2px;
 
   --z-below: -1;
@@ -109,4 +113,10 @@
   --dur-reveal: 0.7s;
   --ease-standard: ease;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (min-width: 860px) {
+  :root {
+    --nav-height: 68px;
+  }
 }

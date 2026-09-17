@@ -1,53 +1,28 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import HeroBleed from '../components/HeroBleed.astro';
+import ServicesSection from '../components/ServicesSection.astro';
+import ProcessSection from '../components/ProcessSection.astro';
+import DifferentiatorsSection from '../components/DifferentiatorsSection.astro';
+import AboutSection from '../components/AboutSection.astro';
+import ContactSection from '../components/ContactSection.astro';
+import FaqSection from '../components/FaqSection.astro';
+import CtaFinal from '../components/CtaFinal.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 ---
 
 <BaseLayout>
+  <SiteHeader />
   <main id="conteudo">
-    <div class="stack">
-      <h1>Dmarques — Soluções Web</h1>
-      <p>
-        Um visitante entende em segundos o que a Dmarques faz, confia na agência e pede um orçamento
-        — com um site que carrega rápido e nunca sai do ar.
-      </p>
-    </div>
+    <HeroBleed />
+    <ServicesSection />
+    <ProcessSection />
+    <DifferentiatorsSection />
+    <AboutSection />
+    <ContactSection />
+    <FaqSection />
+    <CtaFinal />
   </main>
+  <SiteFooter />
 </BaseLayout>
-
-<style>
-  main {
-    min-height: 100svh;
-    display: grid;
-    place-items: center;
-    padding: var(--space-16) var(--space-gutter);
-    text-align: center;
-  }
-
-  .stack {
-    max-width: 42rem;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-6);
-  }
-
-  h1 {
-    font-family: var(--font-heading);
-    font-weight: var(--font-weight-bold);
-    font-size: clamp(2rem, 1.4rem + 3vw, 3rem);
-    line-height: var(--leading-tight);
-    letter-spacing: var(--tracking-tight);
-    color: var(--color-text-strong);
-    text-wrap: balance;
-  }
-
-  p {
-    font-family: var(--font-text);
-    font-weight: var(--font-weight-regular);
-    font-size: var(--text-lg);
-    line-height: var(--leading-body);
-    color: var(--color-text);
-    max-width: 34rem;
-    margin: 0 auto;
-    text-wrap: pretty;
-  }
-</style>

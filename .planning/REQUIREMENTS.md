@@ -34,38 +34,38 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 
 ### Conteúdo (CONTENT)
 
-- [ ] **CONTENT-01**: Conteúdo de serviços, processo, diferenciais e FAQ em Astro
+- [x] **CONTENT-01**: Conteúdo de serviços, processo, diferenciais e FAQ em Astro
   Content Collections (YAML), validado por schema Zod no build
-- [ ] **CONTENT-02**: Cases de portfólio em Content Collection (Markdown) com capa
+- [x] **CONTENT-02**: Cases de portfólio em Content Collection (Markdown) com capa
   via helper `image()`, estrutura problema → solução → resultado
-- [ ] **CONTENT-03**: 1–2 entradas de case reais ou honestamente rotuladas
+- [x] **CONTENT-03**: 1–2 entradas de case reais ou honestamente rotuladas
   ("projeto próprio" / "demo") publicadas na v1
-- [ ] **CONTENT-04**: FAQ é fonte única — o mesmo conteúdo alimenta a seção visível
+- [x] **CONTENT-04**: FAQ é fonte única — o mesmo conteúdo alimenta a seção visível
   e o JSON-LD `FAQPage`
-- [ ] **CONTENT-05**: O enum "tipo de projeto" do conteúdo é a mesma allow-list
+- [x] **CONTENT-05**: O enum "tipo de projeto" do conteúdo é a mesma allow-list
   usada na validação do formulário
 
 ### Seções da Página (SITE)
 
-- [ ] **SITE-01**: Landing one-page com as 9 seções do design, em ordem: Hero
+- [x] **SITE-01**: Landing one-page com as 9 seções do design, em ordem: Hero
   (03 Bleed), Serviços, Como trabalhamos, Diferenciais, Sobre, Contato, FAQ, CTA
   final, Rodapé
-- [ ] **SITE-02**: Hero "03 Bleed" reproduzido fielmente — nav, headline, dois
+- [x] **SITE-02**: Hero "03 Bleed" reproduzido fielmente — nav, headline, dois
   CTAs ("Começar um projeto" e WhatsApp), área do render 3D sangrando na borda,
   card de depoimento em glass
-- [ ] **SITE-03**: Todas as seções renderizam com zero JavaScript de cliente
+- [x] **SITE-03**: Todas as seções renderizam com zero JavaScript de cliente
   (markup `.astro` puro consumindo as collections)
-- [ ] **SITE-04**: Nenhum atributo `style=""` de autor no código-fonte —
+- [x] **SITE-04**: Nenhum atributo `style=""` de autor no código-fonte —
   `grep -r 'style="' src/` não retorna nada; estados `:hover`/`:focus-visible`
   são CSS real, não atributos do editor de design
-- [ ] **SITE-05**: Navegação por âncora (#servicos, #processo, #sobre, #contato)
+- [x] **SITE-05**: Navegação por âncora (#servicos, #processo, #sobre, #contato)
   com `scroll-margin-top` para o alvo não ficar sob o cabeçalho
-- [ ] **SITE-06**: Navegação mobile operável por teclado, sem framework JS
+- [x] **SITE-06**: Navegação mobile operável por teclado, sem framework JS
   (linha rolável ou disclosure `<details>`), sem prender foco
-- [ ] **SITE-07**: Página de agradecimento (`/obrigado`) para o fluxo do
+- [x] **SITE-07**: Página de agradecimento (`/obrigado`) para o fluxo do
   formulário sem JS
-- [ ] **SITE-08**: Página 404 com identidade visual e link para a home
-- [ ] **SITE-09**: Imagens via `astro:assets` com dimensões explícitas e formatos
+- [x] **SITE-08**: Página 404 com identidade visual e link para a home
+- [x] **SITE-09**: Imagens via `astro:assets` com dimensões explícitas e formatos
   AVIF/WebP; imagem do hero com `fetchpriority="high"`
 
 ### Animações & Movimento (ANIM)
@@ -73,7 +73,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 - [ ] **ANIM-01**: Reveal ao rolar — `opacity` + `translateY` com stagger, via um
   único IntersectionObserver, elemento deixa de ser observado após disparar, com
   fallback por timeout (~2,6 s)
-- [ ] **ANIM-02**: Estado inicial oculto do reveal só se aplica com classe
+- [x] **ANIM-02**: Estado inicial oculto do reveal só se aplica com classe
   `.js-ready` no `<html>` E `prefers-reduced-motion: no-preference` — sem JS ou
   com erro de JS, a página fica 100% visível
 - [ ] **ANIM-03**: Glow que segue o cursor — gradiente radial fixo via
@@ -88,9 +88,9 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   data-saver
 - [ ] **ANIM-06**: Keyframes `dmFloat` e `dmPulse` com `animation: none` sob
   reduced-motion; elementos legíveis sem a animação
-- [ ] **ANIM-07**: Cada estado `:hover` tem um `:focus-visible` equivalente;
+- [x] **ANIM-07**: Cada estado `:hover` tem um `:focus-visible` equivalente;
   transições só em `transform`/`opacity`/`box-shadow`/`border-color`, ≤ 300 ms
-- [ ] **ANIM-08**: `scroll-behavior: smooth` vira `auto` sob reduced-motion
+- [x] **ANIM-08**: `scroll-behavior: smooth` vira `auto` sob reduced-motion
 - [ ] **ANIM-09**: Nenhuma animação anima propriedades que causam layout; sem
   parallax/scroll-jacking; sem preloader/splash
 
@@ -156,7 +156,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 
 - [ ] **SEO-01**: `<title>`, meta description (~150 chars, cita Ibitinga, sites,
   sistemas, automação) e `<link rel="canonical">` absoluto por página
-- [ ] **SEO-02**: `<html lang="pt-BR">`
+- [x] **SEO-02**: `<html lang="pt-BR">`
 - [ ] **SEO-03**: Open Graph + Twitter Card completos e imagem de compartilhamento
   1200×630 estática (< 300 KB) desenhada, servida de `public/`
 - [ ] **SEO-04**: `sitemap.xml` (via `@astrojs/sitemap`) e `robots.txt` (libera
@@ -173,19 +173,19 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 
 ### Acessibilidade (A11Y)
 
-- [ ] **A11Y-01**: Skip link ("Pular para o conteúdo") como primeiro elemento
+- [x] **A11Y-01**: Skip link ("Pular para o conteúdo") como primeiro elemento
   focável, visível ao receber foco, apontando para `<main id>`
-- [ ] **A11Y-02**: Landmarks semânticos (`header`/`nav`/`main`/`footer`), um único
+- [x] **A11Y-02**: Landmarks semânticos (`header`/`nav`/`main`/`footer`), um único
   `<h1>`, hierarquia de headings correta
-- [ ] **A11Y-03**: `:focus-visible` visível em todo elemento interativo, com
+- [x] **A11Y-03**: `:focus-visible` visível em todo elemento interativo, com
   contraste ≥ 3:1 tanto nas seções escuras quanto nas claras
-- [ ] **A11Y-04**: Tudo que é interativo é operável por teclado, sem armadilha de
+- [x] **A11Y-04**: Tudo que é interativo é operável por teclado, sem armadilha de
   foco (inclui nav mobile)
-- [ ] **A11Y-05**: Texto alternativo real no retrato do fundador; render do hero,
+- [x] **A11Y-05**: Texto alternativo real no retrato do fundador; render do hero,
   canvas e glow marcados como decorativos (`alt=""` / `aria-hidden`)
-- [ ] **A11Y-06**: Contraste de texto ≥ WCAG AA — tokens de branco translúcido de
+- [x] **A11Y-06**: Contraste de texto ≥ WCAG AA — tokens de branco translúcido de
   baixa opacidade elevados ao mínimo necessário (com aprovação de design)
-- [ ] **A11Y-07**: Todas as animações respeitam `prefers-reduced-motion`, com um
+- [x] **A11Y-07**: Todas as animações respeitam `prefers-reduced-motion`, com um
   caminho reduzido que ainda pareça acabado (fades limpos, não "sem movimento")
 
 ### Segurança (SEC)
@@ -234,7 +234,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   nenhum framework de UI, nenhuma biblioteca de animação
 - [x] **PERF-04**: Fontes com `font-display: swap` e fallback com métricas
   ajustadas para não causar CLS; duas famílias/pesos críticos com `preload`
-- [ ] **PERF-05**: Nenhuma otimização de imagem em runtime (sem Vercel Image
+- [x] **PERF-05**: Nenhuma otimização de imagem em runtime (sem Vercel Image
   Optimization) — tudo processado no build com Sharp
 
 ## v2 Requirements
@@ -306,28 +306,28 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | INFRA-08 | Phase 1 | Complete |
 | INFRA-09 | Phase 1 | Complete |
 | INFRA-10 | Phase 1 | Complete |
-| CONTENT-01 | Phase 2 | Pending |
-| CONTENT-02 | Phase 2 | Pending |
-| CONTENT-03 | Phase 2 | Pending |
-| CONTENT-04 | Phase 2 | Pending |
-| CONTENT-05 | Phase 2 | Pending |
-| SITE-01 | Phase 3 | Pending |
-| SITE-02 | Phase 3 | Pending |
-| SITE-03 | Phase 3 | Pending |
-| SITE-04 | Phase 3 | Pending |
-| SITE-05 | Phase 3 | Pending |
-| SITE-06 | Phase 3 | Pending |
-| SITE-07 | Phase 3 | Pending |
-| SITE-08 | Phase 3 | Pending |
-| SITE-09 | Phase 3 | Pending |
+| CONTENT-01 | Phase 2 | Complete |
+| CONTENT-02 | Phase 2 | Complete |
+| CONTENT-03 | Phase 2 | Complete |
+| CONTENT-04 | Phase 2 | Complete |
+| CONTENT-05 | Phase 2 | Complete |
+| SITE-01 | Phase 3 | Complete |
+| SITE-02 | Phase 3 | Complete |
+| SITE-03 | Phase 3 | Complete |
+| SITE-04 | Phase 3 | Complete |
+| SITE-05 | Phase 3 | Complete |
+| SITE-06 | Phase 3 | Complete |
+| SITE-07 | Phase 3 | Complete |
+| SITE-08 | Phase 3 | Complete |
+| SITE-09 | Phase 3 | Complete |
 | ANIM-01 | Phase 4 | Pending |
-| ANIM-02 | Phase 3 | Pending |
+| ANIM-02 | Phase 3 | Complete |
 | ANIM-03 | Phase 4 | Pending |
 | ANIM-04 | Phase 4 | Pending |
 | ANIM-05 | Phase 4 | Pending |
 | ANIM-06 | Phase 4 | Pending |
-| ANIM-07 | Phase 3 | Pending |
-| ANIM-08 | Phase 3 | Pending |
+| ANIM-07 | Phase 3 | Complete |
+| ANIM-08 | Phase 3 | Complete |
 | ANIM-09 | Phase 4 | Pending |
 | FORM-01 | Phase 5 | Pending |
 | FORM-02 | Phase 5 | Pending |
@@ -350,20 +350,20 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | LGPD-06 | Phase 5 | Pending |
 | LGPD-07 | Phase 5 | Pending |
 | SEO-01 | Phase 6 | Pending |
-| SEO-02 | Phase 3 | Pending |
+| SEO-02 | Phase 3 | Complete |
 | SEO-03 | Phase 6 | Pending |
 | SEO-04 | Phase 6 | Pending |
 | SEO-05 | Phase 6 | Pending |
 | SEO-06 | Phase 6 | Pending |
 | SEO-07 | Phase 6 | Pending |
 | SEO-08 | Phase 6 | Pending |
-| A11Y-01 | Phase 3 | Pending |
-| A11Y-02 | Phase 3 | Pending |
-| A11Y-03 | Phase 3 | Pending |
-| A11Y-04 | Phase 3 | Pending |
-| A11Y-05 | Phase 3 | Pending |
-| A11Y-06 | Phase 3 | Pending |
-| A11Y-07 | Phase 3 | Pending |
+| A11Y-01 | Phase 3 | Complete |
+| A11Y-02 | Phase 3 | Complete |
+| A11Y-03 | Phase 3 | Complete |
+| A11Y-04 | Phase 3 | Complete |
+| A11Y-05 | Phase 3 | Complete |
+| A11Y-06 | Phase 3 | Complete |
+| A11Y-07 | Phase 3 | Complete |
 | SEC-01 | Phase 7 | Pending |
 | SEC-02 | Phase 7 | Pending |
 | SEC-03 | Phase 7 | Pending |
@@ -378,7 +378,7 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | PERF-02 | Phase 1 | Complete |
 | PERF-03 | Phase 1 | Complete |
 | PERF-04 | Phase 1 | Complete |
-| PERF-05 | Phase 3 | Pending |
+| PERF-05 | Phase 3 | Complete |
 
 **Coverage:**
 - v1 requirements: 83 total (the earlier "78 total" was a miscount; 83 IDs are

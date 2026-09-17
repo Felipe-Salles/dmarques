@@ -13,6 +13,97 @@ body {
 }
 
 h1,
-p {
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote {
   margin: 0;
+}
+
+img,
+svg,
+picture {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: var(--focus-ring-offset);
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:is(#servicos, #processo, #diferenciais, #sobre, #contato, #faq) {
+  scroll-margin-top: var(--nav-height);
+}
+
+[data-reveal] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html.js-ready [data-reveal] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity var(--dur-reveal) var(--ease-out),
+      transform var(--dur-reveal) var(--ease-out);
+  }
+
+  html.js-ready [data-reveal].is-revealed {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes dmFloat {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes dmPulse {
+  0% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 0.35;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

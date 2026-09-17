@@ -1,0 +1,290 @@
+---
+import { Picture } from 'astro:assets';
+import heroRender from '../assets/hero-render-placeholder.webp';
+---
+
+<section class="hero-bleed">
+  <div class="hero-grid">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-dash" aria-hidden="true"></span>
+        <span class="hero-eyebrow-text">Sites · Sistemas · Automação</span>
+      </div>
+      <h1 class="hero-heading">
+        Sites e sistemas<br />
+        que fazem seu negócio<br />
+        <span class="hero-heading-accent">funcionar melhor</span>
+      </h1>
+      <p class="hero-lead">
+        Desenvolvimento sob medida para quem precisa de algo que funcione de verdade: site rápido,
+        sistema que cabe no seu processo e automações que tiram o trabalho manual do caminho.
+      </p>
+      <div class="hero-ctas">
+        <a href="#contato" class="cta-primary">
+          Começar um projeto
+          <svg
+            aria-hidden="true"
+            width="17"
+            height="17"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+          >
+            <path d="M5 12h13"></path>
+            <path d="M12.5 6l6 6-6 6"></path>
+          </svg>
+        </a>
+        <a
+          href="https://wa.me/5516996111785"
+          class="cta-secondary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg
+            aria-hidden="true"
+            width="17"
+            height="17"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.4L4 20.2l1.3-4.1a8.4 8.4 0 1 1 15.2-4.5Z"
+            ></path>
+            <path d="M9.2 9.1c.4 1.5 1.4 3.1 2.7 4.1 1 .8 2 1.2 2.8 1.4"></path>
+          </svg>
+          Falar no WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <canvas class="hero-canvas" aria-hidden="true"></canvas>
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-render">
+        <Picture
+          src={heroRender}
+          alt=""
+          aria-hidden="true"
+          formats={['avif', 'webp']}
+          priority
+          width={960}
+          height={720}
+        />
+      </div>
+      <blockquote class="hero-quote">
+        <p>“Tecnologia boa não aparece. Ela só faz o trabalho ficar mais leve todos os dias.”</p>
+        <cite>Felipe Salles · Fundador</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-bleed {
+    position: relative;
+    z-index: var(--z-section);
+    background: var(--color-bg);
+    padding-top: 26px;
+  }
+
+  .hero-grid {
+    width: 100%;
+    max-width: 1320px;
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+    gap: clamp(2rem, 4vw, 3.5rem);
+    align-items: center;
+    padding-block-start: clamp(1.5rem, 3vw, 2.75rem);
+  }
+
+  .hero-content {
+    padding-inline: var(--space-gutter);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .hero-eyebrow-dash {
+    width: 34px;
+    height: 1px;
+    background: var(--color-accent);
+  }
+
+  .hero-eyebrow-text {
+    font-family: var(--font-text);
+    font-size: var(--text-2xs);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--color-accent-light);
+  }
+
+  .hero-heading {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-bold);
+    font-size: clamp(2.25rem, 5vw, 4.25rem);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    color: var(--color-text-strong);
+    text-wrap: pretty;
+  }
+
+  .hero-heading-accent {
+    color: var(--color-accent);
+  }
+
+  .hero-lead {
+    margin: 0;
+    max-width: 29rem;
+    font-family: var(--font-text);
+    font-size: var(--text-base);
+    line-height: var(--leading-body);
+    color: var(--color-text-muted);
+    text-wrap: pretty;
+  }
+
+  .hero-ctas {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+    flex-wrap: wrap;
+  }
+
+  .cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-6);
+    border-radius: var(--radius-pill);
+    background: var(--color-text-on-accent);
+    color: var(--color-bg);
+    font-family: var(--font-text);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    transition: background-color var(--dur-fast) var(--ease-standard),
+      color var(--dur-fast) var(--ease-standard);
+  }
+
+  .cta-primary:hover,
+  .cta-primary:focus-visible {
+    background: var(--color-accent);
+    color: var(--color-text-on-accent);
+  }
+
+  .cta-primary svg {
+    flex: none;
+  }
+
+  .cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--color-border-strong);
+    color: var(--color-text);
+    font-family: var(--font-text);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    transition:
+      border-color var(--dur-fast) var(--ease-standard),
+      color var(--dur-fast) var(--ease-standard);
+  }
+
+  .cta-secondary:hover,
+  .cta-secondary:focus-visible {
+    color: var(--color-accent-light);
+    border-color: var(--color-accent);
+  }
+
+  .cta-secondary svg {
+    flex: none;
+  }
+
+  .hero-visual {
+    position: relative;
+    min-height: clamp(21rem, 42vw, 35rem);
+    overflow: hidden;
+  }
+
+  .hero-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: var(--z-canvas);
+  }
+
+  .hero-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(55% 50% at 65% 45%, var(--color-accent-glow) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: var(--z-glow);
+  }
+
+  .hero-render {
+    position: absolute;
+    top: clamp(1.125rem, 4%, 2.5rem);
+    bottom: clamp(5.625rem, 16%, 8.125rem);
+    left: clamp(1.125rem, 4%, 2.5rem);
+    right: 0;
+    border-radius: var(--radius-2xl) 0 0 var(--radius-2xl);
+    overflow: hidden;
+    border: 1px solid var(--color-accent-border);
+    border-right: 0;
+    z-index: 6;
+  }
+
+  .hero-render img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-quote {
+    position: absolute;
+    left: clamp(1.125rem, 4%, 2.5rem);
+    bottom: clamp(1.125rem, 4%, 2.25rem);
+    max-width: 25rem;
+    margin: 0;
+    padding: var(--space-5) var(--space-6);
+    border-radius: var(--radius-xl);
+    background: var(--color-surface-raised);
+    border: 1px solid var(--color-border);
+    backdrop-filter: blur(var(--blur-glass));
+    box-shadow: var(--shadow-md);
+    z-index: 7;
+  }
+
+  .hero-quote p {
+    margin: 0 0 var(--space-3);
+    font-family: var(--font-text);
+    font-size: var(--text-sm);
+    line-height: var(--leading-body);
+    color: var(--color-text-strong);
+  }
+
+  .hero-quote cite {
+    font-style: normal;
+    font-family: var(--font-text);
+    font-size: var(--text-2xs);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--color-text-faint);
+  }
+</style>

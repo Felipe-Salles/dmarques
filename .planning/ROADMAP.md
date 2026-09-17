@@ -56,8 +56,8 @@ Milestone 2 (Cloudflare layer) closes this statement.
 - Decimal phases (2.1, 2.2): Urgent insertions (marked INSERTED)
 
 - [x] **Phase 1: Foundation & CI Gate** (2026-09-10) - Astro + Vercel static scaffold, self-hosted fonts, design tokens, BaseLayout, preview deploys, Lighthouse CI + audit gates, Vercel lockdown, security-review checklist artifact
-- [ ] **Phase 2: Content Collections** - All copy and portfolio cases as typed, build-validated Astro Content Collections (no CMS)
-- [ ] **Phase 3: Static Zero-JS Sections + CSP-safe Refactor + A11y** - The 9 design sections + privacy/thank-you/404 pages as fully static HTML, every inline style converted to token CSS, accessibility and AA contrast fixed
+- [x] **Phase 2: Content Collections** - All copy and portfolio cases as typed, build-validated Astro Content Collections (no CMS) (completed 2026-09-15)
+- [x] **Phase 3: Static Zero-JS Sections + CSP-safe Refactor + A11y** - The 9 design sections + privacy/thank-you/404 pages as fully static HTML, every inline style converted to token CSS, accessibility and AA contrast fixed (completed 2026-09-17)
 - [ ] **Phase 4: Progressive-Enhancement Effects** - Scroll reveal, cursor glow, particle canvas, and reduced-motion handling as small vanilla islands
 - [ ] **Phase 5: Form Backend + Enhancement + LGPD** - Working quote form (no-JS + enhanced) via Resend behind layered spam/abuse defenses, shipped with the Privacy Policy page and inline data-use notice
 - [ ] **Phase 6: SEO / Metadata / Structured Data** - Titles, canonical, OG/Twitter cards, sitemap, robots, favicons, and single-sourced LocalBusiness + FAQPage JSON-LD
@@ -133,7 +133,24 @@ Plans:
   3. The `faq` collection is the single source that feeds both the visible FAQ section and the `FAQPage` JSON-LD, and the "tipo de projeto" enum is defined once and reused as the quote-form allow-list.
   4. The SEC-07 checklist run for this phase passes with no open High finding (no new inline surface, `pnpm audit` clean, every added dependency justified in the phase notes).
 
-**Plans**: TBD
+**Plans**: 4 plans
+
+Plans:
+**Wave 1**
+
+- [x] 02-01-PLAN.md — "tipo de projeto" enum module, 16 design-verbatim YAML entries, strict Zod schemas for services / process / differentiators / faq
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [x] 02-02-PLAN.md — branded placeholder cover, the single "projeto próprio" case in Markdown, the `cases` collection, and the order-sorted consumption barrel
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
+- [x] 02-03-PLAN.md — one-time negative tests proving a bad key / missing field fails the build, plus the SEC-07 phase-02 run file
+
+**Wave 4** *(blocked on Wave 3 completion)*
+
+- [x] 02-04-PLAN.md — Felipe approves the case art / alt text / copy and signs off SEC-07 (human-gated)
 
 ### Phase 3: Static Zero-JS Sections + CSP-safe Refactor + A11y
 
@@ -148,8 +165,30 @@ Plans:
   4. All raster images go through `astro:assets` with explicit dimensions and AVIF/WebP, the hero LCP image uses `fetchpriority="high"`, no image is optimized at runtime (build-time Sharp only), and with JavaScript disabled the whole page is visible (reveal hidden state gated on a `.js-ready` class + `prefers-reduced-motion: no-preference`).
   5. Lighthouse mobile stays >=95 in all four categories on the preview and the SEC-07 checklist run passes with no open High finding.
 
-**Plans**: TBD
+**Plans**: 9 plans
 **UI hint**: yes
+
+Plans:
+**Wave 1**
+
+- [x] 03-01-PLAN.md — sharp@0.35.4 como devDependency explicita + os dois assets placeholder branded (hero 4:3, retrato 4:5)
+- [x] 03-02-PLAN.md — correcoes de contraste em tokens.css (--focus-ring, --color-text-faint), token --nav-height e os contratos globais de base.css (foco, scroll, reveal inerte, reduced-motion)
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [x] 03-03-PLAN.md — SiteHeader.astro (skip link, nav por ancora, disclosure details mobile) + as rotas /obrigado, /politica-de-privacidade e /404
+- [x] 03-04-PLAN.md — HeroBleed.astro ("03 Bleed" com LCP priorizado) + AboutSection.astro (retrato com alt real)
+- [x] 03-05-PLAN.md — ServicesSection.astro + ProcessSection.astro (consumo das collections, icones SVG inline)
+- [x] 03-06-PLAN.md — DifferentiatorsSection.astro (secao clara, contraste recalculado) + FaqSection.astro
+- [x] 03-07-PLAN.md — ContactSection.astro (formulario estatico de 5 campos) + CtaFinal.astro + SiteFooter.astro
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
+- [x] 03-08-PLAN.md — composicao de index.astro com as 9 secoes, medicao definitiva de --nav-height e bateria completa de gates locais
+
+**Wave 4** *(blocked on Wave 3 completion)*
+
+- [x] 03-09-PLAN.md — verificacao em preview real (404 ao vivo, Lighthouse, headers), execucao SEC-07 fase 3 e aceite do Felipe (human-gated)
 
 ### Phase 4: Progressive-Enhancement Effects
 
@@ -221,8 +260,8 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation & CI Gate | 8/8 | Complete | 2026-09-10 |
-| 2. Content Collections | 0/TBD | Not started | - |
-| 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 0/TBD | Not started | - |
+| 2. Content Collections | 4/4 | Complete   | 2026-09-15 |
+| 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 9/9 | Complete   | 2026-09-17 |
 | 4. Progressive-Enhancement Effects | 0/TBD | Not started | - |
 | 5. Form Backend + Enhancement + LGPD | 0/TBD | Not started | - |
 | 6. SEO / Metadata / Structured Data | 0/TBD | Not started | - |

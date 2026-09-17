@@ -1,0 +1,122 @@
+---
+import { getFaq } from '../content';
+
+const faq = await getFaq();
+---
+
+<section id="faq" class="faq">
+  <div class="faq-inner">
+    <div class="faq-intro" data-reveal="1">
+      <span class="faq-eyebrow">Perguntas frequentes</span>
+      <h2>As dúvidas que <span>sempre aparecem</span></h2>
+    </div>
+    <div class="faq-list">
+      {
+        faq.map((item) => (
+          <article class="faq-item" data-reveal="1">
+            <div class="faq-question">
+              <h3>{item.data.pergunta}</h3>
+            </div>
+            <div class="faq-answer">
+              <p>{item.data.resposta}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq {
+    position: relative;
+    z-index: var(--z-section);
+    background: var(--color-bg);
+    padding: var(--space-section) var(--space-gutter);
+  }
+
+  .faq-inner {
+    max-width: 1000px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2.5rem, 5vw, 3.625rem);
+  }
+
+  .faq-intro {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .faq-eyebrow {
+    font-family: var(--font-text);
+    font-size: var(--text-2xs);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--color-accent-light);
+  }
+
+  .faq-intro h2 {
+    margin: 0;
+    max-width: 38.75rem;
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-bold);
+    font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+    line-height: 1.08;
+    letter-spacing: var(--tracking-tight);
+    color: var(--color-text-strong);
+  }
+
+  .faq-intro h2 span {
+    color: var(--color-text-faint);
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.625rem, 3vw, 2.375rem);
+  }
+
+  .faq-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .faq-question {
+    align-self: flex-start;
+    max-width: min(100%, 28.75rem);
+    padding: var(--space-4) var(--space-5);
+    border-radius: var(--radius-xl) var(--radius-xl) var(--radius-xl) var(--radius-sm);
+    background: var(--color-surface-raised);
+    border: 1px solid var(--color-border);
+  }
+
+  .faq-question h3 {
+    margin: 0;
+    font-family: var(--font-text);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--text-base);
+    line-height: 1.5;
+    color: var(--color-text-strong);
+  }
+
+  .faq-answer {
+    align-self: flex-end;
+    max-width: min(100%, 33.75rem);
+    padding: var(--space-5) 1.375rem;
+    border-radius: var(--radius-xl) var(--radius-xl) var(--radius-sm) var(--radius-xl);
+    background: var(--color-accent-surface);
+    border: 1px solid var(--color-accent-border);
+  }
+
+  .faq-answer p {
+    margin: 0;
+    font-family: var(--font-text);
+    font-size: var(--text-base);
+    line-height: var(--leading-body);
+    color: var(--color-text);
+  }
+</style>
