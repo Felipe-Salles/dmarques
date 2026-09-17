@@ -79,7 +79,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 - [x] **ANIM-03**: Glow que segue o cursor — gradiente radial fixo via
   `pointermove` + `requestAnimationFrame`, `pointer-events:none`, `aria-hidden`,
   só com `pointer:fine` e sem reduced-motion
-- [ ] **ANIM-04**: Canvas de partículas como componente island (`client:visible`),
+- [x] **ANIM-04**: Canvas de partículas como componente island (`client:visible`),
   `aria-hidden="true"`, pausado por IntersectionObserver quando fora da viewport
   e em `document.hidden`
 - [x] **ANIM-05**: Canvas de partículas respeita `prefers-reduced-motion`
@@ -323,7 +323,7 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | ANIM-01 | Phase 4 | Complete |
 | ANIM-02 | Phase 3 | Complete |
 | ANIM-03 | Phase 4 | Complete |
-| ANIM-04 | Phase 4 | Pending |
+| ANIM-04 | Phase 4 | Complete |
 | ANIM-05 | Phase 4 | Complete |
 | ANIM-06 | Phase 4 | Complete |
 | ANIM-07 | Phase 3 | Complete |

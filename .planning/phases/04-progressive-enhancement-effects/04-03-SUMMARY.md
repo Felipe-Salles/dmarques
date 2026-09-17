@@ -97,3 +97,7 @@ None - no external service configuration required.
 ---
 *Phase: 04-progressive-enhancement-effects*
 *Completed: 2026-09-17*
+
+## Self-Check: PASSED
+
+Both created/modified files found on disk (`src/scripts/particles.ts`, this SUMMARY.md); all three commits (`fb75605`, `d11c71d`, `ba1da06`) found in git history.

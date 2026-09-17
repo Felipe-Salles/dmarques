@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 04-02-PLAN.md
-last_updated: "2026-09-17T14:48:47.592Z"
+stopped_at: Completed 04-03-PLAN.md
+last_updated: "2026-09-17T14:54:52.230Z"
 last_activity: 2026-09-17
 progress:
   total_phases: 7
   completed_phases: 3
   total_plans: 25
-  completed_plans: 23
+  completed_plans: 24
   percent: 43
 ---
 
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-09-05)
 ## Current Position
 
 Phase: 04 (progressive-enhancement-effects) — EXECUTING
-Plan: 3 of 4
+Plan: 4 of 4
 Status: Ready to execute
 Last activity: 2026-09-17
 
-Progress: [█████████░] 92%
+Progress: [██████████] 96%
 
 ## Performance Metrics
 
@@ -74,6 +74,7 @@ Progress: [█████████░] 92%
 | Phase 03 P09 | ~4h | 3 tasks | 13 files |
 | Phase 04 P01 | 3min | 2 tasks | 4 files |
 | Phase 04 P02 | 4min | 2 tasks | 5 files |
+| Phase 04 P03 | 3min | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -124,6 +125,8 @@ Relevant to current work:
 - [Phase ?]: [Phase 03 / 03-08]: --nav-height measured live via headless Chrome CDP (68px desktop >=860px, 86px mobile default in :root); single token with a min-width media query override, base.css consumer unchanged
 - [Phase 04]: pnpm test script uses the quoted-glob form node --test "src/scripts/*.test.mjs", not a directory arg, per the plan's verified note
 - [Phase ?]: [Phase 04 / 04-02]: --z-cursor-glow: 20 introduced instead of reusing --z-glow: 5, because every shipped section is position:relative with an opaque background at z-index:var(--z-section) (10) - a glow at 5 would render invisibly beneath all content
+- [Phase ?]: [Phase 04 / 04-03]: particles.ts uses ctx.globalAlpha for the connection-line fade (not per-line rgba() string concat + toFixed) and Math.sqrt(dx*dx+dy*dy) over Math.hypot in the O(n2) loop, per plan-locked TBT-discipline instructions
+- [Phase ?]: [Phase 04 / 04-03]: single syncLoop() gate routes IntersectionObserver + visibilitychange through exactly one requestAnimationFrame id; reduced-motion checked once at init (never per-frame), draws a single static frame with no loop registered
 
 ### Open Decisions To Resolve Before Their Phase
 
@@ -153,6 +156,6 @@ yet.
 
 ## Session Continuity
 
-Last session: 2026-09-17T14:48:47.549Z
-Stopped at: Completed 04-02-PLAN.md
+Last session: 2026-09-17T14:54:52.119Z
+Stopped at: Completed 04-03-PLAN.md
 Resume file: None
