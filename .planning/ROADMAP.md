@@ -210,7 +210,7 @@ Plans:
 Plans:
 **Wave 1**
 
-- [ ] 04-01-PLAN.md — andaime de validação Wave 0: particles.pure.ts (computePointCount + shouldReduceParticles) e a suíte node:test, mais o script `test` e o gate no CI
+- [x] 04-01-PLAN.md — andaime de validação Wave 0: particles.pure.ts (computePointCount + shouldReduceParticles) e a suíte node:test, mais o script `test` e o gate no CI
 
 **Wave 2** *(blocked on 04-01)*
 
@@ -280,7 +280,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | 1. Foundation & CI Gate | 8/8 | Complete | 2026-09-10 |
 | 2. Content Collections | 4/4 | Complete   | 2026-09-15 |
 | 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 9/9 | Complete   | 2026-09-17 |
-| 4. Progressive-Enhancement Effects | 0/4 | Not started | - |
+| 4. Progressive-Enhancement Effects | 1/4 | In Progress|  |
 | 5. Form Backend + Enhancement + LGPD | 0/TBD | Not started | - |
 | 6. SEO / Metadata / Structured Data | 0/TBD | Not started | - |
 | 7. Security Headers Finalize | 0/TBD | Not started | - |

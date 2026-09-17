@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Phase 4 UI-SPEC approved
-last_updated: "2026-09-17T14:33:01.853Z"
-last_activity: 2026-09-17 -- Phase 04 planning complete
+stopped_at: Completed 04-01-PLAN.md
+last_updated: "2026-09-17T14:41:22.510Z"
+last_activity: 2026-09-17
 progress:
   total_phases: 7
   completed_phases: 3
   total_plans: 25
-  completed_plans: 21
+  completed_plans: 22
   percent: 43
 ---
 
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-09-05)
 
 **Core value:** Um visitante entende em segundos o que a Dmarques faz, confia na agência e pede um orçamento — com um site que carrega rápido e nunca sai do ar.
-**Current focus:** Phase 4 — progressive enhancement effects
+**Current focus:** Phase 04 — progressive-enhancement-effects
 
 ## Current Position
 
-Phase: 4
-Plan: Not started
+Phase: 04 (progressive-enhancement-effects) — EXECUTING
+Plan: 2 of 4
 Status: Ready to execute
-Last activity: 2026-09-17 -- Phase 04 planning complete
+Last activity: 2026-09-17
 
-Progress: [██████████] 100%
+Progress: [█████████░] 88%
 
 ## Performance Metrics
 
@@ -72,6 +72,7 @@ Progress: [██████████] 100%
 | Phase 03 P07 | 6min | 3 tasks | 3 files |
 | Phase 03 P08 | 25min | 3 tasks | 10 files |
 | Phase 03 P09 | ~4h | 3 tasks | 13 files |
+| Phase 04 P01 | 3min | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -120,6 +121,7 @@ Relevant to current work:
 - [Phase 03]: [Phase 03 / 03-07]: Contact card micro-labels and helper text all use --color-light-text-muted (never --color-light-text-faint), keeping the light form card AA-compliant without a token edit; contact form <label> elements carry an explicit for attribute alongside implicit wrapping to satisfy the plan's grep contract; decorative glow/watermark containers own their own overflow:hidden, never the section/footer wrapper
 - [Phase ?]: [Phase 03 / 03-08]: cases collection intentionally not rendered on home (SITE-01 lists 9 sections, none portfolio; TRUST-04 defers real cases to v1.x)
 - [Phase ?]: [Phase 03 / 03-08]: --nav-height measured live via headless Chrome CDP (68px desktop >=860px, 86px mobile default in :root); single token with a min-width media query override, base.css consumer unchanged
+- [Phase 04]: pnpm test script uses the quoted-glob form node --test "src/scripts/*.test.mjs", not a directory arg, per the plan's verified note
 
 ### Open Decisions To Resolve Before Their Phase
 
@@ -149,6 +151,6 @@ yet.
 
 ## Session Continuity
 
-Last session: 2026-09-17T01:59:41.561Z
-Stopped at: Phase 4 UI-SPEC approved
-Resume file: .planning/phases/04-progressive-enhancement-effects/04-UI-SPEC.md
+Last session: 2026-09-17T14:41:22.408Z
+Stopped at: Completed 04-01-PLAN.md
+Resume file: None

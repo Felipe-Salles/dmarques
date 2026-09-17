@@ -82,7 +82,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 - [ ] **ANIM-04**: Canvas de partículas como componente island (`client:visible`),
   `aria-hidden="true"`, pausado por IntersectionObserver quando fora da viewport
   e em `document.hidden`
-- [ ] **ANIM-05**: Canvas de partículas respeita `prefers-reduced-motion`
+- [x] **ANIM-05**: Canvas de partículas respeita `prefers-reduced-motion`
   (renderiza um frame estático ou não renderiza), limita DPR a ~1,5 e reduz a
   contagem de pontos em viewport pequena / dispositivos de poucos núcleos /
   data-saver
@@ -324,7 +324,7 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | ANIM-02 | Phase 3 | Complete |
 | ANIM-03 | Phase 4 | Pending |
 | ANIM-04 | Phase 4 | Pending |
-| ANIM-05 | Phase 4 | Pending |
+| ANIM-05 | Phase 4 | Complete |
 | ANIM-06 | Phase 4 | Pending |
 | ANIM-07 | Phase 3 | Complete |
 | ANIM-08 | Phase 3 | Complete |
