@@ -70,28 +70,28 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 
 ### Animações & Movimento (ANIM)
 
-- [ ] **ANIM-01**: Reveal ao rolar — `opacity` + `translateY` com stagger, via um
+- [x] **ANIM-01**: Reveal ao rolar — `opacity` + `translateY` com stagger, via um
   único IntersectionObserver, elemento deixa de ser observado após disparar, com
   fallback por timeout (~2,6 s)
 - [x] **ANIM-02**: Estado inicial oculto do reveal só se aplica com classe
   `.js-ready` no `<html>` E `prefers-reduced-motion: no-preference` — sem JS ou
   com erro de JS, a página fica 100% visível
-- [ ] **ANIM-03**: Glow que segue o cursor — gradiente radial fixo via
+- [x] **ANIM-03**: Glow que segue o cursor — gradiente radial fixo via
   `pointermove` + `requestAnimationFrame`, `pointer-events:none`, `aria-hidden`,
   só com `pointer:fine` e sem reduced-motion
-- [ ] **ANIM-04**: Canvas de partículas como componente island (`client:visible`),
+- [x] **ANIM-04**: Canvas de partículas como componente island (`client:visible`),
   `aria-hidden="true"`, pausado por IntersectionObserver quando fora da viewport
   e em `document.hidden`
-- [ ] **ANIM-05**: Canvas de partículas respeita `prefers-reduced-motion`
+- [x] **ANIM-05**: Canvas de partículas respeita `prefers-reduced-motion`
   (renderiza um frame estático ou não renderiza), limita DPR a ~1,5 e reduz a
   contagem de pontos em viewport pequena / dispositivos de poucos núcleos /
   data-saver
-- [ ] **ANIM-06**: Keyframes `dmFloat` e `dmPulse` com `animation: none` sob
+- [x] **ANIM-06**: Keyframes `dmFloat` e `dmPulse` com `animation: none` sob
   reduced-motion; elementos legíveis sem a animação
 - [x] **ANIM-07**: Cada estado `:hover` tem um `:focus-visible` equivalente;
   transições só em `transform`/`opacity`/`box-shadow`/`border-color`, ≤ 300 ms
 - [x] **ANIM-08**: `scroll-behavior: smooth` vira `auto` sob reduced-motion
-- [ ] **ANIM-09**: Nenhuma animação anima propriedades que causam layout; sem
+- [x] **ANIM-09**: Nenhuma animação anima propriedades que causam layout; sem
   parallax/scroll-jacking; sem preloader/splash
 
 ### Formulário de Orçamento (FORM)
@@ -320,15 +320,15 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | SITE-07 | Phase 3 | Complete |
 | SITE-08 | Phase 3 | Complete |
 | SITE-09 | Phase 3 | Complete |
-| ANIM-01 | Phase 4 | Pending |
+| ANIM-01 | Phase 4 | Complete |
 | ANIM-02 | Phase 3 | Complete |
-| ANIM-03 | Phase 4 | Pending |
-| ANIM-04 | Phase 4 | Pending |
-| ANIM-05 | Phase 4 | Pending |
-| ANIM-06 | Phase 4 | Pending |
+| ANIM-03 | Phase 4 | Complete |
+| ANIM-04 | Phase 4 | Complete |
+| ANIM-05 | Phase 4 | Complete |
+| ANIM-06 | Phase 4 | Complete |
 | ANIM-07 | Phase 3 | Complete |
 | ANIM-08 | Phase 3 | Complete |
-| ANIM-09 | Phase 4 | Pending |
+| ANIM-09 | Phase 4 | Complete |
 | FORM-01 | Phase 5 | Pending |
 | FORM-02 | Phase 5 | Pending |
 | FORM-03 | Phase 5 | Pending |

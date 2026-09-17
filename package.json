@@ -12,6 +12,7 @@
     "build": "astro build",
     "sync": "astro sync",
     "check": "astro sync && astro check",
+    "test": "node --test \"src/scripts/*.test.mjs\"",
     "format": "prettier --write \"**/*.astro\" && biome format --write .",
     "lint": "biome check ."
   },

@@ -20,6 +20,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm astro sync
       - run: pnpm astro check
+      - run: pnpm test
       - run: pnpm build
       - run: pnpm audit --audit-level=high
       - run: bash scripts/js-weight-check.sh "$STATIC_DIR"

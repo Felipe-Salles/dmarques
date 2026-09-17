@@ -57,8 +57,9 @@ Milestone 2 (Cloudflare layer) closes this statement.
 
 - [x] **Phase 1: Foundation & CI Gate** (2026-09-10) - Astro + Vercel static scaffold, self-hosted fonts, design tokens, BaseLayout, preview deploys, Lighthouse CI + audit gates, Vercel lockdown, security-review checklist artifact
 - [x] **Phase 2: Content Collections** - All copy and portfolio cases as typed, build-validated Astro Content Collections (no CMS) (completed 2026-09-15)
-- [x] **Phase 3: Static Zero-JS Sections + CSP-safe Refactor + A11y** - The 9 design sections + privacy/thank-you/404 pages as fully static HTML, every inline style converted to token CSS, accessibility and AA contrast fixed (completed 2026-09-17)
-- [ ] **Phase 4: Progressive-Enhancement Effects** - Scroll reveal, cursor glow, particle canvas, and reduced-motion handling as small vanilla islands
+- [x] **Phase 3: Static Zero-JS Sections + CSP-safe Refactor + A11y** - The 9 design sections + privacy/thank-you/404 pages as fully static HTML, every inline style converted to token CSS, accessibility and AA contrast fixed
+ (completed 2026-09-17)
+- [x] **Phase 4: Progressive-Enhancement Effects** - Scroll reveal, cursor glow, particle canvas, and reduced-motion handling as small vanilla islands (completed 2026-09-17)
 - [ ] **Phase 5: Form Backend + Enhancement + LGPD** - Working quote form (no-JS + enhanced) via Resend behind layered spam/abuse defenses, shipped with the Privacy Policy page and inline data-use notice
 - [ ] **Phase 6: SEO / Metadata / Structured Data** - Titles, canonical, OG/Twitter cards, sitemap, robots, favicons, and single-sourced LocalBusiness + FAQPage JSON-LD
 - [ ] **Phase 7: Security Headers Finalize** - Full security-header set + strict CSP in vercel.json, Report-Only then enforced, sourcemaps off, securityheaders.com >= A
@@ -203,8 +204,25 @@ Plans:
   4. Under `prefers-reduced-motion` all reveal, glow, canvas, and `dmFloat` / `dmPulse` motion stops while the page still looks finished; no animation touches layout-triggering properties and there is no parallax, scroll-jacking, or preloader/splash.
   5. Lighthouse mobile stays >=95 in all four categories with TBT <200 ms and CLS <0.05, DevTools shows no scripting activity while the hero is scrolled away, and the SEC-07 checklist run passes with no open High finding.
 
-**Plans**: TBD
+**Plans**: 4 plans
 **UI hint**: yes
+
+Plans:
+**Wave 1**
+
+- [x] 04-01-PLAN.md — andaime de validação Wave 0: particles.pure.ts (computePointCount + shouldReduceParticles) e a suíte node:test, mais o script `test` e o gate no CI
+
+**Wave 2** *(blocked on 04-01)*
+
+- [x] 04-02-PLAN.md — reveal.ts + glow.ts + effects.ts e as três adições no BaseLayout.astro (toggle `.js-ready` `is:inline`, div `.cursor-glow` com estilo escopado, script módulo empacotado) + token --z-cursor-glow
+
+**Wave 3** *(blocked on 04-02)*
+
+- [x] 04-03-PLAN.md — particles.ts (seed/tick, cap de DPR 1.5, gate duplo IO + Page Visibility, frame estático sob reduced-motion) e a ligação no bundle único
+
+**Wave 4** *(blocked on 04-03)*
+
+- [x] 04-04-PLAN.md — verificação instrumentada via CDP, preview real com gate do Lighthouse (TBT/CLS), execução SEC-07 fase 4 e aceite do Felipe (human-gated)
 
 ### Phase 5: Form Backend + Enhancement + LGPD
 
@@ -262,7 +280,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | 1. Foundation & CI Gate | 8/8 | Complete | 2026-09-10 |
 | 2. Content Collections | 4/4 | Complete   | 2026-09-15 |
 | 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 9/9 | Complete   | 2026-09-17 |
-| 4. Progressive-Enhancement Effects | 0/TBD | Not started | - |
+| 4. Progressive-Enhancement Effects | 4/4 | Complete   | 2026-09-17 |
 | 5. Form Backend + Enhancement + LGPD | 0/TBD | Not started | - |
 | 6. SEO / Metadata / Structured Data | 0/TBD | Not started | - |
 | 7. Security Headers Finalize | 0/TBD | Not started | - |

@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: ready_to_plan
-stopped_at: Phase 03 complete (9/9) — ready to discuss Phase 4
-last_updated: 2026-09-17T00:08:47.462Z
+status: verifying
+stopped_at: Completed 04-04-PLAN.md — Phase 4 closed, Felipe approved
+last_updated: "2026-09-17T15:43:41.415Z"
 last_activity: 2026-09-17
 progress:
   total_phases: 7
-  completed_phases: 3
-  total_plans: 21
-  completed_plans: 21
-  percent: 43
+  completed_phases: 4
+  total_plans: 25
+  completed_plans: 25
+  percent: 57
 ---
 
 # Project State
@@ -21,13 +21,13 @@ progress:
 See: .planning/PROJECT.md (updated 2026-09-05)
 
 **Core value:** Um visitante entende em segundos o que a Dmarques faz, confia na agência e pede um orçamento — com um site que carrega rápido e nunca sai do ar.
-**Current focus:** Phase 4 — progressive enhancement effects
+**Current focus:** Phase 04 — progressive-enhancement-effects
 
 ## Current Position
 
-Phase: 4
-Plan: Not started
-Status: Ready to plan
+Phase: 04 (progressive-enhancement-effects) — EXECUTING
+Plan: 4 of 4
+Status: Phase complete — ready for verification
 Last activity: 2026-09-17
 
 Progress: [██████████] 100%
@@ -72,6 +72,10 @@ Progress: [██████████] 100%
 | Phase 03 P07 | 6min | 3 tasks | 3 files |
 | Phase 03 P08 | 25min | 3 tasks | 10 files |
 | Phase 03 P09 | ~4h | 3 tasks | 13 files |
+| Phase 04 P01 | 3min | 2 tasks | 4 files |
+| Phase 04 P02 | 4min | 2 tasks | 5 files |
+| Phase 04 P03 | 3min | 2 tasks | 2 files |
+| Phase 04 P04 | 55min | 3 tasks tasks | 2 files files |
 
 ## Accumulated Context
 
@@ -120,6 +124,11 @@ Relevant to current work:
 - [Phase 03]: [Phase 03 / 03-07]: Contact card micro-labels and helper text all use --color-light-text-muted (never --color-light-text-faint), keeping the light form card AA-compliant without a token edit; contact form <label> elements carry an explicit for attribute alongside implicit wrapping to satisfy the plan's grep contract; decorative glow/watermark containers own their own overflow:hidden, never the section/footer wrapper
 - [Phase ?]: [Phase 03 / 03-08]: cases collection intentionally not rendered on home (SITE-01 lists 9 sections, none portfolio; TRUST-04 defers real cases to v1.x)
 - [Phase ?]: [Phase 03 / 03-08]: --nav-height measured live via headless Chrome CDP (68px desktop >=860px, 86px mobile default in :root); single token with a min-width media query override, base.css consumer unchanged
+- [Phase 04]: pnpm test script uses the quoted-glob form node --test "src/scripts/*.test.mjs", not a directory arg, per the plan's verified note
+- [Phase ?]: [Phase 04 / 04-02]: --z-cursor-glow: 20 introduced instead of reusing --z-glow: 5, because every shipped section is position:relative with an opaque background at z-index:var(--z-section) (10) - a glow at 5 would render invisibly beneath all content
+- [Phase ?]: [Phase 04 / 04-03]: particles.ts uses ctx.globalAlpha for the connection-line fade (not per-line rgba() string concat + toFixed) and Math.sqrt(dx*dx+dy*dy) over Math.hypot in the O(n2) loop, per plan-locked TBT-discipline instructions
+- [Phase ?]: [Phase 04 / 04-03]: single syncLoop() gate routes IntersectionObserver + visibilitychange through exactly one requestAnimationFrame id; reduced-motion checked once at init (never per-frame), draws a single static frame with no loop registered
+- [Phase 04]: [Phase 04 / 04-04]: Instrumented CDP measurement (headless Chrome, native WebSocket, scratchpad-only script) proved reveal fallback, dual-gate canvas pause, glow gating, DPR cap 1.5, and reduced-motion static frame all behave per spec — Opened PR #3 (phases/04-progressive-enhancement-effects) since 04-01..04-03's commits had never been pushed, getting a green CI lhci gate (Perf/A11y/BP>=0.95, TBT<200ms, CLS<0.05) against a real Vercel preview; Felipe approved the full checkpoint (aprovado, no reservations)
 
 ### Open Decisions To Resolve Before Their Phase
 
@@ -149,6 +158,6 @@ yet.
 
 ## Session Continuity
 
-Last session: 2026-09-17T00:04:02.567Z
-Stopped at: Phase 3 CLOSED — checkpoint aprovado, SEC-07 assinado
+Last session: 2026-09-17T15:43:41.307Z
+Stopped at: Completed 04-04-PLAN.md — Phase 4 closed, Felipe approved
 Resume file: None
