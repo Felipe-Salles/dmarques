@@ -2,7 +2,7 @@
 phase: 04
 slug: progressive-enhancement-effects
 status: draft
-nyquist_compliant: false
+nyquist_compliant: true
 wave_0_complete: false
 created: 2026-09-16
 ---
@@ -43,19 +43,19 @@ verification called out explicitly in ROADMAP success criterion 5.
 
 | Task ID | Plan | Wave | Requirement | Threat Ref | Secure Behavior | Test Type | Automated Command | File Exists | Status |
 |---------|------|------|-------------|------------|-----------------|-----------|-------------------|-------------|--------|
-| 04-01-01 | 01 | 0 | ANIM-05 | V11/V14 | `computePointCount`/`shouldReduceParticles` never `eval`/dynamic script content | unit | `node --test src/scripts/particles.pure.test.mjs` | ❌ W0 | ⬜ pending |
-| 04-0x-xx | TBD | 1 | ANIM-01 | — | Reveal fires once per element; ~2.6s fallback reveals all | manual | DevTools: throttle CPU, scroll, verify `.is-revealed`; block IO support to verify fallback | N/A | ⬜ pending |
-| 04-0x-xx | TBD | 1 | ANIM-03 | V11 | Glow attaches only on `pointer:fine` + no-reduced-motion; disabled entirely under reduced-motion | manual | DevTools: toggle `prefers-reduced-motion` (Rendering tab) + touch-emulated profile | N/A | ⬜ pending |
-| 04-0x-xx | TBD | 1 | ANIM-04 | — | Canvas rAF stops when scrolled off-screen and when tab hidden | manual | DevTools Performance panel: record while scrolling hero away; switch tabs, confirm no CPU activity | N/A | ⬜ pending |
-| 04-0x-xx | TBD | 1 | ANIM-05 | — | DPR capped at 1.5; single static frame under reduced-motion | manual | DevTools: force `prefers-reduced-motion: reduce`, confirm one static frame, no scripting after | N/A | ⬜ pending |
-| 04-0x-xx | TBD | 1 | ANIM-06 | — | `dmFloat`/`dmPulse` stop under reduced-motion (Phase 3 CSS, smoke-check only) | manual | Visual smoke-check, no regression | N/A | ⬜ pending |
-| 04-0x-xx | TBD | 1 | ANIM-09 | — | No layout-triggering animated properties; CLS stays <0.05 | automated (existing) | `pnpm exec lhci autorun` (CLS assertion in `lighthouserc.json`) | ✅ | ⬜ pending |
-| 04-0x-xx | TBD | Phase gate | cross-cutting | V14 | JS weight budget not regressed | automated (existing) | `bash scripts/js-weight-check.sh` | ✅ | ⬜ pending |
-| 04-0x-xx | TBD | Phase gate | cross-cutting / SEC-07 | — | Lighthouse mobile ≥95 all categories, TBT <200ms | automated (existing) | `bash scripts/security-check.sh --ci` (runs `lhci autorun` as check 7) | ✅ | ⬜ pending |
+| 04-01-T1 | 01 | 1 | ANIM-05 | T-04-01 / T-04-02 (V11) | `computePointCount`/`shouldReduceParticles` puras, sem `eval`/DOM/conteúdo dinâmico de script | unit | `node --test "src/scripts/*.test.mjs"` | ❌ W0 → criado por este task | ⬜ pending |
+| 04-01-T2 | 01 | 1 | ANIM-05 | T-04-SC | Nenhuma dependência nova; `pnpm-lock.yaml` inalterado; gate ligado ao CI | automated | `pnpm test` (+ passo `pnpm test` no job `verify`) | ✅ após 04-01-T1 | ⬜ pending |
+| 04-02-T1 | 02 | 2 | ANIM-01, ANIM-03 | T-04-06 / T-04-08 (V11) | Apenas `addEventListener`; sem `innerHTML`/`eval`/`document.write`; `pointermove` passivo com throttle single-flight | automated (source assertions) | `pnpm check && pnpm test` + greps de contrato do plano | ✅ | ⬜ pending |
+| 04-02-T2 | 02 | 2 | ANIM-01, ANIM-03, ANIM-09 | T-04-04 / T-04-05 / T-04-07 / T-04-09 (V14) | `.js-ready` permanece `is:inline` sem `type=`; bundle permanece não-inline; overlay com `pointer-events:none` + `aria-hidden`; sem `eval`/`new Function` no HTML construído | automated | `pnpm build && bash scripts/js-weight-check.sh` + asserções Node sobre `index.html` | ✅ | ⬜ pending |
+| 04-03-T1 | 03 | 3 | ANIM-04, ANIM-05 | T-04-10 / T-04-11 / T-04-12 / T-04-14 | Um único `syncLoop` governa o rAF; `connection?.saveData` protegido; parsing de token sem `eval` | automated (source assertions) | `pnpm check && pnpm test` + contagens grep (`cancelAnimationFrame`=1, `Array.from`=1, `matchMedia`=1, `toFixed`=0) | ✅ | ⬜ pending |
+| 04-03-T2 | 03 | 3 | ANIM-04, ANIM-09 | T-04-SC | Bundle único; nenhum handler inline no HTML construído | automated | `pnpm build && bash scripts/js-weight-check.sh && bash scripts/security-check.sh` | ✅ | ⬜ pending |
+| 04-04-T1 | 04 | 4 | ANIM-01, ANIM-03, ANIM-04, ANIM-05, ANIM-06 | T-04-18 | Loop realmente para fora da viewport e com aba oculta; glow não renderiza sob reduced-motion / ponteiro grosso; DPR efetivo = 1.5 | instrumented (CDP) + automated | Chrome headless via CDP (receita 03-08): `Performance.getMetrics` delta de `ScriptDuration`, `Emulation.setEmulatedMedia`, `getImageData`; mais `pnpm test && pnpm check && pnpm build && bash scripts/js-weight-check.sh` | ✅ (script de scratchpad, não commitado) | ⬜ pending |
+| 04-04-T2 | 04 | 4 | ANIM-09 + cross-cutting / SEC-07 | T-04-16 / T-04-17 / T-04-19 / T-04-SC | Lighthouse mobile >=95, TBT <200ms, CLS <0,05 contra preview real; execução SEC-07 versionada sem High em aberto | automated (existing) | `bash scripts/security-check.sh --ci` com `PREVIEW_URL` (roda `lhci` como verificação 7) + job `lhci` do CI | ✅ | ⬜ pending |
+| 04-04-T3 | 04 | 4 | ANIM-06 + aceite de fase | T-04-16 | Sem regressão de `dmFloat`/`dmPulse` sob reduced-motion; assinatura humana registrada | manual (checkpoint blocking) | — (10 itens de verificação guiada no plano 04-04) | N/A | ⬜ pending |
 
 *Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
 
-*Task IDs above are placeholders — the planner assigns real plan/task IDs; this map's requirement-to-test binding must be preserved when plans are written.*
+*Task IDs atribuídos pelo planner em 2026-09-17 contra os planos 04-01 a 04-04. A ligação requisito-para-teste do mapa original foi preservada integralmente; as linhas marcadas antes como `manual` para ANIM-01/03/04/05 foram promovidas a `instrumented (CDP)` em 04-04-T1, seguindo a receita de medição já usada no plano 03-08.*
 
 ---
 
@@ -88,4 +88,4 @@ verification called out explicitly in ROADMAP success criterion 5.
 - [ ] Feedback latency < 5s for the automated build/weight-check loop
 - [ ] `nyquist_compliant: true` set in frontmatter
 
-**Approval:** pending
+**Approval:** pending (plans written 2026-09-17)
