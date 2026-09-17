@@ -252,6 +252,16 @@ A Fase 4 **satisfaz** a regra dura do gabarito ("Nenhuma fase fecha com achado H
 
 ## Sign-off
 
-Pendente — checkpoint de aceite (Task 3 do plano 04-04) ainda não apresentado ao Felipe. Esta seção será atualizada com a transcrição literal da resposta dele assim que o checkpoint for respondido, conforme o mesmo formato usado em `phase-03.md`.
+**Aprovado em 2026-09-17, sem ressalvas.** Felipe testou o preview do PR #3
+(`https://dmarques-e2p3rv6hi-felipe-salles-projects.vercel.app`) manualmente contra os 10
+itens do checkpoint da Task 3 do plano 04-04 (glow, glow no canto ao recarregar, reveal ao
+rolar, flash no carregamento com rede estrangulada, canvas do hero, pausa do canvas
+fora-da-tela/aba-oculta, movimento reduzido, sem JavaScript, celular, e esta própria execução
+SEC-07) e respondeu **"aprovado"** — sem ressalvas, sem itens reprovados. Nenhum item foi
+reportado como quebrado; nenhum achado novo surgiu do checkpoint. A resposta literal
+"aprovado" está transcrita em `04-04-SUMMARY.md` e vale, por definição do `resume-signal` da
+Task 3 do plano 04-04, como a assinatura SEC-07 desta fase.
 
-**Declaração provisória:** nenhum achado `High` em aberto (tabela acima). Fase 4 permanece **aberta** até a assinatura humana da Task 3.
+**Declaração final:** nenhum achado `High` em aberto (tabela acima: `P03-001`/`P03-002`
+`Med` herdados e `P04-001`/`P04-002`/`P04-003` `Med` novos, todos aceitos dev/CI-only; demais
+`Low` aceitos ou abertos com prazo/fase-alvo definidos). Fase 4 está **fechada**.
