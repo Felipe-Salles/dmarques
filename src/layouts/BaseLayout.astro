@@ -15,9 +15,46 @@ const { title = 'Dmarques — Soluções Web' } = Astro.props;
     <title>{title}</title>
     <Font cssVariable="--font-display" preload={[{ weight: 700, style: 'normal' }]} />
     <Font cssVariable="--font-body" preload={[{ weight: 400, style: 'normal' }]} />
+    <script is:inline>
+      document.documentElement.classList.add('js-ready');
+    </script>
   </head>
   <body>
+    <div class="cursor-glow" aria-hidden="true"></div>
     <slot />
     <Analytics />
+    <script>
+      import '../scripts/effects.ts';
+    </script>
   </body>
 </html>
+
+<style>
+  .cursor-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 640px;
+    height: 640px;
+    margin: -320px 0 0 -320px;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(108, 76, 255, 0.28) 0%,
+      rgba(108, 76, 255, 0.1) 38%,
+      rgba(108, 76, 255, 0) 68%
+    );
+    pointer-events: none;
+    mix-blend-mode: screen;
+    will-change: transform;
+    z-index: var(--z-cursor-glow);
+    transform: translate3d(-100vw, -100vw, 0);
+    display: none;
+  }
+
+  @media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .cursor-glow {
+      display: block;
+    }
+  }
+</style>
