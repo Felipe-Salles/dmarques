@@ -214,7 +214,7 @@ Plans:
 
 **Wave 2** *(blocked on 04-01)*
 
-- [ ] 04-02-PLAN.md — reveal.ts + glow.ts + effects.ts e as três adições no BaseLayout.astro (toggle `.js-ready` `is:inline`, div `.cursor-glow` com estilo escopado, script módulo empacotado) + token --z-cursor-glow
+- [x] 04-02-PLAN.md — reveal.ts + glow.ts + effects.ts e as três adições no BaseLayout.astro (toggle `.js-ready` `is:inline`, div `.cursor-glow` com estilo escopado, script módulo empacotado) + token --z-cursor-glow
 
 **Wave 3** *(blocked on 04-02)*
 
@@ -280,7 +280,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | 1. Foundation & CI Gate | 8/8 | Complete | 2026-09-10 |
 | 2. Content Collections | 4/4 | Complete   | 2026-09-15 |
 | 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 9/9 | Complete   | 2026-09-17 |
-| 4. Progressive-Enhancement Effects | 1/4 | In Progress|  |
+| 4. Progressive-Enhancement Effects | 2/4 | In Progress|  |
 | 5. Form Backend + Enhancement + LGPD | 0/TBD | Not started | - |
 | 6. SEO / Metadata / Structured Data | 0/TBD | Not started | - |
 | 7. Security Headers Finalize | 0/TBD | Not started | - |

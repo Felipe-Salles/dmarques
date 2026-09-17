@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 04-01-PLAN.md
-last_updated: "2026-09-17T14:41:22.510Z"
+stopped_at: Completed 04-02-PLAN.md
+last_updated: "2026-09-17T14:48:47.592Z"
 last_activity: 2026-09-17
 progress:
   total_phases: 7
   completed_phases: 3
   total_plans: 25
-  completed_plans: 22
+  completed_plans: 23
   percent: 43
 ---
 
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-09-05)
 ## Current Position
 
 Phase: 04 (progressive-enhancement-effects) — EXECUTING
-Plan: 2 of 4
+Plan: 3 of 4
 Status: Ready to execute
 Last activity: 2026-09-17
 
-Progress: [█████████░] 88%
+Progress: [█████████░] 92%
 
 ## Performance Metrics
 
@@ -73,6 +73,7 @@ Progress: [█████████░] 88%
 | Phase 03 P08 | 25min | 3 tasks | 10 files |
 | Phase 03 P09 | ~4h | 3 tasks | 13 files |
 | Phase 04 P01 | 3min | 2 tasks | 4 files |
+| Phase 04 P02 | 4min | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -122,6 +123,7 @@ Relevant to current work:
 - [Phase ?]: [Phase 03 / 03-08]: cases collection intentionally not rendered on home (SITE-01 lists 9 sections, none portfolio; TRUST-04 defers real cases to v1.x)
 - [Phase ?]: [Phase 03 / 03-08]: --nav-height measured live via headless Chrome CDP (68px desktop >=860px, 86px mobile default in :root); single token with a min-width media query override, base.css consumer unchanged
 - [Phase 04]: pnpm test script uses the quoted-glob form node --test "src/scripts/*.test.mjs", not a directory arg, per the plan's verified note
+- [Phase ?]: [Phase 04 / 04-02]: --z-cursor-glow: 20 introduced instead of reusing --z-glow: 5, because every shipped section is position:relative with an opaque background at z-index:var(--z-section) (10) - a glow at 5 would render invisibly beneath all content
 
 ### Open Decisions To Resolve Before Their Phase
 
@@ -151,6 +153,6 @@ yet.
 
 ## Session Continuity
 
-Last session: 2026-09-17T14:41:22.408Z
-Stopped at: Completed 04-01-PLAN.md
+Last session: 2026-09-17T14:48:47.549Z
+Stopped at: Completed 04-02-PLAN.md
 Resume file: None
