@@ -27,6 +27,19 @@ um orçamento — com um site que carrega rápido e nunca sai do ar.
   fase, sem achado High em aberto). Todo INFRA-*, PERF-01..04 e SEC-07 da Fase 1
   contabilizados (INP de campo e SEO ≥95 vs produção conscientemente adiados para
   monitoramento pós-launch e Fase 6).
+- **Fase 4 (Progressive-Enhancement Effects) — 2026-09-17.** Reveal ao rolar
+  (IntersectionObserver + fallback 2600ms), glow do cursor (dual-gated a
+  `pointer:fine` + `prefers-reduced-motion:no-preference`) e canvas de partículas do
+  hero animado com pausa dupla (fora-de-tela via IntersectionObserver + aba oculta
+  via `visibilitychange`), DPR travado em 1.5, tudo guardado por
+  `prefers-reduced-motion`. Provado por medição instrumentada via CDP (não leitura de
+  código): pausa do loop cai para 14,5%/7,2% do baseline, reduced-motion desenha um
+  frame e para. Lighthouse mobile ≥0.95 em Performance/Accessibility/Best Practices
+  contra o preview real (TBT/CLS dentro do teto), JS bundle 2645B (orçamento
+  20480B). SEC-07 sem achado High, aprovado explicitamente por Felipe. ANIM-01,
+  ANIM-03, ANIM-04, ANIM-05, ANIM-06, ANIM-09 validados. (float/pulse e hover nos
+  cards/botões já existiam como CSS puro desde a Fase 3 — não fazem parte do escopo
+  desta fase.)
 
 ### Active
 
@@ -36,8 +49,6 @@ um orçamento — com um site que carrega rápido e nunca sai do ar.
 - [ ] Hero variante "03 Bleed" fielmente reproduzido (nav, headline, CTAs
   "Começar um projeto" / WhatsApp, canvas de partículas, render 3D sangrando na
   borda, card de depoimento em glass)
-- [ ] Efeitos visuais do design reproduzidos: reveal ao rolar (fade + translateY
-  com stagger), glow que segue o cursor, float/pulse, hover nos cards e botões
 - [ ] Orçamento de performance mantido: Lighthouse ≥ 95 em Performance/SEO/Best
   Practices/Accessibility, `prefers-reduced-motion` respeitado, sem JavaScript
   que bloqueie a renderização, animações só em `transform`/`opacity`, canvas de
@@ -145,4 +156,4 @@ de rate-limiting, mitigação de DDoS/flood de requisições e Turnstile (captch
 formulário de orçamento.
 
 ---
-*Last updated: 2026-09-10 after Phase 1 completion*
+*Last updated: 2026-09-17 after Phase 4 completion*
