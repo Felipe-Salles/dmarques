@@ -57,7 +57,7 @@ Milestone 2 (Cloudflare layer) closes this statement.
 
 - [x] **Phase 1: Foundation & CI Gate** (2026-09-10) - Astro + Vercel static scaffold, self-hosted fonts, design tokens, BaseLayout, preview deploys, Lighthouse CI + audit gates, Vercel lockdown, security-review checklist artifact
 - [x] **Phase 2: Content Collections** - All copy and portfolio cases as typed, build-validated Astro Content Collections (no CMS) (completed 2026-09-15)
-- [ ] **Phase 3: Static Zero-JS Sections + CSP-safe Refactor + A11y** - The 9 design sections + privacy/thank-you/404 pages as fully static HTML, every inline style converted to token CSS, accessibility and AA contrast fixed
+- [x] **Phase 3: Static Zero-JS Sections + CSP-safe Refactor + A11y** - The 9 design sections + privacy/thank-you/404 pages as fully static HTML, every inline style converted to token CSS, accessibility and AA contrast fixed (completed 2026-09-17)
 - [ ] **Phase 4: Progressive-Enhancement Effects** - Scroll reveal, cursor glow, particle canvas, and reduced-motion handling as small vanilla islands
 - [ ] **Phase 5: Form Backend + Enhancement + LGPD** - Working quote form (no-JS + enhanced) via Resend behind layered spam/abuse defenses, shipped with the Privacy Policy page and inline data-use notice
 - [ ] **Phase 6: SEO / Metadata / Structured Data** - Titles, canonical, OG/Twitter cards, sitemap, robots, favicons, and single-sourced LocalBusiness + FAQPage JSON-LD
@@ -188,7 +188,7 @@ Plans:
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
-- [ ] 03-09-PLAN.md — verificacao em preview real (404 ao vivo, Lighthouse, headers), execucao SEC-07 fase 3 e aceite do Felipe (human-gated)
+- [x] 03-09-PLAN.md — verificacao em preview real (404 ao vivo, Lighthouse, headers), execucao SEC-07 fase 3 e aceite do Felipe (human-gated)
 
 ### Phase 4: Progressive-Enhancement Effects
 
@@ -261,7 +261,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 |-------|----------------|--------|-----------|
 | 1. Foundation & CI Gate | 8/8 | Complete | 2026-09-10 |
 | 2. Content Collections | 4/4 | Complete   | 2026-09-15 |
-| 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 8/9 | In Progress|  |
+| 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 9/9 | Complete   | 2026-09-17 |
 | 4. Progressive-Enhancement Effects | 0/TBD | Not started | - |
 | 5. Form Backend + Enhancement + LGPD | 0/TBD | Not started | - |
 | 6. SEO / Metadata / Structured Data | 0/TBD | Not started | - |

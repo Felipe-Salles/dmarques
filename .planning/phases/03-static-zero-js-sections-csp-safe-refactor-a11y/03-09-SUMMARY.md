@@ -119,6 +119,28 @@ Task 3 (ciclo de correção pós-reprovação):
 
 Transcrição completa (com numeração original de Felipe, incluindo o "3" duplicado) preservada em `03-UI-GAPS.md`, que mapeia cada item à causa raiz confirmada contra o arquivo de design e à correção aplicada.
 
+### Retrabalho pós-primeira-rodada (mesma sessão)
+
+Depois da primeira rodada de correções, Felipe pediu dois ajustes adicionais sobre o resultado:
+
+> Voce deixou a primeira section com 100 vh, não era pra deixar assim, era para fazer apenas o ajuste de espaçamento [...] O que eu preciso exatamente é que a section dois fique posicionada estrategicamente de forma que o texto que inicia o conteúdo dela apareça um pouquinho no final da section um.
+>
+> o glow da section 3 está muito forte [...] da para ver onde começa e termina.
+>
+> Na section 3, o texto "Quatro compromissos que não dependem de tempo de mercado [...]" precisa acompanhar o tamanho dos outros textos [...]
+
+E depois de uma segunda tentativa de calibração (ainda por estimativa, sem verificação visual):
+
+> A fatia da section dois ainda não aparece na section um, precisa subir mais um pouco
+
+Nesse ponto, montei uma verificação visual real (Chrome headless via CDP, sem dependência nova) para parar de calibrar às cegas — medi exatamente onde `.hero-bleed` termina e onde o texto de `ServicesSection` começa a aparecer no viewport, descobri que o `min-height` que eu tinha usado não tinha efeito nenhum (a altura real do Hero é ditada pelo conteúdo — a coluna da imagem — não pelo `min-height`), e corrigi reduzindo o espaçamento interno real que controla a altura (`padding-block-start` do grid). Print final enviado a Felipe confirmando visualmente antes de pedir nova revisão.
+
+### Aprovação final
+
+> aprovado
+
+Resposta literal de Felipe ao checkpoint final, em 2026-09-16. Por definição da acceptance_criteria da Task 3, isto fecha a Fase 3 e vale como assinatura de design (A11Y-06/D-13) e assinatura SEC-07 da fase.
+
 ## Files Created/Modified
 
 Ver `key-files` no frontmatter. Todos os 11 arquivos foram alterados exclusivamente para corrigir os itens reportados — nenhuma mudança de escopo, nenhum arquivo novo além deste SUMMARY e `03-UI-GAPS.md`.
@@ -145,10 +167,16 @@ Nenhum.
 
 ## Next Phase Readiness
 
-Fase 3 **NÃO está fechada**. Aguardando:
-1. Felipe revisar o preview atualizado (novo push ao PR #2) contra os 15 itens corrigidos.
-2. Resposta ao checkpoint (Task 3) — "aprovado" fecha a fase (também vale como assinatura D-13/A11Y-06 e assinatura SEC-07); qualquer reprovação adicional gera novos achados numerados em `phase-03.md` e mantém a fase aberta.
+**Fase 3 FECHADA em 2026-09-16.** Todos os 9 planos completos, checkpoint humano aprovado,
+SEC-07 assinado. PR #2 (Fases 2+3 consolidadas, nunca antes enviadas a `origin/main`) com todos
+os 5 checks verdes (`verify`, `dependency-review`, `lhci`, `Vercel`, `Vercel Preview Comments`).
+Pronta para merge em `main` — decisão de quando/como mergear fica com Felipe (branch protection
+exige PR + checks, já satisfeitos).
+
+Itens deliberadamente fora de escopo, confirmados no checkpoint como aceitos: canvas/glow/reveal
+inertes (Fase 4), formulário sem envio (Fase 5), política de privacidade casca (Fase 5), sem
+meta/OG/JSON-LD (Fase 6), imagens placeholder (troca de arquivo futura).
 
 ---
 *Phase: 03-static-zero-js-sections-csp-safe-refactor-a11y*
-*Status: EM ABERTO — aguardando checkpoint*
+*Status: FECHADA — checkpoint aprovado 2026-09-16*
