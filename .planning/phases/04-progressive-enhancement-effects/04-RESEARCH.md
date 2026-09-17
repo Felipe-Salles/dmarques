@@ -612,7 +612,7 @@ that would affect this implementation.
 **If this table is empty:** N/A — two low-risk items logged above; neither
 blocks planning or requires a `checkpoint:human-verify` gate.
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Will the locked 90-point ceiling (D-06) hold the TBT < 200 ms budget on
    real mobile hardware, or will Phase 4's Lighthouse run reveal a need to
@@ -635,6 +635,10 @@ blocks planning or requires a `checkpoint:human-verify` gate.
      micro-optimizations (avoid function-call overhead, avoid `Math.hypot`
      — `Math.sqrt(dx*dx+dy*dy)` is measurably cheaper — inside the O(n²)
      loop) before ever proposing to break the D-06 formula lock.
+   - RESOLVED: 04-04's plan wires exactly this — an instrumented Lighthouse
+     gate (`security-check.sh --ci`) plus a documented escalation path that
+     micro-optimizes `tick()` before ever touching the D-06 formula. This
+     stays empirical by design and is verified at phase-gate time, not here.
 
 2. **Exact small-viewport breakpoint for D-08 (Claude's Discretion item).**
    - What we know: the project has exactly one existing breakpoint
@@ -652,6 +656,8 @@ blocks planning or requires a `checkpoint:human-verify` gate.
      convention, unless the planner has a specific reason to diverge —
      this avoids introducing a second, undocumented breakpoint value into
      the project.
+   - RESOLVED: locked to 860px in `04-UI-SPEC.md` §3, implemented in
+     04-01/04-03 (`window.innerWidth < 860`).
 
 ## Environment Availability
 
