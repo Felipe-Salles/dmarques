@@ -1,13 +1,29 @@
 ---
-
+import { Image } from 'astro:assets';
+import logotipo from '../assets/brand/logotipo.png';
+import simbolo from '../assets/brand/simbolo.png';
 ---
 
 <a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
 <header class="site-header">
   <div class="header-inner">
     <a href="/" class="wordmark">
-      <span class="logo-mark" aria-hidden="true">D</span>
-      <span class="logo-text">Dmarques <span class="logo-sub">Soluções Web</span></span>
+      <Image
+        src={simbolo}
+        alt=""
+        height={36}
+        densities={[1, 2]}
+        loading="eager"
+        class="logo-symbol"
+      />
+      <Image
+        src={logotipo}
+        alt="Dmarques Desenvolvimento Web"
+        height={36}
+        densities={[1, 2]}
+        loading="eager"
+        class="logo-type"
+      />
     </a>
     <nav class="nav-desktop" aria-label="Navegação principal">
       <a href="#servicos">Serviços</a>
@@ -84,29 +100,19 @@
   .wordmark {
     display: flex;
     align-items: center;
-    gap: var(--space-3);
-    color: var(--color-text-strong);
-    font-family: var(--font-heading);
-    font-weight: var(--font-weight-semibold);
-    font-size: var(--text-base);
+    gap: var(--space-2);
+    flex-shrink: 0;
   }
 
-  .logo-mark {
-    display: grid;
-    place-items: center;
-    width: 32px;
+  .logo-symbol,
+  .logo-type {
+    display: block;
+    width: auto;
     height: 32px;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--color-accent-border);
-    color: var(--color-accent-light);
-    font-family: var(--font-heading);
-    font-weight: var(--font-weight-bold);
-    font-size: var(--text-sm);
   }
 
-  .logo-sub {
-    color: var(--color-text-faint);
-    font-weight: var(--font-weight-regular);
+  .logo-type {
+    display: none;
   }
 
   .nav-desktop {
@@ -216,7 +222,18 @@
     border-color: var(--color-accent);
   }
 
+  @media (min-width: 480px) {
+    .logo-type {
+      display: block;
+    }
+  }
+
   @media (min-width: 860px) {
+    .logo-symbol,
+    .logo-type {
+      height: 36px;
+    }
+
     .nav-desktop {
       display: flex;
     }

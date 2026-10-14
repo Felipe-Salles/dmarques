@@ -1,5 +1,7 @@
 ---
-
+import { Image } from 'astro:assets';
+import logotipo from '../assets/brand/logotipo.png';
+import simbolo from '../assets/brand/simbolo.png';
 ---
 
 <footer class="site-footer">
@@ -7,8 +9,14 @@
     <div class="site-footer-grid">
       <div class="site-footer-brand">
         <a href="/" class="site-footer-wordmark">
-          <span class="site-footer-logo-mark" aria-hidden="true">D</span>
-          <span class="site-footer-logo-text">Dmarques</span>
+          <Image src={simbolo} alt="" height={44} densities={[1, 2]} class="site-footer-symbol" />
+          <Image
+            src={logotipo}
+            alt="Dmarques Desenvolvimento Web"
+            height={44}
+            densities={[1, 2]}
+            class="site-footer-logotype"
+          />
         </a>
         <p>Sites, sistemas, soluções web e automações sob medida.</p>
       </div>
@@ -74,27 +82,15 @@
   .site-footer-wordmark {
     display: flex;
     align-items: center;
-    gap: var(--space-3);
-    color: var(--color-text-strong);
+    gap: var(--space-2);
+    align-self: flex-start;
   }
 
-  .site-footer-logo-mark {
-    display: grid;
-    place-items: center;
-    width: 32px;
-    height: 32px;
-    border-radius: var(--radius-md);
-    background: var(--color-accent);
-    color: var(--color-text-on-accent);
-    font-family: var(--font-heading);
-    font-weight: var(--font-weight-bold);
-    font-size: var(--text-sm);
-  }
-
-  .site-footer-logo-text {
-    font-family: var(--font-heading);
-    font-weight: var(--font-weight-bold);
-    font-size: var(--text-base);
+  .site-footer-symbol,
+  .site-footer-logotype {
+    display: block;
+    width: auto;
+    height: 44px;
   }
 
   .site-footer-brand p {
