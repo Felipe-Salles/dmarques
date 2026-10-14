@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-09-05)
 Phase: 5
 Plan: Not started
 Status: Ready to plan
-Last activity: 2026-09-17
+Last activity: 2026-10-14 - Completed quick task 261014-gfb: Aplicar logotipo e simbolo novos no header, footer e favicon
 
 Progress: [██████████] 100%
 
@@ -150,6 +150,14 @@ yet.
 
 - 01-03 (RESOLVED by orchestrator, Felipe's decision - overrides + allowlist): pnpm-workspace.yaml carries overrides (path-to-regexp 6.3.0, tmp 0.2.7) + auditConfig.ignoreGhsas for the 2 unfixable dev/CI-only extract-zip advisories (GHSA-jmr9-qjv8-65gv, GHSA-7pqw-9j4j-h8q3). `pnpm audit --audit-level=high` now exits 0 on the resolved tree; the 01-04 CI audit step is a plain blocking run (no `|| true`). Plan 08 records the 2 extract-zip GHSAs as accepted Med findings with a target date in .planning/security/runs/phase-01.md. See deferred-items.md D1.
 - 01-07 Task 1b (RESOLVED 2026-09-10): the stale VERCEL_AUTOMATION_BYPASS_SECRET was re-set by the orchestrator via `gh secret set … --body "<value>"` (argument form, not stdin). The `lhci` check now goes green on PR #1 (Performance/Accessibility/Best-Practices median 1.00/1.00/0.96; LCP 1543 ms / CLS 0 / TBT 0 ms; SEO 0.45 is `warn` for Phase 1 — see 01-07 decision). Branch protection on `main` applied and PR #1 squash-merged. See 01-07-SUMMARY.md.
+
+- 2026-10-14 (OPEN): `pnpm audit --audit-level=high` voltou a falhar com advisories novos na árvore inalterada — proxy-addr (critical), devalue, sharp <0.35.5, brace-expansion, basic-ftp, http-cache-semantics, source-map-js, compression. Bloqueia o job `verify` do próximo PR. Ver 261014-gfb-SUMMARY.md.
+
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 261014-gfb | Aplicar logotipo e simbolo novos no header, footer e favicon | 2026-10-14 | d6912da, 963e593 | [261014-gfb-aplicar-logotipo-e-simbolo-novos-no-head](./quick/261014-gfb-aplicar-logotipo-e-simbolo-novos-no-head/) |
 
 ## Deferred Items
 
