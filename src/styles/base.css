@@ -93,6 +93,18 @@ button {
   overflow: clip;
   position: relative;
   min-height: 100svh;
+  isolation: isolate;
+}
+
+.site::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  opacity: var(--grain-opacity);
+  background-image: url(/grain.svg);
+  mix-blend-mode: overlay;
 }
 
 .wrap {

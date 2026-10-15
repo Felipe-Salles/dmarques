@@ -113,7 +113,13 @@ import Words from './Words.astro';
     left: 0;
     right: 0;
     height: 1px;
-    background: var(--color-border);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-border-strong) 20%,
+      var(--color-border-strong) 80%,
+      transparent
+    );
     transform-origin: center;
   }
 
