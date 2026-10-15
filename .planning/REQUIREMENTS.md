@@ -302,10 +302,10 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 - [x] **AUR-04**: Estrutura/ordem da home: header → hero → serviços → projetos → método → sobre → contato → footer; FAQ, Diferenciais (seção) e CtaFinal removidos (D-02)
 - [ ] **AUR-05**: Hero centrado com aurora estática (3 radial-gradients, sem `filter:blur`), H1 em `.accent`, CTAs e linha de prova com link PageSpeed
 - [ ] **AUR-06**: Serviços (lista tipográfica com hairlines, intro sticky), Método (linha de luz, ol), Sobre (foto real 4:5 + diferenciais 2 col) conforme sketch
-- [ ] **AUR-07**: Seção Projetos: bento 6 col, 1 caso real + exemplos rotulados "Exemplo de escopo" + card-convite; mocks HTML/CSS sem métricas inventadas; schema `cases` com união discriminada
+- [x] **AUR-07**: Seção Projetos: bento 6 col, 1 caso real + exemplos rotulados "Exemplo de escopo" + card-convite; mocks HTML/CSS sem métricas inventadas; schema `cases` com união discriminada
 - [ ] **AUR-08**: Contato: "o que acontece depois", canais (e-mail, WhatsApp, Instagram), formulário de vidro com 5 campos, chips radio, todos os estados em CSS, live region sr-only, sem JS de form
 - [ ] **AUR-09**: Header sticky com vidro ao rolar, nav ativa por IO, menu `<details>`, WhatsApp flutuante ≤900px, footer conforme sketch
-- [ ] **AUR-10**: Copy em "nós", CTA único "Pedir orçamento", linguagem leiga, apenas claims já publicados; conteúdo em Collections; zero termos LCP/TBT/CLS/CSP no HTML construído
+- [x] **AUR-10**: Copy em "nós", CTA único "Pedir orçamento", linguagem leiga, apenas claims já publicados; conteúdo em Collections; zero termos LCP/TBT/CLS/CSP no HTML construído
 - [x] **AUR-11**: Motion "a luz acende" hand-rolled (CSS+IO+1 scroll rAF): aurora acende, H1 palavra a palavra, reveals distintos por seção, linha do método por scroll, foto por clip-path, mocks/browser só rodam visíveis; sem lib, sem scroll-jacking
 - [x] **AUR-12**: Tudo visível sem JS e com falha de JS; `prefers-reduced-motion` reduz a fades curtos; aurora estática; loops desligados
 - [x] **AUR-13**: Canvas de partículas, glow de cursor e `.hero-glow` removidos (ANIM-03/04/05 reescritos); `pnpm test` passa sem `particles.pure.test.mjs`
@@ -410,10 +410,10 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | AUR-04 | Phase 04.1 | Complete |
 | AUR-05 | Phase 04.1 | Pending |
 | AUR-06 | Phase 04.1 | Pending |
-| AUR-07 | Phase 04.1 | Pending |
+| AUR-07 | Phase 04.1 | Complete |
 | AUR-08 | Phase 04.1 | Pending |
 | AUR-09 | Phase 04.1 | Pending |
-| AUR-10 | Phase 04.1 | Pending |
+| AUR-10 | Phase 04.1 | Complete |
 | AUR-11 | Phase 04.1 | Complete |
 | AUR-12 | Phase 04.1 | Complete |
 | AUR-13 | Phase 04.1 | Complete |
