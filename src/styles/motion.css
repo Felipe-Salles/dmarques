@@ -110,8 +110,16 @@
   --i: 24;
 }
 
+.d110 {
+  --d: 110ms;
+}
+
 .d200 {
   --d: 200ms;
+}
+
+.d220 {
+  --d: 220ms;
 }
 
 .d300 {
@@ -141,33 +149,36 @@
 @media (prefers-reduced-motion: no-preference) {
   html.js-ready [data-r="fade"] {
     opacity: 0;
-    transform: translateY(16px);
-    transition:
-      opacity 0.8s var(--ease-out),
-      transform 0.8s var(--ease-out);
-    transition-delay: var(--d, 0ms);
+    transform: translateY(14px);
+    filter: blur(4px);
   }
 
   html.js-ready [data-r="fade"].in {
     opacity: 1;
     transform: none;
+    filter: blur(0);
+    transition:
+      opacity 0.8s var(--ease-out),
+      transform 0.9s var(--ease-out),
+      filter 0.8s var(--ease-out);
+    transition-delay: var(--d, 0ms);
   }
 
   html.js-ready [data-r="words"] .w > span {
     transform: translateY(105%);
     filter: blur(8px);
     opacity: 0;
-    transition:
-      transform 0.9s var(--ease-out),
-      filter 0.9s var(--ease-out),
-      opacity 0.9s var(--ease-out);
-    transition-delay: calc(var(--i) * 55ms);
   }
 
   html.js-ready [data-r="words"].in .w > span {
     transform: none;
-    filter: none;
+    filter: blur(0);
     opacity: 1;
+    transition:
+      transform 0.9s var(--ease-out),
+      filter 0.9s var(--ease-out),
+      opacity 0.6s var(--ease-out);
+    transition-delay: calc(var(--d, 0ms) + var(--i, 0) * 55ms);
   }
 }
 
@@ -191,44 +202,34 @@
   }
 }
 
-@keyframes word-in {
-  from {
-    transform: translateY(105%);
-    filter: blur(8px);
-    opacity: 0;
-  }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-}
-
-@keyframes aurora-lit {
-  from {
-    opacity: 0;
-    transform: scale(0.94);
-  }
-}
-
 @keyframes aurora-drift {
-  to {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
     transform: translate3d(2.5%, -1.5%, 0) scale(1.04);
+  }
+  100% {
+    transform: translate3d(-2%, 1%, 0) scale(1.02);
   }
 }
 
 @keyframes sweep {
   from {
-    transform: translateX(-100%);
+    transform: translateX(-120%);
   }
   to {
-    transform: translateX(100%);
+    transform: translateX(120%);
   }
 }
 
 @keyframes scrollsite {
-  to {
+  0%,
+  14% {
+    transform: translateY(0);
+  }
+  86%,
+  100% {
     transform: translateY(calc(-100% + 100cqh));
   }
 }

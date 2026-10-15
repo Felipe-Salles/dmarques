@@ -49,10 +49,21 @@ const { variant } = Astro.props;
 
   @media (prefers-reduced-motion: no-preference) {
     :global(html.js-ready) .aurora--hero {
-      animation:
-        aurora-lit 1.8s var(--ease-out) both,
-        aurora-drift 22s var(--ease-in-out) 2.4s infinite alternate;
+      opacity: 0;
+      transform: scale(0.94);
       will-change: transform;
+    }
+
+    :global(html.js-ready) .aurora--hero:global(.lit) {
+      opacity: var(--aurora-opacity);
+      transform: scale(1);
+      transition:
+        opacity 1.8s var(--ease-out),
+        transform 2.4s var(--ease-out);
+    }
+
+    :global(html.js-ready) .aurora--hero:global(.lit):global(.drift) {
+      animation: aurora-drift 22s var(--ease-in-out) 2.4s infinite alternate;
     }
 
     :global(html.js-ready) .aurora--hero:global(.paused) {
@@ -61,11 +72,15 @@ const { variant } = Astro.props;
 
     :global(html.js-ready) .aurora--contact {
       opacity: 0;
-      transition: opacity 1.6s var(--ease-out);
+      transform: scaleY(-1) scale(0.94);
     }
 
-    :global(html.js-ready .in) > .aurora--contact {
+    :global(html.js-ready) .aurora--contact:global(.lit) {
       opacity: calc(var(--aurora-opacity) * 0.8);
+      transform: scaleY(-1);
+      transition:
+        opacity 1.8s var(--ease-out),
+        transform 2.4s var(--ease-out);
     }
   }
 </style>
