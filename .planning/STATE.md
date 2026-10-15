@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-stopped_at: Completed 04.1-10-PLAN.md
-last_updated: "2026-10-15T09:02:23.307Z"
+status: verifying
+stopped_at: Completed 04.1-11-PLAN.md
+last_updated: "2026-10-15T09:08:56.237Z"
 last_activity: 2026-10-15
 progress:
   total_phases: 8
-  completed_phases: 4
+  completed_phases: 5
   total_plans: 36
-  completed_plans: 35
-  percent: 50
+  completed_plans: 36
+  percent: 63
 ---
 
 # Project State
@@ -27,10 +27,10 @@ See: .planning/PROJECT.md (updated 2026-10-15)
 
 Phase: 04.1 (redesign-aurora-tecnica) — EXECUTING
 Plan: 11 of 11
-Status: Ready to execute
+Status: Phase complete — ready for verification
 Last activity: 2026-10-15
 
-Progress: [██████████] 97%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
@@ -154,6 +154,7 @@ Relevant to current work:
 - [Phase 04.1]: Metodo: estado apagado sem opacity em texto (cor faint) para contraste AA
 - [Phase 04.1]: Form do contato sem JS: estados err/sending/done e aria-invalid prontos em CSS para a Fase 5
 - [Phase 04.1]: Seta do card destaque e span aria-hidden (sem pagina de detalhe, D-08); rolagem dos mocks via scrollsite com 100cqh em .screen container-type size
+- [Phase 04.1]: Captura do site nao recursiva (CSS injetado so no navegador de captura); fallbackFormat webp no Picture; SEO lhci segue warn (0,58) ate a Fase 6
 
 ### Open Decisions To Resolve Before Their Phase
 
@@ -194,6 +195,6 @@ yet.
 
 ## Session Continuity
 
-Last session: 2026-10-15T09:02:23.237Z
-Stopped at: Completed 04.1-10-PLAN.md
+Last session: 2026-10-15T09:08:55.649Z
+Stopped at: Completed 04.1-11-PLAN.md
 Resume file: None
