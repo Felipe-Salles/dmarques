@@ -306,7 +306,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 - [ ] **AUR-08**: Contato: "o que acontece depois", canais (e-mail, WhatsApp, Instagram), formulário de vidro com 5 campos, chips radio, todos os estados em CSS, live region sr-only, sem JS de form
 - [ ] **AUR-09**: Header sticky com vidro ao rolar, nav ativa por IO, menu `<details>`, WhatsApp flutuante ≤900px, footer conforme sketch
 - [ ] **AUR-10**: Copy em "nós", CTA único "Pedir orçamento", linguagem leiga, apenas claims já publicados; conteúdo em Collections; zero termos LCP/TBT/CLS/CSP no HTML construído
-- [ ] **AUR-11**: Motion "a luz acende" hand-rolled (CSS+IO+1 scroll rAF): aurora acende, H1 palavra a palavra, reveals distintos por seção, linha do método por scroll, foto por clip-path, mocks/browser só rodam visíveis; sem lib, sem scroll-jacking
+- [x] **AUR-11**: Motion "a luz acende" hand-rolled (CSS+IO+1 scroll rAF): aurora acende, H1 palavra a palavra, reveals distintos por seção, linha do método por scroll, foto por clip-path, mocks/browser só rodam visíveis; sem lib, sem scroll-jacking
 - [x] **AUR-12**: Tudo visível sem JS e com falha de JS; `prefers-reduced-motion` reduz a fades curtos; aurora estática; loops desligados
 - [x] **AUR-13**: Canvas de partículas, glow de cursor e `.hero-glow` removidos (ANIM-03/04/05 reescritos); `pnpm test` passa sem `particles.pure.test.mjs`
 - [ ] **AUR-14**: Lighthouse mobile ≥95 nas 4 categorias, LCP ≤2,5 s, TBT <200 ms, CLS <0,05; JS da rota ≤20 KB gz
@@ -414,7 +414,7 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | AUR-08 | Phase 04.1 | Pending |
 | AUR-09 | Phase 04.1 | Pending |
 | AUR-10 | Phase 04.1 | Pending |
-| AUR-11 | Phase 04.1 | Pending |
+| AUR-11 | Phase 04.1 | Complete |
 | AUR-12 | Phase 04.1 | Complete |
 | AUR-13 | Phase 04.1 | Complete |
 | AUR-14 | Phase 04.1 | Pending |
