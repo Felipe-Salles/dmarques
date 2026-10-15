@@ -81,3 +81,9 @@ Tese: **a aurora é a luz da página — ela acende e o conteúdo entra em foco 
   chips com toque, ✓ de sucesso desenhado.
 - Tudo CSS + IntersectionObserver (sem biblioteca). Sem JS a página aparece inteira; com
   reduced-motion só fades curtos, aurora estática e linha do método cheia.
+
+## Rodada 4 — modo Cinemático (testado e descartado)
+
+Hero fixado por ~5 roladas com as auroras cruzando em X e o título reagindo à rolagem (sem
+scroll-jacking). Felipe testou e preferiu a versão da rodada 3; revertido em git. Não reapresentar
+fixação/scrollytelling no hero como proposta para o site.
