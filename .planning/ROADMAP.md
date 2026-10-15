@@ -239,19 +239,20 @@ Plans:
   4. Motion follows the sketch thesis with hand-rolled CSS + IntersectionObserver (no animation library, no scroll-jacking/pinning): hero aurora ignite + word-by-word focus reveal, distinct per-section reveals, scroll-driven method line, clip-path photo reveal, browser mocks running only when visible; everything visible without JS; `prefers-reduced-motion` reduces to short fades. The Phase 4 particle canvas is retired in favor of the aurora.
   5. Lighthouse mobile stays >=95 in all four categories (TBT <200 ms, CLS <0.05), no horizontal overflow at 360–1440px, tap targets >=44px, inline-style gate still passes, `/impeccable polish` pass done before close, and the SEC-07 checklist run passes with no open High finding.
 
-**Plans**: 10 plans
+**Plans**: 11 plans
 
 Plans:
-- [ ] 04.1-01-PLAN.md — gates de validação (aurora-gates.mjs, browser-gates.mjs com Playwright) e atualização de REQUIREMENTS/ROADMAP (AUR-01..18, SEO-07, CONTENT-03/04, ANIM-03/04/05, Fase 6)
-- [ ] 04.1-02-PLAN.md — fundação: Fonts API Sora/Inter Tight/JetBrains Mono, tokens Aurora, base/motion.css, BaseLayout com .site + header/footer, Words e Aurora, remoção de FAQ/Diferenciais/CtaFinal
+- [ ] 04.1-01-PLAN.md — gates de validação (aurora-gates.mjs com 13 verificações incl. tokens, browser-gates.mjs com Playwright) e atualização de REQUIREMENTS/ROADMAP (AUR-01..18, SEO-07, CONTENT-01/03/04, ANIM-03/04/05, Fase 6 sem FAQPage — D-02)
+- [ ] 04.1-02-PLAN.md — fundação: Fonts API Sora/Inter Tight/JetBrains Mono, tokens Aurora, base/motion.css, BaseLayout com .site + header/footer, Words e Aurora, remoção de FAQ/Diferenciais/CtaFinal (D-02)
 - [ ] 04.1-03-PLAN.md — motor de motion "a luz acende" (reveal, scroll rAF, visibilidade, nav ativa) e remoção de glow/partículas
-- [ ] 04.1-04-PLAN.md — conteúdo: cases com união discriminada, 3 exemplos de escopo, coleção faq removida, textos na voz "nós"
-- [ ] 04.1-05-PLAN.md — header de vidro, footer + WhatsApp flutuante, hero Aurora, favicons sobre #070A14
-- [ ] 04.1-06-PLAN.md — Serviços (lista tipográfica), Método (linha de luz), Sobre (foto clip-path + diferenciais)
-- [ ] 04.1-07-PLAN.md — Contato com form de vidro (5 campos, chips radio, estados em CSS) e páginas secundárias
-- [ ] 04.1-08-PLAN.md — seção Projetos (bento honesto, mocks HTML/CSS, tilt) na ordem final da home
-- [ ] 04.1-09-PLAN.md — suíte completa de gates contra o build e pass /impeccable polish
-- [ ] 04.1-10-PLAN.md — captura real do site no card destaque, gates no CI, PR com lhci verde e SEC-07
+- [ ] 04.1-04-PLAN.md — conteúdo de projetos: cases com união discriminada, 3 exemplos de escopo, coleção faq removida (D-02)
+- [ ] 04.1-05-PLAN.md — copy de services/process/differentiators na voz "nós" (frase do Método com fonte única no ProcessSection)
+- [ ] 04.1-06-PLAN.md — header de vidro, footer + WhatsApp flutuante, hero Aurora (alvos ≥44/48 px), favicon.ico/png sobre #070A14
+- [ ] 04.1-07-PLAN.md — Serviços (lista tipográfica), Método (linha de luz, estado apagado AA), Sobre (foto clip-path + diferenciais)
+- [ ] 04.1-08-PLAN.md — Contato com 3 canais (e-mail, WhatsApp, Instagram) e form de vidro (5 campos, chips radio, estados em CSS) e páginas secundárias
+- [ ] 04.1-09-PLAN.md — seção Projetos (bento honesto, mocks HTML/CSS, tilt) na ordem final da home
+- [ ] 04.1-10-PLAN.md — suíte completa de gates contra o build (checklist C1-C12, lhci local cedo) e pass /impeccable polish
+- [ ] 04.1-11-PLAN.md — captura real do site no card destaque, gates no CI, PR com lhci verde e SEC-07
 **UI hint**: yes
 
 ### Phase 5: Form Backend + Enhancement + LGPD
