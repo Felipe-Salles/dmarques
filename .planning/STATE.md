@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-09-05)
 Phase: 5
 Plan: Not started
 Status: Ready to plan
-Last activity: 2026-10-15 - Completed quick task 261015-2fr: Foto real do fundador e e-mail contato@agenciadmarques.com.br
+Last activity: 2026-10-15 - Completed quick task 261015-2ks: Instagram @agenciadmarques
 
 Progress: [██████████] 100%
 
@@ -160,6 +160,7 @@ yet.
 | 261014-gfb | Aplicar logotipo e simbolo novos no header, footer e favicon | 2026-10-14 | d6912da, 963e593 | [261014-gfb-aplicar-logotipo-e-simbolo-novos-no-head](./quick/261014-gfb-aplicar-logotipo-e-simbolo-novos-no-head/) |
 | 261014-gl5 | Atualizar dependencias para zerar pnpm audit high/critical | 2026-10-14 | 9227d3e | [261014-gl5-atualizar-dependencias-para-zerar-pnpm-a](./quick/261014-gl5-atualizar-dependencias-para-zerar-pnpm-a/) |
 | 261015-2fr | Foto real do fundador e e-mail contato@agenciadmarques.com.br | 2026-10-15 | a71a82e | [261015-2fr-aplicar-foto-real-do-fundador-e-e-mail-c](./quick/261015-2fr-aplicar-foto-real-do-fundador-e-e-mail-c/) |
+| 261015-2ks | Instagram @agenciadmarques | 2026-10-15 | cd97828 | [261015-2ks-trocar-instagram-para-agenciadmarques](./quick/261015-2ks-trocar-instagram-para-agenciadmarques/) |
 
 ## Deferred Items
 
