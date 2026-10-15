@@ -1,10 +1,10 @@
 ---
+import { Picture } from 'astro:assets';
 import { getCases } from '../content';
 import Words from './Words.astro';
 import AgendaMock from './mocks/AgendaMock.astro';
 import ClinicaMock from './mocks/ClinicaMock.astro';
 import PedidosMock from './mocks/PedidosMock.astro';
-import DmarquesMock from './mocks/DmarquesMock.astro';
 
 const cases = await getCases();
 const featured = cases.find((c) => c.data.rotulo === 'projeto próprio');
@@ -63,7 +63,16 @@ const featuredData = featured && featured.data.rotulo === 'projeto próprio' ? f
               </div>
               <div class="screen">
                 <div class="scroller">
-                  <DmarquesMock />
+                  <Picture
+                    src={featuredData.cover}
+                    alt={featuredData.coverAlt}
+                    formats={['avif', 'webp']}
+                    fallbackFormat="webp"
+                    widths={[480, 800]}
+                    sizes="(min-width: 1080px) 760px, 90vw"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
               </div>
             </div>
@@ -393,6 +402,13 @@ const featuredData = featured && featured.data.rotulo === 'projeto próprio' ? f
     flex: 1;
     aspect-ratio: auto;
     min-height: 320px;
+  }
+
+  .scroller :global(picture),
+  .scroller :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
   }
 
   .scroller {

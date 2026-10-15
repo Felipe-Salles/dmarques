@@ -3,8 +3,8 @@ titulo: O site da própria Dmarques
 rotulo: projeto próprio
 tipo: site-institucional
 url: agenciadmarques.com.br
-cover: ./dmarques-cover.webp
-coverAlt: Prévia da landing page da Dmarques em fundo escuro com detalhe roxo
+cover: ./dmarques-capture.webp
+coverAlt: "Página inicial da Dmarques no visual Aurora: hero escuro com aurora azul, serviços, método, sobre e contato"
 resultados:
   - valor: ~1,5 s
     legenda: para abrir no celular
