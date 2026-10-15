@@ -4,13 +4,13 @@ milestone: v1.0
 milestone_name: milestone
 status: executing
 stopped_at: Phase 04.1 UI-SPEC approved
-last_updated: "2026-10-15T08:42:25.117Z"
+last_updated: "2026-10-15T08:44:56.256Z"
 last_activity: 2026-10-15
 progress:
   total_phases: 8
   completed_phases: 4
   total_plans: 36
-  completed_plans: 30
+  completed_plans: 31
   percent: 50
 ---
 
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-10-15)
 ## Current Position
 
 Phase: 04.1 (redesign-aurora-tecnica) — EXECUTING
-Plan: 6 of 11
+Plan: 7 of 11
 Status: Ready to execute
 Last activity: 2026-10-15
 
-Progress: [████████░░] 83%
+Progress: [█████████░] 86%
 
 ## Performance Metrics
 
@@ -80,6 +80,7 @@ Progress: [████████░░] 83%
 | Phase 04.1 P01 | ~40min | 3 tasks | 7 files |
 | Phase 04.1 P04 | 10min | 2 tasks | 12 files |
 | Phase 04.1 P05 | 5min | 2 tasks | 5 files |
+| Phase 04.1 P06 | 20min | 3 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -146,6 +147,7 @@ Relevant to current work:
 - [Phase 04.1]: Redesign entra como Fase 04.1 antes da Fase 5; a Fase 5 passa a depender do markup do formulário redesenhado — Escolha do Felipe: evita refazer o markup do formulário duas vezes
 - [Phase 04.1]: 04.1-04: cases usa z.discriminatedUnion('rotulo'); faq removida
 - [Phase 04.1]: Frase 'Nada é cobrado...' só na legenda .here do ProcessSection
+- [Phase 04.1]: CTA do header sempre visível; logotipo oculto abaixo de 480px de container
 
 ### Open Decisions To Resolve Before Their Phase
 
@@ -186,6 +188,6 @@ yet.
 
 ## Session Continuity
 
-Last session: 2026-10-15T08:41:17.131Z
+Last session: 2026-10-15T08:44:56.199Z
 Stopped at: Phase 04.1 UI-SPEC approved
 Resume file: None
