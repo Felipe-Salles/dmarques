@@ -117,7 +117,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   `aria-invalid`, `aria-describedby` ligando campo→erro, região `aria-live`,
   foco movido para o primeiro erro; sucesso e falha anunciados
 - [ ] **FORM-07**: Honeypot oculto (descartado, nunca enviado nem armazenado) +
-  verificação de tempo de submissão (rejeita < ~3 s ou > ~2 h), ambos no servidor
+  verificação de tempo de submissão (rejeita < ~3 s ou > ~24 h, tempo decorrido medido no cliente), ambos no servidor
   - Nota (Fase 5 D-27, Felipe 2026-10-15): o tempo é o decorrido medido no cliente
     (`elapsed-ms`), sem comparar relógios; teto alargado para 24 h para não perder
     lead de aba aberta; sem JS o campo não existe e o timing não se aplica (risco

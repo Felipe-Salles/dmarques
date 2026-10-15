@@ -4,6 +4,8 @@
 **Domain:** endpoint de formulário em Astro 7 + Vercel Function (Resend, Zod, Upstash), progressive enhancement sem framework, política de privacidade LGPD
 **Confidence:** MEDIUM-HIGH (stack e APIs verificados; texto jurídico e nomes de env do Marketplace marcados `[ASSUMED]`)
 
+> **Superado (2026-10-15):** toda menção a `rendered-at` (timestamp absoluto) e ao teto de ~2 h neste documento foi substituída por `elapsed-ms` (tempo decorrido medido no cliente, janela 3 s–24 h) — ver D-27 no CONTEXT e os planos 05-01, 05-07 e 05-09, que prevalecem.
+
 <user_constraints>
 ## User Constraints (from CONTEXT.md)
 
