@@ -57,10 +57,12 @@ Milestone 2 (Cloudflare layer) closes this statement.
 
 - [x] **Phase 1: Foundation & CI Gate** (2026-09-10) - Astro + Vercel static scaffold, self-hosted fonts, design tokens, BaseLayout, preview deploys, Lighthouse CI + audit gates, Vercel lockdown, security-review checklist artifact
 - [x] **Phase 2: Content Collections** - All copy and portfolio cases as typed, build-validated Astro Content Collections (no CMS) (completed 2026-09-15)
-- [x] **Phase 3: Static Zero-JS Sections + CSP-safe Refactor + A11y** - The 9 design sections + privacy/thank-you/404 pages as fully static HTML, every inline style converted to token CSS, accessibility and AA contrast fixed (completed 2026-09-17)
-- [ ] **Phase 4: Progressive-Enhancement Effects** - Scroll reveal, cursor glow, particle canvas, and reduced-motion handling as small vanilla islands
+- [x] **Phase 3: Static Zero-JS Sections + CSP-safe Refactor + A11y** - The 9 design sections + privacy/thank-you/404 pages as fully static HTML, every inline style converted to token CSS, accessibility and AA contrast fixed
+ (completed 2026-09-17)
+- [x] **Phase 4: Progressive-Enhancement Effects** - Scroll reveal, cursor glow, particle canvas, and reduced-motion handling as small vanilla islands (completed 2026-09-17)
+- [x] **Phase 04.1: Redesign Aurora técnica** (INSERTED) - Apply the validated Aurora direction (sketch 001-A): logo, palette, Sora + Inter Tight, section compositions, honest proof, "nós" voice and the "a luz acende" motion system (completed 2026-10-15)
 - [ ] **Phase 5: Form Backend + Enhancement + LGPD** - Working quote form (no-JS + enhanced) via Resend behind layered spam/abuse defenses, shipped with the Privacy Policy page and inline data-use notice
-- [ ] **Phase 6: SEO / Metadata / Structured Data** - Titles, canonical, OG/Twitter cards, sitemap, robots, favicons, and single-sourced LocalBusiness + FAQPage JSON-LD
+- [ ] **Phase 6: SEO / Metadata / Structured Data** - Titles, canonical, OG/Twitter cards, sitemap, robots, favicons, and single-sourced ProfessionalService/LocalBusiness JSON-LD (FAQPage removido na 04.1, D-02)
 - [ ] **Phase 7: Security Headers Finalize** - Full security-header set + strict CSP in vercel.json, Report-Only then enforced, sourcemaps off, securityheaders.com >= A
 
 ### Milestone 2 (planned) — Cloudflare layer
@@ -128,9 +130,9 @@ Plans:
 **Requirements**: CONTENT-01, CONTENT-02, CONTENT-03, CONTENT-04, CONTENT-05
 **Success Criteria** (what must be TRUE):
 
-  1. `services`, `process`, `differentiators`, and `faq` content is authored as YAML validated by strict Zod schemas at build; a bad key or missing field fails `pnpm build`.
+  1. `services`, `process`, `differentiators`, and `faq` content is authored as YAML validated by strict Zod schemas at build; a bad key or missing field fails `pnpm build`. (FAQ superseded na Fase 04.1, D-02)
   2. Portfolio `cases` are Markdown with `image()` covers in a problem -> solution -> result structure, and 1-2 honestly-labeled entries ("projeto proprio" / "demo") are published.
-  3. The `faq` collection is the single source that feeds both the visible FAQ section and the `FAQPage` JSON-LD, and the "tipo de projeto" enum is defined once and reused as the quote-form allow-list.
+  3. The `faq` collection is the single source that feeds both the visible FAQ section and the `FAQPage` JSON-LD, and the "tipo de projeto" enum is defined once and reused as the quote-form allow-list. (FAQ superseded na Fase 04.1, D-02)
   4. The SEC-07 checklist run for this phase passes with no open High finding (no new inline surface, `pnpm audit` clean, every added dependency justified in the phase notes).
 
 **Plans**: 4 plans
@@ -138,7 +140,7 @@ Plans:
 Plans:
 **Wave 1**
 
-- [x] 02-01-PLAN.md — "tipo de projeto" enum module, 16 design-verbatim YAML entries, strict Zod schemas for services / process / differentiators / faq
+- [x] 02-01-PLAN.md — "tipo de projeto" enum module, 16 design-verbatim YAML entries, strict Zod schemas for services / process / differentiators / faq (FAQ superseded na Fase 04.1, D-02)
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
@@ -179,7 +181,7 @@ Plans:
 - [x] 03-03-PLAN.md — SiteHeader.astro (skip link, nav por ancora, disclosure details mobile) + as rotas /obrigado, /politica-de-privacidade e /404
 - [x] 03-04-PLAN.md — HeroBleed.astro ("03 Bleed" com LCP priorizado) + AboutSection.astro (retrato com alt real)
 - [x] 03-05-PLAN.md — ServicesSection.astro + ProcessSection.astro (consumo das collections, icones SVG inline)
-- [x] 03-06-PLAN.md — DifferentiatorsSection.astro (secao clara, contraste recalculado) + FaqSection.astro
+- [x] 03-06-PLAN.md — DifferentiatorsSection.astro (secao clara, contraste recalculado) + FaqSection.astro (FAQ superseded na Fase 04.1, D-02)
 - [x] 03-07-PLAN.md — ContactSection.astro (formulario estatico de 5 campos) + CtaFinal.astro + SiteFooter.astro
 
 **Wave 3** *(blocked on Wave 2 completion)*
@@ -203,13 +205,60 @@ Plans:
   4. Under `prefers-reduced-motion` all reveal, glow, canvas, and `dmFloat` / `dmPulse` motion stops while the page still looks finished; no animation touches layout-triggering properties and there is no parallax, scroll-jacking, or preloader/splash.
   5. Lighthouse mobile stays >=95 in all four categories with TBT <200 ms and CLS <0.05, DevTools shows no scripting activity while the hero is scrolled away, and the SEC-07 checklist run passes with no open High finding.
 
-**Plans**: TBD
+**Plans**: 4 plans
+**UI hint**: yes
+
+Plans:
+**Wave 1**
+
+- [x] 04-01-PLAN.md — andaime de validação Wave 0: particles.pure.ts (computePointCount + shouldReduceParticles) e a suíte node:test, mais o script `test` e o gate no CI
+
+**Wave 2** *(blocked on 04-01)*
+
+- [x] 04-02-PLAN.md — reveal.ts + glow.ts + effects.ts e as três adições no BaseLayout.astro (toggle `.js-ready` `is:inline`, div `.cursor-glow` com estilo escopado, script módulo empacotado) + token --z-cursor-glow
+
+**Wave 3** *(blocked on 04-02)*
+
+- [x] 04-03-PLAN.md — particles.ts (seed/tick, cap de DPR 1.5, gate duplo IO + Page Visibility, frame estático sob reduced-motion) e a ligação no bundle único
+
+**Wave 4** *(blocked on 04-03)*
+
+- [x] 04-04-PLAN.md — verificação instrumentada via CDP, preview real com gate do Lighthouse (TBT/CLS), execução SEC-07 fase 4 e aceite do Felipe (human-gated)
+
+### Phase 04.1: Redesign Aurora técnica (INSERTED)
+
+**Goal**: The live site adopts the validated "Aurora técnica" direction (sketch 001, variant A) — new logo, palette, typography, section compositions, honest project proof, pt-BR "nós" voice and the "a luz acende" motion system — without regressing performance, accessibility or the static/CSP-safe architecture.
+**Depends on**: Phase 4
+**Source of truth**: `.planning/sketches/001-aurora-landing/` + skill `sketch-findings-dmarques` (`.claude/skills/sketch-findings-dmarques/`)
+**Requirements**: AUR-01, AUR-02, AUR-03, AUR-04, AUR-05, AUR-06, AUR-07, AUR-08, AUR-09, AUR-10, AUR-11, AUR-12, AUR-13, AUR-14, AUR-15, AUR-16, AUR-17, AUR-18
+**Success Criteria** (what must be TRUE):
+
+  1. Tokens migrate to the Aurora palette (`#070A14` bg, aurora `#00C8FF → #3A5BFF → #0E1E5B`, ember `#FF6A3D` only as action marker, AA text tokens) and the Fonts API self-hosts Sora + Inter Tight (Outfit/DM Sans removed); no violet `#6C4CFF` remains; header/footer keep the new logo lockup and favicon.
+  2. Sections match the winning sketch: centered hero under a static gradient aurora (no `filter: blur`) with the verifiable proof line, services as a typographic list, honest bento (1 real case + labelled scope examples + invite card, mocks with realistic content), method on a light line, About with the real colored photo, contact with "what happens next" + channels (`contato@agenciadmarques.com.br`, WhatsApp, `@agenciadmarques`) + glass form; no eyebrow labels, no template stat strip, sticky glass header, mobile WhatsApp shortcut.
+  3. Copy uses "nós" everywhere with the single CTA "Pedir orçamento", lay language, and only claims already published (antiga FAQ/case, D-02); content stays in Content Collections.
+  4. Motion follows the sketch thesis with hand-rolled CSS + IntersectionObserver (no animation library, no scroll-jacking/pinning): hero aurora ignite + word-by-word focus reveal, distinct per-section reveals, scroll-driven method line, clip-path photo reveal, browser mocks running only when visible; everything visible without JS; `prefers-reduced-motion` reduces to short fades. The Phase 4 particle canvas is retired in favor of the aurora.
+  5. Lighthouse mobile stays >=95 in all four categories (TBT <200 ms, CLS <0.05), no horizontal overflow at 360–1440px, tap targets >=44px, inline-style gate still passes, `/impeccable polish` pass done before close, and the SEC-07 checklist run passes with no open High finding.
+
+**Plans**: 11 plans
+
+Plans:
+- [x] 04.1-01-PLAN.md — gates de validação (aurora-gates.mjs com 13 verificações incl. tokens, browser-gates.mjs com Playwright) e atualização de REQUIREMENTS/ROADMAP (AUR-01..18, SEO-07, CONTENT-01/03/04, ANIM-03/04/05, Fase 6 sem FAQPage — D-02)
+- [x] 04.1-02-PLAN.md — fundação: Fonts API Sora/Inter Tight/JetBrains Mono, tokens Aurora, base/motion.css, BaseLayout com .site + header/footer, Words e Aurora, remoção de FAQ/Diferenciais/CtaFinal (D-02)
+- [x] 04.1-03-PLAN.md — motor de motion "a luz acende" (reveal, scroll rAF, visibilidade, nav ativa) e remoção de glow/partículas
+- [x] 04.1-04-PLAN.md — conteúdo de projetos: cases com união discriminada, 3 exemplos de escopo, coleção faq removida (D-02)
+- [x] 04.1-05-PLAN.md — copy de services/process/differentiators na voz "nós" (frase do Método com fonte única no ProcessSection)
+- [x] 04.1-06-PLAN.md — header de vidro, footer + WhatsApp flutuante, hero Aurora (alvos ≥44/48 px), favicon.ico/png sobre #070A14
+- [x] 04.1-07-PLAN.md — Serviços (lista tipográfica), Método (linha de luz, estado apagado AA), Sobre (foto clip-path + diferenciais)
+- [x] 04.1-08-PLAN.md — Contato com 3 canais (e-mail, WhatsApp, Instagram) e form de vidro (5 campos, chips radio, estados em CSS) e páginas secundárias
+- [x] 04.1-09-PLAN.md — seção Projetos (bento honesto, mocks HTML/CSS, tilt) na ordem final da home
+- [x] 04.1-10-PLAN.md — suíte completa de gates contra o build (checklist C1-C12, lhci local cedo) e pass /impeccable polish
+- [x] 04.1-11-PLAN.md — captura real do site no card destaque, gates no CI, PR com lhci verde e SEC-07
 **UI hint**: yes
 
 ### Phase 5: Form Backend + Enhancement + LGPD
 
 **Goal**: The quote form works end-to-end to the founder's inbox with or without JavaScript, behind layered spam/abuse defenses, and ships in the same release as the Privacy Policy page and inline data-use notice.
-**Depends on**: Phase 3 (form markup), Phase 1 (env schema)
+**Depends on**: Phase 04.1 (redesigned form markup), Phase 3, Phase 1 (env schema)
 **Requirements**: FORM-01, FORM-02, FORM-03, FORM-04, FORM-05, FORM-06, FORM-07, FORM-08, FORM-09, FORM-10, FORM-11, FORM-12, FORM-13, LGPD-01, LGPD-02, LGPD-03, LGPD-04, LGPD-05, LGPD-06, LGPD-07, SEC-08, SEC-09
 **Success Criteria** (what must be TRUE):
 
@@ -226,13 +275,13 @@ Plans:
 
 **Goal**: The site is fully shareable and locally discoverable — complete metadata, social cards, and single-sourced structured data.
 **Depends on**: Phase 5 (real content and NAP finalized)
-**Requirements**: SEO-01, SEO-03, SEO-04, SEO-05, SEO-06, SEO-07, SEO-08
+**Requirements**: SEO-01, SEO-03, SEO-04, SEO-05, SEO-06, SEO-08
 **Success Criteria** (what must be TRUE):
 
-  1. Every page has a `<title>`, a ~150-char meta description citing Ibitinga / sites / sistemas / automacao, and an absolute `<link rel="canonical">`; a favicon set, `apple-touch-icon`, and `theme-color` (#0A0A12) are present.
+  1. Every page has a `<title>`, a ~150-char meta description citing Ibitinga / sites / sistemas / automacao, and an absolute `<link rel="canonical">`; a favicon set, `apple-touch-icon`, and `theme-color` (#070A14) are present.
   2. Open Graph and Twitter Card tags are complete, with a designed static 1200x630 share image (<300 KB) served from `public/`.
   3. `sitemap.xml` (via `@astrojs/sitemap`) and `robots.txt` (allow-all, points to the sitemap) are served.
-  4. JSON-LD `["ProfessionalService","LocalBusiness"]` (with `founder` Person, E.164 phone, `areaServed`, `address` with `addressRegion: "SP"` / `addressCountry: "BR"`, `sameAs` Instagram, `image`/`logo`) and `FAQPage` (single-sourced from the `faq` collection) pass the Google Rich Results Test, and NAP is byte-identical between the footer and the JSON-LD.
+  4. JSON-LD `["ProfessionalService","LocalBusiness"]` (with `founder` Person, E.164 phone, `areaServed`, `address` with `addressRegion: "SP"` / `addressCountry: "BR"`, `sameAs` Instagram, `image`/`logo`) passes the Google Rich Results Test, and NAP is byte-identical between the footer and the JSON-LD.
   5. Lighthouse mobile stays >=95 in all four categories and the SEC-07 checklist run passes with no open High finding.
 
 **Plans**: TBD
@@ -255,14 +304,15 @@ Plans:
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
+Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 4.1 -> 5 -> 6 -> 7
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation & CI Gate | 8/8 | Complete | 2026-09-10 |
 | 2. Content Collections | 4/4 | Complete   | 2026-09-15 |
 | 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 9/9 | Complete   | 2026-09-17 |
-| 4. Progressive-Enhancement Effects | 0/TBD | Not started | - |
+| 4. Progressive-Enhancement Effects | 4/4 | Complete   | 2026-09-17 |
+| 4.1. Redesign Aurora técnica (INSERTED) | 11/11 | Complete   | 2026-10-15 |
 | 5. Form Backend + Enhancement + LGPD | 0/TBD | Not started | - |
 | 6. SEO / Metadata / Structured Data | 0/TBD | Not started | - |
 | 7. Security Headers Finalize | 0/TBD | Not started | - |

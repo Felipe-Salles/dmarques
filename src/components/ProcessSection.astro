@@ -1,195 +1,226 @@
 ---
 import { getProcess } from '../content';
+import Words from './Words.astro';
 
-const process = await getProcess();
+const steps = await getProcess();
 ---
 
-<section id="processo" class="process">
-  <div class="process-glow" aria-hidden="true"></div>
-  <div class="process-inner">
-    <div class="process-intro" data-reveal="1">
-      <span class="process-eyebrow">Processo</span>
-      <h2>Método claro, do primeiro contato à entrega</h2>
-      <p>Quatro etapas, sempre nesta ordem. Você sabe o que está acontecendo e o que vem depois.</p>
+<section id="processo" class="section process" aria-labelledby="met-title">
+  <div class="wrap">
+    <div class="process-head">
+      <h2 class="h2" id="met-title" data-r="words">
+        <Words text="Método claro, do primeiro contato à entrega." />
+      </h2>
+      <p class="lead d200" data-r="fade">
+        Quatro etapas, sempre nesta ordem. Você sabe o que está acontecendo e o que vem depois.
+      </p>
     </div>
-    <ol class="process-track">
+    <ol class="steps" data-r="steps">
       {
-        process.map((item) => (
-          <li class="process-step" data-reveal="1">
-            <div class="process-step-track" aria-hidden="true">
-              <span class="process-step-dot" />
-              <span class="process-step-connector" />
+        steps.map((item, i) => (
+          <li class={`step i${i}`}>
+            <span class="knot">{item.data.numero}</span>
+            <div>
+              <h3>{item.data.titulo}</h3>
+              <p>{item.data.descricao}</p>
+              {i === 0 && <p class="here">Nada é cobrado antes de você aprovar o plano.</p>}
             </div>
-            <span class="process-step-number">{item.data.numero}</span>
-            <h3>{item.data.titulo}</h3>
-            <p>{item.data.descricao}</p>
           </li>
         ))
       }
     </ol>
-    <p class="process-closing" data-reveal="1">
-      Agência nova, método definido: <span>nada começa antes de estar combinado</span>
-    </p>
   </div>
 </section>
 
 <style>
   .process {
-    position: relative;
-    z-index: var(--z-section);
-    background: linear-gradient(
-      180deg,
-      var(--color-bg) 0%,
-      var(--color-bg-blue) 55%,
-      var(--color-bg) 100%
-    );
-    padding: var(--space-section) var(--space-gutter);
-    margin-top: var(--space-12);
-    overflow: hidden;
+    padding-top: clamp(56px, 8cqi, 96px);
+    padding-bottom: clamp(88px, 12cqi, 144px);
   }
 
-  .process-glow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: min(68.75rem, 130%);
-    height: 43.75rem;
-    background: radial-gradient(circle, var(--color-accent-glow-faint) 0%, transparent 62%);
-    pointer-events: none;
-    z-index: var(--z-glow);
+  .process-head {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: clamp(24px, 5cqi, 72px);
+    align-items: end;
+    margin-bottom: clamp(40px, 6cqi, 72px);
   }
 
-  .process-inner {
-    position: relative;
-    z-index: 6;
-    max-width: 1220px;
-    margin-inline: auto;
-    display: flex;
-    flex-direction: column;
-    gap: clamp(3rem, 5vw, 4.375rem);
-  }
-
-  .process-intro {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: var(--space-4);
-  }
-
-  .process-eyebrow {
-    font-family: var(--font-text);
-    font-size: var(--text-2xs);
-    font-weight: var(--font-weight-medium);
-    letter-spacing: var(--tracking-eyebrow);
-    text-transform: uppercase;
-    color: var(--color-accent-light);
-  }
-
-  .process-intro h2 {
+  .process-head h2,
+  .process-head p {
     margin: 0;
-    max-width: 46.25rem;
-    font-family: var(--font-heading);
-    font-weight: var(--font-weight-bold);
-    font-size: clamp(1.75rem, 3.4vw, 3.125rem);
-    line-height: var(--leading-heading);
-    letter-spacing: var(--tracking-tight);
-    color: var(--color-text-strong);
-    text-wrap: balance;
   }
 
-  .process-intro p {
-    margin: 0;
-    max-width: 32.5rem;
-    font-family: var(--font-text);
-    font-size: var(--text-base);
-    line-height: 1.65;
-    color: var(--color-text-muted);
-  }
-
-  .process-track {
+  .steps {
+    --p: 1;
     position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
     margin: 0;
     padding: 0;
     list-style: none;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
-    gap: clamp(1.5rem, 3vw, 2.25rem);
   }
 
-  .process-step {
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 21px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      var(--color-ember) 0%,
+      var(--aurora-cyan) 22%,
+      var(--aurora-blue) 85%,
+      transparent 100%
+    );
+    transform: scaleX(var(--p));
+    transform-origin: left;
+  }
+
+  .step {
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: var(--space-5);
+    gap: 22px;
   }
 
-  .process-step-track {
-    display: flex;
-    align-items: center;
-    gap: var(--space-4);
+  .knot {
+    display: grid;
+    place-items: center;
+    width: 43px;
+    height: 43px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 200, 255, 0.5);
+    background: var(--color-bg);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-text);
   }
 
-  .process-step-dot {
-    width: 9px;
-    height: 9px;
-    flex: none;
-    border-radius: var(--radius-circle);
-    background: var(--color-accent);
-    box-shadow: var(--shadow-dot-glow);
+  .step:first-child .knot {
+    border-color: var(--color-ember);
+    color: var(--color-ember);
   }
 
-  .process-step-connector {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, var(--color-accent-glow), var(--color-border));
-  }
-
-  .process-step:last-child .process-step-connector {
-    background: var(--color-border);
-  }
-
-  .process-step-number {
-    font-family: var(--font-heading);
-    font-weight: var(--font-weight-bold);
-    font-size: var(--text-sm);
-    letter-spacing: var(--tracking-wide);
-    color: var(--color-text-faint);
-  }
-
-  .process-step h3 {
-    margin: 0;
-    font-family: var(--font-heading);
-    font-weight: var(--font-weight-semibold);
-    font-size: var(--text-xl);
-    line-height: var(--leading-heading);
+  .step h3 {
+    margin: 0 0 8px;
+    font-size: var(--text-lg);
+    font-weight: 600;
+    line-height: 1.2;
     letter-spacing: -0.015em;
-    color: var(--color-text-strong);
+    color: var(--color-text);
   }
 
-  .process-step p {
+  .step p {
     margin: 0;
-    font-family: var(--font-text);
     font-size: var(--text-sm);
-    line-height: var(--leading-body);
+    line-height: 1.6;
     color: var(--color-text-muted);
   }
 
-  .process-closing {
-    margin: 0;
-    align-self: center;
-    max-width: 47.5rem;
-    text-align: center;
-    font-family: var(--font-heading);
-    font-weight: var(--font-weight-semibold);
-    font-size: clamp(1.1875rem, 2vw, 1.625rem);
-    line-height: 1.45;
-    letter-spacing: -0.02em;
-    color: var(--color-text-strong);
-    text-wrap: balance;
+  .step p.here {
+    margin-top: 12px;
+    font-size: var(--text-xs);
+    color: var(--color-ember);
   }
 
-  .process-closing span {
-    color: var(--color-accent);
+  @container site (max-width: 900px) {
+    .process-head {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+
+    .steps {
+      grid-template-columns: repeat(2, 1fr);
+      row-gap: 40px;
+    }
+  }
+
+  @container site (max-width: 560px) {
+    .steps {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .steps::before {
+      top: 0;
+      bottom: 0;
+      left: 21px;
+      right: auto;
+      width: 1px;
+      height: auto;
+      transform: scaleY(var(--p));
+      transform-origin: top;
+    }
+
+    .step {
+      flex-direction: row;
+      gap: 20px;
+    }
+
+    .knot {
+      flex: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    :global(html.js-ready) .step .knot {
+      border-color: var(--color-border-strong);
+      background: var(--color-bg);
+      color: var(--color-text-faint);
+    }
+
+    :global(html.js-ready) .step > div {
+      transform: translateY(6px);
+    }
+
+    :global(html.js-ready) .step h3,
+    :global(html.js-ready) .step p {
+      color: var(--color-text-faint);
+    }
+
+    :global(html.js-ready) .step p.here {
+      color: var(--color-ember);
+    }
+
+    :global(html.js-ready) .step,
+    :global(html.js-ready) .step .knot,
+    :global(html.js-ready) .step > div,
+    :global(html.js-ready) .step h3,
+    :global(html.js-ready) .step p {
+      transition:
+        color 0.6s var(--ease-out),
+        transform 0.6s var(--ease-out),
+        border-color 0.6s var(--ease-out);
+    }
+
+    :global(html.js-ready) .step.lit .knot {
+      border-color: rgba(0, 200, 255, 0.5);
+      color: var(--color-text);
+    }
+
+    :global(html.js-ready) .step.lit:first-child .knot {
+      border-color: var(--color-ember);
+      color: var(--color-ember);
+    }
+
+    :global(html.js-ready) .step.lit > div {
+      transform: none;
+    }
+
+    :global(html.js-ready) .step.lit h3 {
+      color: var(--color-text);
+    }
+
+    :global(html.js-ready) .step.lit p {
+      color: var(--color-text-muted);
+    }
+
+    :global(html.js-ready) .step.lit p.here {
+      color: var(--color-ember);
+    }
   }
 </style>

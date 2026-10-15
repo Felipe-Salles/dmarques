@@ -1,0 +1,246 @@
+.w {
+  display: inline-block;
+  overflow: clip;
+  vertical-align: top;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+
+.w > span {
+  display: inline-block;
+}
+
+.i0 {
+  --i: 0;
+}
+
+.i1 {
+  --i: 1;
+}
+
+.i2 {
+  --i: 2;
+}
+
+.i3 {
+  --i: 3;
+}
+
+.i4 {
+  --i: 4;
+}
+
+.i5 {
+  --i: 5;
+}
+
+.i6 {
+  --i: 6;
+}
+
+.i7 {
+  --i: 7;
+}
+
+.i8 {
+  --i: 8;
+}
+
+.i9 {
+  --i: 9;
+}
+
+.i10 {
+  --i: 10;
+}
+
+.i11 {
+  --i: 11;
+}
+
+.i12 {
+  --i: 12;
+}
+
+.i13 {
+  --i: 13;
+}
+
+.i14 {
+  --i: 14;
+}
+
+.i15 {
+  --i: 15;
+}
+
+.i16 {
+  --i: 16;
+}
+
+.i17 {
+  --i: 17;
+}
+
+.i18 {
+  --i: 18;
+}
+
+.i19 {
+  --i: 19;
+}
+
+.i20 {
+  --i: 20;
+}
+
+.i21 {
+  --i: 21;
+}
+
+.i22 {
+  --i: 22;
+}
+
+.i23 {
+  --i: 23;
+}
+
+.i24 {
+  --i: 24;
+}
+
+.d200 {
+  --d: 200ms;
+}
+
+.d300 {
+  --d: 300ms;
+}
+
+.d450 {
+  --d: 450ms;
+}
+
+.d520 {
+  --d: 520ms;
+}
+
+.d680 {
+  --d: 680ms;
+}
+
+.d700 {
+  --d: 700ms;
+}
+
+.d820 {
+  --d: 820ms;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html.js-ready [data-r="fade"] {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 0.8s var(--ease-out),
+      transform 0.8s var(--ease-out);
+    transition-delay: var(--d, 0ms);
+  }
+
+  html.js-ready [data-r="fade"].in {
+    opacity: 1;
+    transform: none;
+  }
+
+  html.js-ready [data-r="words"] .w > span {
+    transform: translateY(105%);
+    filter: blur(8px);
+    opacity: 0;
+    transition:
+      transform 0.9s var(--ease-out),
+      filter 0.9s var(--ease-out),
+      opacity 0.9s var(--ease-out);
+    transition-delay: calc(var(--i) * 55ms);
+  }
+
+  html.js-ready [data-r="words"].in .w > span {
+    transform: none;
+    filter: none;
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora,
+  .scroller,
+  .spinner {
+    animation: none;
+  }
+
+  .steps {
+    --p: 1;
+  }
+
+  [data-r],
+  [data-r] * {
+    transform: none;
+    filter: none;
+    clip-path: none;
+    opacity: 1;
+  }
+}
+
+@keyframes word-in {
+  from {
+    transform: translateY(105%);
+    filter: blur(8px);
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes aurora-lit {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+}
+
+@keyframes aurora-drift {
+  to {
+    transform: translate3d(2.5%, -1.5%, 0) scale(1.04);
+  }
+}
+
+@keyframes sweep {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes scrollsite {
+  to {
+    transform: translateY(calc(-100% + 100cqh));
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

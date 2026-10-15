@@ -7,5 +7,4 @@ export const getServices = async () => (await getCollection('services')).sort(by
 export const getProcess = async () => (await getCollection('process')).sort(byOrder);
 export const getDifferentiators = async () =>
   (await getCollection('differentiators')).sort(byOrder);
-export const getFaq = async () => (await getCollection('faq')).sort(byOrder);
-export const getCases = async () => getCollection('cases');
+export const getCases = async () => (await getCollection('cases')).sort(byOrder);

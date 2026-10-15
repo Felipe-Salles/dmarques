@@ -1,10 +1,16 @@
 ---
 import { Font } from 'astro:assets';
 import Analytics from '@vercel/analytics/astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 import '../styles/tokens.css';
 import '../styles/base.css';
+import '../styles/motion.css';
 
-const { title = 'Dmarques — Soluções Web' } = Astro.props;
+const {
+  title = 'Dmarques — Soluções Web',
+  description = 'Criamos sites, sistemas sob medida e automações para o seu negócio vender mais e trabalhar com menos esforço. Peça um orçamento sem compromisso.',
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -13,11 +19,30 @@ const { title = 'Dmarques — Soluções Web' } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
-    <Font cssVariable="--font-display" preload={[{ weight: 700, style: 'normal' }]} />
-    <Font cssVariable="--font-body" preload={[{ weight: 400, style: 'normal' }]} />
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <Font cssVariable="--font-display" preload={[{ weight: 600, style: 'normal' }]} />
+    <Font cssVariable="--font-sans" preload={[{ weight: 400, style: 'normal' }]} />
+    <Font cssVariable="--font-mono" />
+    <script is:inline>
+      var d = document.documentElement;
+      d.classList.add('js-ready');
+      setTimeout(function () {
+        if (!d.classList.contains('fx')) d.classList.remove('js-ready');
+      }, 3000);
+    </script>
   </head>
   <body>
-    <slot />
+    <div class="site">
+      <SiteHeader />
+      <slot />
+      <SiteFooter />
+    </div>
     <Analytics />
+    <script>
+      import '../scripts/effects.ts';
+    </script>
   </body>
 </html>

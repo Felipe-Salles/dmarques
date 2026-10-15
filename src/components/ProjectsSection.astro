@@ -1,0 +1,491 @@
+---
+import { Picture } from 'astro:assets';
+import { getCases } from '../content';
+import type { ProjectType } from '../content/project-types';
+import Words from './Words.astro';
+import AgendaMock from './mocks/AgendaMock.astro';
+import ClinicaMock from './mocks/ClinicaMock.astro';
+import PedidosMock from './mocks/PedidosMock.astro';
+
+const cases = await getCases();
+const featured = cases.find((c) => c.data.rotulo === 'projeto próprio');
+const examples = cases.flatMap((c) => (c.data.rotulo === 'exemplo de escopo' ? [c.data] : []));
+
+const tipoCurto: Record<ProjectType, string> = {
+  'sistema-sob-medida': 'Sistema',
+  'site-institucional': 'Site',
+  automacao: 'Automação',
+  'ecommerce-plataforma': 'Plataforma',
+  'nao-sei': 'Projeto',
+};
+
+const mockClass = { agenda: 'c-a', clinica: 'c-b', pedidos: 'c-c' } as const;
+const mockUrl = {
+  agenda: 'agenda.suaempresa.com.br',
+  clinica: 'clinica.com.br',
+  pedidos: 'pedidos.sualoja.com.br/admin',
+} as const;
+
+const featuredData = featured && featured.data.rotulo === 'projeto próprio' ? featured.data : null;
+---
+
+<section id="projetos" class="section projects" aria-labelledby="proj-title">
+  <div class="wrap">
+    <div class="proj-head">
+      <h2 class="h2" id="proj-title" data-r="words">
+        <Words text="Trabalho que roda de verdade." />
+      </h2>
+      <p class="lead d200" data-r="fade">
+        Um projeto próprio no ar e exemplos do tipo de escopo que construímos.
+      </p>
+    </div>
+    <div class="bento">
+      {
+        featuredData && (
+          <article class="card c-feat tilt i0" data-r="card">
+            <div class="card-meta">
+              <div>
+                <span class="tag real">No ar · projeto próprio</span>
+                <h3>{featuredData.titulo}</h3>
+                <p>{featuredData.resultado}</p>
+              </div>
+            </div>
+            <div class="browser">
+              <div class="browser-bar" aria-hidden="true">
+                <i />
+                <i />
+                <i />
+                <span>{featuredData.url}</span>
+              </div>
+              <div class="screen">
+                <div class="scroller">
+                  <Picture
+                    src={featuredData.cover}
+                    alt={featuredData.coverAlt}
+                    formats={['avif', 'webp']}
+                    fallbackFormat="webp"
+                    widths={[480, 800]}
+                    sizes="(min-width: 1080px) 760px, 90vw"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="result">
+              {featuredData.resultados.map((r) => (
+                <div>
+                  <b>{r.valor}</b>
+                  <span>{r.legenda}</span>
+                </div>
+              ))}
+            </div>
+          </article>
+        )
+      }
+      {
+        examples.map((ex, idx) => {
+          const cls = mockClass[ex.mock];
+          const meta = (
+            <>
+              <span class="tag">Exemplo de escopo · {tipoCurto[ex.tipo]}</span>
+              <h3>{ex.titulo}</h3>
+              <p>{ex.descricao}</p>
+            </>
+          );
+          const browser = (
+            <div class="browser" aria-hidden="true">
+              <div class="browser-bar">
+                <i />
+                <i />
+                <i />
+                <span>{mockUrl[ex.mock]}</span>
+              </div>
+              <div class="screen">
+                <div class="scroller">
+                  {ex.mock === 'agenda' && <AgendaMock />}
+                  {ex.mock === 'clinica' && <ClinicaMock />}
+                  {ex.mock === 'pedidos' && <PedidosMock />}
+                </div>
+              </div>
+            </div>
+          );
+          return ex.mock === 'pedidos' ? (
+            <article class={`card tilt ${cls} i${idx + 1}`} data-r="card">
+              {browser}
+              <div class="c-text">{meta}</div>
+            </article>
+          ) : (
+            <article class={`card tilt ${cls} i${idx + 1}`} data-r="card">
+              <div>{meta}</div>
+              {browser}
+            </article>
+          );
+        })
+      }
+      <article class="card c-you i4" data-r="card">
+        <span class="plus" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <path d="M12 5v14M5 12h14" />
+          </svg>
+        </span>
+        <div>
+          <h3>O próximo pode ser o seu.</h3>
+          <p>Conte o problema. Escopo e prazo saem fechados na proposta, depois do diagnóstico.</p>
+        </div>
+        <a href="#contato" class="btn btn-primary">Pedir orçamento</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects {
+    padding-bottom: clamp(56px, 8cqi, 96px);
+  }
+
+  .proj-head {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .proj-head h2,
+  .proj-head p {
+    margin: 0;
+  }
+
+  .bento {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: minmax(180px, auto);
+    gap: 16px;
+  }
+
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 20px;
+    min-width: 0;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01));
+    transition: border-color 0.25s ease;
+  }
+
+  .card:hover {
+    border-color: var(--color-border-strong);
+  }
+
+  .card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .card h3 {
+    margin: 8px 0 0;
+    font-size: var(--text-lg);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .card p {
+    margin: 8px 0 0;
+    max-width: 60ch;
+    font-size: var(--text-sm);
+    line-height: 1.55;
+    color: var(--color-text-muted);
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-border-strong);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+  }
+
+  .tag.real {
+    border-color: rgba(0, 200, 255, 0.45);
+    color: #7fdcff;
+  }
+
+  .c-feat {
+    grid-column: span 4;
+    grid-row: span 2;
+  }
+
+  .c-a,
+  .c-b {
+    grid-column: span 2;
+  }
+
+  .c-c {
+    grid-column: span 4;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .c-c .browser {
+    flex: 1.15;
+  }
+
+  .c-text {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 4px;
+    padding: 4px 8px;
+  }
+
+  .c-text h3 {
+    font-size: var(--text-xl);
+  }
+
+  .c-text .tag {
+    align-self: flex-start;
+  }
+
+  .c-you {
+    grid-column: span 2;
+    justify-content: space-between;
+    border-style: dashed;
+    border-color: rgba(255, 106, 61, 0.4);
+    background: radial-gradient(120% 80% at 100% 0%, rgba(255, 106, 61, 0.08), transparent 60%);
+  }
+
+  .c-you:hover {
+    border-color: rgba(255, 106, 61, 0.75);
+  }
+
+  .plus {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 106, 61, 0.6);
+    color: var(--color-ember);
+  }
+
+  .c-you h3 {
+    font-size: var(--text-xl);
+  }
+
+  .c-you .btn {
+    align-self: flex-start;
+  }
+
+  .result {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 28px;
+  }
+
+  .result b {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 600;
+  }
+
+  .result span {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+  }
+
+  .browser {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid var(--color-border-strong);
+    background: #0a0f1f;
+    box-shadow: var(--shadow-md);
+  }
+
+  .c-feat .browser {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  }
+
+  .browser::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    background: linear-gradient(
+      105deg,
+      transparent 35%,
+      rgba(127, 216, 255, 0.16) 48%,
+      rgba(255, 255, 255, 0.08) 52%,
+      transparent 65%
+    );
+    transform: translateX(-120%);
+  }
+
+  .browser-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--color-border);
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .browser-bar i {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #2a3147;
+  }
+
+  .browser-bar span {
+    flex: 1;
+    margin-left: 10px;
+    padding: 4px 10px;
+    overflow: hidden;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.04);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-text-muted);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .screen {
+    position: relative;
+    overflow: hidden;
+    container-type: size;
+    aspect-ratio: 16 / 10;
+  }
+
+  .c-c .screen {
+    aspect-ratio: 16 / 9;
+  }
+
+  .c-feat .screen {
+    flex: 1;
+    aspect-ratio: auto;
+    min-height: 320px;
+  }
+
+  .scroller :global(picture),
+  .scroller :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .scroller {
+    position: absolute;
+    inset: 0 0 auto 0;
+    min-height: 100%;
+  }
+
+  @container site (max-width: 900px) {
+    .bento {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .c-feat,
+    .c-c,
+    .c-you {
+      grid-column: span 2;
+    }
+
+    .c-feat {
+      grid-row: auto;
+    }
+
+    .c-a,
+    .c-b {
+      grid-column: span 1;
+    }
+  }
+
+  @container site (max-width: 560px) {
+    .bento {
+      grid-template-columns: 1fr;
+    }
+
+    .c-feat,
+    .c-a,
+    .c-b,
+    .c-c,
+    .c-you {
+      grid-column: auto;
+    }
+
+    .c-c {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .c-c .c-text {
+      order: -1;
+    }
+
+    .c-feat .screen {
+      min-height: 240px;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    :global(html.js-ready) .card[data-r] {
+      opacity: 0;
+      transform: translateY(28px) scale(0.985);
+    }
+
+    :global(html.js-ready) .card[data-r].in {
+      opacity: 1;
+      transform: none;
+      transition:
+        opacity 0.8s var(--ease-out),
+        transform 1s var(--ease-out),
+        border-color 0.25s ease;
+      transition-delay: calc(var(--i, 0) * 90ms);
+    }
+
+    :global(html.js-ready) .card.in .browser::after {
+      animation: sweep 1.4s var(--ease-out) calc(var(--i, 0) * 90ms + 450ms) 1 both;
+    }
+
+    :global(html.js-ready) .scroller {
+      animation: scrollsite 18s var(--ease-in-out) infinite alternate;
+      animation-play-state: paused;
+    }
+
+    :global(html.js-ready) .screen:global(.run) .scroller {
+      animation-play-state: running;
+    }
+
+    :global(html.js-ready) .browser:hover .screen .scroller {
+      animation-play-state: paused;
+    }
+  }
+
+  @media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    :global(html.js-ready) .card.tilt[data-r].in:global(.settled) {
+      transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+      transition:
+        transform 0.25s ease,
+        border-color 0.25s ease;
+      transition-delay: 0s;
+    }
+
+    .card.tilt:hover {
+      will-change: transform;
+    }
+  }
+</style>

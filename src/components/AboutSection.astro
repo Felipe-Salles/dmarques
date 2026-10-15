@@ -1,42 +1,61 @@
 ---
 import { Picture } from 'astro:assets';
-import founderPortrait from '../assets/founder-portrait-placeholder.webp';
+import founderPortrait from '../assets/founder/felipe-salles.png';
+import { getDifferentiators } from '../content';
+import Words from './Words.astro';
+
+const diffs = await getDifferentiators();
 ---
 
-<section id="sobre" class="about">
-  <div class="about-grid">
-    <div class="about-media" data-reveal="1">
-      <div class="about-halo" aria-hidden="true"></div>
-      <div class="about-frame">
-        <Picture
-          src={founderPortrait}
-          alt="Felipe Salles, fundador da Dmarques"
-          formats={['avif', 'webp']}
-          width={480}
-          height={600}
-        />
+<section id="sobre" class="section about" aria-labelledby="sobre-title">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-media" data-r="photo">
+        <figure class="portrait">
+          <Picture
+            src={founderPortrait}
+            alt="Felipe Salles, fundador da Dmarques"
+            formats={['avif', 'webp']}
+            fallbackFormat="jpg"
+            widths={[480, 768, 960]}
+            sizes="(min-width: 1080px) 520px, 90vw"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>
+            <b>Felipe Salles</b>
+            <span>Desenvolvedor web e fundador da Dmarques</span>
+          </figcaption>
+        </figure>
       </div>
-    </div>
-    <div class="about-copy" data-reveal="1">
-      <span class="about-eyebrow">Quem faz</span>
-      <div class="about-heading-group">
-        <h2>Felipe Salles</h2>
-        <span class="about-subtitle">Desenvolvedor web · Fundador da Dmarques</span>
-      </div>
-      <p>
-        Sou desenvolvedor web e cuido pessoalmente de cada projeto que entra na Dmarques. Trabalho
-        com sites, sistemas sob medida e automações — da primeira conversa até o suporte depois da
-        entrega.
-      </p>
-      <p>
-        O que me interessa é problema de operação: entender onde o processo trava e construir a
-        ferramenta certa para destravar. Menos pacote pronto, mais solução que serve para o seu
-        caso.
-      </p>
-      <div class="about-social">
-        <span class="about-social-mark" aria-hidden="true"></span>
-        <a href="https://instagram.com/felipe.salles1" target="_blank" rel="noopener noreferrer"
-          >@felipe.salles1</a
+      <div class="about-copy">
+        <h2 class="h2" id="sobre-title" data-r="words">
+          <Words text="Você fala com quem escreve o código." />
+        </h2>
+        <p class="lead d200" data-r="fade">
+          Na Dmarques, o fundador Felipe Salles cuida pessoalmente de cada projeto, da primeira
+          conversa ao suporte depois da entrega.
+        </p>
+        <p class="lead d300" data-r="fade">
+          O que nos interessa é problema de operação: entender onde o processo trava e construir a
+          ferramenta certa para destravar. Menos pacote pronto, mais solução que serve para o seu
+          caso.
+        </p>
+        <ul class="diffs" data-r="diffs">
+          {
+            diffs.map((d, i) => (
+              <li class={`i${i}`}>
+                <b>{d.data.titulo}</b>
+                <span>{d.data.descricao}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <a
+          class="about-link"
+          href="https://instagram.com/agenciadmarques"
+          target="_blank"
+          rel="noopener noreferrer">@agenciadmarques</a
         >
       </div>
     </div>
@@ -45,119 +64,186 @@ import founderPortrait from '../assets/founder-portrait-placeholder.webp';
 
 <style>
   .about {
-    position: relative;
-    z-index: var(--z-section);
-    background: var(--color-bg);
-    padding: var(--space-section) var(--space-gutter);
-    min-height: 100svh;
-    display: flex;
-    align-items: center;
+    padding-top: clamp(56px, 8cqi, 96px);
+    padding-bottom: clamp(88px, 12cqi, 144px);
   }
 
   .about-grid {
-    width: 100%;
-    max-width: 1080px;
-    margin-inline: auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
-    gap: clamp(2.25rem, 5vw, 4rem);
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: clamp(32px, 6cqi, 88px);
     align-items: center;
   }
 
-  .about-media {
+  .portrait {
     position: relative;
-  }
-
-  .about-halo {
-    position: absolute;
-    inset: -0.875rem;
-    border: 1px solid var(--color-accent-border);
-    border-radius: var(--radius-3xl);
-    pointer-events: none;
-  }
-
-  .about-frame {
-    position: relative;
+    margin: 0;
     aspect-ratio: 4 / 5;
-    border-radius: var(--radius-xl);
-    overflow: hidden;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    background: #0b1020;
+    overflow: clip;
   }
 
-  .about-frame img {
+  .portrait :global(picture) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .portrait :global(img) {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: 50% 20%;
+  }
+
+  .portrait::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 58%, rgba(7, 10, 20, 0.88) 100%);
+    pointer-events: none;
+  }
+
+  .portrait figcaption {
+    position: absolute;
+    left: 22px;
+    right: 22px;
+    bottom: 20px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .portrait figcaption b {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .portrait figcaption span {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
   }
 
   .about-copy {
     display: flex;
     flex-direction: column;
-    gap: var(--space-5);
+    gap: 20px;
   }
 
-  .about-eyebrow {
-    font-family: var(--font-text);
-    font-size: var(--text-2xs);
-    font-weight: var(--font-weight-medium);
-    letter-spacing: var(--tracking-eyebrow);
-    text-transform: uppercase;
-    color: var(--color-accent-light);
-  }
-
-  .about-heading-group {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-  }
-
-  .about-heading-group h2 {
-    margin: 0;
-    font-family: var(--font-heading);
-    font-weight: var(--font-weight-bold);
-    font-size: clamp(1.75rem, 3.4vw, 3.125rem);
-    letter-spacing: var(--tracking-tight);
-    color: var(--color-text-strong);
-  }
-
-  .about-subtitle {
-    font-family: var(--font-text);
-    font-size: var(--text-sm);
-    font-weight: var(--font-weight-medium);
-    color: var(--color-text-muted);
-  }
-
+  .about-copy h2,
   .about-copy p {
     margin: 0;
-    font-family: var(--font-text);
-    font-size: var(--text-base);
-    line-height: var(--leading-body);
-    color: var(--color-text-muted);
-    text-wrap: pretty;
   }
 
-  .about-social {
+  .diffs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 32px;
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .diffs li {
     display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    padding-top: var(--space-1);
+    flex-direction: column;
+    gap: 4px;
+    padding: 18px 0;
+    border-top: 1px solid var(--color-border);
   }
 
-  .about-social-mark {
-    width: 24px;
-    height: 1px;
-    background: var(--color-accent-border);
-  }
-
-  .about-social a {
-    font-family: var(--font-text);
-    font-size: var(--text-sm);
-    font-weight: var(--font-weight-medium);
+  .diffs b {
+    font-size: var(--text-base);
+    font-weight: 600;
     color: var(--color-text);
-    transition: color var(--dur-fast) var(--ease-standard);
   }
 
-  .about-social a:hover,
-  .about-social a:focus-visible {
-    color: var(--color-accent-light);
+  .diffs span {
+    font-size: var(--text-sm);
+    line-height: 1.55;
+    color: var(--color-text-muted);
+  }
+
+  .about-link {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-text);
+    text-decoration: underline;
+    text-decoration-color: rgba(0, 200, 255, 0.5);
+    text-underline-offset: 5px;
+  }
+
+  .about-link:hover,
+  .about-link:focus-visible {
+    text-decoration-color: #00c8ff;
+  }
+
+  @container site (max-width: 900px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .about-media {
+      max-width: 420px;
+    }
+  }
+
+  @container site (max-width: 560px) {
+    .diffs {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    :global(html.js-ready) .portrait {
+      clip-path: inset(100% 0 0 0 round var(--radius-lg));
+    }
+
+    :global(html.js-ready) .portrait :global(img) {
+      transform: scale(1.12);
+    }
+
+    :global(html.js-ready) .portrait figcaption {
+      opacity: 0;
+    }
+
+    :global(html.js-ready) .diffs > li {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+
+    :global(html.js-ready) .about-media.in .portrait {
+      clip-path: inset(0 0 0 0 round var(--radius-lg));
+      transition: clip-path 1.3s var(--ease-out);
+    }
+
+    :global(html.js-ready) .about-media.in .portrait :global(img) {
+      transform: scale(1);
+      transition: transform 1.8s var(--ease-out);
+    }
+
+    :global(html.js-ready) .about-media.in .portrait figcaption {
+      opacity: 1;
+      transition: opacity 0.8s var(--ease-out) 700ms;
+    }
+
+    :global(html.js-ready) .diffs.in > li {
+      opacity: 1;
+      transform: none;
+      transition:
+        opacity 0.8s var(--ease-out),
+        transform 0.8s var(--ease-out);
+      transition-delay: calc(var(--i) * 90ms);
+    }
   }
 </style>

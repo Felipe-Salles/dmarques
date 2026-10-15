@@ -1,0 +1,58 @@
+:root {
+  --color-bg: #070a14;
+  --color-bg-raised: #0b1020;
+  --color-surface: rgba(16, 22, 42, 0.55);
+  --color-surface-solid: #0e1427;
+  --color-border: rgba(148, 170, 255, 0.12);
+  --color-border-strong: rgba(148, 170, 255, 0.24);
+  --color-text: #f2f4f7;
+  --color-text-muted: #9aa3b2;
+  --color-text-faint: #828b9b;
+
+  --aurora-cyan: #00c8ff;
+  --aurora-blue: #3a5bff;
+  --aurora-indigo: #0e1e5b;
+  --aurora-opacity: 0.9;
+  --color-primary: #3a5bff;
+  --color-primary-hover: #5470ff;
+  --color-ember: #ff6a3d;
+  --color-success: #3ddc97;
+  --color-danger: #ff5d6c;
+
+  --gradient-brand: linear-gradient(100deg, #00c8ff 0%, #3a5bff 100%);
+
+  --font-display: 'Sora', system-ui, sans-serif;
+  --font-sans: 'Inter Tight', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.5rem;
+  --text-display: clamp(2.6rem, 6.2vw, 5.4rem);
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 10px 30px -12px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 30px 80px -30px rgba(0, 0, 0, 0.75);
+
+  --blur-glass: 18px;
+  --grain-opacity: 0.07;
+}

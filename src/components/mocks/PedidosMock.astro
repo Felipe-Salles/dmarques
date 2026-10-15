@@ -1,0 +1,87 @@
+---
+const orders = [
+  { n: 4821, p: 'Kit toalhas bordadas' },
+  { n: 4822, p: 'Jogo de cama casal' },
+  { n: 4823, p: 'Toalha de mesa' },
+  { n: 4824, p: 'Kit banho infantil' },
+  { n: 4825, p: 'Roupão bordado' },
+  { n: 4826, p: 'Jogo americano' },
+];
+const status = ['nota emitida', 'estoque ok', 'cliente avisado'];
+---
+
+<div class="ord" aria-hidden="true">
+  <div class="ord-top">Pedidos de hoje <em>processados automaticamente</em></div>
+  {
+    orders.map((o) => (
+      <div class="ord-row">
+        <span>#{o.n}</span>
+        <b>{o.p}</b>
+        {status.map((s) => (
+          <u>{s}</u>
+        ))}
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .ord {
+    background: #0a0f1d;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: #c9d1de;
+    min-height: 100%;
+  }
+
+  .ord-top {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-display);
+    font-size: 1.25em;
+    color: #f2f4f7;
+  }
+
+  .ord-top em {
+    font-style: normal;
+    font-family: var(--font-sans);
+    font-size: 0.75em;
+    color: #9aa3b2;
+  }
+
+  .ord-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 8px;
+    align-items: center;
+    padding: 8px;
+    border-radius: 7px;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(148, 170, 255, 0.1);
+  }
+
+  .ord-row span {
+    width: 44px;
+    color: #9aa3b2;
+  }
+
+  .ord-row b {
+    flex: 1 1 55%;
+    color: #f2f4f7;
+    font-weight: 500;
+  }
+
+  .ord-row u {
+    text-decoration: none;
+    font-size: 0.85em;
+    padding: 2px 6px;
+    border-radius: 99px;
+    background: rgba(0, 200, 255, 0.1);
+    color: #7fdcff;
+    white-space: nowrap;
+  }
+</style>

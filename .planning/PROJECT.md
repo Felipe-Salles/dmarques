@@ -27,6 +27,19 @@ um orçamento — com um site que carrega rápido e nunca sai do ar.
   fase, sem achado High em aberto). Todo INFRA-*, PERF-01..04 e SEC-07 da Fase 1
   contabilizados (INP de campo e SEO ≥95 vs produção conscientemente adiados para
   monitoramento pós-launch e Fase 6).
+- **Fase 4 (Progressive-Enhancement Effects) — 2026-09-17.** Reveal ao rolar
+  (IntersectionObserver + fallback 2600ms), glow do cursor (dual-gated a
+  `pointer:fine` + `prefers-reduced-motion:no-preference`) e canvas de partículas do
+  hero animado com pausa dupla (fora-de-tela via IntersectionObserver + aba oculta
+  via `visibilitychange`), DPR travado em 1.5, tudo guardado por
+  `prefers-reduced-motion`. Provado por medição instrumentada via CDP (não leitura de
+  código): pausa do loop cai para 14,5%/7,2% do baseline, reduced-motion desenha um
+  frame e para. Lighthouse mobile ≥0.95 em Performance/Accessibility/Best Practices
+  contra o preview real (TBT/CLS dentro do teto), JS bundle 2645B (orçamento
+  20480B). SEC-07 sem achado High, aprovado explicitamente por Felipe. ANIM-01,
+  ANIM-03, ANIM-04, ANIM-05, ANIM-06, ANIM-09 validados. (float/pulse e hover nos
+  cards/botões já existiam como CSS puro desde a Fase 3 — não fazem parte do escopo
+  desta fase.)
 
 ### Active
 
@@ -36,8 +49,6 @@ um orçamento — com um site que carrega rápido e nunca sai do ar.
 - [ ] Hero variante "03 Bleed" fielmente reproduzido (nav, headline, CTAs
   "Começar um projeto" / WhatsApp, canvas de partículas, render 3D sangrando na
   borda, card de depoimento em glass)
-- [ ] Efeitos visuais do design reproduzidos: reveal ao rolar (fade + translateY
-  com stagger), glow que segue o cursor, float/pulse, hover nos cards e botões
 - [ ] Orçamento de performance mantido: Lighthouse ≥ 95 em Performance/SEO/Best
   Practices/Accessibility, `prefers-reduced-motion` respeitado, sem JavaScript
   que bloqueie a renderização, animações só em `transform`/`opacity`, canvas de
@@ -115,13 +126,20 @@ um orçamento — com um site que carrega rápido e nunca sai do ar.
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
 | Astro em modo estático (SSG) | Pedido do cliente; HTML pré-renderado é o mais rápido e a menor superfície de ataque | — Pending |
-| Hero "03 Bleed" | Escolha explícita do cliente entre as 3 variantes do design | — Pending |
+| Hero "03 Bleed" | Escolha explícita do cliente entre as 3 variantes do design | ⚠️ Substituído (2026-10-15) pela direção Aurora técnica — hero centrado sob a aurora (Fase 04.1) |
 | Conteúdo em Markdown / Content Collections, sem CMS | Elimina painel administrativo como vetor de ataque; build 100% estático | — Pending |
 | Formulário via endpoint Astro na Vercel + Resend | Gratuito (3.000/mês), segredo fica no servidor, controle total de validação/rate-limit | — Pending |
 | Hospedagem na Vercel na v1 | Decisão do cliente; deploy imutável, HTTPS e headers automáticos | — Pending |
 | Cloudflare adiado para o milestone 2 | WAF, rate-limiting de borda e mitigação de DDoS/flood entram numa segunda etapa | — Pending |
 | Revisão de segurança ao fim de cada fase (`/gsd:secure-phase`) | Requisito explícito do cliente | — Pending |
 | Analytics sem cookies | Evita banner de consentimento e reduz exposição de dados pessoais (LGPD) | — Pending |
+| Logo nova (símbolo + logotipo) e favicon derivado do símbolo | Identidade visual entregue pelo Felipe; lockup aplicado via astro:assets | ✓ Aplicado 2026-10-14 (quick 261014-gfb) |
+| Contato real: contato@agenciadmarques.com.br, @agenciadmarques, foto real do fundador | Substitui e-mail/Instagram pessoais e placeholder — confiança na hora da conversão | ✓ Aplicado 2026-10-15 (quick 261015-2fr / 261015-2ks) |
+| Direção visual "Aurora técnica" (sketch 001, variante A) | Escolhida pelo Felipe entre 6 propostas: elegante tech, premium, nada genérico; paleta da logo (#070A14, aurora #00C8FF→#3A5BFF→#0E1E5B, ember #FF6A3D só como ação), Sora + Inter Tight; polida com Impeccable | — Pending (Fase 04.1) |
+| Voz "nós" e CTA único "Pedir orçamento" | Consistência; linguagem leiga e só claims já publicados (FAQ/case) | — Pending (Fase 04.1) |
+| Movimento "a luz acende" hand-rolled (CSS + IntersectionObserver) | Reveal ao rolar distinto por seção sem biblioteca; fallback sem JS e reduced-motion; canvas de partículas aposentado | — Pending (Fase 04.1) |
+| Sem hero fixado / scrollytelling (modo cinemático) | Testado no sketch e rejeitado pelo Felipe | ✓ Decidido 2026-10-15 |
+| Redesign como Fase 04.1, antes da Fase 5 | Formulário é ligado ao backend já no markup novo (evita retrabalho) | ✓ Decidido 2026-10-15 |
 
 ## Evolution
 
@@ -145,4 +163,4 @@ de rate-limiting, mitigação de DDoS/flood de requisições e Turnstile (captch
 formulário de orçamento.
 
 ---
-*Last updated: 2026-09-10 after Phase 1 completion*
+*Last updated: 2026-09-17 after Phase 4 completion*

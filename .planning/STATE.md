@@ -3,32 +3,32 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: ready_to_plan
-stopped_at: Phase 03 complete (9/9) — ready to discuss Phase 4
-last_updated: 2026-09-17T00:08:47.462Z
-last_activity: 2026-09-17
+stopped_at: Phase 04.1 complete (11/11) — ready to discuss Phase 05
+last_updated: 2026-10-15T12:56:10.757Z
+last_activity: 2026-10-15
 progress:
-  total_phases: 7
-  completed_phases: 3
-  total_plans: 21
-  completed_plans: 21
-  percent: 43
+  total_phases: 8
+  completed_phases: 5
+  total_plans: 36
+  completed_plans: 36
+  percent: 63
 ---
 
 # Project State
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-09-05)
+See: .planning/PROJECT.md (updated 2026-10-15)
 
 **Core value:** Um visitante entende em segundos o que a Dmarques faz, confia na agência e pede um orçamento — com um site que carrega rápido e nunca sai do ar.
-**Current focus:** Phase 4 — progressive enhancement effects
+**Current focus:** Phase 05 — form backend enhancement lgpd
 
 ## Current Position
 
-Phase: 4
+Phase: 05
 Plan: Not started
 Status: Ready to plan
-Last activity: 2026-09-17
+Last activity: 2026-10-15
 
 Progress: [██████████] 100%
 
@@ -36,7 +36,7 @@ Progress: [██████████] 100%
 
 **Velocity:**
 
-- Total plans completed: 21
+- Total plans completed: 36
 - Average duration: —
 - Total execution time: 0 hours
 
@@ -47,6 +47,8 @@ Progress: [██████████] 100%
 | 01 | 8 | - | - |
 | 02 | 4 | - | - |
 | 03 | 9 | - | - |
+| 04 | 4 | - | - |
+| 04.1 | 11 | - | - |
 
 **Recent Trend:**
 
@@ -72,8 +74,23 @@ Progress: [██████████] 100%
 | Phase 03 P07 | 6min | 3 tasks | 3 files |
 | Phase 03 P08 | 25min | 3 tasks | 10 files |
 | Phase 03 P09 | ~4h | 3 tasks | 13 files |
+| Phase 04 P01 | 3min | 2 tasks | 4 files |
+| Phase 04 P02 | 4min | 2 tasks | 5 files |
+| Phase 04 P03 | 3min | 2 tasks | 2 files |
+| Phase 04 P04 | 55min | 3 tasks tasks | 2 files files |
+| Phase 04.1 P01 | ~40min | 3 tasks | 7 files |
+| Phase 04.1 P04 | 10min | 2 tasks | 12 files |
+| Phase 04.1 P05 | 5min | 2 tasks | 5 files |
+| Phase 04.1 P06 | 20min | 3 tasks | 7 files |
+| Phase 04.1 P07 | 20min | 3 tasks | 3 files |
+| Phase 04.1 P08 | 20min | 3 tasks | 5 files |
+| Phase 04.1 P09 | 15min | 3 tasks | 8 files |
 
 ## Accumulated Context
+
+### Roadmap Evolution
+
+- Phase 04.1 inserted after Phase 4: Redesign Aurora técnica — direção validada no sketch 001 (variante A), antes da Fase 5 para o formulário ser ligado já no markup novo
 
 ### Decisions
 
@@ -120,6 +137,25 @@ Relevant to current work:
 - [Phase 03]: [Phase 03 / 03-07]: Contact card micro-labels and helper text all use --color-light-text-muted (never --color-light-text-faint), keeping the light form card AA-compliant without a token edit; contact form <label> elements carry an explicit for attribute alongside implicit wrapping to satisfy the plan's grep contract; decorative glow/watermark containers own their own overflow:hidden, never the section/footer wrapper
 - [Phase ?]: [Phase 03 / 03-08]: cases collection intentionally not rendered on home (SITE-01 lists 9 sections, none portfolio; TRUST-04 defers real cases to v1.x)
 - [Phase ?]: [Phase 03 / 03-08]: --nav-height measured live via headless Chrome CDP (68px desktop >=860px, 86px mobile default in :root); single token with a min-width media query override, base.css consumer unchanged
+- [Phase 04]: pnpm test script uses the quoted-glob form node --test "src/scripts/*.test.mjs", not a directory arg, per the plan's verified note
+- [Phase ?]: [Phase 04 / 04-02]: --z-cursor-glow: 20 introduced instead of reusing --z-glow: 5, because every shipped section is position:relative with an opaque background at z-index:var(--z-section) (10) - a glow at 5 would render invisibly beneath all content
+- [Phase ?]: [Phase 04 / 04-03]: particles.ts uses ctx.globalAlpha for the connection-line fade (not per-line rgba() string concat + toFixed) and Math.sqrt(dx*dx+dy*dy) over Math.hypot in the O(n2) loop, per plan-locked TBT-discipline instructions
+- [Phase ?]: [Phase 04 / 04-03]: single syncLoop() gate routes IntersectionObserver + visibilitychange through exactly one requestAnimationFrame id; reduced-motion checked once at init (never per-frame), draws a single static frame with no loop registered
+- [Phase 04]: [Phase 04 / 04-04]: Instrumented CDP measurement (headless Chrome, native WebSocket, scratchpad-only script) proved reveal fallback, dual-gate canvas pause, glow gating, DPR cap 1.5, and reduced-motion static frame all behave per spec — Opened PR #3 (phases/04-progressive-enhancement-effects) since 04-01..04-03's commits had never been pushed, getting a green CI lhci gate (Perf/A11y/BP>=0.95, TBT<200ms, CLS<0.05) against a real Vercel preview; Felipe approved the full checkpoint (aprovado, no reservations)
+- [Phase quick]: Logo nova aplicada (símbolo + logotipo em src/assets/brand/, lockup no header/footer via astro:assets; header <480px mostra só o símbolo com aria-label) e favicon .ico/.png/apple-touch gerado do símbolo sobre #0a0a12 — Identidade visual entregue pelo Felipe em 2026-10-14 (quick 261014-gfb)
+- [Phase quick]: Dados reais de contato: e-mail contato@agenciadmarques.com.br, Instagram @agenciadmarques, foto real do fundador em src/assets/founder/felipe-salles.png (Picture AVIF/WebP + fallback JPG) — Fornecidos pelo Felipe em 2026-10-15; substituem hotmail/Instagram pessoal/placeholder (quick 261015-2fr, 261015-2ks)
+- [Phase quick]: Dependências: astro 7.3.8, @astrojs/vercel 11.0.14, sharp 0.35.5 e override basic-ftp@<6.2.3 -> 6.2.3 em pnpm-workspace.yaml (get-uri ainda fixa ^5; caminho só de CI) — Zerar pnpm audit high/critical que voltou a falhar com advisories novos (quick 261014-gl5); remover override quando get-uri aceitar 6.x
+- [Phase 04.1]: Direção visual Aurora técnica (sketch 001, variante A) substitui o visual atual: fundo #070A14, aurora estática #00C8FF->#3A5BFF->#0E1E5B, ember #FF6A3D só como marcador de ação, Sora + Inter Tight (saem Outfit/DM Sans e o violeta #6C4CFF), seções sem template, bento honesto — Escolha do Felipe entre 6 propostas (UI UX Pro Max); polida via Impeccable critique (20/32) + polish; registrada na skill sketch-findings-dmarques
+- [Phase 04.1]: Voz nós (agência) em todo o site e CTA único Pedir orçamento; linguagem leiga e apenas claims já publicados (FAQ/case) — Decisão do Felipe na crítica Impeccable; consistência e confiança
+- [Phase 04.1]: Movimento: tese a aurora é a luz da página (acende e o conteúdo entra em foco); reveals distintos por seção, linha do método guiada pela rolagem; hand-rolled CSS+IO, sem lib, com fallback sem JS e reduced-motion. Canvas de partículas da Fase 4 será aposentado. Modo cinemático (hero fixado com auroras cruzando em X) testado e REJEITADO pelo Felipe — Impeccable animate; Felipe aprovou a rodada 3 e preferiu não usar o hero fixado
+- [Phase 04.1]: Redesign entra como Fase 04.1 antes da Fase 5; a Fase 5 passa a depender do markup do formulário redesenhado — Escolha do Felipe: evita refazer o markup do formulário duas vezes
+- [Phase 04.1]: 04.1-04: cases usa z.discriminatedUnion('rotulo'); faq removida
+- [Phase 04.1]: Frase 'Nada é cobrado...' só na legenda .here do ProcessSection
+- [Phase 04.1]: CTA do header sempre visível; logotipo oculto abaixo de 480px de container
+- [Phase 04.1]: Metodo: estado apagado sem opacity em texto (cor faint) para contraste AA
+- [Phase 04.1]: Form do contato sem JS: estados err/sending/done e aria-invalid prontos em CSS para a Fase 5
+- [Phase 04.1]: Seta do card destaque e span aria-hidden (sem pagina de detalhe, D-08); rolagem dos mocks via scrollsite com 100cqh em .screen container-type size
+- [Phase 04.1]: Captura do site nao recursiva (CSS injetado so no navegador de captura); fallbackFormat webp no Picture; SEO lhci segue warn (0,58) ate a Fase 6
 
 ### Open Decisions To Resolve Before Their Phase
 
@@ -141,6 +177,17 @@ yet.
 - 01-03 (RESOLVED by orchestrator, Felipe's decision - overrides + allowlist): pnpm-workspace.yaml carries overrides (path-to-regexp 6.3.0, tmp 0.2.7) + auditConfig.ignoreGhsas for the 2 unfixable dev/CI-only extract-zip advisories (GHSA-jmr9-qjv8-65gv, GHSA-7pqw-9j4j-h8q3). `pnpm audit --audit-level=high` now exits 0 on the resolved tree; the 01-04 CI audit step is a plain blocking run (no `|| true`). Plan 08 records the 2 extract-zip GHSAs as accepted Med findings with a target date in .planning/security/runs/phase-01.md. See deferred-items.md D1.
 - 01-07 Task 1b (RESOLVED 2026-09-10): the stale VERCEL_AUTOMATION_BYPASS_SECRET was re-set by the orchestrator via `gh secret set … --body "<value>"` (argument form, not stdin). The `lhci` check now goes green on PR #1 (Performance/Accessibility/Best-Practices median 1.00/1.00/0.96; LCP 1543 ms / CLS 0 / TBT 0 ms; SEO 0.45 is `warn` for Phase 1 — see 01-07 decision). Branch protection on `main` applied and PR #1 squash-merged. See 01-07-SUMMARY.md.
 
+- 2026-10-14 (RESOLVED by quick 261014-gl5): `pnpm audit --audit-level=high` voltou a falhar com advisories novos na árvore inalterada — proxy-addr (critical), devalue, sharp <0.35.5, brace-expansion, basic-ftp, http-cache-semantics, source-map-js, compression. Bloqueia o job `verify` do próximo PR. Ver 261014-gfb-SUMMARY.md.
+
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 261014-gfb | Aplicar logotipo e simbolo novos no header, footer e favicon | 2026-10-14 | d6912da, 963e593 | [261014-gfb-aplicar-logotipo-e-simbolo-novos-no-head](./quick/261014-gfb-aplicar-logotipo-e-simbolo-novos-no-head/) |
+| 261014-gl5 | Atualizar dependencias para zerar pnpm audit high/critical | 2026-10-14 | 9227d3e | [261014-gl5-atualizar-dependencias-para-zerar-pnpm-a](./quick/261014-gl5-atualizar-dependencias-para-zerar-pnpm-a/) |
+| 261015-2fr | Foto real do fundador e e-mail contato@agenciadmarques.com.br | 2026-10-15 | a71a82e | [261015-2fr-aplicar-foto-real-do-fundador-e-e-mail-c](./quick/261015-2fr-aplicar-foto-real-do-fundador-e-e-mail-c/) |
+| 261015-2ks | Instagram @agenciadmarques | 2026-10-15 | cd97828 | [261015-2ks-trocar-instagram-para-agenciadmarques](./quick/261015-2ks-trocar-instagram-para-agenciadmarques/) |
+
 ## Deferred Items
 
 | Category | Item | Status | Deferred At |
@@ -149,6 +196,6 @@ yet.
 
 ## Session Continuity
 
-Last session: 2026-09-17T00:04:02.567Z
-Stopped at: Phase 3 CLOSED — checkpoint aprovado, SEC-07 assinado
+Last session: 2026-10-15T09:08:55.649Z
+Stopped at: Completed 04.1-11-PLAN.md
 Resume file: None

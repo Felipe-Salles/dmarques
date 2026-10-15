@@ -1,178 +1,183 @@
 ---
+import { Image } from 'astro:assets';
+import logotipo from '../assets/brand/logotipo.png';
+import simbolo from '../assets/brand/simbolo.png';
 
+const prefix = Astro.url.pathname === '/' ? '' : '/';
+const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
-  <div class="site-footer-inner">
-    <div class="site-footer-grid">
-      <div class="site-footer-brand">
-        <a href="/" class="site-footer-wordmark">
-          <span class="site-footer-logo-mark" aria-hidden="true">D</span>
-          <span class="site-footer-logo-text">Dmarques</span>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="/" class="lockup" aria-label="Dmarques Desenvolvimento Web — página inicial">
+          <Image src={simbolo} alt="" height={34} densities={[1, 2]} class="logo-symbol" />
+          <Image src={logotipo} alt="" height={34} densities={[1, 2]} class="logo-type" />
         </a>
-        <p>Sites, sistemas, soluções web e automações sob medida.</p>
+        <p>Sites, sistemas, soluções web e automações sob medida. Feito por gente, para gente. Ibitinga · SP.</p>
       </div>
-
-      <div class="site-footer-column">
-        <span class="site-footer-label">Navegação</span>
-        <nav aria-label="Navegação do rodapé">
-          <a href="#servicos">Serviços</a>
-          <a href="#processo">Como trabalhamos</a>
-          <a href="#diferenciais">Diferenciais</a>
-          <a href="#sobre">Sobre</a>
-        </nav>
-      </div>
-
-      <div class="site-footer-column">
-        <span class="site-footer-label">Contato</span>
-        <a href="https://wa.me/5516996111785" target="_blank" rel="noopener noreferrer"
-          >(16) 99611-1785</a
-        >
-        <a href="mailto:felipe.salles1@hotmail.com">felipe.salles1@hotmail.com</a>
-        <a href="https://instagram.com/felipe.salles1" target="_blank" rel="noopener noreferrer"
-          >@felipe.salles1</a
-        >
-        <span class="site-footer-static">Ibitinga · SP</span>
+      <div class="foot-cols">
+        <div>
+          <h2 class="foot-title">Navegação</h2>
+          <a href={`${prefix}#servicos`}>Serviços</a>
+          <a href={`${prefix}#projetos`}>Projetos</a>
+          <a href={`${prefix}#processo`}>Como trabalhamos</a>
+          <a href={`${prefix}#sobre`}>Sobre</a>
+          <a href={`${prefix}#contato`}>Pedir orçamento</a>
+        </div>
+        <div>
+          <h2 class="foot-title">Contato</h2>
+          <a href="https://wa.me/5516996111785" target="_blank" rel="noopener noreferrer">(16) 99611-1785</a>
+          <a href="mailto:contato@agenciadmarques.com.br">contato@agenciadmarques.com.br</a>
+          <a
+            href="https://www.instagram.com/agenciadmarques"
+            target="_blank"
+            rel="noopener noreferrer">@agenciadmarques</a
+          >
+        </div>
       </div>
     </div>
-
-    <div class="site-footer-divider" aria-hidden="true"></div>
-    <p class="site-footer-copyright">© 2026 Dmarques Soluções Web. Todos os direitos reservados.</p>
-    <span class="site-footer-watermark" aria-hidden="true">DMARQUES</span>
+    <div class="foot-bottom">
+      <span>© {year} Dmarques Soluções Web</span>
+      <a href="/politica-de-privacidade">Política de privacidade</a>
+      <span>Ibitinga · SP</span>
+    </div>
   </div>
 </footer>
+
+<a
+  class="wa-float"
+  href="https://wa.me/5516996111785"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <svg
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="var(--color-ember)"
+    stroke-width="1.8"
+    aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1112 20a8 8 0 01-4.1-1.1z"></path></svg
+  >
+  WhatsApp
+</a>
 
 <style>
   .site-footer {
     position: relative;
-    z-index: var(--z-section);
-    background: var(--color-bg-black);
-    padding: clamp(3.75rem, 7vw, 5.625rem) var(--space-gutter) 0;
-    overflow: hidden;
+    border-top: 1px solid var(--color-border);
+    padding: 56px 0 40px;
+    background: var(--color-bg);
   }
 
-  .site-footer-inner {
-    position: relative;
-    max-width: 1220px;
-    margin-inline: auto;
-  }
-
-  .site-footer-grid {
-    position: relative;
-    z-index: 2;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
-    gap: clamp(1.875rem, 4vw, 3.5rem);
-  }
-
-  .site-footer-brand {
+  .foot-grid {
     display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
   }
 
-  .site-footer-wordmark {
-    display: flex;
+  .lockup {
+    display: inline-flex;
     align-items: center;
-    gap: var(--space-3);
-    color: var(--color-text-strong);
+    gap: 8px;
+    min-height: 44px;
   }
 
-  .site-footer-logo-mark {
-    display: grid;
-    place-items: center;
-    width: 32px;
-    height: 32px;
-    border-radius: var(--radius-md);
-    background: var(--color-accent);
-    color: var(--color-text-on-accent);
-    font-family: var(--font-heading);
-    font-weight: var(--font-weight-bold);
+  .lockup :global(img) {
+    display: block;
+    width: auto;
+    height: 34px;
+  }
+
+  .foot-brand p {
+    margin: 8px 0 0;
+    max-width: 34ch;
     font-size: var(--text-sm);
-  }
-
-  .site-footer-logo-text {
-    font-family: var(--font-heading);
-    font-weight: var(--font-weight-bold);
-    font-size: var(--text-base);
-  }
-
-  .site-footer-brand p {
-    margin: 0;
-    max-width: 15.625rem;
-    font-family: var(--font-text);
-    font-size: var(--text-sm);
-    line-height: var(--leading-body);
+    line-height: 1.6;
     color: var(--color-text-muted);
   }
 
-  .site-footer-column {
+  .foot-cols {
+    display: flex;
+    gap: var(--space-16);
+    flex-wrap: wrap;
+    font-size: var(--text-sm);
+  }
+
+  .foot-cols > div {
     display: flex;
     flex-direction: column;
-    gap: var(--space-3);
   }
 
-  .site-footer-column nav {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
-  }
-
-  .site-footer-label {
-    font-family: var(--font-text);
-    font-size: var(--text-2xs);
-    font-weight: var(--font-weight-medium);
-    letter-spacing: var(--tracking-wide);
-    text-transform: uppercase;
-    color: var(--color-text-muted);
-  }
-
-  .site-footer-column a,
-  .site-footer-static {
-    font-family: var(--font-text);
+  .foot-title {
+    margin: 0 0 6px;
+    font-family: var(--font-sans);
     font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: 0;
+    color: var(--color-text);
+  }
+
+  .foot-cols a,
+  .foot-bottom a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
     color: var(--color-text-muted);
-    transition: color var(--dur-fast) var(--ease-standard);
+    transition: color 0.15s;
   }
 
-  .site-footer-column a:hover,
-  .site-footer-column a:focus-visible {
-    color: var(--color-accent-light);
+  .foot-cols a:hover,
+  .foot-cols a:focus-visible,
+  .foot-bottom a:hover,
+  .foot-bottom a:focus-visible {
+    color: var(--color-text);
   }
 
-  .site-footer-divider {
-    position: relative;
-    z-index: 2;
-    margin-top: clamp(3.125rem, 6vw, 5rem);
-    height: 1px;
-    background: var(--color-border);
-  }
-
-  .site-footer-copyright {
-    position: relative;
-    z-index: 2;
-    margin: 0;
-    padding: var(--space-6) 0 var(--space-6);
-    text-align: center;
-    font-family: var(--font-text);
+  .foot-bottom {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
     font-size: var(--text-xs);
-    color: var(--color-text-faint);
+    color: var(--color-text-muted);
   }
 
-  .site-footer-watermark {
-    position: absolute;
-    left: 50%;
-    bottom: -0.16em;
-    transform: translateX(-50%);
-    z-index: 1;
-    font-family: var(--font-heading);
-    font-weight: 800;
-    font-size: clamp(4rem, 17vw, 14.375rem);
-    line-height: 0.8;
-    letter-spacing: -0.05em;
-    color: rgba(255, 255, 255, 0.065);
-    white-space: nowrap;
-    pointer-events: none;
-    user-select: none;
+  .wa-float {
+    display: none;
+    position: sticky;
+    bottom: 16px;
+    z-index: 40;
+    margin: -64px 16px 16px auto;
+    width: max-content;
+    align-items: center;
+    gap: 10px;
+    min-height: 48px;
+    padding: 0 18px 0 14px;
+    border-radius: 999px;
+    background: #f2f4f7;
+    color: #070a14;
+    font-weight: 600;
+    font-size: var(--text-sm);
+    box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.7);
+  }
+
+  @container site (max-width: 900px) {
+    .wa-float {
+      display: inline-flex;
+    }
+  }
+
+  @container site (max-width: 560px) {
+    .foot-grid,
+    .foot-cols {
+      flex-direction: column;
+      gap: 24px;
+    }
   }
 </style>

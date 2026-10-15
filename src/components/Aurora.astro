@@ -1,0 +1,81 @@
+---
+interface Props {
+  variant: 'hero' | 'contact' | 'small';
+}
+
+const { variant } = Astro.props;
+---
+
+<div class:list={['aurora', `aurora--${variant}`]} aria-hidden="true"></div>
+{(variant === 'hero' || variant === 'contact') && <div class="grain" aria-hidden="true"></div>}
+
+<style>
+  .aurora {
+    position: absolute;
+    pointer-events: none;
+    z-index: -1;
+    left: -15%;
+    right: -15%;
+    top: -30%;
+    height: 1100px;
+    opacity: var(--aurora-opacity);
+    background:
+      radial-gradient(
+        34% 38% at 30% 42%,
+        rgba(0, 200, 255, 0.42),
+        rgba(0, 200, 255, 0.14) 45%,
+        transparent 72%
+      ),
+      radial-gradient(
+        40% 46% at 70% 34%,
+        rgba(58, 91, 255, 0.5),
+        rgba(14, 30, 91, 0.32) 50%,
+        transparent 74%
+      ),
+      radial-gradient(26% 30% at 50% 58%, rgba(14, 30, 91, 0.85), transparent 72%);
+  }
+
+  .aurora--contact {
+    top: auto;
+    bottom: -55%;
+    height: 1000px;
+    transform: scaleY(-1);
+    opacity: calc(var(--aurora-opacity) * 0.8);
+  }
+
+  .aurora--small {
+    height: 520px;
+    top: -40%;
+  }
+
+  .grain {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background: url(/grain.svg);
+    opacity: var(--grain-opacity);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    :global(html.js-ready) .aurora--hero {
+      animation:
+        aurora-lit 1.8s var(--ease-out) both,
+        aurora-drift 22s var(--ease-in-out) 2.4s infinite alternate;
+      will-change: transform;
+    }
+
+    :global(html.js-ready) .aurora--hero:global(.paused) {
+      animation-play-state: paused;
+    }
+
+    :global(html.js-ready) .aurora--contact {
+      opacity: 0;
+      transition: opacity 1.6s var(--ease-out);
+    }
+
+    :global(html.js-ready .in) > .aurora--contact {
+      opacity: calc(var(--aurora-opacity) * 0.8);
+    }
+  }
+</style>
