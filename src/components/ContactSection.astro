@@ -128,7 +128,6 @@ import Words from './Words.astro';
             maxlength="80"
             required
             placeholder="Como podemos te chamar?"
-            aria-describedby="erro-nome"
           />
           <span class="msg" id="erro-nome">Informe seu nome para sabermos com quem falamos.</span>
         </div>
@@ -143,7 +142,7 @@ import Words from './Words.astro';
             autocomplete="tel"
             maxlength="20"
             placeholder="(16) 99999-9999"
-            aria-describedby="contato-nota-obrigatorio erro-whatsapp"
+            aria-describedby="contato-nota-obrigatorio"
           />
           <span class="msg" id="erro-whatsapp">Use DDD + número, ex.: (16) 99611-1785.</span>
         </div>
@@ -156,7 +155,7 @@ import Words from './Words.astro';
             autocomplete="email"
             maxlength="120"
             placeholder="voce@empresa.com.br"
-            aria-describedby="contato-nota-obrigatorio erro-email"
+            aria-describedby="contato-nota-obrigatorio"
           />
           <span class="msg" id="erro-email">Use um e-mail completo, ex.: nome@empresa.com.br.</span>
         </div>
