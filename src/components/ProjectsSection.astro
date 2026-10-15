@@ -44,7 +44,7 @@ const featuredData = featured && featured.data.rotulo === 'projeto próprio' ? f
     <div class="bento">
       {
         featuredData && (
-          <article class="card c-feat tilt i0" data-r="card">
+          <article class="card c-feat tilt" data-r="card">
             <div class="card-meta">
               <div>
                 <span class="tag real">No ar · projeto próprio</span>
@@ -56,7 +56,15 @@ const featuredData = featured && featured.data.rotulo === 'projeto próprio' ? f
                 href={`https://${featuredData.url}`}
                 aria-label="Ver o site da Dmarques no ar"
               >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  aria-hidden="true"
+                >
                   <path d="M5 12h14M13 6l6 6-6 6" />
                 </svg>
               </a>
@@ -97,6 +105,7 @@ const featuredData = featured && featured.data.rotulo === 'projeto próprio' ? f
       {
         examples.map((ex, idx) => {
           const cls = mockClass[ex.mock];
+          const delay = ['', ' d110', ' d220'][(idx + 1) % 3];
           const meta = (
             <>
               <span class="tag">Exemplo de escopo · {tipoCurto[ex.tipo]}</span>
@@ -122,22 +131,30 @@ const featuredData = featured && featured.data.rotulo === 'projeto próprio' ? f
             </div>
           );
           return ex.mock === 'pedidos' ? (
-            <article class={`card tilt ${cls} i${idx + 1}`} data-r="card">
+            <article class={`card tilt ${cls}${delay}`} data-r="card">
               {browser}
               <div class="c-text">{meta}</div>
             </article>
           ) : (
-            <article class={`card tilt ${cls} i${idx + 1}`} data-r="card">
+            <article class={`card tilt ${cls}${delay}`} data-r="card">
               <div>{meta}</div>
               {browser}
             </article>
           );
         })
       }
-      <article class="card c-you i4" data-r="card">
+      <article class="card c-you d110" data-r="card">
         <span class="plus" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-            <path d="M12 5v14M5 12h14" />
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+          >
+            <path d="M12 5v14M5 12h14"></path>
           </svg>
         </span>
         <div>
@@ -192,7 +209,9 @@ const featuredData = featured && featured.data.rotulo === 'projeto próprio' ? f
     border-radius: var(--radius-lg);
     border: 1px solid var(--color-border);
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01));
-    transition: border-color 0.25s ease;
+    transition:
+      transform 0.25s ease,
+      border-color 0.25s ease;
   }
 
   .card:hover {
@@ -499,15 +518,15 @@ const featuredData = featured && featured.data.rotulo === 'projeto próprio' ? f
         opacity 0.8s var(--ease-out),
         transform 1s var(--ease-out),
         border-color 0.25s ease;
-      transition-delay: calc(var(--i, 0) * 90ms);
+      transition-delay: var(--d, 0ms);
     }
 
     :global(html.js-ready) .card.in .browser::after {
-      animation: sweep 1.4s var(--ease-out) calc(var(--i, 0) * 90ms + 450ms) 1 both;
+      animation: sweep 1.4s var(--ease-out) calc(var(--d, 0ms) + 450ms) 1 both;
     }
 
     :global(html.js-ready) .scroller {
-      animation: scrollsite 18s var(--ease-in-out) infinite alternate;
+      animation: scrollsite 18s ease-in-out infinite alternate;
       animation-play-state: paused;
     }
 

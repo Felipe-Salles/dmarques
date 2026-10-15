@@ -5,7 +5,9 @@ export function stepProgress(rectTop: number, vh: number): number {
 }
 
 export function litSteps(p: number, count: number): number {
-  if (p <= 0) return 0;
-  if (count <= 1) return count;
-  return Math.min(count, Math.floor(p * (count - 1) + 1e-9) + 1);
+  let lit = 0;
+  for (let i = 0; i < count; i++) {
+    if (p >= i / count + 0.02 || p >= 0.999) lit++;
+  }
+  return lit;
 }

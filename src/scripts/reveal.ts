@@ -9,21 +9,39 @@ export function initReveal(reduced: boolean): void {
   const io = new IntersectionObserver(
     (entries) => {
       for (const entry of entries) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in');
-          io.unobserve(entry.target);
-        }
+        if (!entry.isIntersecting) continue;
+        const target = entry.target as HTMLElement;
+        target.classList.add('in');
+        io.unobserve(target);
+        if (target.matches('.card')) setTimeout(() => target.classList.add('settled'), 1400);
       }
     },
-    { rootMargin: '0px 0px -10% 0px', threshold: 0 },
+    { rootMargin: '0px 0px -10% 0px', threshold: 0.12 },
   );
-  for (const el of els) io.observe(el);
+  const photoIo = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        entry.target.classList.add('in');
+        photoIo.unobserve(entry.target);
+      }
+    },
+    { rootMargin: '0px 0px -15% 0px', threshold: 0.1 },
+  );
+  for (const el of els) {
+    if (el.matches('[data-r="photo"]')) photoIo.observe(el);
+    else io.observe(el);
+  }
   setTimeout(() => {
     for (const el of els) {
-      if (!el.classList.contains('in') && el.getBoundingClientRect().top < innerHeight) {
+      if (
+        !el.classList.contains('in') &&
+        !el.matches('[data-r="steps"]') &&
+        el.getBoundingClientRect().top < innerHeight
+      ) {
         el.classList.add('in');
         io.unobserve(el);
       }
     }
-  }, 2600);
+  }, 2500);
 }

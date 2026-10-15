@@ -32,11 +32,5 @@ export function initTilt(reduced: boolean): void {
       ry = 0;
       if (frame === 0) frame = requestAnimationFrame(write);
     });
-
-    card.addEventListener('transitionend', (event) => {
-      if (event.propertyName === 'transform' && card.classList.contains('in')) {
-        card.classList.add('settled');
-      }
-    });
   }
 }

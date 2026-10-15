@@ -192,15 +192,20 @@ const steps = await getProcess();
       color: var(--color-ember);
     }
 
-    :global(html.js-ready) .step,
-    :global(html.js-ready) .step .knot,
-    :global(html.js-ready) .step > div,
+    :global(html.js-ready) .step .knot {
+      transition:
+        border-color 0.5s var(--ease-out),
+        color 0.5s var(--ease-out),
+        background-color 0.5s var(--ease-out);
+    }
+
+    :global(html.js-ready) .step > div {
+      transition: transform 0.7s var(--ease-out);
+    }
+
     :global(html.js-ready) .step h3,
     :global(html.js-ready) .step p {
-      transition:
-        color 0.6s var(--ease-out),
-        transform 0.6s var(--ease-out),
-        border-color 0.6s var(--ease-out);
+      transition: color 0.6s var(--ease-out);
     }
 
     :global(html.js-ready) .step.lit .knot {
