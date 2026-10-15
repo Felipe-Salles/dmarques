@@ -45,7 +45,16 @@ picture {
 }
 
 a {
+  color: inherit;
   text-decoration: none;
+}
+
+input,
+textarea,
+select,
+button {
+  font: inherit;
+  color: inherit;
 }
 
 ::selection {
