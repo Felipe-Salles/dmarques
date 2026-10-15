@@ -251,7 +251,7 @@ Plans:
 - [x] 04.1-07-PLAN.md — Serviços (lista tipográfica), Método (linha de luz, estado apagado AA), Sobre (foto clip-path + diferenciais)
 - [x] 04.1-08-PLAN.md — Contato com 3 canais (e-mail, WhatsApp, Instagram) e form de vidro (5 campos, chips radio, estados em CSS) e páginas secundárias
 - [x] 04.1-09-PLAN.md — seção Projetos (bento honesto, mocks HTML/CSS, tilt) na ordem final da home
-- [ ] 04.1-10-PLAN.md — suíte completa de gates contra o build (checklist C1-C12, lhci local cedo) e pass /impeccable polish
+- [x] 04.1-10-PLAN.md — suíte completa de gates contra o build (checklist C1-C12, lhci local cedo) e pass /impeccable polish
 - [ ] 04.1-11-PLAN.md — captura real do site no card destaque, gates no CI, PR com lhci verde e SEC-07
 **UI hint**: yes
 
@@ -312,7 +312,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 4.1 -> 5 -> 6 -> 7
 | 2. Content Collections | 4/4 | Complete   | 2026-09-15 |
 | 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 9/9 | Complete   | 2026-09-17 |
 | 4. Progressive-Enhancement Effects | 4/4 | Complete   | 2026-09-17 |
-| 4.1. Redesign Aurora técnica (INSERTED) | 9/11 | In Progress|  |
+| 4.1. Redesign Aurora técnica (INSERTED) | 10/11 | In Progress|  |
 | 5. Form Backend + Enhancement + LGPD | 0/TBD | Not started | - |
 | 6. SEO / Metadata / Structured Data | 0/TBD | Not started | - |
 | 7. Security Headers Finalize | 0/TBD | Not started | - |

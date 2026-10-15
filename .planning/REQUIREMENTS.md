@@ -309,11 +309,11 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 - [x] **AUR-11**: Motion "a luz acende" hand-rolled (CSS+IO+1 scroll rAF): aurora acende, H1 palavra a palavra, reveals distintos por seção, linha do método por scroll, foto por clip-path, mocks/browser só rodam visíveis; sem lib, sem scroll-jacking
 - [x] **AUR-12**: Tudo visível sem JS e com falha de JS; `prefers-reduced-motion` reduz a fades curtos; aurora estática; loops desligados
 - [x] **AUR-13**: Canvas de partículas, glow de cursor e `.hero-glow` removidos (ANIM-03/04/05 reescritos); `pnpm test` passa sem `particles.pure.test.mjs`
-- [ ] **AUR-14**: Lighthouse mobile ≥95 nas 4 categorias, LCP ≤2,5 s, TBT <200 ms, CLS <0,05; JS da rota ≤20 KB gz
-- [ ] **AUR-15**: Sem overflow horizontal em 360–1440 px; tap targets ≥44 px (botões/inputs ≥48); foco visível; gate `style=` e `security-check.sh --ci` verdes
+- [x] **AUR-14**: Lighthouse mobile ≥95 nas 4 categorias, LCP ≤2,5 s, TBT <200 ms, CLS <0,05; JS da rota ≤20 KB gz
+- [x] **AUR-15**: Sem overflow horizontal em 360–1440 px; tap targets ≥44 px (botões/inputs ≥48); foco visível; gate `style=` e `security-check.sh --ci` verdes
 - [x] **AUR-16**: Páginas `/obrigado`, `/404`, `/politica-de-privacidade` com header/footer/tokens/aurora estática pequena, sem motion da home
 - [x] **AUR-17**: REQUIREMENTS/ROADMAP atualizados: SEO-07 e CONTENT-04 removidos/reescritos (Fase 6 sem FAQPage), CONTENT-03 com novo enum, ANIM-03/04/05 reescritos (D-02)
-- [ ] **AUR-18**: `/impeccable polish` e checklist SEC-07 executados sem High aberto antes do fechamento
+- [x] **AUR-18**: `/impeccable polish` e checklist SEC-07 executados sem High aberto antes do fechamento
 
 ## Traceability
 
@@ -417,11 +417,11 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | AUR-11 | Phase 04.1 | Complete |
 | AUR-12 | Phase 04.1 | Complete |
 | AUR-13 | Phase 04.1 | Complete |
-| AUR-14 | Phase 04.1 | Pending |
-| AUR-15 | Phase 04.1 | Pending |
+| AUR-14 | Phase 04.1 | Complete |
+| AUR-15 | Phase 04.1 | Complete |
 | AUR-16 | Phase 04.1 | Complete |
 | AUR-17 | Phase 04.1 | Complete |
-| AUR-18 | Phase 04.1 | Pending |
+| AUR-18 | Phase 04.1 | Complete |
 
 **Coverage:**
 - v1 requirements: 101 total (83 originais + 18 AUR da Fase 04.1; o "78 total"
