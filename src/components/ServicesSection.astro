@@ -240,7 +240,7 @@ const iconShapes: Record<(typeof services)[number]['data']['icon'], IconShape[]>
         opacity 0.8s var(--ease-out),
         translate 0.8s var(--ease-out),
         transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-      transition-delay: calc(var(--i) * 110ms);
+      transition-delay: calc(var(--i) * 110ms), calc(var(--i) * 110ms), 0s;
     }
 
     :global(html.js-ready) .svc-list.in .svc p {
