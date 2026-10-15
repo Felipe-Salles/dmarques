@@ -15,4 +15,4 @@ Propostas 1–6 geradas com UI UX Pro Max (estilos Aurora UI + Bento Grid); pale
 
 | # | Name | Design Question | Winner | Tags |
 |---|------|----------------|--------|------|
-| 001 | aurora-landing | Direção 6 aplicada à landing inteira: qual hero e qual grid de projetos? | — | landing, aurora, hero, bento |
+| 001 | aurora-landing | Direção 6 aplicada à landing inteira: qual hero e qual grid de projetos? | A (polida, rodada 2) | landing, aurora, hero, bento |

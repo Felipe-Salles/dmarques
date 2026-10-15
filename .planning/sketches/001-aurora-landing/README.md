@@ -2,7 +2,7 @@
 sketch: 001
 name: aurora-landing
 question: "Como a direção 6 (Atmosfera / Aurora técnica) fica aplicada à landing inteira da dmarques — e qual composição de hero e de projetos funciona melhor?"
-winner: null
+winner: "A"
 tags: [landing, aurora, hero, bento, contato, direcao-6]
 ---
 
@@ -41,3 +41,27 @@ sobre com diferenciais, contato com canais (WhatsApp/e-mail) + formulário de vi
 - Foto do fundador e capa são placeholders; a capa do case foi trocada por um mock em CSS nas cores da direção.
 - Ajustes do hook de design: texto em gradiente → cor sólida, glows coloridos removidos, sombra neutra,
   contraste do texto fraco elevado para AA, pulso decorativo do selo removido.
+
+## Rodada 2 — polish Impeccable na variante A (vencedora)
+
+Crítica Impeccable (dual-agent): 20/32. Decisões do Felipe: atacar primeiro a cara de template,
+manter só a aurora (sem motivo de costura), voz "nós" (agência), escopo completo.
+
+- Template removido: sem eyebrows acima dos títulos, sem faixa de métricas no hero (virou linha de
+  prova verificável com link para o PageSpeed), serviços como lista tipográfica com intro fixa,
+  cabeçalhos de seção com composição própria, mono só para dados/URLs.
+- Laranja (ember) passou a marcar ação: seta do CTA do hero, card "O próximo pode ser o seu",
+  etapa 01 do método e o canal de WhatsApp.
+- Projetos honestos: "No ar · projeto próprio" + "Exemplo de escopo", sem métricas inventadas;
+  mocks com conteúdo realista no lugar de blocos cinza; card de convite com CTA.
+- Linguagem leiga: "abre em ~1,5 s no celular", "nota 95+ no Google PageSpeed", "zero cookies
+  de rastreamento" (dados do case real); CTA único "Pedir orçamento"; voz "nós" em todo o site.
+- Contato: "o que acontece depois" em 3 passos (baseado no FAQ), WhatsApp fixo no mobile.
+- Formulário: sucesso esconde o form, reset limpa chips, nada pré-selecionado, aria-invalid +
+  aria-describedby, região aria-live, foco no título de sucesso.
+- Acessibilidade/técnica: alvos de toque >= 44px, placeholders AA, tags 12px, ::selection,
+  caret, scrollbar e focus ring temáticos, auroras sem filter:blur (mais leves), nav com seção ativa,
+  nome dmarques visível no mobile.
+
+Pendente com o Felipe (não inventado): foto real, e-mail no domínio próprio, captura real do site
+para o card em destaque.
