@@ -1,29 +1,29 @@
-export function initReveal(): void {
-  const els = document.querySelectorAll<HTMLElement>('[data-reveal]');
-  if (!('IntersectionObserver' in window)) {
-    els.forEach((el) => {
-      el.classList.add('is-revealed');
-    });
+export function initReveal(reduced: boolean): void {
+  const els = Array.from(document.querySelectorAll<HTMLElement>('[data-r]')).filter(
+    (el) => el.closest('.hero') === null,
+  );
+  if (reduced || !('IntersectionObserver' in window)) {
+    for (const el of els) el.classList.add('in');
     return;
   }
   const io = new IntersectionObserver(
     (entries) => {
       for (const entry of entries) {
         if (entry.isIntersecting) {
-          entry.target.classList.add('is-revealed');
+          entry.target.classList.add('in');
           io.unobserve(entry.target);
         }
       }
     },
-    { rootMargin: '0px 0px -8% 0px', threshold: 0.08 },
+    { rootMargin: '0px 0px -10% 0px', threshold: 0 },
   );
-  els.forEach((el) => {
-    io.observe(el);
-  });
+  for (const el of els) io.observe(el);
   setTimeout(() => {
-    els.forEach((el) => {
-      el.classList.add('is-revealed');
-    });
-    io.disconnect();
+    for (const el of els) {
+      if (!el.classList.contains('in') && el.getBoundingClientRect().top < innerHeight) {
+        el.classList.add('in');
+        io.unobserve(el);
+      }
+    }
   }, 2600);
 }

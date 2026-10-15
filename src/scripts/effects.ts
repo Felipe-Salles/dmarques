@@ -1,7 +1,9 @@
-import { initGlow } from './glow.ts';
-import { initParticles } from './particles.ts';
 import { initReveal } from './reveal.ts';
+import { initScroll } from './scroll.ts';
+import { initVisibility } from './visibility.ts';
 
-initReveal();
-initGlow();
-initParticles();
+document.documentElement.classList.add('fx');
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+initReveal(reduced);
+initScroll(reduced);
+initVisibility();
