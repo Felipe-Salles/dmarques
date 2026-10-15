@@ -267,7 +267,17 @@ const checks = {
     const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
     try {
       const page = await ctx.newPage();
-      await page.route(/\/_astro\/.*\.js(\?.*)?$/, (route) => route.abort());
+      await page.route(
+        (url) => url.origin === base && !/\.[a-z0-9]+$/i.test(url.pathname),
+        async (route) => {
+          const response = await route.fetch();
+          const html = (await response.text()).replace(
+            /<script type="module">[\s\S]*?<\/script>/g,
+            '',
+          );
+          await route.fulfill({ response, body: html });
+        },
+      );
       await page.goto(`${base}/`, { waitUntil: 'load' });
       await page.waitForTimeout(3500);
       const result = await page.evaluate(() => ({
