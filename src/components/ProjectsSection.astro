@@ -41,7 +41,7 @@ const featuredData = featured && featured.data.rotulo === 'projeto próprio' ? f
     <div class="bento">
       {
         featuredData && (
-          <article class="card c-feat i0" data-r="card">
+          <article class="card c-feat tilt i0" data-r="card">
             <div class="card-meta">
               <div>
                 <span class="tag real">No ar · projeto próprio</span>
@@ -106,12 +106,12 @@ const featuredData = featured && featured.data.rotulo === 'projeto próprio' ? f
             </div>
           );
           return ex.mock === 'pedidos' ? (
-            <article class={`card ${cls} i${idx + 1}`} data-r="card">
+            <article class={`card tilt ${cls} i${idx + 1}`} data-r="card">
               {browser}
               <div class="c-text">{meta}</div>
             </article>
           ) : (
-            <article class={`card ${cls} i${idx + 1}`} data-r="card">
+            <article class={`card tilt ${cls} i${idx + 1}`} data-r="card">
               <div>{meta}</div>
               {browser}
             </article>
@@ -476,6 +476,19 @@ const featuredData = featured && featured.data.rotulo === 'projeto próprio' ? f
 
     :global(html.js-ready) .browser:hover .screen .scroller {
       animation-play-state: paused;
+    }
+  }
+
+  @media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .card.tilt:global(.settled) {
+      transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+      transition:
+        transform 0.25s ease,
+        border-color 0.25s ease;
+    }
+
+    .card.tilt:hover {
+      will-change: transform;
     }
   }
 </style>
