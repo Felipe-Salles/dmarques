@@ -42,7 +42,7 @@ function locate(pathname, base) {
 }
 
 export function startStaticServer(root = STATIC_DIR) {
-  return new Promise((resolveStart) => {
+  return new Promise((resolveStart, rejectStart) => {
     const server = createServer((req, res) => {
       let pathname;
       try {
@@ -72,6 +72,7 @@ export function startStaticServer(root = STATIC_DIR) {
       res.writeHead(status, { 'content-type': type });
       res.end(readFileSync(file));
     });
+    server.once('error', rejectStart);
     server.listen(0, '127.0.0.1', () => {
       const url = `http://127.0.0.1:${server.address().port}`;
       resolveStart({ server, base: url, url, close: () => server.close() });
