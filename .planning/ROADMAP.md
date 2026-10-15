@@ -60,6 +60,7 @@ Milestone 2 (Cloudflare layer) closes this statement.
 - [x] **Phase 3: Static Zero-JS Sections + CSP-safe Refactor + A11y** - The 9 design sections + privacy/thank-you/404 pages as fully static HTML, every inline style converted to token CSS, accessibility and AA contrast fixed
  (completed 2026-09-17)
 - [x] **Phase 4: Progressive-Enhancement Effects** - Scroll reveal, cursor glow, particle canvas, and reduced-motion handling as small vanilla islands (completed 2026-09-17)
+- [ ] **Phase 04.1: Redesign Aurora técnica** (INSERTED) - Apply the validated Aurora direction (sketch 001-A): logo, palette, Sora + Inter Tight, section compositions, honest proof, "nós" voice and the "a luz acende" motion system
 - [ ] **Phase 5: Form Backend + Enhancement + LGPD** - Working quote form (no-JS + enhanced) via Resend behind layered spam/abuse defenses, shipped with the Privacy Policy page and inline data-use notice
 - [ ] **Phase 6: SEO / Metadata / Structured Data** - Titles, canonical, OG/Twitter cards, sitemap, robots, favicons, and single-sourced LocalBusiness + FAQPage JSON-LD
 - [ ] **Phase 7: Security Headers Finalize** - Full security-header set + strict CSP in vercel.json, Report-Only then enforced, sourcemaps off, securityheaders.com >= A
@@ -224,10 +225,27 @@ Plans:
 
 - [x] 04-04-PLAN.md — verificação instrumentada via CDP, preview real com gate do Lighthouse (TBT/CLS), execução SEC-07 fase 4 e aceite do Felipe (human-gated)
 
+### Phase 04.1: Redesign Aurora técnica (INSERTED)
+
+**Goal**: The live site adopts the validated "Aurora técnica" direction (sketch 001, variant A) — new logo, palette, typography, section compositions, honest project proof, pt-BR "nós" voice and the "a luz acende" motion system — without regressing performance, accessibility or the static/CSP-safe architecture.
+**Depends on**: Phase 4
+**Source of truth**: `.planning/sketches/001-aurora-landing/` + skill `sketch-findings-dmarques` (`.claude/skills/sketch-findings-dmarques/`)
+**Requirements**: TBD (derive from sketch findings during /gsd-plan-phase 04.1)
+**Success Criteria** (what must be TRUE):
+
+  1. Tokens migrate to the Aurora palette (`#070A14` bg, aurora `#00C8FF → #3A5BFF → #0E1E5B`, ember `#FF6A3D` only as action marker, AA text tokens) and the Fonts API self-hosts Sora + Inter Tight (Outfit/DM Sans removed); no violet `#6C4CFF` remains; header/footer keep the new logo lockup and favicon.
+  2. Sections match the winning sketch: centered hero under a static gradient aurora (no `filter: blur`) with the verifiable proof line, services as a typographic list, honest bento (1 real case + labelled scope examples + invite card, mocks with realistic content), method on a light line, About with the real colored photo, contact with "what happens next" + channels (`contato@agenciadmarques.com.br`, WhatsApp, `@agenciadmarques`) + glass form; no eyebrow labels, no template stat strip, sticky glass header, mobile WhatsApp shortcut.
+  3. Copy uses "nós" everywhere with the single CTA "Pedir orçamento", lay language, and only claims already published (FAQ/case); content stays in Content Collections.
+  4. Motion follows the sketch thesis with hand-rolled CSS + IntersectionObserver (no animation library, no scroll-jacking/pinning): hero aurora ignite + word-by-word focus reveal, distinct per-section reveals, scroll-driven method line, clip-path photo reveal, browser mocks running only when visible; everything visible without JS; `prefers-reduced-motion` reduces to short fades. The Phase 4 particle canvas is retired in favor of the aurora.
+  5. Lighthouse mobile stays >=95 in all four categories (TBT <200 ms, CLS <0.05), no horizontal overflow at 360–1440px, tap targets >=44px, inline-style gate still passes, `/impeccable polish` pass done before close, and the SEC-07 checklist run passes with no open High finding.
+
+**Plans**: TBD
+**UI hint**: yes
+
 ### Phase 5: Form Backend + Enhancement + LGPD
 
 **Goal**: The quote form works end-to-end to the founder's inbox with or without JavaScript, behind layered spam/abuse defenses, and ships in the same release as the Privacy Policy page and inline data-use notice.
-**Depends on**: Phase 3 (form markup), Phase 1 (env schema)
+**Depends on**: Phase 04.1 (redesigned form markup), Phase 3, Phase 1 (env schema)
 **Requirements**: FORM-01, FORM-02, FORM-03, FORM-04, FORM-05, FORM-06, FORM-07, FORM-08, FORM-09, FORM-10, FORM-11, FORM-12, FORM-13, LGPD-01, LGPD-02, LGPD-03, LGPD-04, LGPD-05, LGPD-06, LGPD-07, SEC-08, SEC-09
 **Success Criteria** (what must be TRUE):
 
@@ -273,7 +291,7 @@ Plans:
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
+Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 4.1 -> 5 -> 6 -> 7
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
@@ -281,6 +299,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | 2. Content Collections | 4/4 | Complete   | 2026-09-15 |
 | 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 9/9 | Complete   | 2026-09-17 |
 | 4. Progressive-Enhancement Effects | 4/4 | Complete   | 2026-09-17 |
+| 4.1. Redesign Aurora técnica (INSERTED) | 0/TBD | Not started | - |
 | 5. Form Backend + Enhancement + LGPD | 0/TBD | Not started | - |
 | 6. SEO / Metadata / Structured Data | 0/TBD | Not started | - |
 | 7. Security Headers Finalize | 0/TBD | Not started | - |

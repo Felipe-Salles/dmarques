@@ -3,29 +3,29 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Phase 5 context gathered
-last_updated: "2026-09-25T01:06:19.972Z"
-last_activity: 2026-09-17
+stopped_at: Sketch 001 wrap-up; Phase 04.1 inserted (Redesign Aurora técnica)
+last_updated: "2026-10-15T05:23:25.282Z"
+last_activity: "2026-10-15 - Completed quick task 261015-2ks: Instagram @agenciadmarques"
 progress:
-  total_phases: 7
+  total_phases: 8
   completed_phases: 4
   total_plans: 25
   completed_plans: 25
-  percent: 57
+  percent: 50
 ---
 
 # Project State
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-09-05)
+See: .planning/PROJECT.md (updated 2026-10-15)
 
 **Core value:** Um visitante entende em segundos o que a Dmarques faz, confia na agência e pede um orçamento — com um site que carrega rápido e nunca sai do ar.
-**Current focus:** Phase 5 — form backend + enhancement + lgpd
+**Current focus:** Phase 04.1 — Redesign Aurora técnica (direção validada no sketch 001-A)
 
 ## Current Position
 
-Phase: 5
+Phase: 04.1
 Plan: Not started
 Status: Ready to plan
 Last activity: 2026-10-15 - Completed quick task 261015-2ks: Instagram @agenciadmarques
@@ -80,6 +80,10 @@ Progress: [██████████] 100%
 
 ## Accumulated Context
 
+### Roadmap Evolution
+
+- Phase 04.1 inserted after Phase 4: Redesign Aurora técnica — direção validada no sketch 001 (variante A), antes da Fase 5 para o formulário ser ligado já no markup novo
+
 ### Decisions
 
 Decisions are logged in PROJECT.md Key Decisions table.
@@ -130,6 +134,13 @@ Relevant to current work:
 - [Phase ?]: [Phase 04 / 04-03]: particles.ts uses ctx.globalAlpha for the connection-line fade (not per-line rgba() string concat + toFixed) and Math.sqrt(dx*dx+dy*dy) over Math.hypot in the O(n2) loop, per plan-locked TBT-discipline instructions
 - [Phase ?]: [Phase 04 / 04-03]: single syncLoop() gate routes IntersectionObserver + visibilitychange through exactly one requestAnimationFrame id; reduced-motion checked once at init (never per-frame), draws a single static frame with no loop registered
 - [Phase 04]: [Phase 04 / 04-04]: Instrumented CDP measurement (headless Chrome, native WebSocket, scratchpad-only script) proved reveal fallback, dual-gate canvas pause, glow gating, DPR cap 1.5, and reduced-motion static frame all behave per spec — Opened PR #3 (phases/04-progressive-enhancement-effects) since 04-01..04-03's commits had never been pushed, getting a green CI lhci gate (Perf/A11y/BP>=0.95, TBT<200ms, CLS<0.05) against a real Vercel preview; Felipe approved the full checkpoint (aprovado, no reservations)
+- [Phase quick]: Logo nova aplicada (símbolo + logotipo em src/assets/brand/, lockup no header/footer via astro:assets; header <480px mostra só o símbolo com aria-label) e favicon .ico/.png/apple-touch gerado do símbolo sobre #0a0a12 — Identidade visual entregue pelo Felipe em 2026-10-14 (quick 261014-gfb)
+- [Phase quick]: Dados reais de contato: e-mail contato@agenciadmarques.com.br, Instagram @agenciadmarques, foto real do fundador em src/assets/founder/felipe-salles.png (Picture AVIF/WebP + fallback JPG) — Fornecidos pelo Felipe em 2026-10-15; substituem hotmail/Instagram pessoal/placeholder (quick 261015-2fr, 261015-2ks)
+- [Phase quick]: Dependências: astro 7.3.8, @astrojs/vercel 11.0.14, sharp 0.35.5 e override basic-ftp@<6.2.3 -> 6.2.3 em pnpm-workspace.yaml (get-uri ainda fixa ^5; caminho só de CI) — Zerar pnpm audit high/critical que voltou a falhar com advisories novos (quick 261014-gl5); remover override quando get-uri aceitar 6.x
+- [Phase 04.1]: Direção visual Aurora técnica (sketch 001, variante A) substitui o visual atual: fundo #070A14, aurora estática #00C8FF->#3A5BFF->#0E1E5B, ember #FF6A3D só como marcador de ação, Sora + Inter Tight (saem Outfit/DM Sans e o violeta #6C4CFF), seções sem template, bento honesto — Escolha do Felipe entre 6 propostas (UI UX Pro Max); polida via Impeccable critique (20/32) + polish; registrada na skill sketch-findings-dmarques
+- [Phase 04.1]: Voz nós (agência) em todo o site e CTA único Pedir orçamento; linguagem leiga e apenas claims já publicados (FAQ/case) — Decisão do Felipe na crítica Impeccable; consistência e confiança
+- [Phase 04.1]: Movimento: tese a aurora é a luz da página (acende e o conteúdo entra em foco); reveals distintos por seção, linha do método guiada pela rolagem; hand-rolled CSS+IO, sem lib, com fallback sem JS e reduced-motion. Canvas de partículas da Fase 4 será aposentado. Modo cinemático (hero fixado com auroras cruzando em X) testado e REJEITADO pelo Felipe — Impeccable animate; Felipe aprovou a rodada 3 e preferiu não usar o hero fixado
+- [Phase 04.1]: Redesign entra como Fase 04.1 antes da Fase 5; a Fase 5 passa a depender do markup do formulário redesenhado — Escolha do Felipe: evita refazer o markup do formulário duas vezes
 
 ### Open Decisions To Resolve Before Their Phase
 
@@ -170,6 +181,6 @@ yet.
 
 ## Session Continuity
 
-Last session: 2026-09-25T01:06:19.873Z
-Stopped at: Phase 5 context gathered
-Resume file: .planning/phases/05-form-backend-enhancement-lgpd/05-CONTEXT.md
+Last session: 2026-10-15T05:23:01.068Z
+Stopped at: Sketch 001 wrap-up; Phase 04.1 inserted (Redesign Aurora técnica)
+Resume file: .claude/skills/sketch-findings-dmarques/SKILL.md

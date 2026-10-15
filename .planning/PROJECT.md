@@ -126,13 +126,20 @@ um orçamento — com um site que carrega rápido e nunca sai do ar.
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
 | Astro em modo estático (SSG) | Pedido do cliente; HTML pré-renderado é o mais rápido e a menor superfície de ataque | — Pending |
-| Hero "03 Bleed" | Escolha explícita do cliente entre as 3 variantes do design | — Pending |
+| Hero "03 Bleed" | Escolha explícita do cliente entre as 3 variantes do design | ⚠️ Substituído (2026-10-15) pela direção Aurora técnica — hero centrado sob a aurora (Fase 04.1) |
 | Conteúdo em Markdown / Content Collections, sem CMS | Elimina painel administrativo como vetor de ataque; build 100% estático | — Pending |
 | Formulário via endpoint Astro na Vercel + Resend | Gratuito (3.000/mês), segredo fica no servidor, controle total de validação/rate-limit | — Pending |
 | Hospedagem na Vercel na v1 | Decisão do cliente; deploy imutável, HTTPS e headers automáticos | — Pending |
 | Cloudflare adiado para o milestone 2 | WAF, rate-limiting de borda e mitigação de DDoS/flood entram numa segunda etapa | — Pending |
 | Revisão de segurança ao fim de cada fase (`/gsd:secure-phase`) | Requisito explícito do cliente | — Pending |
 | Analytics sem cookies | Evita banner de consentimento e reduz exposição de dados pessoais (LGPD) | — Pending |
+| Logo nova (símbolo + logotipo) e favicon derivado do símbolo | Identidade visual entregue pelo Felipe; lockup aplicado via astro:assets | ✓ Aplicado 2026-10-14 (quick 261014-gfb) |
+| Contato real: contato@agenciadmarques.com.br, @agenciadmarques, foto real do fundador | Substitui e-mail/Instagram pessoais e placeholder — confiança na hora da conversão | ✓ Aplicado 2026-10-15 (quick 261015-2fr / 261015-2ks) |
+| Direção visual "Aurora técnica" (sketch 001, variante A) | Escolhida pelo Felipe entre 6 propostas: elegante tech, premium, nada genérico; paleta da logo (#070A14, aurora #00C8FF→#3A5BFF→#0E1E5B, ember #FF6A3D só como ação), Sora + Inter Tight; polida com Impeccable | — Pending (Fase 04.1) |
+| Voz "nós" e CTA único "Pedir orçamento" | Consistência; linguagem leiga e só claims já publicados (FAQ/case) | — Pending (Fase 04.1) |
+| Movimento "a luz acende" hand-rolled (CSS + IntersectionObserver) | Reveal ao rolar distinto por seção sem biblioteca; fallback sem JS e reduced-motion; canvas de partículas aposentado | — Pending (Fase 04.1) |
+| Sem hero fixado / scrollytelling (modo cinemático) | Testado no sketch e rejeitado pelo Felipe | ✓ Decidido 2026-10-15 |
+| Redesign como Fase 04.1, antes da Fase 5 | Formulário é ligado ao backend já no markup novo (evita retrabalho) | ✓ Decidido 2026-10-15 |
 
 ## Evolution
 

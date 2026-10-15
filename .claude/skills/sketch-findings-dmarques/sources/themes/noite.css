@@ -1,0 +1,9 @@
+@import url('default.css');
+
+:root {
+  --color-bg: #04060c;
+  --aurora-opacity: 0.45;
+  --color-border: rgba(148, 170, 255, 0.09);
+  --grain-opacity: 0.1;
+  --blur-glass: 12px;
+}

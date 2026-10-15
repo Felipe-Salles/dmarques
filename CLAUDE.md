@@ -52,7 +52,7 @@ um orçamento — com um site que carrega rápido e nunca sai do ar.
 | **@astrojs/vercel** | `11.x` (peer `astro@^7`) | Vercel adapter | Required so a single route can opt out of prerendering (`export const prerender = false`) and deploy as a Vercel Function for the form. Also wires up `Astro.csp` header emission and Vercel-native route caching. Keep `output: 'static'` so *only* the form route is dynamic. |
 | **@astrojs/sitemap** | `3.7.x` | `sitemap.xml` + `sitemap-index.xml` at build | Official integration, zero-config with `site` set. Feeds the SEO requirement. `robots.txt` is a static file in `public/`. |
 | **astro:assets + Sharp** | Sharp `0.35.x` (bundled dep) | Build-time image optimization (`<Image>`, `<Picture>`), AVIF/WebP, responsive `srcset` | Built into Astro. Optimizes the 3D render + founder photo at **build time** → files ship as immutable static assets. Do **not** enable Vercel Image Optimization (`imageService: true`) for v1: it adds runtime cost, a third-party image origin to CSP, and defeats "100% static". Few, known-at-build-time images = Sharp is the right call. |
-| **Astro Fonts API** | built into Astro 7 (stable since 6.0) | Self-host **Outfit** + **DM Sans**, generate size-adjusted fallbacks, emit `preload` | `experimental.fonts` graduated to stable `fonts` in Astro 6. Downloads/caches font files at build, serves them same-origin. Removes Google Fonts CDN → faster LCP, no `fonts.googleapis.com`/`fonts.gstatic.com` in CSP, LGPD-cleaner (no third-party request carrying visitor IP). Use `provider: fontProviders.fontsource()`. |
+| **Astro Fonts API** | built into Astro 7 (stable since 6.0) | Self-host **Outfit** + **DM Sans** hoje; a Fase 04.1 (Aurora) troca para **Sora** + **Inter Tight**. Generate size-adjusted fallbacks, emit `preload` | `experimental.fonts` graduated to stable `fonts` in Astro 6. Downloads/caches font files at build, serves them same-origin. Removes Google Fonts CDN → faster LCP, no `fonts.googleapis.com`/`fonts.gstatic.com` in CSP, LGPD-cleaner (no third-party request carrying visitor IP). Use `provider: fontProviders.fontsource()`. |
 | **Node.js** | `24.x` on Vercel (min `22.12`) | Build + serverless runtime | Vercel's default LTS in 2026 (Node 20 disabled Oct 1 2026). Astro 7 engines require `node >=22.12.0`. Pin via `"engines"` in `package.json` and the Vercel project setting. |
 ### Supporting Libraries
 | Library | Version | Purpose | When to Use |
@@ -182,7 +182,7 @@ Architecture not yet mapped. Follow existing patterns found in the codebase.
 <!-- GSD:skills-start source:skills/ -->
 ## Project Skills
 
-No project skills found. Add skills to any of: `.claude/skills/`, `.agents/skills/`, `.cursor/skills/`, `.github/skills/`, or `.codex/skills/` with a `SKILL.md` index file.
+- **Sketch findings for dmarques** (design decisions, CSS patterns, visual direction "Aurora técnica") → `Skill("sketch-findings-dmarques")`
 <!-- GSD:skills-end -->
 
 <!-- GSD:workflow-start source:GSD defaults -->
