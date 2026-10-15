@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Phase 04.1 UI-SPEC approved
-last_updated: "2026-10-15T08:49:40.129Z"
+stopped_at: Completed 04.1-09-PLAN.md
+last_updated: "2026-10-15T08:53:14.676Z"
 last_activity: 2026-10-15
 progress:
   total_phases: 8
   completed_phases: 4
   total_plans: 36
-  completed_plans: 33
+  completed_plans: 34
   percent: 50
 ---
 
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-10-15)
 ## Current Position
 
 Phase: 04.1 (redesign-aurora-tecnica) — EXECUTING
-Plan: 9 of 11
+Plan: 10 of 11
 Status: Ready to execute
 Last activity: 2026-10-15
 
-Progress: [█████████░] 92%
+Progress: [█████████░] 94%
 
 ## Performance Metrics
 
@@ -83,6 +83,7 @@ Progress: [█████████░] 92%
 | Phase 04.1 P06 | 20min | 3 tasks | 7 files |
 | Phase 04.1 P07 | 20min | 3 tasks | 3 files |
 | Phase 04.1 P08 | 20min | 3 tasks | 5 files |
+| Phase 04.1 P09 | 15min | 3 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -152,6 +153,7 @@ Relevant to current work:
 - [Phase 04.1]: CTA do header sempre visível; logotipo oculto abaixo de 480px de container
 - [Phase 04.1]: Metodo: estado apagado sem opacity em texto (cor faint) para contraste AA
 - [Phase 04.1]: Form do contato sem JS: estados err/sending/done e aria-invalid prontos em CSS para a Fase 5
+- [Phase 04.1]: Seta do card destaque e span aria-hidden (sem pagina de detalhe, D-08); rolagem dos mocks via scrollsite com 100cqh em .screen container-type size
 
 ### Open Decisions To Resolve Before Their Phase
 
@@ -192,6 +194,6 @@ yet.
 
 ## Session Continuity
 
-Last session: 2026-10-15T08:49:40.020Z
-Stopped at: Phase 04.1 UI-SPEC approved
+Last session: 2026-10-15T08:53:14.621Z
+Stopped at: Completed 04.1-09-PLAN.md
 Resume file: None
