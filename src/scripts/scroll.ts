@@ -25,14 +25,11 @@ export function initScroll(reduced: boolean): void {
     }
   };
 
-  addEventListener(
-    'scroll',
-    () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(frame);
-    },
-    { passive: true },
-  );
+  const onScroll = (): void => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(frame);
+  };
+  addEventListener('scroll', onScroll, { passive: true });
   frame();
 }
