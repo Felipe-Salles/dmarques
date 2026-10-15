@@ -220,6 +220,9 @@ const checks = {
         fails.push(`campo ausente: ${name}`);
       }
     }
+    const formTag = html.match(/<form\b[^>]*id="form-orcamento"[^>]*>/i)?.[0] ?? '';
+    if (!formTag) fails.push('form-orcamento ausente');
+    else if (!/\smethod="post"/i.test(formTag)) fails.push('form sem method="post"');
     if (!/\saria-live=/i.test(html)) fails.push('sem aria-live');
     if (/<select/i.test(html)) fails.push('contem select');
     return fails;
