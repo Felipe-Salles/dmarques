@@ -88,7 +88,6 @@ const prefix = Astro.url.pathname === '/' ? '' : '/';
     justify-content: space-between;
     gap: 16px;
     height: 84px;
-    transition: height 0.4s var(--ease-out);
   }
 
   .site-header:global(.scrolled) {
@@ -98,8 +97,8 @@ const prefix = Astro.url.pathname === '/' ? '' : '/';
     border-bottom-color: var(--color-border);
   }
 
-  .site-header:global(.scrolled) .header-inner {
-    height: 68px;
+  .site-header:global(.scrolled) .lockup :global(img) {
+    transform: scale(0.88);
   }
 
   @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
@@ -120,6 +119,8 @@ const prefix = Astro.url.pathname === '/' ? '' : '/';
     display: block;
     width: auto;
     height: 30px;
+    transform-origin: left center;
+    transition: transform 0.4s var(--ease-out);
   }
 
   .nav-desktop {
