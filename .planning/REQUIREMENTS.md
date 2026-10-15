@@ -303,7 +303,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 - [x] **AUR-05**: Hero centrado com aurora estática (3 radial-gradients, sem `filter:blur`), H1 em `.accent`, CTAs e linha de prova com link PageSpeed
 - [x] **AUR-06**: Serviços (lista tipográfica com hairlines, intro sticky), Método (linha de luz, ol), Sobre (foto real 4:5 + diferenciais 2 col) conforme sketch
 - [x] **AUR-07**: Seção Projetos: bento 6 col, 1 caso real + exemplos rotulados "Exemplo de escopo" + card-convite; mocks HTML/CSS sem métricas inventadas; schema `cases` com união discriminada
-- [ ] **AUR-08**: Contato: "o que acontece depois", canais (e-mail, WhatsApp, Instagram), formulário de vidro com 5 campos, chips radio, todos os estados em CSS, live region sr-only, sem JS de form
+- [x] **AUR-08**: Contato: "o que acontece depois", canais (e-mail, WhatsApp, Instagram), formulário de vidro com 5 campos, chips radio, todos os estados em CSS, live region sr-only, sem JS de form
 - [x] **AUR-09**: Header sticky com vidro ao rolar, nav ativa por IO, menu `<details>`, WhatsApp flutuante ≤900px, footer conforme sketch
 - [x] **AUR-10**: Copy em "nós", CTA único "Pedir orçamento", linguagem leiga, apenas claims já publicados; conteúdo em Collections; zero termos LCP/TBT/CLS/CSP no HTML construído
 - [x] **AUR-11**: Motion "a luz acende" hand-rolled (CSS+IO+1 scroll rAF): aurora acende, H1 palavra a palavra, reveals distintos por seção, linha do método por scroll, foto por clip-path, mocks/browser só rodam visíveis; sem lib, sem scroll-jacking
@@ -311,7 +311,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 - [x] **AUR-13**: Canvas de partículas, glow de cursor e `.hero-glow` removidos (ANIM-03/04/05 reescritos); `pnpm test` passa sem `particles.pure.test.mjs`
 - [ ] **AUR-14**: Lighthouse mobile ≥95 nas 4 categorias, LCP ≤2,5 s, TBT <200 ms, CLS <0,05; JS da rota ≤20 KB gz
 - [ ] **AUR-15**: Sem overflow horizontal em 360–1440 px; tap targets ≥44 px (botões/inputs ≥48); foco visível; gate `style=` e `security-check.sh --ci` verdes
-- [ ] **AUR-16**: Páginas `/obrigado`, `/404`, `/politica-de-privacidade` com header/footer/tokens/aurora estática pequena, sem motion da home
+- [x] **AUR-16**: Páginas `/obrigado`, `/404`, `/politica-de-privacidade` com header/footer/tokens/aurora estática pequena, sem motion da home
 - [x] **AUR-17**: REQUIREMENTS/ROADMAP atualizados: SEO-07 e CONTENT-04 removidos/reescritos (Fase 6 sem FAQPage), CONTENT-03 com novo enum, ANIM-03/04/05 reescritos (D-02)
 - [ ] **AUR-18**: `/impeccable polish` e checklist SEC-07 executados sem High aberto antes do fechamento
 
@@ -411,7 +411,7 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | AUR-05 | Phase 04.1 | Complete |
 | AUR-06 | Phase 04.1 | Complete |
 | AUR-07 | Phase 04.1 | Complete |
-| AUR-08 | Phase 04.1 | Pending |
+| AUR-08 | Phase 04.1 | Complete |
 | AUR-09 | Phase 04.1 | Complete |
 | AUR-10 | Phase 04.1 | Complete |
 | AUR-11 | Phase 04.1 | Complete |
@@ -419,7 +419,7 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | AUR-13 | Phase 04.1 | Complete |
 | AUR-14 | Phase 04.1 | Pending |
 | AUR-15 | Phase 04.1 | Pending |
-| AUR-16 | Phase 04.1 | Pending |
+| AUR-16 | Phase 04.1 | Complete |
 | AUR-17 | Phase 04.1 | Complete |
 | AUR-18 | Phase 04.1 | Pending |
 
