@@ -89,7 +89,7 @@ Pesos declarados: **400 e 600**. H3 da política não existe (subitens viram lis
 | Secundário 30% | `--color-surface` (vidro), `--color-border` | card do form, divisores da política, índice |
 | Acento ciano `#00C8FF` | foco de campo (borda + ring 3px), focus ring global, sublinhado de links da política, `::selection` | nunca em texto corrido |
 | Ember `#FF6A3D` | ícone do botão WhatsApp de fallback; borda `rgba(255,106,61,.45)` e fundo `rgba(255,106,61,.06)` do `.alert` | nada além disso |
-| Erro | borda do campo `--color-danger` `#FF5D6C`; texto `--color-danger-text` `#FF8F9A` (≈7:1 sobre `#070A14`) | só campos inválidos e `.msg-contato` |
+| Erro | borda do campo `--color-danger` `#FF5D6C`; texto `--color-danger-text` `#FF8F9A` (≈7:1 sobre `#070A14`) | só campos inválidos |
 | Sucesso | `--color-success` `#3DDC97`, fundo `rgba(61,220,151,.12)`, borda `.35` | só o ✓ do painel de sucesso |
 
 Sem ícone no erro: texto na cor de erro + borda + `aria-invalid` + `aria-describedby` cobrem WCAG 1.4.1.
@@ -115,11 +115,27 @@ Acento reservado a: foco, links da política, `::selection`. Ember reservado a: 
 
 ## Formulário — máquina de estados (JS enhancer)
 
-Estados no `form#form-orcamento` via classes/atributos (sem `style=""`): idle (padrão), `.sending`, `.done`, `.err-contato` (existente), `.failed` (novo), `.limited` (novo). Visibilidade só por classes e `hidden`.
+Estados no `form#form-orcamento` via classes/atributos (sem `style=""`): idle (padrão), `.sending`, `.done`, `.failed` (novo), `.limited` (novo). `.err-contato` e `#erro-contato` deixam de existir (D-28). Visibilidade só por classes, `hidden` e `:has()` do seletor de canal.
+
+### Seletor de canal (D-28)
+
+Substitui os dois campos WhatsApp + E-mail e a nota "Preencha WhatsApp ou e-mail." (removida).
+
+| Item | Contrato |
+|------|----------|
+| Estrutura | `<fieldset class="field canal">` com `<legend>Prefiro contato por</legend>` e dois rádios reais `name="canal"` (`value="whatsapp"` com `checked`, `value="email"`), com o mesmo visual de pílula do `ProjectTypeChips` (componente compartilhado `ChipGroup.astro`) |
+| Layout | legenda e pílulas na mesma linha (legenda flutuada, pílulas 44px), quebrando em telas estreitas; o campo de contato vem logo abaixo |
+| Campo WhatsApp | `<div class="field contato contato-wa">`, `input#whatsapp name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="(16) 99999-9999"`, rótulo "WhatsApp" |
+| Campo E-mail | `<div class="field contato contato-email">`, `input#email name="email" type="email" inputmode="email" autocomplete="email" maxlength="120" placeholder="voce@empresa.com.br"`, rótulo "E-mail" |
+| Rótulo do campo | `<label class="sr-only">` (nome acessível "WhatsApp"/"E-mail"); a pílula marcada é o rótulo visível. Mantém a altura do card proporcional ao sketch |
+| Alternância sem JS | CSS `.form:has(input[name='canal'][value='whatsapp']:checked) .contato-email` e `.form:has(input[name='canal'][value='email']:checked) .contato-wa` com `display:none`. Nenhum dos dois inputs tem `required` |
+| Alternância com JS | no `change` do rádio e no init: o campo oculto recebe `disabled` (não valida, não é enviado) e perde `aria-invalid`/`.err`; o visível fica habilitado. O foco permanece no rádio (setas continuam navegando no grupo); o próximo Tab chega ao campo visível |
+| Fallback | navegador sem `:has()` mostra os dois campos (aceito, D-28); sem JS o campo oculto vai vazio e o servidor o descarta |
+| Altura | card do formulário a 1440px ≤ altura do `#quoteForm` do sketch + 40px (gate `scripts/verify/form-card-height.mjs`) |
 
 ### Sem JS (baseline)
 
-- `<form method="post" action="/api/orcamento">` navega nativamente; sucesso = 303 para `/obrigado`; falha = `/erro-envio?motivo=...`. `required` e `type="email"` nativos validam.
+- `<form method="post" action="/api/orcamento">` navega nativamente; sucesso = 303 para `/obrigado`; falha = `/erro-envio?motivo=...`. `required` nativo vale só no nome; os campos de contato não têm `required` (o servidor exige o do canal escolhido).
 - O parágrafo `#form-pendente` e o `preventDefault` atual em `src/scripts/form.ts` são **removidos**.
 - `.msg` permanece `display:none` sem JS.
 
@@ -128,12 +144,12 @@ Estados no `form#form-orcamento` via classes/atributos (sem `style=""`): idle (p
 | Regra | Contrato |
 |-------|----------|
 | Quando validar | `blur` apenas se o campo tem valor; no `submit` valida todos; depois do primeiro erro, revalida no `input` |
-| Marcação | input com `aria-invalid="true"` e `aria-describedby` incluindo `erro-{campo}` (WhatsApp e e-mail mantêm também `contato-nota-obrigatorio`); `.field` ganha `.err` |
+| Marcação | input visível com `aria-invalid="true"` e `aria-describedby` incluindo `erro-{campo}`; `.field` ganha `.err`. O campo do canal oculto nunca é marcado |
 | Remoção | ao corrigir: remove `aria-invalid` e `.err`; restaura `aria-describedby` original |
 | Mensagem | `<span class="msg" id="erro-*">` sempre no DOM; alternância só por CSS. Sem `role="alert"` por campo (o resumo vai pela região live) |
-| Regra cruzada | no submit, se WhatsApp e e-mail vazios: `form.err-contato` mostra `#erro-contato` e marca os dois inputs `aria-invalid="true"` |
+| Regra de canal (D-28) | só o campo do canal marcado é obrigatório e validado (WhatsApp normalizável ou e-mail completo); o outro é ignorado. Canal ausente/desconhecido no cliente vira `whatsapp` |
 | Formatação WhatsApp (D-20) | sem máscara viva; no `blur`, se parseável (10-11 dígitos após remover +55/0), reescreve como `(16) 99611-1785` ou `(16) 9611-1785`; senão mostra erro |
-| Foco | no submit com erros, `focus()` no primeiro input inválido na ordem do DOM (para `.msg-contato`, o input de WhatsApp); `scrollIntoView({block:'center', behavior:'auto'})` |
+| Foco | no submit com erros, `focus()` no primeiro input inválido na ordem do DOM (nome, campo de contato visível, mensagem); `scrollIntoView({block:'center', behavior:'auto'})` |
 | Anúncio | `#form-status` (`aria-live="polite"`, sr-only, sempre renderizado): "Há N campos para corrigir." / "Há 1 campo para corrigir." |
 
 Mensagens de erro:
@@ -141,9 +157,8 @@ Mensagens de erro:
 | Campo | Copy |
 |-------|------|
 | Nome | Informe seu nome para sabermos com quem falamos. |
-| WhatsApp | Use DDD + número, ex.: (16) 99611-1785. |
-| E-mail | Use um e-mail completo, ex.: nome@empresa.com.br. |
-| Contato | Preencha WhatsApp ou e-mail para podermos responder. |
+| WhatsApp (vazio ou inválido, canal WhatsApp) | Informe seu WhatsApp com DDD, ex.: (16) 99611-1785. |
+| E-mail (vazio ou inválido, canal E-mail) | Informe um e-mail completo, ex.: nome@empresa.com.br. |
 | Mensagem (>1000) | A mensagem passou de 1000 caracteres. Resuma em poucas linhas. |
 
 ### Enviando (`.sending`)
@@ -223,7 +238,7 @@ Mesma composição de `/obrigado`. `?motivo=limite|invalido|falha` em allow-list
 | Motivo | H1 | Lead | Ações |
 |--------|----|------|-------|
 | `limite` | Recebemos muitos pedidos em pouco tempo. | Para não perder o seu, fale com a gente direto pelo WhatsApp. Respondemos no mesmo dia útil. | WhatsApp (primário) + "Voltar ao formulário" (ghost, `/#contato`) |
-| `invalido` | Faltou preencher algo. | Volte ao formulário e confira seu nome e um contato (WhatsApp ou e-mail). | "Voltar ao formulário" (primário) + WhatsApp (ghost) |
+| `invalido` | Faltou preencher algo. | Volte ao formulário e confira seu nome e o contato do canal escolhido (WhatsApp ou e-mail). | "Voltar ao formulário" (primário) + WhatsApp (ghost) |
 | `falha` | Não conseguimos enviar agora. | Tente de novo em instantes ou fale com a gente pelo WhatsApp. | WhatsApp (primário) + "Voltar ao formulário" (ghost) |
 
 ---
@@ -290,6 +305,7 @@ Transições permitidas: transform, opacity, box-shadow, border-color, color, �
 | Elemento | Copy |
 |----------|------|
 | CTA primário (título do form) | Pedir orçamento |
+| Seletor de canal (D-28) | legenda "Prefiro contato por"; pílulas "WhatsApp" e "E-mail" |
 | Submit | Enviar pedido de orçamento |
 | Submit enviando | Enviando… |
 | Submit após 429 | Tente novamente em alguns minutos |
@@ -312,7 +328,8 @@ Voz "nós". Na política, "Quem somos" nomeia Felipe Salles como controlador (D-
 
 ## Acessibilidade (checklist verificável)
 
-- [ ] Todo erro de campo: texto + borda + `aria-invalid="true"` + `aria-describedby`.
+- [ ] Todo erro de campo: texto + borda + `aria-invalid="true"` + `aria-describedby` (no campo de contato visível).
+- [ ] Seletor de canal (D-28): `fieldset` + `legend` "Prefiro contato por", rádios nativos navegáveis por setas, foco visível na pílula, campo oculto `disabled` com JS.
 - [ ] `#form-status` sempre no DOM, `aria-live="polite"`, sr-only; limpar antes de definir texto.
 - [ ] Foco: primeiro campo inválido; `#ok-title` no sucesso; título do alert em falha/429.
 - [ ] Botão desabilitado em voo com `aria-disabled` e guarda no handler.
@@ -335,6 +352,8 @@ Voz "nós". Na política, "Quem somos" nomeia Felipe Salles como controlador (D-
 | 5 | Índice da política sem sticky e sem JS | simplicidade e Lighthouse |
 | 6 | Tabela em wrapper rolável | evita reflow complexo no mobile |
 | 7 | Link de serviço sem ember | ember já usado na tela |
+| 8 | Rótulo do campo de contato só para leitor de tela; a pílula marcada é o rótulo visível | D-28: manter a altura do card proporcional ao sketch (≤ +40px a 1440px) |
+| 9 | Sem mover o foco ao trocar de canal | preserva a navegação por setas no grupo de rádios |
 
 ---
 

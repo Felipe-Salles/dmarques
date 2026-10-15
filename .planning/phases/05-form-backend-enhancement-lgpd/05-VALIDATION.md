@@ -38,8 +38,10 @@ created: 2026-10-15
 
 | Req ID | Behavior | Test Type | Automated Command | File Exists | Status |
 |--------|----------|-----------|-------------------|-------------|--------|
-| FORM-04 | nome 2–80, contato obrigatório, enum, msg ≤1000 | unit | `node --test src/lib/form-schema.test.mjs` | ❌ W0 | ⬜ pending |
-| FORM-05 | cliente e servidor concordam (mesma tabela de casos) | unit | `node --test src/lib/form-schema.test.mjs` | ❌ W0 | ⬜ pending |
+| FORM-04 | nome 2–80, `canal` ∈ {whatsapp,email} obrigatório, só o contato do canal escolhido é exigido e o outro é descartado (D-28), enum, msg ≤1000 | unit | `node --test src/lib/form-schema.test.mjs src/lib/form-schema.server.test.mjs` | ❌ W0 | ⬜ pending |
+| FORM-05 | cliente e servidor concordam (mesma tabela de casos, incluindo canal=whatsapp/email válidos e inválidos; canal ausente/desconhecido = erro no servidor, `whatsapp` no cliente) | unit | `node --test src/lib/form-schema.server.test.mjs` | ❌ W0 | ⬜ pending |
+| FORM-01/05 (D-28) | seletor de canal: padrão WhatsApp, troca com JS, troca sem JS só por CSS, envio só do canal escolhido | e2e (`page.route`) | `node scripts/verify/form-gates.mjs` | ❌ W0 | ⬜ pending |
+| FORM-01 (D-28) | altura do card a 1440px ≤ sketch + 40px | e2e | `node scripts/verify/form-card-height.mjs` | ❌ W0 | ⬜ pending |
 | FORM-07 | honeypot e elapsed-ms fora de 3 s/24 h → sucesso falso, 0 envios; ausente tolerado (D-27) | unit | `node --test src/lib/submit.test.mjs` | ❌ W0 | ⬜ pending |
 | FORM-08 | ordem ip→hora→dia, fail-closed, `reason:'timeout'` | unit (fakes) | `node --test src/lib/submit.test.mjs` | ❌ W0 | ⬜ pending |
 | FORM-09 | escape HTML, CR/LF no assunto, `text` presente, replyTo condicional | unit | `node --test src/lib/mail.test.mjs` | ❌ W0 | ⬜ pending |
@@ -64,6 +66,7 @@ created: 2026-10-15
 
 - [ ] `src/lib/form-schema.test.mjs`, `submit.test.mjs`, `mail.test.mjs`, `request-guards.test.mjs`, `rate-limit.test.mjs`
 - [ ] `scripts/verify/form-gates.mjs` (reaproveita `static-server.mjs`)
+- [ ] `scripts/verify/form-card-height.mjs` (D-28, criado no 05-07)
 - [ ] Ajustar glob do script `test` em `package.json`
 - [ ] Novos itens em `scripts/security-check.sh`: Functions `== 1`; grep de `console\.` em `src/pages/api` e `src/lib`; varredura de `UPSTASH|KV_REST|RATE_LIMIT_SALT` no build estático
 - [ ] Instalação de `resend`, `zod`, `@upstash/ratelimit`, `@upstash/redis`

@@ -99,18 +99,22 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 
 ### Formulário de Orçamento (FORM)
 
-- [ ] **FORM-01**: Formulário "Pedir orçamento" com campos Nome, WhatsApp,
-  E-mail, Tipo de projeto e Mensagem; ao menos um entre WhatsApp e e-mail é
-  obrigatório
+- [ ] **FORM-01**: Formulário "Pedir orçamento" com campos Nome, canal preferido
+  (WhatsApp ou E-mail) com um campo de contato, Tipo de projeto e Mensagem; o
+  contato do canal escolhido é obrigatório
+  - Nota (Fase 5 D-28, Felipe 2026-10-15): seletor "Prefiro contato por"
+    (WhatsApp | E-mail, WhatsApp por padrão) acima de um único campo de contato
+    visível; funciona sem JS com rádios `canal` + CSS `:has()`.
 - [ ] **FORM-02**: `<form method="POST" action="/api/orcamento">` funciona sem
   JavaScript — envio nativo redireciona (303) para `/obrigado`
 - [ ] **FORM-03**: Island de progressive enhancement faz `fetch` com
   `preventDefault`, mostra estados idle / enviando / sucesso / erro inline,
   preserva o que foi digitado em caso de erro e desabilita o submit durante o
   envio
-- [ ] **FORM-04**: Validação server-side com Zod (nome 2–80 chars, telefone ou
-  e-mail bem-formados, tipo ∈ enum, mensagem ≤ 2000 chars) — servidor é a fonte
-  da verdade
+- [ ] **FORM-04**: Validação server-side com Zod (nome 2–80 chars, canal ∈
+  {whatsapp, email} obrigatório e o contato do canal escolhido bem-formado, tipo
+  ∈ enum, mensagem ≤ 2000 chars) — servidor é a fonte da verdade
+  - Nota (Fase 5 D-28): o campo do canal não escolhido é descartado e nunca usado.
 - [ ] **FORM-05**: Validação client-side inline (no blur / no submit, nunca a cada
   tecla) espelhando o schema, sem bloquear o submit
 - [ ] **FORM-06**: Mensagens de erro e status acessíveis — texto (não só cor),
