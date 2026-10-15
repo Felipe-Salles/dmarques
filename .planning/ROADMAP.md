@@ -248,7 +248,7 @@ Plans:
 - [x] 04.1-04-PLAN.md — conteúdo de projetos: cases com união discriminada, 3 exemplos de escopo, coleção faq removida (D-02)
 - [x] 04.1-05-PLAN.md — copy de services/process/differentiators na voz "nós" (frase do Método com fonte única no ProcessSection)
 - [x] 04.1-06-PLAN.md — header de vidro, footer + WhatsApp flutuante, hero Aurora (alvos ≥44/48 px), favicon.ico/png sobre #070A14
-- [ ] 04.1-07-PLAN.md — Serviços (lista tipográfica), Método (linha de luz, estado apagado AA), Sobre (foto clip-path + diferenciais)
+- [x] 04.1-07-PLAN.md — Serviços (lista tipográfica), Método (linha de luz, estado apagado AA), Sobre (foto clip-path + diferenciais)
 - [ ] 04.1-08-PLAN.md — Contato com 3 canais (e-mail, WhatsApp, Instagram) e form de vidro (5 campos, chips radio, estados em CSS) e páginas secundárias
 - [ ] 04.1-09-PLAN.md — seção Projetos (bento honesto, mocks HTML/CSS, tilt) na ordem final da home
 - [ ] 04.1-10-PLAN.md — suíte completa de gates contra o build (checklist C1-C12, lhci local cedo) e pass /impeccable polish
@@ -312,7 +312,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 4.1 -> 5 -> 6 -> 7
 | 2. Content Collections | 4/4 | Complete   | 2026-09-15 |
 | 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 9/9 | Complete   | 2026-09-17 |
 | 4. Progressive-Enhancement Effects | 4/4 | Complete   | 2026-09-17 |
-| 4.1. Redesign Aurora técnica (INSERTED) | 6/11 | In Progress|  |
+| 4.1. Redesign Aurora técnica (INSERTED) | 7/11 | In Progress|  |
 | 5. Form Backend + Enhancement + LGPD | 0/TBD | Not started | - |
 | 6. SEO / Metadata / Structured Data | 0/TBD | Not started | - |
 | 7. Security Headers Finalize | 0/TBD | Not started | - |

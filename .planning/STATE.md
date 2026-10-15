@@ -4,13 +4,13 @@ milestone: v1.0
 milestone_name: milestone
 status: executing
 stopped_at: Phase 04.1 UI-SPEC approved
-last_updated: "2026-10-15T08:44:56.256Z"
+last_updated: "2026-10-15T08:47:31.708Z"
 last_activity: 2026-10-15
 progress:
   total_phases: 8
   completed_phases: 4
   total_plans: 36
-  completed_plans: 31
+  completed_plans: 32
   percent: 50
 ---
 
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-10-15)
 ## Current Position
 
 Phase: 04.1 (redesign-aurora-tecnica) — EXECUTING
-Plan: 7 of 11
+Plan: 8 of 11
 Status: Ready to execute
 Last activity: 2026-10-15
 
-Progress: [█████████░] 86%
+Progress: [█████████░] 89%
 
 ## Performance Metrics
 
@@ -81,6 +81,7 @@ Progress: [█████████░] 86%
 | Phase 04.1 P04 | 10min | 2 tasks | 12 files |
 | Phase 04.1 P05 | 5min | 2 tasks | 5 files |
 | Phase 04.1 P06 | 20min | 3 tasks | 7 files |
+| Phase 04.1 P07 | 20min | 3 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -148,6 +149,7 @@ Relevant to current work:
 - [Phase 04.1]: 04.1-04: cases usa z.discriminatedUnion('rotulo'); faq removida
 - [Phase 04.1]: Frase 'Nada é cobrado...' só na legenda .here do ProcessSection
 - [Phase 04.1]: CTA do header sempre visível; logotipo oculto abaixo de 480px de container
+- [Phase 04.1]: Metodo: estado apagado sem opacity em texto (cor faint) para contraste AA
 
 ### Open Decisions To Resolve Before Their Phase
 
@@ -188,6 +190,6 @@ yet.
 
 ## Session Continuity
 
-Last session: 2026-10-15T08:44:56.199Z
+Last session: 2026-10-15T08:47:31.612Z
 Stopped at: Phase 04.1 UI-SPEC approved
 Resume file: None
