@@ -4,13 +4,13 @@ milestone: v1.0
 milestone_name: milestone
 status: executing
 stopped_at: Phase 04.1 UI-SPEC approved
-last_updated: "2026-10-15T08:41:24.850Z"
+last_updated: "2026-10-15T08:42:25.117Z"
 last_activity: 2026-10-15
 progress:
   total_phases: 8
   completed_phases: 4
   total_plans: 36
-  completed_plans: 29
+  completed_plans: 30
   percent: 50
 ---
 
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-10-15)
 ## Current Position
 
 Phase: 04.1 (redesign-aurora-tecnica) — EXECUTING
-Plan: 5 of 11
+Plan: 6 of 11
 Status: Ready to execute
 Last activity: 2026-10-15
 
-Progress: [████████░░] 81%
+Progress: [████████░░] 83%
 
 ## Performance Metrics
 
@@ -79,6 +79,7 @@ Progress: [████████░░] 81%
 | Phase 04 P04 | 55min | 3 tasks tasks | 2 files files |
 | Phase 04.1 P01 | ~40min | 3 tasks | 7 files |
 | Phase 04.1 P04 | 10min | 2 tasks | 12 files |
+| Phase 04.1 P05 | 5min | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -144,6 +145,7 @@ Relevant to current work:
 - [Phase 04.1]: Movimento: tese a aurora é a luz da página (acende e o conteúdo entra em foco); reveals distintos por seção, linha do método guiada pela rolagem; hand-rolled CSS+IO, sem lib, com fallback sem JS e reduced-motion. Canvas de partículas da Fase 4 será aposentado. Modo cinemático (hero fixado com auroras cruzando em X) testado e REJEITADO pelo Felipe — Impeccable animate; Felipe aprovou a rodada 3 e preferiu não usar o hero fixado
 - [Phase 04.1]: Redesign entra como Fase 04.1 antes da Fase 5; a Fase 5 passa a depender do markup do formulário redesenhado — Escolha do Felipe: evita refazer o markup do formulário duas vezes
 - [Phase 04.1]: 04.1-04: cases usa z.discriminatedUnion('rotulo'); faq removida
+- [Phase 04.1]: Frase 'Nada é cobrado...' só na legenda .here do ProcessSection
 
 ### Open Decisions To Resolve Before Their Phase
 

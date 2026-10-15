@@ -246,7 +246,7 @@ Plans:
 - [x] 04.1-02-PLAN.md — fundação: Fonts API Sora/Inter Tight/JetBrains Mono, tokens Aurora, base/motion.css, BaseLayout com .site + header/footer, Words e Aurora, remoção de FAQ/Diferenciais/CtaFinal (D-02)
 - [x] 04.1-03-PLAN.md — motor de motion "a luz acende" (reveal, scroll rAF, visibilidade, nav ativa) e remoção de glow/partículas
 - [x] 04.1-04-PLAN.md — conteúdo de projetos: cases com união discriminada, 3 exemplos de escopo, coleção faq removida (D-02)
-- [ ] 04.1-05-PLAN.md — copy de services/process/differentiators na voz "nós" (frase do Método com fonte única no ProcessSection)
+- [x] 04.1-05-PLAN.md — copy de services/process/differentiators na voz "nós" (frase do Método com fonte única no ProcessSection)
 - [ ] 04.1-06-PLAN.md — header de vidro, footer + WhatsApp flutuante, hero Aurora (alvos ≥44/48 px), favicon.ico/png sobre #070A14
 - [ ] 04.1-07-PLAN.md — Serviços (lista tipográfica), Método (linha de luz, estado apagado AA), Sobre (foto clip-path + diferenciais)
 - [ ] 04.1-08-PLAN.md — Contato com 3 canais (e-mail, WhatsApp, Instagram) e form de vidro (5 campos, chips radio, estados em CSS) e páginas secundárias
@@ -312,7 +312,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 4.1 -> 5 -> 6 -> 7
 | 2. Content Collections | 4/4 | Complete   | 2026-09-15 |
 | 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 9/9 | Complete   | 2026-09-17 |
 | 4. Progressive-Enhancement Effects | 4/4 | Complete   | 2026-09-17 |
-| 4.1. Redesign Aurora técnica (INSERTED) | 4/11 | In Progress|  |
+| 4.1. Redesign Aurora técnica (INSERTED) | 5/11 | In Progress|  |
 | 5. Form Backend + Enhancement + LGPD | 0/TBD | Not started | - |
 | 6. SEO / Metadata / Structured Data | 0/TBD | Not started | - |
 | 7. Security Headers Finalize | 0/TBD | Not started | - |

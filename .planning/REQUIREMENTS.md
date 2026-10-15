@@ -301,7 +301,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 - [ ] **AUR-03**: Lockup (símbolo+logotipo) em header e footer; favicon/apple-touch coerentes com o fundo novo
 - [x] **AUR-04**: Estrutura/ordem da home: header → hero → serviços → projetos → método → sobre → contato → footer; FAQ, Diferenciais (seção) e CtaFinal removidos (D-02)
 - [ ] **AUR-05**: Hero centrado com aurora estática (3 radial-gradients, sem `filter:blur`), H1 em `.accent`, CTAs e linha de prova com link PageSpeed
-- [ ] **AUR-06**: Serviços (lista tipográfica com hairlines, intro sticky), Método (linha de luz, ol), Sobre (foto real 4:5 + diferenciais 2 col) conforme sketch
+- [x] **AUR-06**: Serviços (lista tipográfica com hairlines, intro sticky), Método (linha de luz, ol), Sobre (foto real 4:5 + diferenciais 2 col) conforme sketch
 - [x] **AUR-07**: Seção Projetos: bento 6 col, 1 caso real + exemplos rotulados "Exemplo de escopo" + card-convite; mocks HTML/CSS sem métricas inventadas; schema `cases` com união discriminada
 - [ ] **AUR-08**: Contato: "o que acontece depois", canais (e-mail, WhatsApp, Instagram), formulário de vidro com 5 campos, chips radio, todos os estados em CSS, live region sr-only, sem JS de form
 - [ ] **AUR-09**: Header sticky com vidro ao rolar, nav ativa por IO, menu `<details>`, WhatsApp flutuante ≤900px, footer conforme sketch
@@ -409,7 +409,7 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | AUR-03 | Phase 04.1 | Pending |
 | AUR-04 | Phase 04.1 | Complete |
 | AUR-05 | Phase 04.1 | Pending |
-| AUR-06 | Phase 04.1 | Pending |
+| AUR-06 | Phase 04.1 | Complete |
 | AUR-07 | Phase 04.1 | Complete |
 | AUR-08 | Phase 04.1 | Pending |
 | AUR-09 | Phase 04.1 | Pending |
