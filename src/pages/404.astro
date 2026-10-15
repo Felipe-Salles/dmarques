@@ -1,63 +1,49 @@
 ---
+import Aurora from '../components/Aurora.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="Página não encontrada — Dmarques">
   <main id="conteudo">
-    <div class="content-block">
-      <h1>Página não encontrada</h1>
-      <p>O endereço que você tentou acessar não existe.</p>
-      <a href="/" class="back-link">Voltar para a home</a>
-    </div>
+    <section class="intro">
+      <Aurora variant="small" />
+      <div class="wrap content-block">
+        <h1 class="h2">Página não encontrada</h1>
+        <p class="lead">O endereço que você tentou acessar não existe.</p>
+        <div class="actions">
+          <a href="/" class="btn btn-ghost">Voltar ao início</a>
+          <a href="/#contato" class="btn btn-primary">Pedir orçamento</a>
+        </div>
+      </div>
+    </section>
   </main>
 </BaseLayout>
 
 <style>
-  main {
-    min-height: 100svh;
-    display: grid;
-    place-items: center;
-    padding: var(--space-16) var(--space-gutter);
+  .intro {
+    position: relative;
+    isolation: isolate;
+    padding: clamp(56px, 9cqi, 120px) 0;
     text-align: center;
   }
 
   .content-block {
-    max-width: 34rem;
+    max-width: 40rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--space-6);
   }
 
-  h1 {
-    font-family: var(--font-heading);
-    font-weight: var(--font-weight-bold);
-    font-size: clamp(2rem, 1.4rem + 3vw, 3rem);
-    line-height: var(--leading-heading);
-    letter-spacing: var(--tracking-tight);
-    color: var(--color-text-strong);
-    text-wrap: balance;
-  }
-
+  h1,
   p {
-    font-family: var(--font-text);
-    font-weight: var(--font-weight-regular);
-    font-size: var(--text-base);
-    line-height: var(--leading-body);
-    color: var(--color-text-muted);
-    text-wrap: pretty;
+    margin: 0;
   }
 
-  .back-link {
-    color: var(--color-text-muted);
-    font-family: var(--font-text);
-    font-size: var(--text-sm);
-    font-weight: var(--font-weight-medium);
-    transition: color var(--dur-fast) var(--ease-standard);
-  }
-
-  .back-link:hover,
-  .back-link:focus-visible {
-    color: var(--color-accent-light);
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-4);
   }
 </style>
