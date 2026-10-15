@@ -81,3 +81,19 @@ Tese: **a aurora é a luz da página — ela acende e o conteúdo entra em foco 
   chips com toque, ✓ de sucesso desenhado.
 - Tudo CSS + IntersectionObserver (sem biblioteca). Sem JS a página aparece inteira; com
   reduced-motion só fades curtos, aurora estática e linha do método cheia.
+
+## Rodada 4 — modo Cinemático (chave na toolbar, ligado por padrão)
+
+Ideia do Felipe: rolar algumas vezes antes de a página descer, cruzando as auroras em X e movendo o texto.
+Implementado **sem scroll-jacking**: rolagem nativa + hero fixado (`position: sticky`) num palco de
++55svh no desktop (~5 roladas de mouse) e +50svh no mobile (~4), com a animação conduzida pelo progresso
+da rolagem e reversível ao subir.
+
+- 0→50%: luz ciano (esq.) e azul (dir.) avançam em diagonal; "Software sob medida, com" sobe e esmaece;
+  texto de apoio e CTAs saem.
+- 50%: as luzes se cruzam no centro (mix-blend screen → pico de brilho); título cresce 5% e
+  "acabamento de produto." clareia.
+- 50→100%: as luzes completam o X nos cantos opostos; título, texto e CTAs voltam; linha de prova
+  se redesenha; o hero é liberado e a página segue para Serviços.
+- Indicador "Role" no rodapé do hero. Âncoras e teclado funcionam normalmente. Reduced-motion: sem
+  fixação (hero estático). Chave desligada: volta ao comportamento da rodada 3.

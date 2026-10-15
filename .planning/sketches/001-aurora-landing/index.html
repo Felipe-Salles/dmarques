@@ -380,6 +380,32 @@ footer.foot{position:relative;border-top:1px solid var(--color-border);padding:5
   .btn:hover svg,.proof a:hover svg,.channel:hover .go{transform:none}
 }
 
+.hero .aurora{background:none}
+.hero .aurora i{position:absolute;border-radius:50%;will-change:transform}
+.hero .aurora .l1{left:-4%;top:4%;width:68%;height:76%;background:radial-gradient(closest-side,rgba(0,200,255,.42),rgba(0,200,255,.14) 45%,transparent 72%);mix-blend-mode:screen}
+.hero .aurora .l2{left:30%;top:-12%;width:80%;height:92%;background:radial-gradient(closest-side,rgba(58,91,255,.5),rgba(14,30,91,.32) 50%,transparent 74%);mix-blend-mode:screen}
+.hero .aurora .l3{left:24%;top:28%;width:52%;height:60%;background:radial-gradient(closest-side,rgba(14,30,91,.85),transparent 72%)}
+.hint{display:none}
+.cine .hero-stage{height:calc(100svh + 55svh)}
+.cine .hero-stage > .hero{position:sticky;top:0;height:100svh;min-height:600px;display:flex;align-items:center;padding:84px 0 0}
+.cine .hero-stage > .hero > .wrap{width:min(1200px,100%)}
+.cine #hero-title{transform-origin:50% 60%}
+.cine .hint{display:flex;position:absolute;left:50%;bottom:26px;transform:translateX(-50%);flex-direction:column;align-items:center;gap:10px;font-size:var(--text-xs);color:var(--color-text-muted);letter-spacing:.04em;pointer-events:none}
+.cine .hint i{position:relative;width:1px;height:38px;background:var(--color-border-strong);overflow:hidden}
+.cine .hint i::after{content:"";position:absolute;left:0;top:-40%;width:1px;height:40%;background:var(--aurora-cyan);animation:hint 2s var(--ease-in-out) infinite}
+@keyframes hint{to{top:100%}}
+#sketch-tools label{display:flex;align-items:center;gap:6px;cursor:pointer;padding:0 4px}
+@container site (max-width:560px){
+  .cine .hero-stage{height:calc(100svh + 50svh)}
+  .cine .hero-stage > .hero{min-height:560px;padding-top:72px}
+  .cine .hint{bottom:18px}
+}
+@media (prefers-reduced-motion:reduce){
+  .cine .hero-stage{height:auto}
+  .cine .hero-stage > .hero{position:relative;height:auto;min-height:0;display:block;padding:clamp(56px,9cqi,120px) 0 0}
+  .cine .hint{display:none}
+}
+
 @container site (max-width:900px){
   .nav,.top .btn{display:none}
   .menu-btn{display:grid;place-items:center}
@@ -461,8 +487,10 @@ footer.foot{position:relative;border-top:1px solid var(--color-border);padding:5
   </header>
 
   <main>
+  <div class="hero-stage">
   <section class="hero" aria-labelledby="hero-title">
-    <div class="aurora" aria-hidden="true"></div>
+    <div class="aurora" aria-hidden="true"><i class="l1"></i><i class="l2"></i><i class="l3"></i></div>
+    <div class="hint" aria-hidden="true"><span>Role</span><i></i></div>
     <div class="wrap">
       <div class="hero-grid">
         <div class="hero-copy">
@@ -494,6 +522,7 @@ footer.foot{position:relative;border-top:1px solid var(--color-border);padding:5
       </p>
     </div>
   </section>
+  </div>
 
   <section class="section" id="servicos" aria-labelledby="svc-title">
     <div class="wrap services-wrap">
@@ -738,6 +767,7 @@ footer.foot{position:relative;border-top:1px solid var(--color-border);padding:5
 </div>
 
 <div id="sketch-tools">
+  <label><input type="checkbox" id="cineToggle" checked> Cinemático</label>
   <select id="theme-switcher" aria-label="Tema">
     <option value="default">Aurora</option>
     <option value="noite">Noite (aurora contida)</option>
@@ -751,6 +781,7 @@ footer.foot{position:relative;border-top:1px solid var(--color-border);padding:5
 
 <script>
 document.documentElement.classList.add('js');
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.querySelector('.site').classList.add('cine');
 const body=document.body;
 document.querySelectorAll('[data-dm]').forEach(el=>el.appendChild(document.getElementById('dm-mock').content.cloneNode(true)));
 document.querySelectorAll('.variant-tab').forEach(t=>t.addEventListener('click',()=>{
@@ -878,6 +909,45 @@ new IntersectionObserver(([e],o)=>{if(e.isIntersecting){contactAurora.classList.
 const runIO=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('run',e.isIntersecting)),{threshold:.2});
 document.querySelectorAll('.screen').forEach(s=>runIO.observe(s));
 
+const site=document.querySelector('.site'),stage=document.querySelector('.hero-stage');
+const l1=document.querySelector('.hero .aurora .l1'),l2=document.querySelector('.hero .aurora .l2'),l3=document.querySelector('.hero .aurora .l3');
+const h1=document.getElementById('hero-title');
+const firstWords=[...h1.querySelectorAll('.w')].filter(w=>!w.closest('.accent'));
+const accentWords=[...h1.querySelectorAll('.accent .w')];
+const support=[...document.querySelectorAll('.hero .lead,.hero .hero-ctas')];
+const proofEl=document.querySelector('.hero .proof'),hintEl=document.querySelector('.hint'),accentEl=h1.querySelector('.accent');
+const clamp=v=>Math.min(1,Math.max(0,v)),smooth=v=>{v=clamp(v);return v*v*(3-2*v)};
+let cineReady=false;setTimeout(()=>{cineReady=true;if(proofEl)proofEl.style.setProperty('--d','0ms');onScroll()},1700);
+function clearCine(){
+  [l1,l2,l3,h1,...firstWords,...accentWords,...support,hintEl].forEach(el=>{el.style.transform='';el.style.opacity='';el.style.transition=''});
+  if(accentEl)accentEl.style.color='';
+  if(proofEl)proofEl.classList.add('in');
+}
+function cine(){
+  if(!site.classList.contains('cine')||RM){clearCine();return}
+  const span=stage.offsetHeight-innerHeight;
+  const p=span>0?clamp(-stage.getBoundingClientRect().top/span):0;
+  const e=smooth(p),bell=Math.sin(Math.PI*e);
+  l1.style.transform=`translate(${(e*59).toFixed(2)}%,${(e*33).toFixed(2)}%) scale(${(1+bell*.18).toFixed(3)})`;
+  l2.style.transform=`translate(${(-e*50).toFixed(2)}%,${(e*27).toFixed(2)}%) scale(${(1+bell*.12).toFixed(3)})`;
+  l3.style.opacity=(1-bell*.8).toFixed(3);
+  hintEl.style.opacity=(1-clamp(p/.08)).toFixed(3);
+  if(!cineReady)return;
+  firstWords.forEach((w,i)=>{w.style.transform=`translateY(${(-bell*(16+i*2)).toFixed(1)}px)`;w.style.opacity=(1-bell*.62).toFixed(3)});
+  h1.style.transform=`scale(${(1+bell*.05).toFixed(4)})`;
+  if(accentEl){const t=bell;accentEl.style.color=`rgb(${Math.round(0+143*t)},${Math.round(200+40*t)},255)`}
+  const out=1-smooth(p/.3)+smooth((p-.72)/.28);
+  support.forEach(el=>{el.style.transition='none';el.style.opacity=out.toFixed(3);el.style.transform=`translateY(${((1-out)*14).toFixed(1)}px)`});
+  if(proofEl){
+    if(p>.84||p<.04)proofEl.classList.add('in');else if(p>.12&&p<.8)proofEl.classList.remove('in');
+  }
+}
+document.getElementById('cineToggle').addEventListener('change',e=>{
+  site.classList.toggle('cine',e.target.checked&&!RM);
+  if(!e.target.checked)clearCine();
+  sizeScreens();onScroll();
+});
+
 const header=document.querySelector('header.top');
 const steps=document.querySelector('.steps'),stepEls=[...steps.children];
 let ticking=false;
@@ -889,6 +959,7 @@ function onScroll(){
   steps.style.setProperty('--p',p.toFixed(3));
   const n=stepEls.length;
   stepEls.forEach((el,i)=>el.classList.toggle('lit',RM||p>=i/n+0.02||p>=.999));
+  cine();
 }
 addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(onScroll)}},{passive:true});
 addEventListener('resize',onScroll);onScroll();
