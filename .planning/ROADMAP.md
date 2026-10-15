@@ -242,7 +242,7 @@ Plans:
 **Plans**: 11 plans
 
 Plans:
-- [ ] 04.1-01-PLAN.md — gates de validação (aurora-gates.mjs com 13 verificações incl. tokens, browser-gates.mjs com Playwright) e atualização de REQUIREMENTS/ROADMAP (AUR-01..18, SEO-07, CONTENT-01/03/04, ANIM-03/04/05, Fase 6 sem FAQPage — D-02)
+- [x] 04.1-01-PLAN.md — gates de validação (aurora-gates.mjs com 13 verificações incl. tokens, browser-gates.mjs com Playwright) e atualização de REQUIREMENTS/ROADMAP (AUR-01..18, SEO-07, CONTENT-01/03/04, ANIM-03/04/05, Fase 6 sem FAQPage — D-02)
 - [ ] 04.1-02-PLAN.md — fundação: Fonts API Sora/Inter Tight/JetBrains Mono, tokens Aurora, base/motion.css, BaseLayout com .site + header/footer, Words e Aurora, remoção de FAQ/Diferenciais/CtaFinal (D-02)
 - [ ] 04.1-03-PLAN.md — motor de motion "a luz acende" (reveal, scroll rAF, visibilidade, nav ativa) e remoção de glow/partículas
 - [ ] 04.1-04-PLAN.md — conteúdo de projetos: cases com união discriminada, 3 exemplos de escopo, coleção faq removida (D-02)
@@ -312,7 +312,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 4.1 -> 5 -> 6 -> 7
 | 2. Content Collections | 4/4 | Complete   | 2026-09-15 |
 | 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 9/9 | Complete   | 2026-09-17 |
 | 4. Progressive-Enhancement Effects | 4/4 | Complete   | 2026-09-17 |
-| 4.1. Redesign Aurora técnica (INSERTED) | 0/TBD | Not started | - |
+| 4.1. Redesign Aurora técnica (INSERTED) | 1/11 | In Progress|  |
 | 5. Form Backend + Enhancement + LGPD | 0/TBD | Not started | - |
 | 6. SEO / Metadata / Structured Data | 0/TBD | Not started | - |
 | 7. Security Headers Finalize | 0/TBD | Not started | - |

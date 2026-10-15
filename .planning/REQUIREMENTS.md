@@ -312,7 +312,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 - [ ] **AUR-14**: Lighthouse mobile ≥95 nas 4 categorias, LCP ≤2,5 s, TBT <200 ms, CLS <0,05; JS da rota ≤20 KB gz
 - [ ] **AUR-15**: Sem overflow horizontal em 360–1440 px; tap targets ≥44 px (botões/inputs ≥48); foco visível; gate `style=` e `security-check.sh --ci` verdes
 - [ ] **AUR-16**: Páginas `/obrigado`, `/404`, `/politica-de-privacidade` com header/footer/tokens/aurora estática pequena, sem motion da home
-- [ ] **AUR-17**: REQUIREMENTS/ROADMAP atualizados: SEO-07 e CONTENT-04 removidos/reescritos (Fase 6 sem FAQPage), CONTENT-03 com novo enum, ANIM-03/04/05 reescritos (D-02)
+- [x] **AUR-17**: REQUIREMENTS/ROADMAP atualizados: SEO-07 e CONTENT-04 removidos/reescritos (Fase 6 sem FAQPage), CONTENT-03 com novo enum, ANIM-03/04/05 reescritos (D-02)
 - [ ] **AUR-18**: `/impeccable polish` e checklist SEC-07 executados sem High aberto antes do fechamento
 
 ## Traceability
@@ -420,7 +420,7 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | AUR-14 | Phase 04.1 | Pending |
 | AUR-15 | Phase 04.1 | Pending |
 | AUR-16 | Phase 04.1 | Pending |
-| AUR-17 | Phase 04.1 | Pending |
+| AUR-17 | Phase 04.1 | Complete |
 | AUR-18 | Phase 04.1 | Pending |
 
 **Coverage:**
