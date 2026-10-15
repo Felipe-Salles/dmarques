@@ -15,7 +15,7 @@ const services = defineCollection({
   }),
 });
 
-const process = defineCollection({
+const processCollection = defineCollection({
   loader: glob({ base: './src/content/process', pattern: '**/*.yaml' }),
   schema: z.strictObject({
     order: z.number().int().positive(),
@@ -69,4 +69,4 @@ const cases = defineCollection({
   },
 });
 
-export const collections = { services, process, differentiators, cases };
+export const collections = { services, process: processCollection, differentiators, cases };

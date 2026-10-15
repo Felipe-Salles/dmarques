@@ -2,7 +2,7 @@
 import { getProcess } from '../content';
 import Words from './Words.astro';
 
-const process = await getProcess();
+const steps = await getProcess();
 ---
 
 <section id="processo" class="section process" aria-labelledby="met-title">
@@ -17,7 +17,7 @@ const process = await getProcess();
     </div>
     <ol class="steps" data-r="steps">
       {
-        process.map((item, i) => (
+        steps.map((item, i) => (
           <li class={`step i${i}`}>
             <span class="knot">{item.data.numero}</span>
             <div>
