@@ -107,7 +107,14 @@ import Words from './Words.astro';
       </div>
     </div>
 
-    <form class="form glass" id="form-orcamento" novalidate aria-labelledby="form-title" data-r="form">
+    <form
+      class="form glass"
+      id="form-orcamento"
+      method="post"
+      action="/api/orcamento"
+      aria-labelledby="form-title"
+      data-r="form"
+    >
       <div class="form-body">
         <h3 id="form-title">Pedir orçamento</h3>
         <p class="sub">Leva menos de um minuto.</p>
@@ -169,6 +176,15 @@ import Words from './Words.astro';
           <span class="spinner" aria-hidden="true"></span>
           Enviar pedido de orçamento
         </button>
+        <p class="pending" id="form-pendente" hidden>
+          O envio pelo formulário ainda está sendo ativado. Para pedir seu orçamento agora, fale com
+          a gente pelo
+          <a href="https://wa.me/5516996111785" target="_blank" rel="noopener noreferrer"
+            >WhatsApp (16) 99611-1785</a
+          >
+          ou pelo e-mail
+          <a href="mailto:contato@agenciadmarques.com.br">contato@agenciadmarques.com.br</a>.
+        </p>
         <p class="legal">
           Usamos seus dados só para responder este pedido.
           <a href="/politica-de-privacidade">Política de privacidade</a>
@@ -456,6 +472,23 @@ import Words from './Words.astro';
   .form.sending .spinner {
     display: inline-block;
     animation: spin 0.7s linear infinite;
+  }
+
+  .pending {
+    margin: 0;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 106, 61, 0.45);
+    background: rgba(255, 106, 61, 0.06);
+    font-size: var(--text-sm);
+    color: var(--color-text);
+    line-height: 1.5;
+  }
+
+  .pending a {
+    color: var(--color-text);
+    text-decoration: underline;
+    text-underline-offset: 4px;
   }
 
   .legal {
