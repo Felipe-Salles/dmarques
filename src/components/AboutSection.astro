@@ -1,6 +1,6 @@
 ---
 import { Picture } from 'astro:assets';
-import founderPortrait from '../assets/founder-portrait-placeholder.webp';
+import founderPortrait from '../assets/founder/felipe-salles.png';
 ---
 
 <section id="sobre" class="about">
@@ -12,8 +12,9 @@ import founderPortrait from '../assets/founder-portrait-placeholder.webp';
           src={founderPortrait}
           alt="Felipe Salles, fundador da Dmarques"
           formats={['avif', 'webp']}
-          width={480}
-          height={600}
+          fallbackFormat="jpg"
+          widths={[480, 768, 960]}
+          sizes="(min-width: 1080px) 520px, 90vw"
         />
       </div>
     </div>
@@ -87,6 +88,7 @@ import founderPortrait from '../assets/founder-portrait-placeholder.webp';
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: 50% 20%;
   }
 
   .about-copy {
