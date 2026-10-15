@@ -282,7 +282,7 @@ Regras: (1) chamar `ip` → `hour` → `day` em sequência, parando no primeiro 
 
 ### Pattern 5: E-mail
 ```typescript
-const CONTROL = /[ -  ]+/g;
+const CONTROL = /[\u0000-\u001f\u007f\u2028\u2029]+/g;
 export const stripControl = (s: string) => s.replace(CONTROL, ' ').trim();
 export const escapeHtml = (s: string) =>
   s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
