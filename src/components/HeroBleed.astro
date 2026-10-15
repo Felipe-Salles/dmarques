@@ -113,7 +113,13 @@ import Words from './Words.astro';
     left: 0;
     right: 0;
     height: 1px;
-    background: var(--color-border);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-border-strong) 20%,
+      var(--color-border-strong) 80%,
+      transparent
+    );
     transform-origin: center;
   }
 
@@ -152,31 +158,64 @@ import Words from './Words.astro';
     }
   }
 
-  @keyframes proof-draw {
-    from {
-      transform: scaleX(0);
-    }
-  }
-
   @media (prefers-reduced-motion: no-preference) {
     :global(html.js-ready) .hero-title :global(.w) > :global(span) {
-      animation: word-in 0.9s var(--ease-out) both;
-      animation-delay: calc(var(--i) * 55ms);
+      transform: translateY(105%);
+      filter: blur(8px);
+      opacity: 0;
+    }
+
+    :global(html.js-ready) .hero:global(.in) .hero-title :global(.w) > :global(span) {
+      transform: none;
+      filter: blur(0);
+      opacity: 1;
+      transition:
+        transform 0.9s var(--ease-out),
+        filter 0.9s var(--ease-out),
+        opacity 0.6s var(--ease-out);
+      transition-delay: calc(var(--d, 0ms) + var(--i, 0) * 55ms);
     }
 
     :global(html.js-ready) .hero .lead,
     :global(html.js-ready) .hero-ctas {
-      animation: fade-in 0.8s var(--ease-out) both;
-      animation-delay: var(--d);
+      opacity: 0;
+      transform: translateY(14px);
+      filter: blur(4px);
+    }
+
+    :global(html.js-ready) .hero:global(.in) .lead,
+    :global(html.js-ready) .hero:global(.in) .hero-ctas {
+      opacity: 1;
+      transform: none;
+      filter: blur(0);
+      transition:
+        opacity 0.8s var(--ease-out),
+        transform 0.9s var(--ease-out),
+        filter 0.8s var(--ease-out);
+      transition-delay: var(--d, 0ms);
     }
 
     :global(html.js-ready) .proof::before {
-      animation: proof-draw 1.2s var(--ease-out) 820ms both;
+      transform: scaleX(0);
+    }
+
+    :global(html.js-ready) .hero:global(.in) .proof::before {
+      transform: scaleX(1);
+      transition: transform 1.2s var(--ease-out) var(--d, 0ms);
     }
 
     :global(html.js-ready) .proof > li {
-      animation: fade-in 0.8s var(--ease-out) both;
-      animation-delay: calc(820ms + var(--i) * 80ms);
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    :global(html.js-ready) .hero:global(.in) .proof > li {
+      opacity: 1;
+      transform: none;
+      transition:
+        opacity 0.6s var(--ease-out),
+        transform 0.7s var(--ease-out);
+      transition-delay: calc(var(--d, 0ms) + 300ms + var(--i, 0) * 80ms);
     }
   }
 </style>

@@ -260,6 +260,7 @@ Plans:
 **Goal**: The quote form works end-to-end to the founder's inbox with or without JavaScript, behind layered spam/abuse defenses, and ships in the same release as the Privacy Policy page and inline data-use notice.
 **Depends on**: Phase 04.1 (redesigned form markup), Phase 3, Phase 1 (env schema)
 **Requirements**: FORM-01, FORM-02, FORM-03, FORM-04, FORM-05, FORM-06, FORM-07, FORM-08, FORM-09, FORM-10, FORM-11, FORM-12, FORM-13, LGPD-01, LGPD-02, LGPD-03, LGPD-04, LGPD-05, LGPD-06, LGPD-07, SEC-08, SEC-09
+**Exceções registradas**: FORM-13 — pontos de entrada nesta fase são Contato, Footer (inclusive o botão flutuante) e cards de serviço; hero excluído por decisão de Felipe em 2026-10-15 (05-CONTEXT D-26). FORM-07 — timing pelo tempo decorrido medido no cliente (teto 24 h); omitir o campo sem JS contorna o timing, risco aceito por Felipe em 2026-10-15 (05-CONTEXT D-27).
 **Success Criteria** (what must be TRUE):
 
   1. With JavaScript disabled, submitting the form (Nome, WhatsApp, E-mail, Tipo de projeto, Mensagem; at least one of WhatsApp/e-mail required) natively POSTs to `/api/orcamento` and redirects (303) to `/obrigado`; with JavaScript, the enhancer does a `fetch` with inline idle/sending/success/error states, mirrors the schema in on-blur client validation, preserves typed input on error, disables submit in-flight, surfaces accessible errors (text not just color, `aria-invalid`, `aria-describedby`, `aria-live`, focus to first error), and offers a pre-filled WhatsApp deep-link as the fallback path.
@@ -268,7 +269,43 @@ Plans:
   4. IP, user-agent, and timestamp are used only during the request (rate-limit + timing) and never persisted or logged; no analytics/marketing script fires on form interaction; analytics is verified in DevTools to set zero cookies / no persistent ID; the chosen legal basis and retention period are recorded as a Key Decision in the repo and reflected in the policy.
   5. SPF, DKIM, and DMARC (`p=none` -> quarantine) are configured for the sending domain in Resend with mail-tester >=8 before go-live; the SEC-08 residual-risk statement is recorded in this roadmap; Lighthouse mobile stays >=95 in all four categories and the SEC-07 checklist run passes with no open High finding.
 
-**Plans**: TBD
+**Plans**: 14 plans
+
+Plans:
+**Wave 1**
+
+- [ ] 05-01-PLAN.md — Módulos puros compartilhados: form-schema, whatsapp, escape-html (TDD)
+- [ ] 05-02-PLAN.md — Checkpoint de legitimidade + instalação de resend/zod/@upstash e segredos no astro:env
+- [ ] 05-03-PLAN.md — Política de Privacidade completa + Key Decision de base legal e retenção
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [ ] 05-04-PLAN.md — Schema Zod do servidor e montagem segura do e-mail (TDD)
+- [ ] 05-05-PLAN.md — Guardas de requisição e rate limit em três camadas com IP em HMAC (TDD)
+- [ ] 05-06-PLAN.md — /obrigado, /erro-envio/{limite,invalido,falha}, noindex e deep-links de WhatsApp
+- [ ] 05-07-PLAN.md — Markup do card de contato e enhancer form.ts com estados acessíveis
+- [ ] 05-08-PLAN.md — Runbooks (WAF, flood, operação), script do mail-tester e SEC-08 atualizado
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
+- [ ] 05-09-PLAN.md — Handler puro, wiring de dependências e rota única /api/orcamento (TDD)
+
+**Wave 4** *(blocked on Wave 3 completion)*
+
+- [ ] 05-10-PLAN.md — Gates Playwright do formulário, security-check endurecido e CI
+- [ ] 05-11-PLAN.md — Provisionamento manual: Resend + DNS GoDaddy + Upstash + env vars + mail-tester
+
+**Wave 5** *(blocked on Wave 4 completion)*
+
+- [ ] 05-12-PLAN.md — PR, sondas e gates live no preview + teste ponta a ponta do Felipe
+
+**Wave 6** *(blocked on Wave 5 completion)*
+
+- [ ] 05-13-PLAN.md — Regra WAF api-flood (Log -> 429) e rajada de confirmação
+
+**Wave 7** *(blocked on Wave 6 completion)*
+
+- [ ] 05-14-PLAN.md — Run SEC-07, decisões do Felipe (Hobby/hero), merge e verificação de produção
 **UI hint**: yes
 
 ### Phase 6: SEO / Metadata / Structured Data

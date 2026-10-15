@@ -15,14 +15,14 @@ import Words from './Words.astro';
         Conte o que você precisa. Respondemos no mesmo dia útil, e quem responde é quem vai
         desenvolver.
       </p>
-      <ol class="next" aria-label="O que acontece depois" data-r="list">
+      <ol class="next d300" aria-label="O que acontece depois" data-r="list">
         <li class="i0"><span>1</span>Respondemos pelo WhatsApp no mesmo dia útil.</li>
         <li class="i1"><span>2</span>Fazemos o diagnóstico do problema e do processo atual.</li>
         <li class="i2"><span>3</span>Você recebe a proposta com escopo e prazo fechados.</li>
       </ol>
-      <div class="channels" data-r="list">
+      <div class="channels d520" data-r="list">
         <a
-          class="channel wa i3"
+          class="channel wa i0"
           href="https://wa.me/5516996111785"
           target="_blank"
           rel="noopener noreferrer"
@@ -35,10 +35,11 @@ import Words from './Words.astro';
               fill="none"
               stroke="currentColor"
               stroke-width="1.6"
-              aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1112 20a8 8 0 01-4.1-1.1z"></path></svg
+              aria-hidden="true"
+              ><path d="M4 20l1.3-3.9A8 8 0 1112 20a8 8 0 01-4.1-1.1z"></path></svg
             >
           </span>
-          <div><b>WhatsApp</b><span>(16) 99611-1785</span></div>
+          <div><b>WhatsApp</b><span>(16) 99611-1785 · resposta mais rápida</span></div>
           <svg
             class="go"
             viewBox="0 0 24 24"
@@ -49,7 +50,7 @@ import Words from './Words.astro';
             aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"></path></svg
           >
         </a>
-        <a class="channel i4" href="mailto:contato@agenciadmarques.com.br">
+        <a class="channel i1" href="mailto:contato@agenciadmarques.com.br">
           <span class="ic">
             <svg
               width="18"
@@ -75,7 +76,7 @@ import Words from './Words.astro';
           >
         </a>
         <a
-          class="channel i5"
+          class="channel i2"
           href="https://www.instagram.com/agenciadmarques"
           target="_blank"
           rel="noopener noreferrer"
@@ -216,6 +217,7 @@ import Words from './Words.astro';
     position: relative;
     isolation: isolate;
     overflow: hidden;
+    padding-top: clamp(88px, 12cqi, 144px);
     padding-bottom: clamp(88px, 12cqi, 144px);
   }
 
@@ -302,6 +304,10 @@ import Words from './Words.astro';
   .channel.wa .ic {
     color: var(--color-ember);
     border-color: rgba(255, 106, 61, 0.45);
+  }
+
+  .channel div {
+    line-height: 1.2;
   }
 
   .channel b {
@@ -573,20 +579,21 @@ import Words from './Words.astro';
       opacity: 1;
       transform: none;
       transition:
-        opacity 0.8s var(--ease-out),
+        opacity 0.7s var(--ease-out),
         transform 0.8s var(--ease-out);
-      transition-delay: calc(var(--i) * 90ms);
+      transition-delay: calc(var(--d, 0ms) + var(--i, 0) * 90ms);
     }
 
     :global(html.js-ready) .channels.in > .channel {
       opacity: 1;
       transform: none;
       transition:
-        opacity 0.8s var(--ease-out),
+        opacity 0.7s var(--ease-out),
         transform 0.8s var(--ease-out),
         border-color 0.2s,
         background-color 0.2s;
-      transition-delay: calc(var(--i) * 90ms + 200ms), calc(var(--i) * 90ms + 200ms), 0s, 0s;
+      transition-delay:
+        calc(var(--d, 0ms) + var(--i, 0) * 90ms), calc(var(--d, 0ms) + var(--i, 0) * 90ms), 0s, 0s;
     }
 
     :global(html.js-ready) .form[data-r] {
@@ -598,8 +605,8 @@ import Words from './Words.astro';
       opacity: 1;
       transform: none;
       transition:
-        opacity 0.9s var(--ease-out),
-        transform 0.9s var(--ease-out);
+        opacity 0.9s var(--ease-out) 0.15s,
+        transform 1s var(--ease-out) 0.15s;
     }
   }
 </style>

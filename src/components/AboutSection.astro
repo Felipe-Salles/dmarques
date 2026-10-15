@@ -41,7 +41,7 @@ const diffs = await getDifferentiators();
           ferramenta certa para destravar. Menos pacote pronto, mais solução que serve para o seu
           caso.
         </p>
-        <ul class="diffs" data-r="diffs">
+        <ul class="diffs d300" data-r="diffs">
           {
             diffs.map((d, i) => (
               <li class={`i${i}`}>
@@ -51,12 +51,6 @@ const diffs = await getDifferentiators();
             ))
           }
         </ul>
-        <a
-          class="about-link"
-          href="https://instagram.com/agenciadmarques"
-          target="_blank"
-          rel="noopener noreferrer">@agenciadmarques</a
-        >
       </div>
     </div>
   </div>
@@ -64,8 +58,8 @@ const diffs = await getDifferentiators();
 
 <style>
   .about {
-    padding-top: clamp(56px, 8cqi, 96px);
-    padding-bottom: clamp(88px, 12cqi, 144px);
+    padding-top: clamp(88px, 12cqi, 144px);
+    padding-bottom: 0;
   }
 
   .about-grid {
@@ -170,24 +164,6 @@ const diffs = await getDifferentiators();
     color: var(--color-text-muted);
   }
 
-  .about-link {
-    align-self: flex-start;
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
-    font-size: var(--text-sm);
-    font-weight: 500;
-    color: var(--color-text);
-    text-decoration: underline;
-    text-decoration-color: rgba(0, 200, 255, 0.5);
-    text-underline-offset: 5px;
-  }
-
-  .about-link:hover,
-  .about-link:focus-visible {
-    text-decoration-color: #00c8ff;
-  }
-
   @container site (max-width: 900px) {
     .about-grid {
       grid-template-columns: 1fr;
@@ -215,6 +191,7 @@ const diffs = await getDifferentiators();
 
     :global(html.js-ready) .portrait figcaption {
       opacity: 0;
+      transform: translateY(10px);
     }
 
     :global(html.js-ready) .diffs > li {
@@ -234,16 +211,19 @@ const diffs = await getDifferentiators();
 
     :global(html.js-ready) .about-media.in .portrait figcaption {
       opacity: 1;
-      transition: opacity 0.8s var(--ease-out) 700ms;
+      transform: none;
+      transition:
+        opacity 0.7s var(--ease-out) 0.7s,
+        transform 0.8s var(--ease-out) 0.7s;
     }
 
     :global(html.js-ready) .diffs.in > li {
       opacity: 1;
       transform: none;
       transition:
-        opacity 0.8s var(--ease-out),
+        opacity 0.7s var(--ease-out),
         transform 0.8s var(--ease-out);
-      transition-delay: calc(var(--i) * 90ms);
+      transition-delay: calc(var(--d, 0ms) + var(--i, 0) * 90ms);
     }
   }
 </style>

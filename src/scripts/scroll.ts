@@ -31,5 +31,6 @@ export function initScroll(reduced: boolean): void {
     requestAnimationFrame(frame);
   };
   addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll);
   frame();
 }

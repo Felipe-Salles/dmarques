@@ -26,34 +26,46 @@ test('stepProgress viewport zero retorna 1', () => {
   assert.equal(stepProgress(100, 0), 1);
 });
 
-test('litSteps zero', () => {
+test('litSteps(0, 4) = 0', () => {
   assert.equal(litSteps(0, 4), 0);
 });
 
-test('litSteps primeiro passo', () => {
-  assert.equal(litSteps(0.01, 4), 1);
+test('litSteps(0.01, 4) = 0', () => {
+  assert.equal(litSteps(0.01, 4), 0);
 });
 
-test('litSteps logo antes da fronteira', () => {
-  assert.equal(litSteps(0.333, 4), 1);
+test('litSteps(0.02, 4) = 1', () => {
+  assert.equal(litSteps(0.02, 4), 1);
 });
 
-test('litSteps logo apos a fronteira', () => {
-  assert.equal(litSteps(0.334, 4), 2);
+test('litSteps(0.26, 4) = 1', () => {
+  assert.equal(litSteps(0.26, 4), 1);
 });
 
-test('litSteps dois terços', () => {
-  assert.equal(litSteps(2 / 3, 4), 3);
+test('litSteps(0.28, 4) = 2', () => {
+  assert.equal(litSteps(0.28, 4), 2);
 });
 
-test('litSteps completo', () => {
-  assert.equal(litSteps(1, 4), 4);
+test('litSteps(0.53, 4) = 3', () => {
+  assert.equal(litSteps(0.53, 4), 3);
 });
 
-test('litSteps acima de 1 clampa em n', () => {
+test('litSteps(0.78, 4) = 4', () => {
+  assert.equal(litSteps(0.78, 4), 4);
+});
+
+test('litSteps(0.999, 4) = 4', () => {
+  assert.equal(litSteps(0.999, 4), 4);
+});
+
+test('litSteps(1.5, 4) = 4', () => {
   assert.equal(litSteps(1.5, 4), 4);
 });
 
-test('litSteps etapa unica', () => {
+test('litSteps(0.01, 1) = 0', () => {
+  assert.equal(litSteps(0.01, 1), 0);
+});
+
+test('litSteps(0.5, 1) = 1', () => {
   assert.equal(litSteps(0.5, 1), 1);
 });
