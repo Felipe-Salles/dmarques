@@ -63,5 +63,5 @@ manter só a aurora (sem motivo de costura), voz "nós" (agência), escopo compl
   caret, scrollbar e focus ring temáticos, auroras sem filter:blur (mais leves), nav com seção ativa,
   nome dmarques visível no mobile.
 
-Pendente com o Felipe (não inventado): foto real, e-mail no domínio próprio, captura real do site
-para o card em destaque.
+Foto real (src/assets/founder/felipe-salles.png, colorida) e e-mail contato@agenciadmarques.com.br aplicados.
+Pendente: captura real do site para o card em destaque.
