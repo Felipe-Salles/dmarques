@@ -496,11 +496,12 @@ const featuredData = featured && featured.data.rotulo === 'projeto próprio' ? f
   }
 
   @media (pointer: fine) and (prefers-reduced-motion: no-preference) {
-    .card.tilt:global(.settled) {
+    :global(html.js-ready) .card.tilt[data-r].in:global(.settled) {
       transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
       transition:
         transform 0.25s ease,
         border-color 0.25s ease;
+      transition-delay: 0s;
     }
 
     .card.tilt:hover {
