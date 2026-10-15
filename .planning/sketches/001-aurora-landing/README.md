@@ -65,3 +65,19 @@ manter só a aurora (sem motivo de costura), voz "nós" (agência), escopo compl
 
 Foto real (src/assets/founder/felipe-salles.png, colorida) e e-mail contato@agenciadmarques.com.br aplicados.
 Pendente: captura real do site para o card em destaque.
+
+## Rodada 3 — movimento (Impeccable animate)
+
+Tese: **a aurora é a luz da página — ela acende e o conteúdo entra em foco conforme é iluminado.**
+
+- Momento principal (hero): aurora acende do escuro (opacidade + escala, 1,8–2,4 s) e passa a derivar
+  lentamente (22 s, pausa fora da tela); título entra palavra a palavra saindo de máscara e indo de
+  desfocado a nítido; texto, CTAs e linha de prova (que se desenha do centro) em sequência.
+- Reveal ao rolar, distinto por seção: títulos em máscara+foco; serviços com linhas desenhando,
+  ícones traçados e itens em sequência; cards subindo com faixa de luz passando no vidro (sites só
+  rolam quando visíveis); linha do método preenchida pela rolagem acendendo cada etapa; foto revelada
+  por clip-path com zoom de assentamento; aurora do contato acende ao chegar; formulário entra em foco.
+- Continuidade: header fica fixo e vira vidro ao rolar. Feedback: seta dos botões avança no hover,
+  chips com toque, ✓ de sucesso desenhado.
+- Tudo CSS + IntersectionObserver (sem biblioteca). Sem JS a página aparece inteira; com
+  reduced-motion só fades curtos, aurora estática e linha do método cheia.

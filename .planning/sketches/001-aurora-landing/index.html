@@ -30,7 +30,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 #sketch-tools button.on{background:#fff;color:#000}
 
 .frame{margin:0 auto;transition:max-width .3s ease;max-width:100%;box-shadow:0 0 0 1px #262a33}
-.site{container:site/inline-size;position:relative;background:var(--color-bg);overflow:hidden;isolation:isolate;caret-color:#00c8ff}
+.site{container:site/inline-size;position:relative;background:var(--color-bg);overflow:clip;isolation:isolate;caret-color:#00c8ff}
 .site::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:50;opacity:var(--grain-opacity);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");mix-blend-mode:overlay}
 
 .wrap{width:min(1200px,100%);margin:0 auto;padding:0 clamp(16px,4cqi,40px)}
@@ -56,7 +56,10 @@ button,input,select,textarea{font:inherit;color:inherit}
   radial-gradient(40% 46% at 70% 34%,rgba(58,91,255,.5),rgba(14,30,91,.32) 50%,transparent 74%),
   radial-gradient(26% 30% at 50% 58%,rgba(14,30,91,.85),transparent 72%)}
 
-header.top{position:relative;z-index:10}
+header.top{position:sticky;top:0;z-index:60;border-bottom:1px solid transparent;transition:background-color .4s cubic-bezier(.16,1,.3,1),border-color .4s cubic-bezier(.16,1,.3,1)}
+header.top.scrolled{background:rgba(7,10,20,.72);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);border-bottom-color:var(--color-border)}
+header.top .wrap{transition:height .4s cubic-bezier(.16,1,.3,1)}
+header.top.scrolled .wrap{height:68px}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:84px}
 .brand{display:flex;align-items:center;gap:8px;min-height:44px}
 .brand img{height:30px;width:auto}
@@ -277,6 +280,106 @@ footer.foot{position:relative;border-top:1px solid var(--color-border);padding:5
 .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;z-index:9997;background:#fff;color:#070a14;font-size:13px;font-weight:500;padding:10px 16px;border-radius:999px;transition:opacity .25s ease,transform .25s ease;pointer-events:none}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
+
+:root{--ease-out:cubic-bezier(.16,1,.3,1);--ease-in-out:cubic-bezier(.65,0,.35,1)}
+.btn svg{transition:transform .25s var(--ease-out)}
+.btn:hover svg{transform:translateX(3px)}
+.proof a svg,.channel .go{transition:transform .25s var(--ease-out)}
+.proof a:hover svg,.channel:hover .go{transform:translate(2px,-2px)}
+.chip{transition:border-color .15s,background-color .15s,color .15s,transform .12s var(--ease-out)}
+.chip:active{transform:scale(.96)}
+.success .ok path{stroke-dasharray:24;stroke-dashoffset:24}
+.form.done .success .ok path{animation:draw .5s .15s var(--ease-out) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+.js .aurora{opacity:0;transform:scale(.94)}
+.js .aurora.lit{opacity:var(--aurora-opacity);transform:scale(1);transition:opacity 1.8s var(--ease-out),transform 2.4s var(--ease-out)}
+.js .contact .aurora{transform:scaleY(-1) scale(.94)}
+.js .contact .aurora.lit{transform:scaleY(-1);opacity:calc(var(--aurora-opacity) * .8)}
+.hero .aurora.lit.drift{animation:drift 22s var(--ease-in-out) 2.4s infinite alternate}
+.hero .aurora.paused{animation-play-state:paused}
+@keyframes drift{0%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(2.5%,-1.5%,0) scale(1.04)}100%{transform:translate3d(-2%,1%,0) scale(1.02)}}
+
+.w{display:inline-block;overflow:clip;overflow-clip-margin:.14em;vertical-align:top}
+.w > span{display:inline-block}
+.js [data-r=words] .w > span{transform:translateY(105%);filter:blur(8px);opacity:0}
+.js [data-r=words].in .w > span{transform:none;filter:blur(0);opacity:1;transition:transform .9s var(--ease-out),filter .9s var(--ease-out),opacity .6s var(--ease-out);transition-delay:calc(var(--d,0ms) + var(--i,0) * 55ms)}
+
+.js [data-r=fade]{opacity:0;transform:translateY(14px);filter:blur(4px)}
+.js [data-r=fade].in{opacity:1;transform:none;filter:blur(0);transition:opacity .8s var(--ease-out),transform .9s var(--ease-out),filter .8s var(--ease-out);transition-delay:var(--d,0ms)}
+
+.proof{position:relative}
+.js .proof{border-top-color:transparent}
+.proof::before{content:"";position:absolute;left:0;right:0;top:-1px;height:1px;background:linear-gradient(90deg,transparent,var(--color-border-strong) 20%,var(--color-border-strong) 80%,transparent);transform:scaleX(1);transform-origin:center}
+.js .proof::before{transform:scaleX(0)}
+.js .proof.in::before{transform:scaleX(1);transition:transform 1.2s var(--ease-out) var(--d,0ms)}
+.js .proof > *{opacity:0;transform:translateY(8px)}
+.js .proof.in > *{opacity:1;transform:none;transition:opacity .6s var(--ease-out),transform .7s var(--ease-out);transition-delay:calc(var(--d,0ms) + 300ms + var(--i,0) * 80ms)}
+
+.svc-list{position:relative}
+.js .svc-list{border-top-color:transparent}
+.svc{position:relative}
+.js .svc{border-bottom-color:transparent}
+.svc-list::before,.svc::after{content:"";position:absolute;left:0;right:0;height:1px;background:var(--color-border);transform-origin:left;transform:scaleX(1)}
+.svc-list::before{top:-1px}
+.svc::after{bottom:-1px}
+.js .svc-list::before,.js .svc::after{transform:scaleX(0)}
+.js .svc-list.in::before,.js .svc.in::after{transform:scaleX(1);transition:transform 1.1s var(--ease-out) var(--d,0ms)}
+.js .svc > h3,.js .svc > p{opacity:0;transform:translateY(12px)}
+.js .svc.in > h3,.js .svc.in > p{opacity:1;transform:none;transition:opacity .7s var(--ease-out),transform .8s var(--ease-out);transition-delay:calc(var(--d,0ms) + 120ms)}
+.js .svc.in > p{transition-delay:calc(var(--d,0ms) + 200ms)}
+.svc svg *{stroke-dasharray:160;stroke-dashoffset:0}
+.js .svc svg *{stroke-dashoffset:160}
+.js .svc.in svg *{stroke-dashoffset:0;transition:stroke-dashoffset 1.4s var(--ease-out) var(--d,0ms)}
+
+.js .card[data-r]{opacity:0;transform:translateY(28px) scale(.985)}
+.js .card[data-r].in{opacity:1;transform:none;transition:opacity .8s var(--ease-out),transform 1s var(--ease-out),border-color .25s ease;transition-delay:var(--d,0ms)}
+.js .card[data-r].in.settled{transition:transform .25s ease,border-color .25s ease}
+.browser{position:relative}
+.browser::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:3;background:linear-gradient(105deg,transparent 35%,rgba(127,216,255,.16) 48%,rgba(255,255,255,.08) 52%,transparent 65%);transform:translateX(-120%)}
+.card.in .browser::after{animation:sweep 1.4s var(--ease-out) calc(var(--d,0ms) + 450ms) 1 both}
+@keyframes sweep{to{transform:translateX(120%)}}
+.js .scroller{animation-play-state:paused}
+.js .screen.run .scroller{animation-play-state:running}
+.js .browser:hover .screen.run .scroller{animation-play-state:paused}
+
+.steps::before{transform:scaleX(var(--p,1));transform-origin:left}
+.knot{transition:border-color .5s var(--ease-out),color .5s var(--ease-out),background-color .5s var(--ease-out)}
+.js .step .knot{border-color:var(--color-border-strong);color:var(--color-text-muted)}
+.js .step.lit .knot{border-color:rgba(0,200,255,.7);color:var(--aurora-cyan);background:#0a1426}
+.js .step:first-child.lit .knot{border-color:var(--color-ember);color:var(--color-ember);background:#1a0f0c}
+.js .step > div{opacity:.3;transform:translateY(6px);transition:opacity .6s var(--ease-out),transform .7s var(--ease-out)}
+.js .step.lit > div{opacity:1;transform:none}
+
+.portrait{clip-path:inset(0 0 0 0 round var(--radius-lg))}
+.js .portrait[data-r]{clip-path:inset(100% 0 0 0 round var(--radius-lg))}
+.js .portrait[data-r] img{transform:scale(1.12)}
+.js .portrait[data-r].in{clip-path:inset(0 0 0 0 round var(--radius-lg));transition:clip-path 1.3s var(--ease-out)}
+.js .portrait[data-r].in img{transform:scale(1);transition:transform 1.8s var(--ease-out)}
+.js .portrait[data-r] figcaption{opacity:0;transform:translateY(10px)}
+.js .portrait[data-r].in figcaption{opacity:1;transform:none;transition:opacity .7s var(--ease-out) .7s,transform .8s var(--ease-out) .7s}
+
+.js [data-r=list] > *{opacity:0;transform:translateY(14px)}
+.js [data-r=list].in > *{opacity:1;transform:none;transition:opacity .7s var(--ease-out),transform .8s var(--ease-out);transition-delay:calc(var(--d,0ms) + var(--i,0) * 90ms)}
+
+.js .form[data-r]{opacity:0;transform:translateY(24px)}
+.js .form[data-r].in{opacity:1;transform:none;transition:opacity .9s var(--ease-out) .15s,transform 1s var(--ease-out) .15s}
+
+@media (prefers-reduced-motion:reduce){
+  .js [data-r=words] .w > span,.js [data-r=fade],.js .proof > *,.js .svc > h3,.js .svc > p,.js .card[data-r],.js [data-r=list] > *,.js .form[data-r],.js .portrait[data-r] figcaption{transform:none!important;filter:none!important}
+  .js .portrait[data-r]{clip-path:inset(0 0 0 0 round var(--radius-lg));opacity:0}
+  .js .portrait[data-r].in{opacity:1;transition:opacity .5s ease}
+  .js .portrait[data-r] img{transform:none}
+  .js .aurora{transform:none}
+  .js .contact .aurora,.js .contact .aurora.lit{transform:scaleY(-1)}
+  .hero .aurora.lit.drift{animation:none}
+  .js .proof::before,.js .svc::after,.js .svc-list::before{transform:scaleX(1)}
+  .js .svc svg *{stroke-dashoffset:0}
+  .js .step > div{opacity:1;transform:none}
+  .card.in .browser::after{animation:none}
+  .btn:hover svg,.proof a:hover svg,.channel:hover .go{transform:none}
+}
+
 @container site (max-width:900px){
   .nav,.top .btn{display:none}
   .menu-btn{display:grid;place-items:center}
@@ -303,6 +406,7 @@ footer.foot{position:relative;border-top:1px solid var(--color-border);padding:5
   .c-feat,.c-a,.c-b,.c-c,.c-you,.v-b .c-feat,.v-b .c-a,.v-b .c-b,.v-b .c-c,.v-b .c-you{grid-column:span 1}
   .c-feat .screen{min-height:240px}
   .steps{grid-template-columns:1fr;row-gap:28px}
+  .steps::before{transform:scaleY(var(--p,1));transform-origin:top}
   .steps::before{display:block;left:21px;right:auto;top:0;bottom:0;width:1px;height:auto;background:linear-gradient(180deg,rgba(255,106,61,.7),rgba(0,200,255,.7) 25%,rgba(58,91,255,.7))}
   .step{flex-direction:row;align-items:flex-start;gap:16px}
   .knot{flex:none}
@@ -362,9 +466,9 @@ footer.foot{position:relative;border-top:1px solid var(--color-border);padding:5
     <div class="wrap">
       <div class="hero-grid">
         <div class="hero-copy">
-          <h1 class="h-display" id="hero-title">Software sob medida, com <span class="accent">acabamento de produto.</span></h1>
-          <p class="lead">Sites, sistemas e automações desenhados para o seu processo — rápidos, seguros e prontos para crescer. Você fala direto com quem desenvolve.</p>
-          <div class="hero-ctas">
+          <h1 class="h-display" id="hero-title" data-r="words">Software sob medida, com <span class="accent">acabamento de produto.</span></h1>
+          <p class="lead" data-r="fade" style="--d:520ms">Sites, sistemas e automações desenhados para o seu processo — rápidos, seguros e prontos para crescer. Você fala direto com quem desenvolve.</p>
+          <div class="hero-ctas" data-r="fade" style="--d:680ms">
             <a href="#contato" class="btn btn-primary">Pedir orçamento <svg class="ember" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
             <a href="#projetos" class="btn btn-ghost">Ver projetos</a>
           </div>
@@ -382,7 +486,7 @@ footer.foot{position:relative;border-top:1px solid var(--color-border);padding:5
         </aside>
       </div>
 
-      <p class="proof">
+      <p class="proof" data-r="proof" style="--d:820ms">
         <span>Nosso próprio site abre em <b>~1,5 s</b> no celular</span>
         <span>Nota <b>95+</b> no Google PageSpeed</span>
         <span><b>Zero</b> cookies de rastreamento</span>
@@ -394,23 +498,23 @@ footer.foot{position:relative;border-top:1px solid var(--color-border);padding:5
   <section class="section" id="servicos" aria-labelledby="svc-title">
     <div class="wrap services-wrap">
       <div class="services-intro">
-        <h2 class="h2" id="svc-title">Do site à automação, sob medida.</h2>
-        <p class="lead">Quatro frentes com o mesmo padrão: código limpo, entrega em etapas e suporte depois que entra no ar.</p>
+        <h2 class="h2" id="svc-title" data-r="words">Do site à automação, sob medida.</h2>
+        <p class="lead" data-r="fade" style="--d:200ms">Quatro frentes com o mesmo padrão: código limpo, entrega em etapas e suporte depois que entra no ar.</p>
       </div>
-      <ul class="svc-list">
-        <li class="svc">
+      <ul class="svc-list" data-r="line">
+        <li class="svc" data-r="svc">
           <svg viewBox="0 0 48 48" fill="none" stroke="#00C8FF" stroke-width="1.6" aria-hidden="true"><rect x="5" y="9" width="38" height="28" rx="4"/><path d="M5 16h38M17 43h14M24 37v6"/></svg>
           <h3>Sites institucionais</h3><p>Presença digital rápida, responsiva e pronta para ser encontrada no Google.</p>
         </li>
-        <li class="svc">
+        <li class="svc" data-r="svc">
           <svg viewBox="0 0 48 48" fill="none" stroke="#00C8FF" stroke-width="1.6" aria-hidden="true"><rect x="5" y="7" width="38" height="34" rx="4"/><path d="M5 15h38M15 15v26M21 23h16M21 29h12M21 35h14"/></svg>
           <h3>Sistemas web sob medida</h3><p>Painéis, cadastros e ferramentas internas desenhados para o seu processo.</p>
         </li>
-        <li class="svc">
+        <li class="svc" data-r="svc">
           <svg viewBox="0 0 48 48" fill="none" stroke="#00C8FF" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="24" r="6"/><circle cx="36" cy="12" r="6"/><circle cx="36" cy="36" r="6"/><path d="M17.5 21.5l13-7M17.5 26.5l13 7"/></svg>
           <h3>Soluções web</h3><p>E-commerce, plataformas e integrações que sustentam a operação inteira.</p>
         </li>
-        <li class="svc">
+        <li class="svc" data-r="svc">
           <svg viewBox="0 0 48 48" fill="none" stroke="#00C8FF" stroke-width="1.6" aria-hidden="true"><path d="M8 14h20a6 6 0 010 12H20a6 6 0 000 12h20"/><path d="M36 34l4 4-4 4M12 10l-4 4 4 4"/></svg>
           <h3>Automações</h3><p>Rotinas manuais viram fluxos automáticos, com registro e menos erro humano.</p>
         </li>
@@ -422,12 +526,12 @@ footer.foot{position:relative;border-top:1px solid var(--color-border);padding:5
     <div class="wrap">
       <div class="proj-head">
         <div>
-          <h2 class="h2" id="proj-title">Trabalho que roda de verdade.</h2>
-          <p>Um projeto próprio no ar e exemplos do tipo de escopo que construímos.</p>
+          <h2 class="h2" id="proj-title" data-r="words">Trabalho que roda de verdade.</h2>
+          <p data-r="fade" style="--d:200ms">Um projeto próprio no ar e exemplos do tipo de escopo que construímos.</p>
         </div>
       </div>
       <div class="bento">
-        <article class="card c-feat tilt">
+        <article class="card c-feat tilt" data-r="card">
           <div class="card-meta">
             <div><span class="tag real">No ar · projeto próprio</span><h3>O site da própria dmarques</h3><p>Site institucional que abre rápido no celular, não depende de serviços de terceiros e não sai do ar.</p></div>
             <a href="#" class="arrow" aria-label="Ver case do site da dmarques"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -443,7 +547,7 @@ footer.foot{position:relative;border-top:1px solid var(--color-border);padding:5
           </div>
         </article>
 
-        <article class="card c-a tilt">
+        <article class="card c-a tilt" data-r="card">
           <div><span class="tag">Exemplo de escopo · Sistema</span><h3>Painel de agendamentos</h3><p>Agenda, confirmações automáticas e histórico num só lugar.</p></div>
           <div class="browser" aria-hidden="true">
             <div class="browser-bar"><i></i><i></i><i></i><span>agenda.suaempresa.com.br</span></div>
@@ -463,7 +567,7 @@ footer.foot{position:relative;border-top:1px solid var(--color-border);padding:5
           </div>
         </article>
 
-        <article class="card c-b tilt">
+        <article class="card c-b tilt" data-r="card">
           <div><span class="tag">Exemplo de escopo · Site</span><h3>Clínica — site institucional</h3><p>Especialidades, equipe e agendamento pelo WhatsApp.</p></div>
           <div class="browser" aria-hidden="true">
             <div class="browser-bar"><i></i><i></i><i></i><span>clinica.com.br</span></div>
@@ -479,7 +583,7 @@ footer.foot{position:relative;border-top:1px solid var(--color-border);padding:5
           </div>
         </article>
 
-        <article class="card c-c tilt">
+        <article class="card c-c tilt" data-r="card">
           <div class="browser" aria-hidden="true">
             <div class="browser-bar"><i></i><i></i><i></i><span>pedidos.sualoja.com.br/admin</span></div>
             <div class="screen" style="aspect-ratio:16/9"><div class="scroller">
@@ -501,7 +605,7 @@ footer.foot{position:relative;border-top:1px solid var(--color-border);padding:5
           </div>
         </article>
 
-        <article class="card c-you">
+        <article class="card c-you" data-r="card">
           <span class="plus" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
           <div><h3>O próximo pode ser o seu.</h3><p>Conte o problema. Escopo e prazo saem fechados na proposta, depois do diagnóstico.</p></div>
           <a href="#contato" class="btn btn-ghost">Pedir orçamento</a>
@@ -513,10 +617,10 @@ footer.foot{position:relative;border-top:1px solid var(--color-border);padding:5
   <section class="section" id="metodo" aria-labelledby="met-title">
     <div class="wrap">
       <div class="method-head">
-        <h2 class="h2" id="met-title">Método claro, do primeiro contato à entrega.</h2>
-        <p class="lead">Quatro etapas, sempre nesta ordem. Você sabe o que está acontecendo e o que vem depois.</p>
+        <h2 class="h2" id="met-title" data-r="words">Método claro, do primeiro contato à entrega.</h2>
+        <p class="lead" data-r="fade" style="--d:200ms">Quatro etapas, sempre nesta ordem. Você sabe o que está acontecendo e o que vem depois.</p>
       </div>
-      <ol class="steps">
+      <ol class="steps" data-r="steps">
         <li class="step"><span class="knot" aria-hidden="true">01</span><div><h3>Diagnóstico</h3><p>Entendemos o problema, o processo atual e o que precisa existir.</p><span class="here">Nada é cobrado antes de você aprovar o plano.</span></div></li>
         <li class="step"><span class="knot" aria-hidden="true">02</span><div><h3>Planejamento e design</h3><p>Escopo, prazo e telas aprovados antes de escrever a primeira linha de código.</p></div></li>
         <li class="step"><span class="knot" aria-hidden="true">03</span><div><h3>Desenvolvimento</h3><p>Construção em etapas visíveis, com espaço para ajuste durante o caminho.</p></div></li>
@@ -527,14 +631,14 @@ footer.foot{position:relative;border-top:1px solid var(--color-border);padding:5
 
   <section class="section" id="sobre" aria-labelledby="sobre-title">
     <div class="wrap about">
-      <figure class="portrait">
+      <figure class="portrait" data-r="photo">
         <img src="../../../src/assets/founder/felipe-salles.png" alt="Felipe Salles, fundador da dmarques">
         <figcaption><b>Felipe Salles</b><span>Fundador · desenvolvedor web</span></figcaption>
       </figure>
       <div class="about-copy">
-        <h2 class="h2" id="sobre-title">Você fala com quem escreve o código.</h2>
-        <p class="lead">A dmarques é conduzida por Felipe Salles, desenvolvedor web que acompanha pessoalmente cada projeto — do diagnóstico ao suporte. Trabalhamos com sites, sistemas e automações que tiram o trabalho manual do caminho.</p>
-        <ul class="diffs">
+        <h2 class="h2" id="sobre-title" data-r="words">Você fala com quem escreve o código.</h2>
+        <p class="lead" data-r="fade" style="--d:200ms">A dmarques é conduzida por Felipe Salles, desenvolvedor web que acompanha pessoalmente cada projeto — do diagnóstico ao suporte. Trabalhamos com sites, sistemas e automações que tiram o trabalho manual do caminho.</p>
+        <ul class="diffs" data-r="list" style="--d:300ms">
           <li><b>Atendimento direto</b><span>Do orçamento ao suporte, sem intermediários.</span></li>
           <li><b>Código limpo e documentado</b><span>Seu projeto continua evoluindo com qualquer equipe.</span></li>
           <li><b>Prazos realistas</b><span>Só prometemos data que cabe no cronograma.</span></li>
@@ -548,14 +652,14 @@ footer.foot{position:relative;border-top:1px solid var(--color-border);padding:5
     <div class="aurora" aria-hidden="true"></div>
     <div class="wrap contact-grid">
       <div class="contact-copy">
-        <h2 class="h2" id="ct-title">Vamos construir algo <span class="accent">sólido juntos.</span></h2>
-        <p class="lead">Conte o que você precisa. Respondemos no mesmo dia útil — e quem responde é quem vai desenvolver.</p>
-        <ol class="next" aria-label="O que acontece depois">
+        <h2 class="h2" id="ct-title" data-r="words">Vamos construir algo <span class="accent">sólido juntos.</span></h2>
+        <p class="lead" data-r="fade" style="--d:200ms">Conte o que você precisa. Respondemos no mesmo dia útil — e quem responde é quem vai desenvolver.</p>
+        <ol class="next" aria-label="O que acontece depois" data-r="list" style="--d:300ms">
           <li><span>1</span>Respondemos pelo WhatsApp no mesmo dia útil.</li>
           <li><span>2</span>Fazemos o diagnóstico do problema e do processo atual.</li>
           <li><span>3</span>Você recebe a proposta com escopo e prazo fechados.</li>
         </ol>
-        <div class="channels">
+        <div class="channels" data-r="list" style="--d:520ms">
           <a class="channel wa" href="https://wa.me/5516996111785" target="_blank" rel="noopener">
             <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1112 20a8 8 0 01-4.1-1.1z"/></svg></span>
             <div><b>WhatsApp</b><span>(16) 99611-1785 · resposta mais rápida</span></div>
@@ -569,7 +673,7 @@ footer.foot{position:relative;border-top:1px solid var(--color-border);padding:5
         </div>
       </div>
 
-      <form class="form glass" id="quoteForm" novalidate aria-labelledby="form-title">
+      <form class="form glass" id="quoteForm" novalidate aria-labelledby="form-title" data-r="form">
         <div class="form-body">
           <h3 id="form-title">Pedir orçamento</h3>
           <p class="sub">Leva menos de um minuto.</p>
@@ -646,6 +750,7 @@ footer.foot{position:relative;border-top:1px solid var(--color-border);padding:5
 <template id="dm-mock"><div class="dm" aria-hidden="true"><div class="dm-nav"><img src="../../../src/assets/brand/logotipo.png" alt=""><span><i></i><i></i><i></i></span></div><div class="dm-hero">Software sob medida, com <span>acabamento de produto.</span><small>Sites, sistemas e automações desenhados para o seu processo.</small></div><div class="dm-rows"><div>Sites institucionais <em>01</em></div><div>Sistemas web sob medida <em>02</em></div><div>Soluções web <em>03</em></div><div>Automações <em>04</em></div></div><div class="dm-steps"><i></i><i></i><i></i><i></i></div><div class="dm-form"><i></i><i></i><i></i><i></i></div></div></template>
 
 <script>
+document.documentElement.classList.add('js');
 const body=document.body;
 document.querySelectorAll('[data-dm]').forEach(el=>el.appendChild(document.getElementById('dm-mock').content.cloneNode(true)));
 document.querySelectorAll('.variant-tab').forEach(t=>t.addEventListener('click',()=>{
@@ -724,6 +829,73 @@ document.getElementById('resetForm').addEventListener('click',()=>{
   form.querySelectorAll('.field').forEach(f=>{f.classList.remove('err');const i=f.querySelector('input');if(i)i.removeAttribute('aria-invalid')});
   form.classList.remove('done');status.textContent='';document.getElementById('f-nome').focus();
 });
+
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function splitWords(el){
+  const walk=n=>{[...n.childNodes].forEach(c=>{
+    if(c.nodeType===3){
+      const frag=document.createDocumentFragment();
+      c.textContent.split(/(\s+)/).forEach(t=>{
+        if(!t)return;
+        if(/^\s+$/.test(t)){frag.appendChild(document.createTextNode(t));return}
+        const w=document.createElement('span');w.className='w';
+        const i=document.createElement('span');i.textContent=t;w.appendChild(i);frag.appendChild(w);
+      });
+      c.replaceWith(frag);
+    }else if(c.nodeType===1&&!c.classList.contains('w'))walk(c);
+  })};
+  walk(el);
+  el.querySelectorAll('.w > span').forEach((s,i)=>s.style.setProperty('--i',i));
+}
+document.querySelectorAll('[data-r=words]').forEach(splitWords);
+document.querySelectorAll('.proof > *').forEach((c,i)=>c.style.setProperty('--i',i));
+document.querySelectorAll('[data-r=list]').forEach(l=>[...l.children].forEach((c,i)=>c.style.setProperty('--i',i)));
+document.querySelectorAll('.svc').forEach((s,i)=>s.style.setProperty('--d',(i*110)+'ms'));
+document.querySelectorAll('.card[data-r=card]').forEach((c,i)=>c.style.setProperty('--d',(i%3*110)+'ms'));
+
+const reveal=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  const t=e.target;t.classList.add('in');reveal.unobserve(t);
+  if(t.matches('.card'))setTimeout(()=>t.classList.add('settled'),1400);
+}),{rootMargin:'0px 0px -10% 0px',threshold:.12});
+const photoIO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.querySelector('.portrait').classList.add('in');photoIO.unobserve(e.target)}}),{rootMargin:'0px 0px -15% 0px',threshold:.1});
+document.querySelectorAll('[data-r]').forEach(el=>{
+  if(el.matches('[data-r=steps]')||el.closest('.hero'))return;
+  if(el.matches('[data-r=photo]')){photoIO.observe(el.parentElement);return}
+  reveal.observe(el);
+});
+
+const heroAurora=document.querySelector('.hero .aurora');
+requestAnimationFrame(()=>requestAnimationFrame(()=>{
+  heroAurora.classList.add('lit');
+  if(!RM)heroAurora.classList.add('drift');
+  setTimeout(()=>document.querySelectorAll('.hero [data-r]').forEach(el=>el.classList.add('in')),RM?0:250);
+}));
+new IntersectionObserver(([e])=>heroAurora.classList.toggle('paused',!e.isIntersecting)).observe(document.querySelector('.hero'));
+const contactAurora=document.querySelector('.contact .aurora');
+new IntersectionObserver(([e],o)=>{if(e.isIntersecting){contactAurora.classList.add('lit');o.disconnect()}},{threshold:.15}).observe(document.querySelector('.contact'));
+
+const runIO=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('run',e.isIntersecting)),{threshold:.2});
+document.querySelectorAll('.screen').forEach(s=>runIO.observe(s));
+
+const header=document.querySelector('header.top');
+const steps=document.querySelector('.steps'),stepEls=[...steps.children];
+let ticking=false;
+function onScroll(){
+  ticking=false;
+  header.classList.toggle('scrolled',scrollY>24);
+  const r=steps.getBoundingClientRect(),vh=innerHeight;
+  const p=RM?1:Math.min(1,Math.max(0,(vh*.85-r.top)/(vh*.55)));
+  steps.style.setProperty('--p',p.toFixed(3));
+  const n=stepEls.length;
+  stepEls.forEach((el,i)=>el.classList.toggle('lit',RM||p>=i/n+0.02||p>=.999));
+}
+addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(onScroll)}},{passive:true});
+addEventListener('resize',onScroll);onScroll();
+
+setTimeout(()=>document.querySelectorAll('[data-r]').forEach(el=>{
+  if(!el.matches('[data-r=steps]')&&el.getBoundingClientRect().top<innerHeight)el.classList.add('in');
+}),2500);
 
 const toast=document.getElementById('toast');
 document.querySelectorAll('a[href="#"]').forEach(a=>a.addEventListener('click',e=>{
