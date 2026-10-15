@@ -18,7 +18,7 @@ jobs:
           code=$(curl -sS -o /dev/null -w '%{http_code}' -H "x-vercel-protection-bypass: $BYPASS" "$TARGET/")
           echo "bypass header HTTP status: $code"
           test "$code" = "200"
-          jq --arg h "$BYPASS" '.ci.collect.settings.extraHeaders = {"x-vercel-protection-bypass": $h, "x-vercel-skip-toolbar": "1"}' lighthouserc.json > "$RUNNER_TEMP/lighthouserc.ci.json"
+          jq --arg h "$BYPASS" '.ci.collect.settings.extraHeaders = {"x-vercel-protection-bypass": $h} | .ci.collect.settings.blockedUrlPatterns = ["*vercel.live*"]' lighthouserc.json > "$RUNNER_TEMP/lighthouserc.ci.json"
       - uses: treosh/lighthouse-ci-action@v12
         with:
           urls: ${{ github.event.deployment_status.target_url }}
