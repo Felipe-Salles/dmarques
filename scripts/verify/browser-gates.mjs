@@ -29,7 +29,8 @@ const REVEAL_TARGETS = [
 
 function findHidden(selectors) {
   const out = [];
-  const clipped = (value) => value !== 'none' && !/^inset\(0px( 0px)*( round [^)]*)?\)$/.test(value);
+  const clipped = (value) =>
+    value !== 'none' && !/^inset\(0px( 0px)*( round [^)]*)?\)$/.test(value);
   for (const sel of selectors) {
     const nodes = document.querySelectorAll(sel);
     if (nodes.length === 0) {
@@ -121,8 +122,7 @@ const checks = {
               out.push(`alvo < 44: ${describe(el, r)}`);
             }
             const strict =
-              el.classList.contains('btn') ||
-              el.matches('input:not([type=radio]), textarea');
+              el.classList.contains('btn') || el.matches('input:not([type=radio]), textarea');
             if (strict && r.height < 48) out.push(`altura < 48: ${describe(el, r)}`);
           }
           return out;
@@ -145,7 +145,8 @@ const checks = {
           const fails = [];
           const h1 = document.querySelector('h1');
           if (!h1) fails.push('h1 ausente');
-          else if (getComputedStyle(h1).opacity !== '1') fails.push(`h1 opacity ${getComputedStyle(h1).opacity}`);
+          else if (getComputedStyle(h1).opacity !== '1')
+            fails.push(`h1 opacity ${getComputedStyle(h1).opacity}`);
           const form = document.querySelector('#form-orcamento');
           if (!form) fails.push('#form-orcamento ausente');
           else if (form.method !== 'post') fails.push(`form method ${form.method} (esperado post)`);
@@ -166,7 +167,7 @@ const checks = {
     try {
       return await withPage(ctx, base, '/', async (page) => {
         await page.waitForTimeout(500);
-        return await page.evaluate(() => {
+        const out = await page.evaluate(() => {
           const out = [];
           const aurora = document.querySelector('.hero .aurora');
           if (!aurora) out.push('.hero .aurora ausente');
@@ -179,7 +180,8 @@ const checks = {
           }
           const steps = document.querySelector('.steps');
           if (!steps) out.push('.steps ausente');
-          else if (getComputedStyle(steps).getPropertyValue('--p').trim() !== '1') out.push('--p != 1');
+          else if (getComputedStyle(steps).getPropertyValue('--p').trim() !== '1')
+            out.push('--p != 1');
           return out;
         });
         const hidden = await page.evaluate(findHidden, REVEAL_TARGETS);
@@ -197,7 +199,9 @@ const checks = {
         const fails = [];
         await scrollThrough(page);
         const state = await page.evaluate(() => ({
-          pending: [...document.querySelectorAll('[data-r]')].filter((el) => !el.classList.contains('in')).length,
+          pending: [...document.querySelectorAll('[data-r]')].filter(
+            (el) => !el.classList.contains('in'),
+          ).length,
           scrolled: document.querySelector('.site-header')?.classList.contains('scrolled') ?? null,
           y: window.scrollY,
         }));
@@ -221,7 +225,9 @@ const checks = {
         const delays = await page.evaluate(() =>
           [...document.querySelectorAll('[class]')]
             .map((el) => ({ el, cls: [...el.classList].find((c) => /^d\d+$/.test(c)) }))
-            .filter(({ el, cls }) => cls && getComputedStyle(el).getPropertyValue('--d').trim() === '')
+            .filter(
+              ({ el, cls }) => cls && getComputedStyle(el).getPropertyValue('--d').trim() === '',
+            )
             .map(({ cls }) => cls),
         );
         for (const cls of delays) fails.push(`classe de delay inexistente: .${cls}`);
@@ -253,7 +259,9 @@ const checks = {
       );
       await page.goto(`${base}/`, { waitUntil: 'load' });
       await page.waitForTimeout(3500);
-      const ready = await page.evaluate(() => document.documentElement.classList.contains('js-ready'));
+      const ready = await page.evaluate(() =>
+        document.documentElement.classList.contains('js-ready'),
+      );
       const hidden = await page.evaluate(findHidden, REVEAL_TARGETS);
       await page.close();
       const fails = [];
@@ -277,7 +285,9 @@ const checks = {
           () => getComputedStyle(document.querySelector('.screen .scroller')).animationPlayState,
         );
         if (before !== 'paused') fails.push(`antes de visivel: ${before} (esperado paused)`);
-        await page.evaluate(() => document.querySelector('.screen').scrollIntoView({ block: 'center' }));
+        await page.evaluate(() =>
+          document.querySelector('.screen').scrollIntoView({ block: 'center' }),
+        );
         await page.waitForTimeout(600);
         const after = await page.evaluate(
           () => getComputedStyle(document.querySelector('.screen .scroller')).animationPlayState,
@@ -322,7 +332,9 @@ const checks = {
     try {
       return await withPage(ctx, base, '/', async (page) => {
         const fails = [];
-        const method = await page.evaluate(() => document.querySelector('#form-orcamento')?.method ?? null);
+        const method = await page.evaluate(
+          () => document.querySelector('#form-orcamento')?.method ?? null,
+        );
         if (method === null) return ['#form-orcamento ausente'];
         if (method !== 'post') fails.push(`form method ${method} (esperado post)`);
         await page.fill('#nome', 'Fulano');
@@ -334,7 +346,8 @@ const checks = {
           pending: document.querySelector('#form-pendente')?.hidden === false,
           status: (document.querySelector('#form-status')?.textContent || '').trim(),
         }));
-        if (state.url.includes('?') || /fulano/i.test(state.url)) fails.push(`dados na URL: ${state.url}`);
+        if (state.url.includes('?') || /fulano/i.test(state.url))
+          fails.push(`dados na URL: ${state.url}`);
         if (!state.pending) fails.push('#form-pendente oculto apos envio');
         if (!state.status) fails.push('#form-status vazio apos envio');
         return fails;
