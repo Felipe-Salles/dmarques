@@ -1,0 +1,12 @@
+---
+interface Props {
+  text: string;
+  accentFrom?: number;
+}
+
+const { text, accentFrom } = Astro.props;
+const words = text.split(' ');
+---
+{words.map((word, i) => (
+  <><span class={`w i${i}`}><span class={accentFrom !== undefined && i >= accentFrom ? 'accent' : undefined}>{word}</span></span>{i < words.length - 1 ? ' ' : ''}</>
+))}
