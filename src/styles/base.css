@@ -93,6 +93,7 @@ button {
   overflow: clip;
   position: relative;
   min-height: 100svh;
+  background: var(--color-bg);
   isolation: isolate;
 }
 
