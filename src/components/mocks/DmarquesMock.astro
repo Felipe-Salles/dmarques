@@ -1,0 +1,178 @@
+---
+import { Image } from 'astro:assets';
+import logotipo from '../../assets/brand/logotipo.png';
+
+const rows = [
+  { t: 'Sites institucionais', n: '01' },
+  { t: 'Sistemas web sob medida', n: '02' },
+  { t: 'Soluções web', n: '03' },
+  { t: 'Automações', n: '04' },
+];
+---
+
+<div class="dm" aria-hidden="true">
+  <div class="dm-nav">
+    <Image src={logotipo} alt="" height={14} loading="lazy" />
+    <span><i></i><i></i><i></i></span>
+  </div>
+  <div class="dm-hero">
+    Software sob medida, com <span>acabamento de produto.</span>
+    <small>Sites, sistemas e automações desenhados para o seu processo.</small>
+  </div>
+  <div class="dm-rows">
+    {rows.map((r) => <div>{r.t} <em>{r.n}</em></div>)}
+  </div>
+  <div class="dm-steps"><i></i><i></i><i></i><i></i></div>
+  <div class="dm-form"><i></i><i></i><i></i><i></i></div>
+</div>
+
+<style>
+  .dm {
+    background: #070a14;
+    padding: 0 0 18px;
+    position: relative;
+    overflow: hidden;
+    min-height: 100%;
+  }
+
+  .dm::before {
+    content: '';
+    position: absolute;
+    left: -10%;
+    right: -10%;
+    top: -60px;
+    height: 320px;
+    background:
+      radial-gradient(40% 60% at 30% 40%, rgba(0, 200, 255, 0.42), transparent 70%),
+      radial-gradient(45% 70% at 72% 30%, rgba(58, 91, 255, 0.5), transparent 72%);
+  }
+
+  .dm > :global(*) {
+    position: relative;
+  }
+
+  .dm-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+  }
+
+  .dm-nav :global(img) {
+    height: 14px;
+    width: auto;
+  }
+
+  .dm-nav span {
+    display: flex;
+    gap: 7px;
+  }
+
+  .dm-nav span i {
+    width: 24px;
+    height: 5px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.25);
+  }
+
+  .dm-hero {
+    padding: 30px 16px 26px;
+    text-align: center;
+    color: #f2f4f7;
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    font-size: clamp(14px, 3cqi, 26px);
+    line-height: 1.05;
+  }
+
+  .dm-hero span {
+    color: #00c8ff;
+  }
+
+  .dm-hero small {
+    display: block;
+    margin: 10px auto 0;
+    max-width: 30ch;
+    font-family: var(--font-sans);
+    font-weight: 400;
+    letter-spacing: 0;
+    font-size: 0.42em;
+    line-height: 1.5;
+    color: #9aa3b2;
+  }
+
+  .dm-rows {
+    margin: 0 16px;
+    border-top: 1px solid rgba(148, 170, 255, 0.16);
+  }
+
+  .dm-rows div {
+    display: flex;
+    justify-content: space-between;
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(148, 170, 255, 0.16);
+    font-family: var(--font-display);
+    font-size: clamp(9px, 1.6cqi, 13px);
+    color: #f2f4f7;
+  }
+
+  .dm-rows div em {
+    font-style: normal;
+    color: #9aa3b2;
+    font-family: var(--font-mono);
+  }
+
+  .dm-steps {
+    display: flex;
+    justify-content: space-between;
+    margin: 22px 16px 0;
+  }
+
+  .dm-steps::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 6px;
+    height: 1px;
+    background: linear-gradient(90deg, #00c8ff, #3a5bff);
+  }
+
+  .dm-steps i {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #070a14;
+    border: 1px solid #00c8ff;
+    position: relative;
+  }
+
+  .dm-steps i:first-child {
+    border-color: #ff6a3d;
+  }
+
+  .dm-form {
+    margin: 22px 16px 0;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(148, 170, 255, 0.22);
+    background: rgba(16, 22, 42, 0.6);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .dm-form i {
+    height: 14px;
+    border-radius: 5px;
+    border: 1px solid rgba(148, 170, 255, 0.2);
+  }
+
+  .dm-form i:last-child {
+    background: #f2f4f7;
+    border: 0;
+    height: 16px;
+    border-radius: 8px;
+  }
+</style>

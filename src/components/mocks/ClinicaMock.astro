@@ -1,0 +1,113 @@
+---
+const specialties = [
+  { t: 'Clínico geral', s: 'Seg a sex' },
+  { t: 'Pediatria', s: 'Ter e qui' },
+  { t: 'Nutrição', s: 'Qua e sex' },
+];
+const infos = [
+  { t: 'Exames', s: 'Resultados online' },
+  { t: 'Convênios', s: '12 aceitos' },
+  { t: 'Endereço', s: 'Centro' },
+];
+---
+
+<div class="cl" aria-hidden="true">
+  <div class="cl-nav">Clínica Vita <span>Especialidades · Equipe · Contato</span></div>
+  <div class="cl-hero"><b>Cuidado que começa na primeira consulta.</b><i>Agendar pelo WhatsApp</i></div>
+  <div class="cl-cards">
+    {specialties.map((x) => <div><b>{x.t}</b><span>{x.s}</span></div>)}
+  </div>
+  <div class="cl-quote">“Marquei a consulta em dois minutos, sem ligar para ninguém.”</div>
+  <div class="cl-cards">
+    {infos.map((x) => <div><b>{x.t}</b><span>{x.s}</span></div>)}
+  </div>
+</div>
+
+<style>
+  .cl {
+    background: #f1efe9;
+    color: #14182a;
+    min-height: 100%;
+    font-family: var(--font-sans);
+    font-size: 11px;
+  }
+
+  .cl-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
+
+  .cl-nav span {
+    display: flex;
+    gap: 10px;
+    font-family: var(--font-sans);
+    font-weight: 400;
+    color: #4a5068;
+  }
+
+  .cl-hero {
+    margin: 0 10px;
+    border-radius: 10px;
+    padding: 22px 16px;
+    background: linear-gradient(135deg, #16245e, #3a5bff);
+    color: #fff;
+  }
+
+  .cl-hero b {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.7em;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    max-width: 16ch;
+  }
+
+  .cl-hero i {
+    display: inline-block;
+    margin-top: 12px;
+    font-style: normal;
+    padding: 5px 10px;
+    border-radius: 99px;
+    background: #fff;
+    color: #16245e;
+    font-weight: 600;
+  }
+
+  .cl-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    padding: 10px;
+  }
+
+  .cl-cards div {
+    background: #fff;
+    border: 1px solid #e2dfd7;
+    border-radius: 8px;
+    padding: 9px 8px;
+  }
+
+  .cl-cards b {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.05em;
+    margin-bottom: 3px;
+  }
+
+  .cl-cards span {
+    color: #5b6178;
+  }
+
+  .cl-quote {
+    margin: 0 10px 12px;
+    padding: 14px;
+    border-radius: 10px;
+    background: #16245e;
+    color: #e8ecff;
+    line-height: 1.45;
+  }
+</style>

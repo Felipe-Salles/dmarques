@@ -1,0 +1,111 @@
+---
+const days = [
+  { d: 'Seg', n: 14 },
+  { d: 'Ter', n: 15 },
+  { d: 'Qua', n: 16 },
+  { d: 'Qui', n: 17 },
+  { d: 'Sex', n: 18 },
+];
+const slots = [
+  { t: '08:30', who: 'Ana Paula · avaliação', ok: true },
+  { t: '09:30', who: 'Marcos · retorno', ok: true },
+  { t: '10:30', who: 'Juliana · primeira consulta', ok: false },
+  { t: '14:00', who: 'Ricardo · avaliação', ok: true },
+  { t: '15:00', who: 'Beatriz · retorno', ok: true },
+  { t: '16:30', who: 'Carlos · primeira consulta', ok: false },
+  { t: '17:30', who: 'Fernanda · avaliação', ok: true },
+];
+---
+
+<div class="ag" aria-hidden="true">
+  <div class="ag-top">Agenda da semana <em>12 confirmados</em></div>
+  <div class="ag-days">
+    {days.map((x) => <span>{x.d}<b>{x.n}</b></span>)}
+  </div>
+  {
+    slots.map((s) => (
+      <div class="ag-slot">
+        <time>{s.t}</time>
+        <span>{s.who}</span>
+        <u class={s.ok ? undefined : 'p'}>{s.ok ? 'confirmado' : 'aguardando'}</u>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .ag {
+    background: #0b1120;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: #c9d1de;
+    min-height: 100%;
+  }
+
+  .ag-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-display);
+    font-size: 1.25em;
+    color: #f2f4f7;
+  }
+
+  .ag-top em {
+    font-style: normal;
+    font-family: var(--font-sans);
+    font-size: 0.75em;
+    color: #9aa3b2;
+  }
+
+  .ag-days {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+    color: #9aa3b2;
+    text-align: center;
+  }
+
+  .ag-days b {
+    display: block;
+    font-weight: 500;
+    color: #f2f4f7;
+  }
+
+  .ag-slot {
+    display: grid;
+    grid-template-columns: 38px 1fr auto;
+    gap: 8px;
+    align-items: center;
+    padding: 7px 8px;
+    border-radius: 7px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(148, 170, 255, 0.1);
+  }
+
+  .ag-slot time {
+    color: #9aa3b2;
+  }
+
+  .ag-slot span {
+    color: #f2f4f7;
+  }
+
+  .ag-slot u {
+    text-decoration: none;
+    font-size: 0.85em;
+    padding: 2px 6px;
+    border-radius: 99px;
+    background: rgba(0, 200, 255, 0.12);
+    color: #7fdcff;
+  }
+
+  .ag-slot u.p {
+    background: rgba(255, 255, 255, 0.06);
+    color: #9aa3b2;
+  }
+</style>
