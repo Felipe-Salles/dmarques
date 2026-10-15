@@ -1,6 +1,7 @@
 ---
 import { Picture } from 'astro:assets';
 import { getCases } from '../content';
+import type { ProjectType } from '../content/project-types';
 import Words from './Words.astro';
 import AgendaMock from './mocks/AgendaMock.astro';
 import ClinicaMock from './mocks/ClinicaMock.astro';
@@ -10,7 +11,7 @@ const cases = await getCases();
 const featured = cases.find((c) => c.data.rotulo === 'projeto próprio');
 const examples = cases.flatMap((c) => (c.data.rotulo === 'exemplo de escopo' ? [c.data] : []));
 
-const tipoCurto: Record<string, string> = {
+const tipoCurto: Record<ProjectType, string> = {
   'sistema-sob-medida': 'Sistema',
   'site-institucional': 'Site',
   automacao: 'Automação',
