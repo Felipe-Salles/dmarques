@@ -58,7 +58,7 @@ const prefix = Astro.url.pathname === '/' ? '' : '/';
     top: var(--space-2);
     left: var(--space-4);
     z-index: var(--z-skiplink);
-    padding: var(--space-3) var(--space-5);
+    padding: var(--space-3) var(--space-6);
     background: var(--color-text);
     color: var(--color-bg);
     border-radius: var(--radius-full);
@@ -195,6 +195,10 @@ const prefix = Astro.url.pathname === '/' ? '' : '/';
     -webkit-backdrop-filter: blur(var(--blur-glass));
     border: 1px solid var(--color-border-strong);
     border-radius: var(--radius-lg);
+  }
+
+  .nav-toggle:not([open]) .nav-panel {
+    visibility: hidden;
   }
 
   .nav-panel a {
