@@ -261,8 +261,10 @@ const checks = {
       if (!section.includes(needle)) fails.push(`contato sem ${needle}`);
     }
     const footer = /<footer\b[\s\S]*?<\/footer>/i.exec(html);
-    if (!footer || !footer[0].includes('instagram.com/agenciadmarques')) {
-      fails.push('footer sem instagram.com/agenciadmarques');
+    if (!footer) {
+      fails.push('footer ausente');
+    } else if (footer[0].includes('instagram.com/agenciadmarques')) {
+      fails.push('footer contem instagram.com/agenciadmarques');
     }
     if (/hotmail/i.test(html)) fails.push('index.html contem hotmail');
     return fails;

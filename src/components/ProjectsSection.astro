@@ -32,12 +32,14 @@ const featuredData = featured && featured.data.rotulo === 'projeto próprio' ? f
 <section id="projetos" class="section projects" aria-labelledby="proj-title">
   <div class="wrap">
     <div class="proj-head">
-      <h2 class="h2" id="proj-title" data-r="words">
-        <Words text="Trabalho que roda de verdade." />
-      </h2>
-      <p class="lead d200" data-r="fade">
-        Um projeto próprio no ar e exemplos do tipo de escopo que construímos.
-      </p>
+      <div>
+        <h2 class="h2" id="proj-title" data-r="words">
+          <Words text="Trabalho que roda de verdade." />
+        </h2>
+        <p class="d200" data-r="fade">
+          Um projeto próprio no ar e exemplos do tipo de escopo que construímos.
+        </p>
+      </div>
     </div>
     <div class="bento">
       {
@@ -49,6 +51,15 @@ const featuredData = featured && featured.data.rotulo === 'projeto próprio' ? f
                 <h3>{featuredData.titulo}</h3>
                 <p>{featuredData.resultado}</p>
               </div>
+              <a
+                class="arrow"
+                href={`https://${featuredData.url}`}
+                aria-label="Ver o site da Dmarques no ar"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </a>
             </div>
             <div class="browser">
               <div class="browser-bar" aria-hidden="true">
@@ -147,14 +158,21 @@ const featuredData = featured && featured.data.rotulo === 'projeto próprio' ? f
 
   .proj-head {
     display: flex;
-    flex-direction: column;
-    gap: 12px;
+    justify-content: space-between;
+    align-items: end;
+    flex-wrap: wrap;
+    gap: 24px;
     margin-bottom: 40px;
   }
 
-  .proj-head h2,
-  .proj-head p {
+  .proj-head h2 {
     margin: 0;
+  }
+
+  .proj-head p {
+    margin: 12px 0 0;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
   }
 
   .bento {
@@ -201,6 +219,27 @@ const featuredData = featured && featured.data.rotulo === 'projeto próprio' ? f
     font-size: var(--text-sm);
     line-height: 1.55;
     color: var(--color-text-muted);
+  }
+
+  .card .arrow {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--color-border-strong);
+    color: var(--color-text);
+    transition:
+      background-color 0.2s,
+      color 0.2s,
+      transform 0.2s;
+  }
+
+  .card:hover .arrow,
+  .card .arrow:focus-visible {
+    background: var(--color-text);
+    color: #070a14;
   }
 
   .tag {
@@ -443,6 +482,11 @@ const featuredData = featured && featured.data.rotulo === 'projeto próprio' ? f
   }
 
   @media (prefers-reduced-motion: no-preference) {
+    .card:hover .arrow,
+    .card .arrow:focus-visible {
+      transform: rotate(-45deg);
+    }
+
     :global(html.js-ready) .card[data-r] {
       opacity: 0;
       transform: translateY(28px) scale(0.985);
