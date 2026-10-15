@@ -34,22 +34,25 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 
 ### Conteúdo (CONTENT)
 
-- [x] **CONTENT-01**: Conteúdo de serviços, processo, diferenciais e FAQ em Astro
-  Content Collections (YAML), validado por schema Zod no build
+- [x] **CONTENT-01**: Conteúdo de serviços, processo, diferenciais e FAQ (D-02: FAQ removida na 04.1) em Astro
+  Content Collections (YAML), validado por schema Zod no build — FAQ (D-02) superseded na
+  Fase 04.1 (D-02): a coleção `faq` foi removida.
 - [x] **CONTENT-02**: Cases de portfólio em Content Collection (Markdown) com capa
   via helper `image()`, estrutura problema → solução → resultado
-- [x] **CONTENT-03**: 1–2 entradas de case reais ou honestamente rotuladas
-  ("projeto próprio" / "demo") publicadas na v1
-- [x] **CONTENT-04**: FAQ é fonte única — o mesmo conteúdo alimenta a seção visível
-  e o JSON-LD `FAQPage`
+- [x] **CONTENT-03**: 1 case real (`projeto próprio`) + exemplos rotulados
+  `exemplo de escopo` (enum `'projeto próprio' | 'exemplo de escopo'`, D-07 da Fase 04.1)
+- [x] **CONTENT-04** (D-02 superseded): FAQ é fonte única — o mesmo conteúdo alimenta a seção visível
+  e o JSON-LD `FAQPage` — superseded na Fase 04.1 (D-02): seção FAQ e coleção
+  `faq` removidas; os claims migraram para Contato e Método. (D-02)
 - [x] **CONTENT-05**: O enum "tipo de projeto" do conteúdo é a mesma allow-list
   usada na validação do formulário
 
 ### Seções da Página (SITE)
 
 - [x] **SITE-01**: Landing one-page com as 9 seções do design, em ordem: Hero
-  (03 Bleed), Serviços, Como trabalhamos, Diferenciais, Sobre, Contato, FAQ, CTA
-  final, Rodapé
+  (03 Bleed), Serviços, Como trabalhamos, Diferenciais, Sobre, Contato, FAQ (D-02), CTA
+  final, Rodapé — FAQ, Diferenciais (seção) e CTA final superseded na Fase 04.1 (D-02)
+  (D-02/D-04/D-05).
 - [x] **SITE-02**: Hero "03 Bleed" reproduzido fielmente — nav, headline, dois
   CTAs ("Começar um projeto" e WhatsApp), área do render 3D sangrando na borda,
   card de depoimento em glass
@@ -78,14 +81,14 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   com erro de JS, a página fica 100% visível
 - [x] **ANIM-03**: Glow que segue o cursor — gradiente radial fixo via
   `pointermove` + `requestAnimationFrame`, `pointer-events:none`, `aria-hidden`,
-  só com `pointer:fine` e sem reduced-motion
+  só com `pointer:fine` e sem reduced-motion — superseded na Fase 04.1 (D-12): glow de cursor e canvas de partículas removidos; a aurora estática é a única fonte de luz (AUR-11/AUR-13).
 - [x] **ANIM-04**: Canvas de partículas como componente island (`client:visible`),
   `aria-hidden="true"`, pausado por IntersectionObserver quando fora da viewport
-  e em `document.hidden`
+  e em `document.hidden` — superseded na Fase 04.1 (D-12): glow de cursor e canvas de partículas removidos; a aurora estática é a única fonte de luz (AUR-11/AUR-13).
 - [x] **ANIM-05**: Canvas de partículas respeita `prefers-reduced-motion`
   (renderiza um frame estático ou não renderiza), limita DPR a ~1,5 e reduz a
   contagem de pontos em viewport pequena / dispositivos de poucos núcleos /
-  data-saver
+  data-saver — superseded na Fase 04.1 (D-12): glow de cursor e canvas de partículas removidos; a aurora estática é a única fonte de luz (AUR-11/AUR-13).
 - [x] **ANIM-06**: Keyframes `dmFloat` e `dmPulse` com `animation: none` sob
   reduced-motion; elementos legíveis sem a animação
 - [x] **ANIM-07**: Cada estado `:hover` tem um `:focus-visible` equivalente;
@@ -162,13 +165,14 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 - [ ] **SEO-04**: `sitemap.xml` (via `@astrojs/sitemap`) e `robots.txt` (libera
   tudo, aponta o sitemap)
 - [ ] **SEO-05**: Conjunto de favicons + `apple-touch-icon` + `theme-color`
-  (#0A0A12)
+  (#070A14)
 - [ ] **SEO-06**: JSON-LD com `@type: ["ProfessionalService","LocalBusiness"]` —
   nome, descrição, url, telefone E.164, e-mail, `areaServed`, `address`
   (localidade, `addressRegion: "SP"`, `addressCountry: "BR"`), `sameAs`
   (Instagram), `image`/`logo`, `founder` (Person)
-- [ ] **SEO-07**: JSON-LD `FAQPage` gerado da mesma fonte da FAQ visível, validado
-  no Google Rich Results Test
+- [ ] ~~**SEO-07**: JSON-LD `FAQPage` (D-02) gerado da mesma fonte da FAQ visível, validado
+  no Google Rich Results Test~~ Removido na Fase 04.1 (D-02): o Google só aceita
+  FAQPage para FAQ visível, e a FAQ saiu do site. (D-02)
 - [ ] **SEO-08**: NAP (nome, endereço, telefone) idêntico entre rodapé e JSON-LD
 
 ### Acessibilidade (A11Y)
@@ -290,6 +294,27 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 | Páginas de detalhe por case | Quebra o modelo one-page; só vale com vários cases profundos |
 | Astro View Transitions na v1 | Quebram listeners de script na segunda navegação (SEC-10) |
 
+## Redesign Aurora (AUR)
+
+- [ ] **AUR-01**: Tokens migram para a paleta Aurora (`#070A14`, aurora `#00C8FF/#3A5BFF/#0E1E5B`, ember só como marcador, textos AA); nenhum `#6C4CFF`/`rgba(108,76,255` em `src/`
+- [ ] **AUR-02**: Fonts API self-host Sora 600, Inter Tight 400/500/600, JetBrains Mono 400; Outfit/DM Sans removidos; preload só Sora 600 + Inter Tight 400; nenhuma origem de fonte de terceiros
+- [ ] **AUR-03**: Lockup (símbolo+logotipo) em header e footer; favicon/apple-touch coerentes com o fundo novo
+- [ ] **AUR-04**: Estrutura/ordem da home: header → hero → serviços → projetos → método → sobre → contato → footer; FAQ, Diferenciais (seção) e CtaFinal removidos (D-02)
+- [ ] **AUR-05**: Hero centrado com aurora estática (3 radial-gradients, sem `filter:blur`), H1 em `.accent`, CTAs e linha de prova com link PageSpeed
+- [ ] **AUR-06**: Serviços (lista tipográfica com hairlines, intro sticky), Método (linha de luz, ol), Sobre (foto real 4:5 + diferenciais 2 col) conforme sketch
+- [ ] **AUR-07**: Seção Projetos: bento 6 col, 1 caso real + exemplos rotulados "Exemplo de escopo" + card-convite; mocks HTML/CSS sem métricas inventadas; schema `cases` com união discriminada
+- [ ] **AUR-08**: Contato: "o que acontece depois", canais (e-mail, WhatsApp, Instagram), formulário de vidro com 5 campos, chips radio, todos os estados em CSS, live region sr-only, sem JS de form
+- [ ] **AUR-09**: Header sticky com vidro ao rolar, nav ativa por IO, menu `<details>`, WhatsApp flutuante ≤900px, footer conforme sketch
+- [ ] **AUR-10**: Copy em "nós", CTA único "Pedir orçamento", linguagem leiga, apenas claims já publicados; conteúdo em Collections; zero termos LCP/TBT/CLS/CSP no HTML construído
+- [ ] **AUR-11**: Motion "a luz acende" hand-rolled (CSS+IO+1 scroll rAF): aurora acende, H1 palavra a palavra, reveals distintos por seção, linha do método por scroll, foto por clip-path, mocks/browser só rodam visíveis; sem lib, sem scroll-jacking
+- [ ] **AUR-12**: Tudo visível sem JS e com falha de JS; `prefers-reduced-motion` reduz a fades curtos; aurora estática; loops desligados
+- [ ] **AUR-13**: Canvas de partículas, glow de cursor e `.hero-glow` removidos (ANIM-03/04/05 reescritos); `pnpm test` passa sem `particles.pure.test.mjs`
+- [ ] **AUR-14**: Lighthouse mobile ≥95 nas 4 categorias, LCP ≤2,5 s, TBT <200 ms, CLS <0,05; JS da rota ≤20 KB gz
+- [ ] **AUR-15**: Sem overflow horizontal em 360–1440 px; tap targets ≥44 px (botões/inputs ≥48); foco visível; gate `style=` e `security-check.sh --ci` verdes
+- [ ] **AUR-16**: Páginas `/obrigado`, `/404`, `/politica-de-privacidade` com header/footer/tokens/aurora estática pequena, sem motion da home
+- [ ] **AUR-17**: REQUIREMENTS/ROADMAP atualizados: SEO-07 e CONTENT-04 removidos/reescritos (Fase 6 sem FAQPage), CONTENT-03 com novo enum, ANIM-03/04/05 reescritos (D-02)
+- [ ] **AUR-18**: `/impeccable polish` e checklist SEC-07 executados sem High aberto antes do fechamento
+
 ## Traceability
 
 Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly one phase.
@@ -309,7 +334,7 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | CONTENT-01 | Phase 2 | Complete |
 | CONTENT-02 | Phase 2 | Complete |
 | CONTENT-03 | Phase 2 | Complete |
-| CONTENT-04 | Phase 2 | Complete |
+| CONTENT-04 | Phase 2 | Superseded (04.1 D-02) |
 | CONTENT-05 | Phase 2 | Complete |
 | SITE-01 | Phase 3 | Complete |
 | SITE-02 | Phase 3 | Complete |
@@ -322,9 +347,9 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | SITE-09 | Phase 3 | Complete |
 | ANIM-01 | Phase 4 | Complete |
 | ANIM-02 | Phase 3 | Complete |
-| ANIM-03 | Phase 4 | Complete |
-| ANIM-04 | Phase 4 | Complete |
-| ANIM-05 | Phase 4 | Complete |
+| ANIM-03 | Phase 4 | Superseded (04.1 D-12) |
+| ANIM-04 | Phase 4 | Superseded (04.1 D-12) |
+| ANIM-05 | Phase 4 | Superseded (04.1 D-12) |
 | ANIM-06 | Phase 4 | Complete |
 | ANIM-07 | Phase 3 | Complete |
 | ANIM-08 | Phase 3 | Complete |
@@ -355,7 +380,7 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | SEO-04 | Phase 6 | Pending |
 | SEO-05 | Phase 6 | Pending |
 | SEO-06 | Phase 6 | Pending |
-| SEO-07 | Phase 6 | Pending |
+| SEO-07 | Phase 6 | Dropped (04.1 D-02) |
 | SEO-08 | Phase 6 | Pending |
 | A11Y-01 | Phase 3 | Complete |
 | A11Y-02 | Phase 3 | Complete |
@@ -379,15 +404,35 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | PERF-03 | Phase 1 | Complete |
 | PERF-04 | Phase 1 | Complete |
 | PERF-05 | Phase 3 | Complete |
+| AUR-01 | Phase 04.1 | Pending |
+| AUR-02 | Phase 04.1 | Pending |
+| AUR-03 | Phase 04.1 | Pending |
+| AUR-04 | Phase 04.1 | Pending |
+| AUR-05 | Phase 04.1 | Pending |
+| AUR-06 | Phase 04.1 | Pending |
+| AUR-07 | Phase 04.1 | Pending |
+| AUR-08 | Phase 04.1 | Pending |
+| AUR-09 | Phase 04.1 | Pending |
+| AUR-10 | Phase 04.1 | Pending |
+| AUR-11 | Phase 04.1 | Pending |
+| AUR-12 | Phase 04.1 | Pending |
+| AUR-13 | Phase 04.1 | Pending |
+| AUR-14 | Phase 04.1 | Pending |
+| AUR-15 | Phase 04.1 | Pending |
+| AUR-16 | Phase 04.1 | Pending |
+| AUR-17 | Phase 04.1 | Pending |
+| AUR-18 | Phase 04.1 | Pending |
 
 **Coverage:**
-- v1 requirements: 83 total (the earlier "78 total" was a miscount; 83 IDs are
-  enumerated above)
-- Mapped to phases: 83 / 83 ✓
+- v1 requirements: 101 total (83 originais + 18 AUR da Fase 04.1; o "78 total"
+  anterior era erro de contagem)
+- Mapped to phases: 101 / 101 ✓
+- SEO-07 descartado; CONTENT-04, ANIM-03, ANIM-04 e ANIM-05 superseded pela Fase
+  04.1 (D-02/D-12)
 - Unmapped: 0 ✓
 - Cross-cutting: SEC-07 and PERF-01 have Phase 1 as their home but execute at
   every phase boundary — each phase's success criteria require both to pass.
 
 ---
 *Requirements defined: 2026-09-05*
-*Last updated: 2026-09-05 after roadmap creation (traceability mapped, count corrected 78 → 83)*
+*Last updated: 2026-10-15 after 04.1-01 (AUR-01..18 added; SEO-07 dropped; CONTENT-04/ANIM-03/04/05 superseded)*
