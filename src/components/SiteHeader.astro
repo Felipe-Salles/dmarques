@@ -2,78 +2,70 @@
 import { Image } from 'astro:assets';
 import logotipo from '../assets/brand/logotipo.png';
 import simbolo from '../assets/brand/simbolo.png';
+
+const prefix = Astro.url.pathname === '/' ? '' : '/';
 ---
 
-<a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
 <header class="site-header">
-  <div class="header-inner">
-    <a href="/" class="wordmark" aria-label="Dmarques Desenvolvimento Web — página inicial">
-      <Image
-        src={simbolo}
-        alt=""
-        height={36}
-        densities={[1, 2]}
-        loading="eager"
-        class="logo-symbol"
-      />
-      <Image
-        src={logotipo}
-        alt=""
-        height={36}
-        densities={[1, 2]}
-        loading="eager"
-        class="logo-type"
-      />
+  <a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
+  <div class="wrap header-inner">
+    <a
+      href={prefix === '' ? '#' : '/'}
+      class="lockup"
+      aria-label="Dmarques Desenvolvimento Web — página inicial"
+    >
+      <Image src={simbolo} alt="" height={30} densities={[1, 2]} loading="eager" class="logo-symbol" />
+      <Image src={logotipo} alt="" height={30} densities={[1, 2]} loading="eager" class="logo-type" />
     </a>
     <nav class="nav-desktop" aria-label="Navegação principal">
-      <a href="#servicos">Serviços</a>
-      <a href="#processo">Como trabalhamos</a>
-      <a href="#sobre">Sobre</a>
-      <a href="#contato">Contato</a>
+      <a href={`${prefix}#servicos`} data-nav="servicos">Serviços</a>
+      <a href={`${prefix}#projetos`} data-nav="projetos">Projetos</a>
+      <a href={`${prefix}#processo`} data-nav="processo">Como trabalhamos</a>
+      <a href={`${prefix}#sobre`} data-nav="sobre">Sobre</a>
     </nav>
     <div class="header-actions">
+      <a href={`${prefix}#contato`} class="btn btn-ghost header-cta">Pedir orçamento</a>
       <details class="nav-toggle">
-        <summary aria-label="Abrir menu de navegação">
+        <summary>
           <svg
             aria-hidden="true"
-            width="22"
-            height="22"
+            width="20"
+            height="20"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
             stroke-width="1.6"
             stroke-linecap="round"
           >
-            <path d="M4 7h16M4 12h16M4 17h16"></path>
+            <path d="M4 8h16M4 16h16"></path>
           </svg>
+          <span class="sr-only">Abrir menu</span>
         </summary>
         <nav class="nav-panel" aria-label="Navegação principal (mobile)">
-          <a href="#servicos">Serviços</a>
-          <a href="#processo">Como trabalhamos</a>
-          <a href="#sobre">Sobre</a>
-          <a href="#contato">Contato</a>
+          <a href={`${prefix}#servicos`} data-nav="servicos">Serviços</a>
+          <a href={`${prefix}#projetos`} data-nav="projetos">Projetos</a>
+          <a href={`${prefix}#processo`} data-nav="processo">Como trabalhamos</a>
+          <a href={`${prefix}#sobre`} data-nav="sobre">Sobre</a>
         </nav>
       </details>
-      <a href="#contato" class="cta-pill">Pedir orçamento</a>
     </div>
   </div>
 </header>
 
 <style>
   .skip-link {
-    position: fixed;
-    top: var(--space-4);
+    position: absolute;
+    top: var(--space-2);
     left: var(--space-4);
     z-index: var(--z-skiplink);
     padding: var(--space-3) var(--space-5);
-    background: var(--color-accent);
-    color: var(--color-text-on-accent);
-    border-radius: var(--radius-md);
-    font-family: var(--font-text);
+    background: var(--color-text);
+    color: var(--color-bg);
+    border-radius: var(--radius-full);
     font-size: var(--text-sm);
     font-weight: var(--font-weight-semibold);
     transform: translateY(-200%);
-    transition: transform var(--dur-fast) var(--ease-standard);
+    transition: transform 0.2s var(--ease-out);
   }
 
   .skip-link:focus-visible {
@@ -81,73 +73,109 @@ import simbolo from '../assets/brand/simbolo.png';
   }
 
   .site-header {
-    position: relative;
-    z-index: var(--z-nav);
-    background: var(--color-bg);
+    position: sticky;
+    top: 0;
+    z-index: var(--z-header);
+    border-bottom: 1px solid transparent;
+    transition:
+      background-color 0.4s var(--ease-out),
+      border-color 0.4s var(--ease-out);
   }
 
   .header-inner {
-    max-width: 1320px;
-    margin-inline: auto;
-    padding-inline: var(--space-gutter);
-    padding-block: var(--space-4);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--space-4);
+    gap: 16px;
+    height: 84px;
+    transition: height 0.4s var(--ease-out);
   }
 
-  .wordmark {
-    display: flex;
+  .site-header:global(.scrolled) {
+    background: rgba(7, 10, 20, 0.72);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border-bottom-color: var(--color-border);
+  }
+
+  .site-header:global(.scrolled) .header-inner {
+    height: 68px;
+  }
+
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .site-header:global(.scrolled) {
+      background: rgba(7, 10, 20, 0.92);
+    }
+  }
+
+  .lockup {
+    display: inline-flex;
     align-items: center;
-    gap: var(--space-2);
+    gap: 8px;
+    min-height: 44px;
     flex-shrink: 0;
   }
 
-  .logo-symbol,
-  .logo-type {
+  .lockup :global(img) {
     display: block;
     width: auto;
-    height: 32px;
-  }
-
-  .logo-type {
-    display: none;
+    height: 30px;
   }
 
   .nav-desktop {
-    display: none;
-    align-items: center;
-    gap: var(--space-6);
+    display: flex;
+    gap: 6px;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
   }
 
   .nav-desktop a {
-    color: var(--color-text-muted);
-    font-family: var(--font-text);
-    font-size: var(--text-sm);
-    font-weight: var(--font-weight-medium);
-    transition: color var(--dur-fast) var(--ease-standard);
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 12px;
+    border-radius: 999px;
+    transition:
+      color 0.15s,
+      background-color 0.15s;
   }
 
   .nav-desktop a:hover,
   .nav-desktop a:focus-visible {
-    color: var(--color-text-strong);
+    color: var(--color-text);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .nav-desktop a:global(.on) {
+    color: var(--color-text);
+    background: rgba(255, 255, 255, 0.05);
   }
 
   .header-actions {
     display: flex;
     align-items: center;
-    gap: var(--space-3);
+    gap: 12px;
+  }
+
+  .header-cta {
+    min-height: 48px;
+    padding: 0 20px;
+  }
+
+  .nav-toggle {
+    display: none;
   }
 
   .nav-toggle > summary {
     display: grid;
     place-items: center;
+    width: 44px;
+    height: 44px;
     list-style: none;
     cursor: pointer;
-    padding: var(--space-3);
-    border-radius: var(--radius-md);
-    color: var(--color-text-strong);
+    border: 1px solid var(--color-border-strong);
+    border-radius: 12px;
+    color: var(--color-text);
   }
 
   .nav-toggle > summary::-webkit-details-marker {
@@ -159,29 +187,32 @@ import simbolo from '../assets/brand/simbolo.png';
     top: 100%;
     left: 0;
     right: 0;
-    margin-top: var(--space-2);
     display: flex;
     flex-direction: column;
-    gap: var(--space-1);
-    padding: var(--space-4) var(--space-gutter);
-    background: var(--color-bg-deep);
-    border-top: 1px solid var(--color-border);
-    box-shadow: var(--shadow-md);
+    padding: 4px 16px 12px;
+    background: var(--color-surface);
+    backdrop-filter: blur(var(--blur-glass));
+    -webkit-backdrop-filter: blur(var(--blur-glass));
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-lg);
   }
 
   .nav-panel a {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    border-bottom: 1px solid var(--color-border);
     color: var(--color-text-muted);
-    font-family: var(--font-text);
-    font-size: var(--text-sm);
-    font-weight: var(--font-weight-medium);
-    padding: var(--space-2) var(--space-3);
-    border-radius: var(--radius-sm);
-    transition: color var(--dur-fast) var(--ease-standard);
+  }
+
+  .nav-panel a:last-child {
+    border-bottom: 0;
   }
 
   .nav-panel a:hover,
-  .nav-panel a:focus-visible {
-    color: var(--color-text-strong);
+  .nav-panel a:focus-visible,
+  .nav-panel a:global(.on) {
+    color: var(--color-text);
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -189,8 +220,8 @@ import simbolo from '../assets/brand/simbolo.png';
       opacity: 0;
       transform: translateY(-8px);
       transition:
-        opacity var(--dur-mid) var(--ease-out),
-        transform var(--dur-mid) var(--ease-out);
+        opacity 0.3s var(--ease-out),
+        transform 0.3s var(--ease-out);
     }
 
     .nav-toggle[open] .nav-panel {
@@ -199,46 +230,28 @@ import simbolo from '../assets/brand/simbolo.png';
     }
   }
 
-  .cta-pill {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: var(--space-2) var(--space-5);
-    border-radius: var(--radius-pill);
-    border: 1px solid var(--color-border-strong);
-    color: var(--color-text-strong);
-    font-family: var(--font-text);
-    font-size: var(--text-sm);
-    font-weight: var(--font-weight-semibold);
-    background: transparent;
-    transition:
-      background-color var(--dur-fast) var(--ease-standard),
-      border-color var(--dur-fast) var(--ease-standard);
-  }
+  @container site (max-width: 900px) {
+    .nav-desktop {
+      display: none;
+    }
 
-  .cta-pill:hover,
-  .cta-pill:focus-visible {
-    background-color: var(--color-accent);
-    border-color: var(--color-accent);
-  }
-
-  @media (min-width: 480px) {
-    .logo-type {
+    .nav-toggle {
       display: block;
     }
   }
 
-  @media (min-width: 860px) {
-    .logo-symbol,
-    .logo-type {
-      height: 36px;
+  @container site (max-width: 560px) {
+    .lockup :global(img) {
+      height: 26px;
     }
 
-    .nav-desktop {
-      display: flex;
+    .header-cta {
+      padding: 0 14px;
     }
+  }
 
-    .nav-toggle {
+  @container site (max-width: 480px) {
+    .lockup :global(.logo-type) {
       display: none;
     }
   }
