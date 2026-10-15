@@ -118,6 +118,10 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   foco movido para o primeiro erro; sucesso e falha anunciados
 - [ ] **FORM-07**: Honeypot oculto (descartado, nunca enviado nem armazenado) +
   verificação de tempo de submissão (rejeita < ~3 s ou > ~2 h), ambos no servidor
+  - Nota (Fase 5 D-27, Felipe 2026-10-15): o tempo é o decorrido medido no cliente
+    (`elapsed-ms`), sem comparar relógios; teto alargado para 24 h para não perder
+    lead de aba aberta; sem JS o campo não existe e o timing não se aplica (risco
+    aceito; honeypot e rate limits seguem valendo).
 - [ ] **FORM-08**: Rate limiting no endpoint — por IP (janela deslizante) mais um
   teto global horário e um teto diário rígido; resposta 429 com mensagem amigável
 - [ ] **FORM-09**: E-mail enviado via Resend com `from`/`to`/`subject` fixos no
@@ -133,6 +137,9 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 - [ ] **FORM-13**: Deep-links de WhatsApp com `?text=` pré-preenchido por ponto de
   entrada (hero genérico; cards de serviço mencionam o serviço), URL-encoded,
   `rel="noopener"`
+  - Exceção registrada (decisão de Felipe, 2026-10-15, Fase 5 D-26): na Fase 5 os
+    pontos de entrada são Contato, Footer (inclusive o botão flutuante) e cards de
+    serviço; o hero fica sem CTA de WhatsApp.
 
 ### LGPD & Privacidade (LGPD)
 

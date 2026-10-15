@@ -260,6 +260,7 @@ Plans:
 **Goal**: The quote form works end-to-end to the founder's inbox with or without JavaScript, behind layered spam/abuse defenses, and ships in the same release as the Privacy Policy page and inline data-use notice.
 **Depends on**: Phase 04.1 (redesigned form markup), Phase 3, Phase 1 (env schema)
 **Requirements**: FORM-01, FORM-02, FORM-03, FORM-04, FORM-05, FORM-06, FORM-07, FORM-08, FORM-09, FORM-10, FORM-11, FORM-12, FORM-13, LGPD-01, LGPD-02, LGPD-03, LGPD-04, LGPD-05, LGPD-06, LGPD-07, SEC-08, SEC-09
+**Exceções registradas**: FORM-13 — pontos de entrada nesta fase são Contato, Footer (inclusive o botão flutuante) e cards de serviço; hero excluído por decisão de Felipe em 2026-10-15 (05-CONTEXT D-26). FORM-07 — timing pelo tempo decorrido medido no cliente (teto 24 h); omitir o campo sem JS contorna o timing, risco aceito por Felipe em 2026-10-15 (05-CONTEXT D-27).
 **Success Criteria** (what must be TRUE):
 
   1. With JavaScript disabled, submitting the form (Nome, WhatsApp, E-mail, Tipo de projeto, Mensagem; at least one of WhatsApp/e-mail required) natively POSTs to `/api/orcamento` and redirects (303) to `/obrigado`; with JavaScript, the enhancer does a `fetch` with inline idle/sending/success/error states, mirrors the schema in on-blur client validation, preserves typed input on error, disables submit in-flight, surfaces accessible errors (text not just color, `aria-invalid`, `aria-describedby`, `aria-live`, focus to first error), and offers a pre-filled WhatsApp deep-link as the fallback path.

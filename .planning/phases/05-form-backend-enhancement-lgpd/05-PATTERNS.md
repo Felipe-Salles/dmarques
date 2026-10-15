@@ -25,7 +25,7 @@ Regra transversal: nenhum comentario em nenhum arquivo versionado (D-23). Todos 
 | `src/components/ContactSection.astro` (mod) | component | request-response | si mesmo | exact |
 | `src/components/ServicesSection.astro` (mod, `.svc-wa`) | component | transform | si mesmo + `.channel` em ContactSection | exact |
 | `src/components/SiteFooter.astro` (mod, `?text=`) | component | transform | si mesmo | exact |
-| `src/components/HeroBleed.astro` | component | - | sem link WhatsApp (Open Question 3: nao inventar) | n/a |
+| `src/components/HeroBleed.astro` | component | - | sem link WhatsApp (D-26: hero excluido do FORM-13 por decisao do Felipe) | n/a |
 | `src/pages/obrigado.astro` (mod) | page | static | si mesmo | exact |
 | `src/pages/erro-envio/[motivo].astro` | page | static (getStaticPaths) | `src/pages/obrigado.astro` | role-match |
 | `src/pages/politica-de-privacidade.astro` (reescrita) | page | static | si mesmo (shell) | exact |
@@ -146,7 +146,7 @@ status.textContent = '';
 status.textContent = 'texto';
 ```
 
-Regras do UI-SPEC/RESEARCH Pattern 4: `form.noValidate = true` no init, corpo `URLSearchParams`, `Accept: application/json`, `AbortController` 15 s, `rendered-at` com `Date.now()`, `textContent` e `setAttribute('href', ...)` apenas, zero `style`/`innerHTML`. Importa so `form-schema.ts` e `whatsapp.ts`. Classes de estado: `.sending`, `.done`, `.failed`, `.limited`, `.err-contato` e `.field.err`.
+Regras do UI-SPEC/RESEARCH Pattern 4: `form.noValidate = true` no init, corpo `URLSearchParams`, `Accept: application/json`, `AbortController` 15 s, `elapsed-ms` com `performance.now()` decorrido desde o init (D-27, nunca `Date.now()`), `textContent` e `setAttribute('href', ...)` apenas, zero `style`/`innerHTML`. Importa so `form-schema.ts` e `whatsapp.ts`. Classes de estado: `.sending`, `.done`, `.failed`, `.limited`, `.err-contato` e `.field.err`.
 
 ---
 
@@ -156,7 +156,7 @@ Regras do UI-SPEC/RESEARCH Pattern 4: `form.noValidate = true` no init, corpo `U
 
 - Form ja tem `method="post" action="/api/orcamento"` (linhas 110-117), nao reinserir.
 - Remover `<p class="pending" id="form-pendente" hidden>` (linhas 178-186) e o CSS `.pending` (476-491).
-- Adicionar honeypot `<div class="hp" aria-hidden="true">` com `input name="empresa-site" tabindex="-1" autocomplete="off"` e `input type="hidden" name="rendered-at"` (valor vazio) dentro de `.form-body`; CSS `.hp` por classe (RESEARCH/UI-SPEC), nunca `style=""`.
+- Adicionar honeypot `<div class="hp" aria-hidden="true">` com `input name="empresa-site" tabindex="-1" autocomplete="off"` e `input type="hidden" name="elapsed-ms"` (valor vazio) dentro de `.form-body`; CSS `.hp` por classe (RESEARCH/UI-SPEC), nunca `style=""`.
 - Aviso LGPD (linhas 187-190): trocar copy para "Usamos seus dados só para responder a este pedido. Veja a Política de Privacidade." (D-22); a regra `.legal a` (500-508) ja existe.
 - Painel de sucesso (192-208): titulo "Pedido enviado.", remover o botao "Enviar outro pedido", adicionar `.btn.btn-ghost` WhatsApp.
 - Adicionar `<div class="alert" id="form-erro" role="group" aria-labelledby="form-erro-t" hidden>` e `id="form-limite"` (CSS reaproveita a caixa de `.pending`, linhas 476-485, com padding `12px 16px`).
@@ -174,7 +174,7 @@ Markup de erro de campo existente a respeitar para `aria-describedby` (linhas 13
 **Analog:** o item de lista (linhas 53-83) e o estilo de link de `.channel` em ContactSection. Dentro de `<li class=\`svc i${i}\`>` apos `<p>{item.data.descricao}</p>` (linha 81) adicionar:
 
 ```astro
-<a class="svc-wa" href={buildWaUrl(`Olá! Vim pelo site e quero falar sobre ${item.data.titulo}.`)} target="_blank" rel="noopener noreferrer" aria-label={`Falar sobre ${item.data.titulo} no WhatsApp`}>Falar sobre isso no WhatsApp</a>
+<a class="svc-wa" href={buildWaUrl(`Olá! Vim pelo site e quero falar sobre ${item.data.titulo}.`)} target="_blank" rel="noopener noreferrer" aria-label={`Falar sobre isso no WhatsApp — ${item.data.titulo}`}>Falar sobre isso no WhatsApp</a>
 ```
 
 Atencao ao grid: `.svc` e `grid-template-columns: 44px 1fr` com `svg` em `grid-row: 1 / span 2` (linhas 141-153); o link precisa ir para a coluna 2 (`grid-column: 2`). Estilo: `--text-sm`, peso 400, `min-height: 44px`, hover e `:focus-visible` pareados. A transicao do `.svc` (linhas 173-186, translateX nos filhos `h3`, `p`, `svg`) nao inclui `a`; o link nao deve ganhar `transform` proprio fora do permitido. Importar o helper: `import { buildWaUrl } from '../lib/whatsapp.ts';` (o frontmatter atual usa `'../content'`, sem extensao, ambos funcionam em Astro).
@@ -336,7 +336,7 @@ Dependencias exatas, sem `^` (padrao da linhas 21-25): `resend@6.33.0`, `zod@4.6
 
 - D-09: `hotmail` ja nao aparece em `src/`; a tarefa e verificar com grep e remover `#form-pendente`.
 - `HeroBleed.astro` nao tem link WhatsApp e `CtaFinal.astro` nao existe: nao inventar (Open Question 3). Links reais: `ContactSection.astro` linha 26, `SiteFooter.astro` linhas 31 e 51.
-- `ContactSection.astro` ja tem `action="/api/orcamento"` e `method="post"`; falta honeypot, `rendered-at`, alertas e copy.
+- `ContactSection.astro` ja tem `action="/api/orcamento"` e `method="post"`; falta honeypot, `elapsed-ms`, alertas e copy.
 - Aviso do UI-SPEC sobre `?motivo=` esta superado pelo RESEARCH Pattern 6 (rota por segmento estatico).
 - `package.json` script `test` so cobre `src/scripts/`; precisa de glob recursivo para os testes de `src/lib/`.
 

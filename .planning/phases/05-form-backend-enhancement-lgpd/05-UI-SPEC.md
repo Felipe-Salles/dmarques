@@ -173,7 +173,7 @@ Mensagens de erro:
 
 ### Honeypot
 
-`<div class="hp" aria-hidden="true">` com `input name="empresa-site" tabindex="-1" autocomplete="off"`, escondido por **classe** (`position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden`), nunca `display:none`, nunca `style=""`. Campo oculto `rendered-at` vem do servidor.
+`<div class="hp" aria-hidden="true">` com `input name="empresa-site" tabindex="-1" autocomplete="off"`, escondido por **classe** (`position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden`), nunca `display:none`, nunca `style=""`. Campo oculto `elapsed-ms` (vazio no HTML; o enhancer grava o tempo decorrido medido com `performance.now()` no submit, D-27).
 
 ---
 
@@ -189,7 +189,7 @@ Mensagens de erro:
 
 | Local | Texto pré-preenchido (antes de `encodeURIComponent`) |
 |-------|------------------------------------------------------|
-| Hero (`HeroBleed.astro`), Contato (`ContactSection.astro`), footer (`SiteFooter.astro`) | "Olá! Vim pelo site da Dmarques e quero pedir um orçamento." |
+| Contato (`ContactSection.astro`), footer (`SiteFooter.astro`, coluna e botão flutuante). Hero fica sem CTA de WhatsApp (D-26, Felipe 2026-10-15) | "Olá! Vim pelo site da Dmarques e quero pedir um orçamento." |
 | `CtaFinal.astro` | mesmo texto genérico. Observação: a 04.1 removeu `CtaFinal.astro` (CTX D-05); se o arquivo não existir mais, o requisito D-21 para ele fica sem objeto, e o planner confirma por grep |
 | Card de serviço (`ServicesSection.astro`) | "Olá! Vim pelo site e quero falar sobre {título do serviço}." |
 | Fallback do form (falha, 429, sucesso) | "Olá! Sou {nome}. Vim pelo site e quero falar sobre {tipo de projeto}." Sem nome: "Olá! Vim pelo site e quero pedir um orçamento."; sem tipo: omite a frase do tipo |
@@ -198,7 +198,7 @@ Base `https://wa.me/5516996111785?text=...`, sempre `target="_blank" rel="noopen
 
 ### Link no card de serviço
 
-- `<a class="svc-wa">Falar sobre isso no WhatsApp</a>` após o parágrafo do serviço, com `aria-label="Falar sobre {serviço} no WhatsApp"`.
+- `<a class="svc-wa">Falar sobre isso no WhatsApp</a>` após o parágrafo do serviço, com `aria-label="Falar sobre isso no WhatsApp — {serviço}"` (o nome acessível começa pelo texto visível, label-in-name).
 - `--text-sm`, **peso 400**, cor `--color-text-muted`, sublinhado offset 4px, seta SVG 14px; `display:inline-flex; align-items:center; min-height:44px`.
 - Hover e `:focus-visible`: cor `--color-text`, `text-decoration-color: var(--aurora-cyan)`, seta avança 2px (transform 0.2s; sem deslocamento sob reduced-motion).
 - Sem ember.

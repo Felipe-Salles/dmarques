@@ -108,8 +108,8 @@ are out of scope.
   digits (strips +55 / leading 0) and validates 10–11 BR digits.
 - **D-21:** FORM-13: add a discreet **"Falar sobre isso no WhatsApp"** link to
   each service card, prefilled with e.g. "Olá! Vim pelo site e quero falar sobre
-  {serviço}." Existing WhatsApp links (hero, Contato, CTA final, footer) get a
-  generic prefilled text. The form's error and rate-limit fallback link carries
+  {serviço}." Existing WhatsApp links (Contato, footer incl. floating button) get a
+  generic prefilled text; the hero has none and gets none (see D-26). The form's error and rate-limit fallback link carries
   what the user typed (name + project type). All texts are URL-encoded with
   `rel="noopener"`.
 - **D-22:** LGPD-03 notice is one short line next to the submit button:
@@ -125,11 +125,27 @@ are out of scope.
   `src/content/project-types.ts` is the single allow-list for the `<select>`
   and the server `z.enum` (Phase 2 D-05).
 
+### Decisions recorded after plan check (Felipe, 2026-10-15)
+- **D-26:** FORM-13 hero exception: **no WhatsApp CTA in the hero this
+  phase**. FORM-13 entry points are Contato (`ContactSection.astro`), Footer
+  (`SiteFooter.astro`, column link and floating button) and the service cards.
+  The exception is recorded in REQUIREMENTS.md (FORM-13 note) and ROADMAP.md
+  (Phase 5). Not asked again at the 05-14 checkpoint.
+- **D-27:** Submit timing uses the **elapsed time measured on the client**
+  (`elapsed-ms` = `performance.now()` at submit minus the mark taken at enhancer
+  init), never a comparison between client and server clocks. Server rejects
+  (silent fake success) when present and non-numeric, negative, under 3 s or
+  over 24 h (ceiling widened from ~2 h so a tab left open does not lose a lead).
+  Felipe **accepts the risk** that omitting `elapsed-ms` (the no-JS path, or a
+  bot that drops the field) bypasses the timing check; honeypot, Origin check
+  and the three rate-limit layers still apply. Recorded in the 05-14 SEC-07 run
+  as an already-accepted risk, not asked again.
+
 ### Claude's Discretion
 - Response to honeypot/timing rejections: silently return a fake success
   (200 / 303 to `/obrigado`) so bots get no signal. No email is sent.
-- How the submit timestamp is carried: a rendered-at field, signed or
-  HMAC'd if the researcher recommends it. Window 3 s–2 h per FORM-07.
+- How the submit timestamp is carried: resolved by D-27 (client-measured
+  elapsed time in `elapsed-ms`, no clock comparison).
 - Exact pt-BR copy for validation errors, the generic server error, and the
   429 message, all in the site's friendly tone.
 - The no-JS error path shape (dedicated `/erro-envio`-style page vs.
@@ -187,7 +203,7 @@ are out of scope.
 ### Integration Points
 - New on-demand route `src/pages/api/orcamento.ts` with `export const prerender = false`. It must be the single serverless Function.
 - `src/components/ServicesSection.astro`: service cards get the D-21 WhatsApp link.
-- WhatsApp links in `HeroBleed.astro`, `ContactSection.astro`, `CtaFinal.astro`, and `SiteFooter.astro` get the prefilled `?text=`.
+- WhatsApp links in `ContactSection.astro` and `SiteFooter.astro` get the prefilled `?text=`. `HeroBleed.astro` gets no WhatsApp CTA (D-26); `CtaFinal.astro` no longer exists.
 - `SiteFooter.astro` and `ContactSection.astro` switch the hotmail address to `contato@` (D-09).
 - `BaseLayout.astro` renders `@vercel/analytics`. Verify it fires nothing on form interaction and sets zero cookies (LGPD-05/06).
 - New env vars: Upstash REST URL/token (Marketplace-injected) and optionally `CONTACT_EMAIL`, all server-only.

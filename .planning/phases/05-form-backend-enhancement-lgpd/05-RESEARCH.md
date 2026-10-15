@@ -449,20 +449,20 @@ Rodar contra preview/produção: `/_vercel/insights/*` só existe na Vercel, nã
 | A9 | `_dmarc` sem `rua` até haver caixa para relatórios | Pitfall 6 | Baixo |
 | A10 | Servidor `astro:env` secret com `optional: true` não falha o build do CI sem env | Environment | Baixo: `RESEND_API_KEY` já é declarada e o CI builda sem ela |
 
-## Open Questions
+## Open Questions (RESOLVED)
 
-1. **Hobby e uso comercial**
+1. **Hobby e uso comercial** — RESOLVED: decisão do Felipe no checkpoint 05-14 Task 2 (Hobby aceito ou Pro), com o SEC-08 atualizado no 05-08 e reescrito no 05-14 Task 3.
    - Sabemos: Fair Use do Vercel restringe Hobby a uso não comercial (anunciar serviço conta); SEC-08 depende de Hobby sem cartão.
    - Incerto: tolerância prática da Vercel e se o fundador migrará para Pro.
    - Recomendação: o planner inclui uma nota de risco no `runs/phase-05.md` e no ROADMAP (SEC-08) e pergunta ao Felipe; Pro também habilita mais regras de WAF e Spend Management. Não bloqueia o código.
-2. **Timing sem JS**
+2. **Timing sem JS** — RESOLVED: risco aceito pelo Felipe em 2026-10-15 (05-CONTEXT D-27); o timing passa a usar `elapsed-ms` medido no cliente (sem comparar relógios), em vez do `rendered-at` descrito nas seções acima; os planos 05-01/05-07/05-09 prevalecem.
    - Recomendação: seguir Pitfall 1 e registrar limitação como risco aceito no SEC-07.
-3. **FORM-13 no hero / CtaFinal**
+3. **FORM-13 no hero / CtaFinal** — RESOLVED: sem CTA de WhatsApp no hero nesta fase, exceção registrada em REQUIREMENTS.md e ROADMAP.md (05-CONTEXT D-26, Felipe 2026-10-15).
    - Fato: `HeroBleed.astro` só tem `#contato` e `#projetos` (sem WhatsApp); `CtaFinal.astro` não existe. Links WhatsApp reais: canal em `ContactSection.astro`, coluna de contato e botão flutuante em `SiteFooter.astro`.
    - Recomendação: aplicar `?text=` genérico aos três existentes e novos nos cards de serviço; **não** inventar link no hero. Confirmar com Felipe se quer um CTA WhatsApp no hero.
-4. **Região do Upstash**
+4. **Região do Upstash** — RESOLVED: escolhida pelo Felipe no checkpoint 05-11 Task 2 e conferida contra a política no 05-12 Task 2.
    - Escolher região no Marketplace (preferir `sa-east-1`/São Paulo se disponível `[ASSUMED]`) reduz latência e a menção de transferência internacional para os contadores; a transferência (EUA) segue válida por Vercel/Resend.
-5. **Mensagem 1000 vs 2000**
+5. **Mensagem 1000 vs 2000** — RESOLVED: 1000, fixado em `LIMITS.messageMax` no 05-01.
    - Usar 1000 (alinhado ao `maxlength` e ao UI-SPEC); satisfaz FORM-04.
 
 ## Environment Availability

@@ -40,7 +40,7 @@ created: 2026-10-15
 |--------|----------|-----------|-------------------|-------------|--------|
 | FORM-04 | nome 2–80, contato obrigatório, enum, msg ≤1000 | unit | `node --test src/lib/form-schema.test.mjs` | ❌ W0 | ⬜ pending |
 | FORM-05 | cliente e servidor concordam (mesma tabela de casos) | unit | `node --test src/lib/form-schema.test.mjs` | ❌ W0 | ⬜ pending |
-| FORM-07 | honeypot e janela 3 s/2 h → sucesso falso, 0 envios | unit | `node --test src/lib/submit.test.mjs` | ❌ W0 | ⬜ pending |
+| FORM-07 | honeypot e elapsed-ms fora de 3 s/24 h → sucesso falso, 0 envios; ausente tolerado (D-27) | unit | `node --test src/lib/submit.test.mjs` | ❌ W0 | ⬜ pending |
 | FORM-08 | ordem ip→hora→dia, fail-closed, `reason:'timeout'` | unit (fakes) | `node --test src/lib/submit.test.mjs` | ❌ W0 | ⬜ pending |
 | FORM-09 | escape HTML, CR/LF no assunto, `text` presente, replyTo condicional | unit | `node --test src/lib/mail.test.mjs` | ❌ W0 | ⬜ pending |
 | FORM-10 | 415, 403, 413, erro genérico, `Location` só de tabela | unit | `node --test src/lib/request-guards.test.mjs` | ❌ W0 | ⬜ pending |
