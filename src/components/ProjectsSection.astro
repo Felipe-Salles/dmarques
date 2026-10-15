@@ -48,14 +48,9 @@ const featuredData = featured && featured.data.rotulo === 'projeto próprio' ? f
                 <h3>{featuredData.titulo}</h3>
                 <p>{featuredData.resultado}</p>
               </div>
-              <span class="arrow" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M13 6l6 6-6 6" />
-                </svg>
-              </span>
             </div>
-            <div class="browser" aria-hidden="true">
-              <div class="browser-bar">
+            <div class="browser">
+              <div class="browser-bar" aria-hidden="true">
                 <i />
                 <i />
                 <i />
@@ -220,26 +215,6 @@ const featuredData = featured && featured.data.rotulo === 'projeto próprio' ? f
   .tag.real {
     border-color: rgba(0, 200, 255, 0.45);
     color: #7fdcff;
-  }
-
-  .arrow {
-    display: grid;
-    place-items: center;
-    flex: none;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: 1px solid var(--color-border-strong);
-    transition:
-      background-color 0.2s,
-      color 0.2s,
-      transform 0.2s;
-  }
-
-  .card:hover .arrow {
-    background: var(--color-text);
-    color: var(--color-bg);
-    transform: rotate(-45deg);
   }
 
   .c-feat {
