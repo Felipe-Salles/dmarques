@@ -25,13 +25,16 @@ export function initVisibility(): void {
     (s) => document.querySelector(`a[data-nav="${s.id}"]`) !== null,
   );
   if (links.length > 0 && sections.length > 0) {
+    const visible = new Set<string>();
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
           const id = (entry.target as HTMLElement).id;
-          for (const link of links) link.classList.toggle('on', link.dataset.nav === id);
+          if (entry.isIntersecting) visible.add(id);
+          else visible.delete(id);
         }
+        const active = sections.find((s) => visible.has(s.id))?.id ?? null;
+        for (const link of links) link.classList.toggle('on', link.dataset.nav === active);
       },
       { rootMargin: '-45% 0px -50% 0px' },
     );
