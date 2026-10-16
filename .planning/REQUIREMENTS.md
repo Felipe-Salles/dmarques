@@ -107,7 +107,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
     visível; funciona sem JS com rádios `canal` + CSS `:has()`.
 - [x] **FORM-02**: `<form method="POST" action="/api/orcamento">` funciona sem
   JavaScript — envio nativo redireciona (303) para `/obrigado`
-- [ ] **FORM-03**: Island de progressive enhancement faz `fetch` com
+- [x] **FORM-03**: Island de progressive enhancement faz `fetch` com
   `preventDefault`, mostra estados idle / enviando / sucesso / erro inline,
   preserva o que foi digitado em caso de erro e desabilita o submit durante o
   envio
@@ -117,10 +117,10 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   - Nota (Fase 5 D-28): o campo do canal não escolhido é descartado e nunca usado.
 - [x] **FORM-05**: Validação client-side inline (no blur / no submit, nunca a cada
   tecla) espelhando o schema, sem bloquear o submit
-- [ ] **FORM-06**: Mensagens de erro e status acessíveis — texto (não só cor),
+- [x] **FORM-06**: Mensagens de erro e status acessíveis — texto (não só cor),
   `aria-invalid`, `aria-describedby` ligando campo→erro, região `aria-live`,
   foco movido para o primeiro erro; sucesso e falha anunciados
-- [ ] **FORM-07**: Honeypot oculto (descartado, nunca enviado nem armazenado) +
+- [x] **FORM-07**: Honeypot oculto (descartado, nunca enviado nem armazenado) +
   verificação de tempo de submissão (rejeita < ~3 s ou > ~24 h, tempo decorrido medido no cliente), ambos no servidor
   - Nota (Fase 5 D-27, Felipe 2026-10-15): o tempo é o decorrido medido no cliente
     (`elapsed-ms`), sem comparar relógios; teto alargado para 24 h para não perder
@@ -155,11 +155,11 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   retenção, direitos do titular (Art. 18) e como exercê-los, ausência de cookies
   de rastreamento, inexistência de decisões automatizadas, reclamação à ANPD,
   data da última atualização
-- [ ] **LGPD-03**: Aviso de uso de dados visível ao lado do botão de envio, com
+- [x] **LGPD-03**: Aviso de uso de dados visível ao lado do botão de envio, com
   link para a Política de Privacidade (padrão notice-only, sem checkbox)
 - [x] **LGPD-04**: IP, user-agent e timestamp usados apenas durante a requisição
   (rate-limit e timing), nunca persistidos ou logados
-- [ ] **LGPD-05**: Nenhum script de analytics/marketing dispara na interação com o
+- [x] **LGPD-05**: Nenhum script de analytics/marketing dispara na interação com o
   formulário
 - [ ] **LGPD-06**: Analytics sem cookies verificado no DevTools (zero cookies,
   sem ID persistente) antes do lançamento
@@ -367,11 +367,11 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | ANIM-09 | Phase 4 | Complete |
 | FORM-01 | Phase 5 | Complete |
 | FORM-02 | Phase 5 | Complete |
-| FORM-03 | Phase 5 | Pending |
+| FORM-03 | Phase 5 | Complete |
 | FORM-04 | Phase 5 | Complete |
 | FORM-05 | Phase 5 | Complete |
-| FORM-06 | Phase 5 | Pending |
-| FORM-07 | Phase 5 | Pending |
+| FORM-06 | Phase 5 | Complete |
+| FORM-07 | Phase 5 | Complete |
 | FORM-08 | Phase 5 | Complete |
 | FORM-09 | Phase 5 | Complete |
 | FORM-10 | Phase 5 | Complete |
@@ -380,9 +380,9 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | FORM-13 | Phase 5 | Complete |
 | LGPD-01 | Phase 5 | Complete |
 | LGPD-02 | Phase 5 | Complete |
-| LGPD-03 | Phase 5 | Pending |
+| LGPD-03 | Phase 5 | Complete |
 | LGPD-04 | Phase 5 | Complete |
-| LGPD-05 | Phase 5 | Pending |
+| LGPD-05 | Phase 5 | Complete |
 | LGPD-06 | Phase 5 | Pending |
 | LGPD-07 | Phase 5 | Complete |
 | SEO-01 | Phase 6 | Pending |
