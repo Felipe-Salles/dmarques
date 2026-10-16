@@ -121,4 +121,8 @@ Escopo ampliado por decisao do Felipe: remocao da pagina, ajustes de rodape, gat
 - e92b409 test(05-12): gates trocam a checagem da politica pelo details de privacidade
 - 2d88268 docs(05-12): registra D-29 e ajusta LGPD-01/02/03/07 e CLAUDE.md
 
+## Revisão D-29 (2026-10-16)
+
+Felipe revisou a decisão: o bloco `<details>` "Como usamos seus dados" foi removido do formulário e permanece só a frase curta "Usamos seus dados só para responder a este pedido.", sem link. A política segue removida. LGPD-01, LGPD-02 e LGPD-07 (parte publicada) constam como removidos por decisão do Felipe; o risco é a transparência do art. 9º da LGPD deixar de ser publicada no site.
+
 ## Self-Check: PASSED

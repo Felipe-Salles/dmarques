@@ -180,13 +180,7 @@ are out of scope.
     the sketch): form card height at 1440px ≤ sketch + 40px.
 
 ### Decision recorded during live validation (Felipe, 2026-10-16)
-- **D-29:** The `/politica-de-privacidade` page is **removed** (supersedes the
-  Privacy Policy decisions above, D-18 included). Rationale: decisão do Felipe;
-  transparência do art. 9º mantida via bloco no formulário. A native `<details>`
-  "Como usamos seus dados" under the form's LGPD notice states controller,
-  purpose, legal basis (art. 7º, V), retention, processors and rights. The
-  footer link was removed too; the footer now ends with a divider and the
-  centered copyright.
+- **D-29:** Felipe decidiu remover a Política de Privacidade e não exibir aviso de privacidade detalhado no formulário; permanece só a frase curta sob o botão ("Usamos seus dados só para responder a este pedido."), sem link. A página `/politica-de-privacidade` está removida (supersedes D-18 e as decisões de política acima) e o rodapé não a referencia. Risco registrado: transparência do art. 9º da LGPD (controlador, finalidade, base legal, retenção, operadores, direitos) deixa de ser publicada no site.
 
 ### Claude's Discretion
 - Response to honeypot/timing rejections: silently return a fake success

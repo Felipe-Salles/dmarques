@@ -28,8 +28,9 @@ um orçamento — com um site que carrega rápido e nunca sai do ar.
 - **Acessibilidade**: `prefers-reduced-motion`, contraste AA, navegação por
   teclado, HTML semântico.
 - **Idioma**: pt-BR apenas.
-- **LGPD**: coleta mínima de dados no formulário, com base legal e aviso de
-  privacidade no formulário (D-29).
+- **LGPD**: coleta mínima de dados no formulário com base legal registrada
+  internamente (PROJECT.md); política e aviso detalhado removidos por decisão do
+  Felipe (D-29).
 <!-- GSD:project-end -->
 
 <!-- GSD:stack-start source:research/STACK.md -->
