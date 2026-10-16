@@ -140,6 +140,7 @@ um orçamento — com um site que carrega rápido e nunca sai do ar.
 | Movimento "a luz acende" hand-rolled (CSS + IntersectionObserver) | Reveal ao rolar distinto por seção sem biblioteca; fallback sem JS e reduced-motion; canvas de partículas aposentado | — Pending (Fase 04.1) |
 | Sem hero fixado / scrollytelling (modo cinemático) | Testado no sketch e rejeitado pelo Felipe | ✓ Decidido 2026-10-15 |
 | Redesign como Fase 04.1, antes da Fase 5 | Formulário é ligado ao backend já no markup novo (evita retrabalho) | ✓ Decidido 2026-10-15 |
+| LGPD: bases legais Art. 7º V (pedido de orçamento) + IX (antiabuso e medição agregada); retenção de 6 meses para pedidos de quem não virou cliente; sem encarregado formal (Res. CD/ANPD nº 2/2022) | Decisão do fundador (Fase 5, D-15/D-16); coleta mínima; expurgo manual mensal da caixa GoDaddy documentado em docs/operacao-formulario.md | ✓ Decidido (2026-09-24) — refletido em /politica-de-privacidade |
 
 ## Evolution
 
