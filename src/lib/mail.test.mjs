@@ -29,7 +29,12 @@ test('assunto sem CR/LF', () => {
 
 test('email: html escapado, text literal, reply-to e canal', () => {
   const m = buildEmail(
-    { nome: '<b>Ana</b>', canal: 'email', email: 'ana@x.co', mensagem: '<script>alert(1)</script>' },
+    {
+      nome: '<b>Ana</b>',
+      canal: 'email',
+      email: 'ana@x.co',
+      mensagem: '<script>alert(1)</script>',
+    },
     addr,
   );
   assert.ok(m.html.includes('&lt;b&gt;Ana&lt;/b&gt;'));
