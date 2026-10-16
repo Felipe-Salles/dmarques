@@ -280,7 +280,7 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 05-04-PLAN.md — Schema Zod do servidor e montagem segura do e-mail (TDD)
+- [x] 05-04-PLAN.md — Schema Zod do servidor e montagem segura do e-mail (TDD)
 - [ ] 05-05-PLAN.md — Guardas de requisição e rate limit em três camadas com IP em HMAC (TDD)
 - [ ] 05-06-PLAN.md — /obrigado, /erro-envio/{limite,invalido,falha}, noindex e deep-links de WhatsApp
 - [ ] 05-07-PLAN.md — Markup do card de contato (seletor de canal D-28), enhancer form.ts com estados acessíveis e medição de altura vs sketch
@@ -350,7 +350,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 4.1 -> 5 -> 6 -> 7
 | 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 9/9 | Complete   | 2026-09-17 |
 | 4. Progressive-Enhancement Effects | 4/4 | Complete   | 2026-09-17 |
 | 4.1. Redesign Aurora técnica (INSERTED) | 11/11 | Complete   | 2026-10-15 |
-| 5. Form Backend + Enhancement + LGPD | 3/14 | In Progress|  |
+| 5. Form Backend + Enhancement + LGPD | 4/14 | In Progress|  |
 | 6. SEO / Metadata / Structured Data | 0/TBD | Not started | - |
 | 7. Security Headers Finalize | 0/TBD | Not started | - |
 

@@ -99,7 +99,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 
 ### Formulário de Orçamento (FORM)
 
-- [ ] **FORM-01**: Formulário "Pedir orçamento" com campos Nome, canal preferido
+- [x] **FORM-01**: Formulário "Pedir orçamento" com campos Nome, canal preferido
   (WhatsApp ou E-mail) com um campo de contato, Tipo de projeto e Mensagem; o
   contato do canal escolhido é obrigatório
   - Nota (Fase 5 D-28, Felipe 2026-10-15): seletor "Prefiro contato por"
@@ -365,7 +365,7 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | ANIM-07 | Phase 3 | Complete |
 | ANIM-08 | Phase 3 | Complete |
 | ANIM-09 | Phase 4 | Complete |
-| FORM-01 | Phase 5 | Pending |
+| FORM-01 | Phase 5 | Complete |
 | FORM-02 | Phase 5 | Pending |
 | FORM-03 | Phase 5 | Pending |
 | FORM-04 | Phase 5 | Complete |
