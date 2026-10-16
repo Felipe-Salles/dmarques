@@ -255,10 +255,44 @@ const waIcon = 'M4 20l1.3-3.9A8 8 0 1112 20a8 8 0 01-4.1-1.1z';
           <span class="spinner" aria-hidden="true"></span>
           <span class="btn-label">Enviar pedido de orçamento</span>
         </button>
-        <p class="legal">
-          Usamos seus dados só para responder a este pedido. Veja a
-          <a href="/politica-de-privacidade">Política de Privacidade</a>.
-        </p>
+        <p class="legal">Usamos seus dados só para responder a este pedido.</p>
+        <details class="privacy">
+          <summary>Como usamos seus dados</summary>
+          <div class="privacy-body">
+            <p>
+              <b>Controlador:</b> Felipe Salles, da Dmarques Soluções Web, Ibitinga/SP.{' '}
+              <a href="mailto:contato@agenciadmarques.com.br">contato@agenciadmarques.com.br</a>
+            </p>
+            <p>
+              <b>Finalidade:</b> responder ao seu pedido de orçamento e preparar a proposta. Não
+              usamos para marketing nem vendemos dados.
+            </p>
+            <p>
+              <b>Base legal:</b> procedimentos preliminares relacionados a contrato, a pedido do
+              titular (art. 7º, V, da Lei nº 13.709/2018). Proteger o formulário contra abuso é
+              legítimo interesse (art. 7º, IX).
+            </p>
+            <p>
+              <b>Dados:</b> nome, o contato do canal escolhido, tipo de projeto e mensagem. O IP só
+              existe durante a requisição e fica guardado como código pseudonimizado por até 24
+              horas.
+            </p>
+            <p>
+              <b>Retenção:</b> pedidos de quem não virou cliente são apagados da caixa de e-mail em
+              até 6 meses.
+            </p>
+            <p>
+              <b>Operadores:</b> Vercel (hospedagem e medição de acessos sem cookies, EUA), Resend
+              (envio do e-mail, região São Paulo), Upstash (limite de envios, região São Paulo) e
+              GoDaddy (caixa de e-mail, EUA).
+            </p>
+            <p>
+              <b>Seus direitos:</b> acesso, correção, eliminação e os demais do art. 18, pedidos em{' '}
+              <a href="mailto:contato@agenciadmarques.com.br">contato@agenciadmarques.com.br</a>, com
+              resposta em até 15 dias.
+            </p>
+          </div>
+        </details>
       </div>
       <div class="success">
         <span class="ok" aria-hidden="true">
@@ -626,14 +660,50 @@ const waIcon = 'M4 20l1.3-3.9A8 8 0 1112 20a8 8 0 01-4.1-1.1z';
     line-height: 1.5;
   }
 
-  .legal a {
-    display: inline-block;
+  .privacy {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    margin-top: -14px;
+  }
+
+  .privacy summary {
+    display: block;
+    cursor: pointer;
     padding-block: 12px;
     margin-block: -12px;
-    margin-left: 0.3em;
     color: var(--color-text);
     text-decoration: underline;
     text-underline-offset: 4px;
+    border-radius: 8px;
+  }
+
+  .privacy summary:focus-visible {
+    outline: 2px solid var(--aurora-cyan);
+    outline-offset: 2px;
+  }
+
+  .privacy-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 20px;
+  }
+
+  .privacy-body p {
+    margin: 0;
+  }
+
+  .privacy b {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  .privacy a {
+    color: var(--color-text);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    overflow-wrap: anywhere;
   }
 
   .success {
