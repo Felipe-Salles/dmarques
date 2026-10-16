@@ -105,7 +105,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   - Nota (Fase 5 D-28, Felipe 2026-10-15): seletor "Prefiro contato por"
     (WhatsApp | E-mail, WhatsApp por padrão) acima de um único campo de contato
     visível; funciona sem JS com rádios `canal` + CSS `:has()`.
-- [ ] **FORM-02**: `<form method="POST" action="/api/orcamento">` funciona sem
+- [x] **FORM-02**: `<form method="POST" action="/api/orcamento">` funciona sem
   JavaScript — envio nativo redireciona (303) para `/obrigado`
 - [ ] **FORM-03**: Island de progressive enhancement faz `fetch` com
   `preventDefault`, mostra estados idle / enviando / sucesso / erro inline,
@@ -136,7 +136,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   redirect para URL fornecida pelo cliente, e limita o tamanho do corpo da
   requisição
 - [ ] **FORM-11**: Regra de rate-limit no Vercel WAF aplicada a `/api/*`
-- [ ] **FORM-12**: Estado de erro do formulário oferece o WhatsApp como caminho
+- [x] **FORM-12**: Estado de erro do formulário oferece o WhatsApp como caminho
   alternativo
 - [x] **FORM-13**: Deep-links de WhatsApp com `?text=` pré-preenchido por ponto de
   entrada (hero genérico; cards de serviço mencionam o serviço), URL-encoded,
@@ -366,7 +366,7 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | ANIM-08 | Phase 3 | Complete |
 | ANIM-09 | Phase 4 | Complete |
 | FORM-01 | Phase 5 | Complete |
-| FORM-02 | Phase 5 | Pending |
+| FORM-02 | Phase 5 | Complete |
 | FORM-03 | Phase 5 | Pending |
 | FORM-04 | Phase 5 | Complete |
 | FORM-05 | Phase 5 | Complete |
@@ -376,7 +376,7 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | FORM-09 | Phase 5 | Complete |
 | FORM-10 | Phase 5 | Complete |
 | FORM-11 | Phase 5 | Pending |
-| FORM-12 | Phase 5 | Pending |
+| FORM-12 | Phase 5 | Complete |
 | FORM-13 | Phase 5 | Complete |
 | LGPD-01 | Phase 5 | Complete |
 | LGPD-02 | Phase 5 | Complete |
