@@ -126,7 +126,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
     (`elapsed-ms`), sem comparar relógios; teto alargado para 24 h para não perder
     lead de aba aberta; sem JS o campo não existe e o timing não se aplica (risco
     aceito; honeypot e rate limits seguem valendo).
-- [ ] **FORM-08**: Rate limiting no endpoint — por IP (janela deslizante) mais um
+- [x] **FORM-08**: Rate limiting no endpoint — por IP (janela deslizante) mais um
   teto global horário e um teto diário rígido; resposta 429 com mensagem amigável
 - [x] **FORM-09**: E-mail enviado via Resend com `from`/`to`/`subject` fixos no
   servidor (nunca escolhidos pelo cliente), todo campo interpolado é
@@ -372,7 +372,7 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | FORM-05 | Phase 5 | Complete |
 | FORM-06 | Phase 5 | Pending |
 | FORM-07 | Phase 5 | Pending |
-| FORM-08 | Phase 5 | Pending |
+| FORM-08 | Phase 5 | Complete |
 | FORM-09 | Phase 5 | Complete |
 | FORM-10 | Phase 5 | Pending |
 | FORM-11 | Phase 5 | Pending |
