@@ -234,7 +234,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   com os controles compensatórios da v1 listados (site 100% estático, rate-limit
   durável e global em `/api`, regra WAF da Vercel em `/api/*`, spend cap com
   alertas, DNS com TTL baixo para cutover rápido, runbook de flood)
-- [ ] **SEC-09**: SPF, DKIM e DMARC (`p=none` → quarantine) configurados para o
+- [x] **SEC-09**: SPF, DKIM e DMARC (`p=none` → quarantine) configurados para o
   domínio de envio no Resend; nota mail-tester ≥ 8 antes do formulário ir ao ar
 - [ ] **SEC-10**: Sem Astro View Transitions na v1 (decisão registrada) para não
   quebrar listeners de script na segunda navegação
@@ -408,7 +408,7 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | SEC-06 | Phase 7 | Pending |
 | SEC-07 | Phase 1 (runs every phase) | Pending |
 | SEC-08 | Phase 5 (statement written in ROADMAP.md) | Complete |
-| SEC-09 | Phase 5 | Pending |
+| SEC-09 | Phase 5 | Complete |
 | SEC-10 | Phase 7 | Pending |
 | PERF-01 | Phase 1 (gate runs every phase) | Complete |
 | PERF-02 | Phase 1 | Complete |

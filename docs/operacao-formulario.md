@@ -16,22 +16,26 @@ Todas são server-only, em Production e Preview. Nenhum segredo vai para o repos
 
 D-04, D-05, SEC-09.
 
-1. Criar conta Resend nova e adicionar o domínio `agenciadmarques.com.br`.
-2. Copiar do painel os registros exatos:
-   - TXT `resend._domainkey` (DKIM).
-   - MX `send` e TXT `send` (SPF do return-path, `include:amazonses.com`).
-3. Criar TXT `_dmarc` com `v=DMARC1; p=none;`, sem `rua=` (a caixa única seria inundada de relatórios).
+1. Criar conta Resend nova e adicionar o domínio `agenciadmarques.com.br`, região `sa-east-1` (São Paulo), em setup manual (sem Auto configure/Domain Connect, para não dar escrita no DNS a terceiros).
+2. Copiar do painel os 3 registros exatos e criá-los na GoDaddy:
+   - TXT `resend._domainkey` (DKIM, valor `p=MIGf...`).
+   - CNAME `send` apontando para `send.forge.rmta.net`.
+   - CNAME `rsend` apontando para `rsend-sae1.forge.rmta.net`.
+   Os alvos dos CNAMEs publicam o próprio SPF; não há MX nem TXT SPF `send` a criar.
+3. DMARC: a GoDaddy já publica `_dmarc` com `v=DMARC1; p=quarantine; adkim=r; aspf=r; rua=mailto:dmarc_rua@onsecureserver.net;`. NÃO criar um segundo registro `_dmarc` (dois registros DMARC invalidam ambos). O existente já está no estágio final e o alinhamento relaxado cobre o DKIM `d=agenciadmarques.com.br`.
 4. TTL baixo (600 s).
-5. NÃO alterar o MX nem o SPF da raiz (caixa GoDaddy).
+5. NÃO alterar o MX nem o SPF da raiz (caixa GoDaddy): MX `smtp.secureserver.net` (0) e `mailstore1.secureserver.net` (10); TXT `v=spf1 include:secureserver.net -all`.
 6. Desligar open/click tracking do domínio no Resend.
-7. Evolução: após cerca de 4 semanas sem falhas, trocar para `p=quarantine`.
 
 Verificação:
 
 ```
-nslookup -type=TXT resend._domainkey.agenciadmarques.com.br
-nslookup -type=TXT _dmarc.agenciadmarques.com.br
-nslookup -type=MX send.agenciadmarques.com.br
+nslookup -type=TXT resend._domainkey.agenciadmarques.com.br 8.8.8.8
+nslookup -type=CNAME send.agenciadmarques.com.br 8.8.8.8
+nslookup -type=CNAME rsend.agenciadmarques.com.br 8.8.8.8
+nslookup -type=TXT _dmarc.agenciadmarques.com.br 8.8.8.8
+nslookup -type=MX agenciadmarques.com.br 8.8.8.8
+nslookup -type=TXT agenciadmarques.com.br 8.8.8.8
 ```
 
 ## Mail-tester (SEC-09)
@@ -51,9 +55,23 @@ node --env-file=.env.local scripts/mail-tester.mjs <endereco>
 D-10.
 
 1. Vercel Dashboard, Storage/Marketplace, Upstash Redis, plano free.
-2. Região mais próxima disponível (preferir São Paulo, se existir).
+2. Região mais próxima disponível (São Paulo, usada).
 3. Conectar ao projeto `dmarques` em Production e Preview.
 4. Após o primeiro envio, conferir no Data Browser que as chaves `rl:*` têm TTL e que nenhuma chave contém IP em texto.
+
+## Estado atual
+
+Provisionado em 2026-10-15.
+
+- Variáveis em Production e Preview (todas Sensitive): `RESEND_API_KEY`, `RATE_LIMIT_SALT`, `KV_REST_API_URL`, `KV_REST_API_TOKEN`. O Marketplace também injeta `KV_REST_API_READ_ONLY_TOKEN`, `KV_URL` e `REDIS_URL`, que o código não usa.
+- Upstash Redis: plano Free, região São Paulo, conectado a Production e Preview.
+- Resend: região `sa-east-1` (São Paulo), domínio `agenciadmarques.com.br` verificado em 2026-10-15.
+- Mail-tester: nota 10/10 em 2026-10-15.
+- `_dmarc`: o `p=quarantine` pré-existente da GoDaddy foi mantido.
+
+## Build local no Windows
+
+O hook do `@astrojs/vercel` cria symlinks ao empacotar a Function. No Windows, ative o Modo de Desenvolvedor (Configurações, Para desenvolvedores); sem ele o `pnpm build` falha com EPERM. Ao encerrar, o Node pode imprimir `Assertion failed: !(handle->flags & UV_HANDLE_CLOSING)` (bug do libuv no Windows); é inofensivo.
 
 ## Retenção e expurgo (6 meses)
 
