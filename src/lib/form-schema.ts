@@ -11,7 +11,8 @@ export const ELAPSED_FIELD = 'elapsed-ms';
 
 export const TIMING = { minMs: 3000, maxMs: 86400000 } as const;
 
-export const EMAIL_RE = /^[^\s@<>,;"()[\]\\]+@[^\s@<>,;"()[\]\\.]+(?:\.[^\s@<>,;"()[\]\\.]+)*\.[^\s@<>,;"()[\]\\.]{2,}$/;
+export const EMAIL_RE =
+  /^[^\s@<>,;"()[\]\\]+@[^\s@<>,;"()[\]\\.]+(?:\.[^\s@<>,;"()[\]\\.]+)*\.[^\s@<>,;"()[\]\\.]{2,}$/;
 
 export const CHANNEL_FIELD = 'canal';
 export const CHANNELS = ['whatsapp', 'email'] as const;
@@ -20,18 +21,30 @@ export const DEFAULT_CHANNEL: Channel = 'whatsapp';
 export const CHANNEL_LABELS = { whatsapp: 'WhatsApp', email: 'E-mail' } as const;
 
 export function resolveChannel(value?: string): Channel {
-  return (CHANNELS as readonly string[]).includes(value ?? '') ? (value as Channel) : DEFAULT_CHANNEL;
+  return (CHANNELS as readonly string[]).includes(value ?? '')
+    ? (value as Channel)
+    : DEFAULT_CHANNEL;
 }
 
-const CONTROL_RE = /[\u0000-\u001f\u007f\u2028\u2029]/g;
-const CONTROL_KEEP_LF_RE = /[\u0000-\u0009\u000b-\u001f\u007f\u2028\u2029]/g;
+function isControl(code: number, keepLf: boolean): boolean {
+  if (keepLf && code === 10) return false;
+  return code <= 0x1f || code === 0x7f || code === 0x2028 || code === 0x2029;
+}
+
+function replaceControl(value: string, keepLf: boolean, replacement: string): string {
+  let out = '';
+  for (const char of value) {
+    out += isControl(char.codePointAt(0) ?? 0, keepLf) ? replacement : char;
+  }
+  return out;
+}
 
 export function stripControl(value: string): string {
-  return value.replace(CONTROL_RE, ' ').trim();
+  return replaceControl(value, false, ' ').trim();
 }
 
 export function cleanMultiline(value: string): string {
-  return value.replace(/\r\n?/g, '\n').replace(CONTROL_KEEP_LF_RE, '').trim();
+  return replaceControl(value.replace(/\r\n?|\r/g, '\n'), true, '').trim();
 }
 
 export function normalizePhone(raw: string): string | null {

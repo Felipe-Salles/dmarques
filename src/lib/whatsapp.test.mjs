@@ -1,11 +1,11 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import {
-  GENERIC_WA_TEXT,
-  WHATSAPP_NUMBER,
   buildWaUrl,
   fallbackWaText,
+  GENERIC_WA_TEXT,
   serviceWaText,
+  WHATSAPP_NUMBER,
 } from './whatsapp.ts';
 
 test('constantes do WhatsApp', () => {

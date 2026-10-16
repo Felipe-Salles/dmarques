@@ -1,20 +1,20 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import {
-  CHANNELS,
   CHANNEL_FIELD,
   CHANNEL_LABELS,
+  CHANNELS,
+  cleanMultiline,
   DEFAULT_CHANNEL,
   ELAPSED_FIELD,
   EMAIL_RE,
+  formatPhone,
   HONEYPOT_FIELD,
   LIMITS,
-  TIMING,
-  cleanMultiline,
-  formatPhone,
   normalizePhone,
   resolveChannel,
   stripControl,
+  TIMING,
   validateFields,
 } from './form-schema.ts';
 
@@ -93,11 +93,13 @@ test('EMAIL_RE valida e bloqueia injecao', () => {
 
 test('validateFields nome', () => {
   assert.deepEqual(validateFields({ nome: 'A', whatsapp: '(16) 99611-1785' }).errors, ['nome']);
-  assert.deepEqual(
-    validateFields({ nome: 'a'.repeat(81), whatsapp: '(16) 99611-1785' }).errors,
-    ['nome'],
+  assert.deepEqual(validateFields({ nome: 'a'.repeat(81), whatsapp: '(16) 99611-1785' }).errors, [
+    'nome',
+  ]);
+  assert.equal(
+    validateFields({ nome: 'Ana', canal: 'whatsapp', whatsapp: '(16) 99611-1785' }).ok,
+    true,
   );
-  assert.equal(validateFields({ nome: 'Ana', canal: 'whatsapp', whatsapp: '(16) 99611-1785' }).ok, true);
 });
 
 test('validateFields canal whatsapp ignora e-mail', () => {
@@ -105,16 +107,16 @@ test('validateFields canal whatsapp ignora e-mail', () => {
     validateFields({ nome: 'Ana', canal: 'whatsapp', whatsapp: '', email: 'x@y.com.br' }).errors,
     ['whatsapp'],
   );
-  assert.deepEqual(
-    validateFields({ nome: 'Ana', canal: 'whatsapp', whatsapp: '123' }).errors,
-    ['whatsapp'],
-  );
+  assert.deepEqual(validateFields({ nome: 'Ana', canal: 'whatsapp', whatsapp: '123' }).errors, [
+    'whatsapp',
+  ]);
   assert.deepEqual(
     validateFields({ nome: 'Ana', canal: 'whatsapp', whatsapp: '+55 - (16) - 99611-1785' }).errors,
     ['whatsapp'],
   );
   assert.equal(
-    validateFields({ nome: 'Ana', canal: 'whatsapp', whatsapp: '(16) 99611-1785', email: 'lixo' }).ok,
+    validateFields({ nome: 'Ana', canal: 'whatsapp', whatsapp: '(16) 99611-1785', email: 'lixo' })
+      .ok,
     true,
   );
 });
@@ -138,7 +140,9 @@ test('validateFields canal email ignora WhatsApp', () => {
 
 test('validateFields canal ausente ou desconhecido vira whatsapp', () => {
   assert.equal(validateFields({ nome: 'Ana', whatsapp: '(16) 99611-1785' }).ok, true);
-  assert.deepEqual(validateFields({ nome: 'Ana', canal: 'fax', email: 'x@y.com.br' }).errors, ['whatsapp']);
+  assert.deepEqual(validateFields({ nome: 'Ana', canal: 'fax', email: 'x@y.com.br' }).errors, [
+    'whatsapp',
+  ]);
 });
 
 test('validateFields mensagem e ordem dos erros', () => {
@@ -154,6 +158,11 @@ test('validateFields mensagem e ordem dos erros', () => {
     validateFields({ nome: 'A', whatsapp: '1', mensagem: 'm'.repeat(1001) }).errors,
     ['nome', 'whatsapp', 'mensagem'],
   );
-  const all = validateFields({ nome: '', canal: 'email', email: '', mensagem: 'm'.repeat(2000) }).errors;
+  const all = validateFields({
+    nome: '',
+    canal: 'email',
+    email: '',
+    mensagem: 'm'.repeat(2000),
+  }).errors;
   assert.ok(!all.includes('contato'));
 });
