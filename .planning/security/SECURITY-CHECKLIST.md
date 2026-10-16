@@ -9,7 +9,7 @@ fim de cada fase. Cada execução gera um arquivo datado em
 
 A Fase 1 implementa exatamente a lista de itens do SEC-07 de `REQUIREMENTS.md`.
 Fases posteriores acrescentam itens específicos da fase ao final desta lista, sem
-remover nenhum destes sete.
+remover nenhum destes oito.
 
 ## Itens mecânicos (respondidos por script)
 
@@ -20,10 +20,11 @@ número da verificação correspondente dentro do script.
 1. `pnpm audit` limpo no limiar `--audit-level=high`; advisories de severidade menor são registrados como achados na tabela abaixo, com responsável e prazo, nunca ignorados em silêncio. Mecânico — `scripts/security-check.sh` verificação 1.
 2. grep por nova superfície inline: atributos `style="` em `src/` e blocos `<script>` / `<style>` inline no HTML construído; blocos `@font-face` da Fonts API são permitidos e apenas contados, enquanto qualquer CSS de página, token ou bundle inline reprova. Mecânico — `scripts/security-check.sh` verificações 2 e 3.
 3. inspeção `curl -I` dos cabeçalhos de resposta do preview implantado: a Fase 1 apenas registra a baseline; as asserções sobre os cabeçalhos passam a valer na Fase 7. Mecânico — `scripts/security-check.sh` verificação 6.
-4. varredura de segredos na saída de build: nomes das variáveis declaradas mais o padrão `re_[A-Za-z0-9]{20,}`, contra `STATIC_DIR` e `.vercel/output`, sem nenhum resultado. Mecânico — `scripts/security-check.sh` verificação 4.
-5. contagem de Functions serverless `<= 1` (Fase 1: 0; a Fase 5 leva a exatamente 1). Mecânico — `scripts/security-check.sh` verificação 5.
+4. varredura de segredos na saída de build: nomes `RESEND_API_KEY`, `RATE_LIMIT_SALT`, `UPSTASH_REDIS_REST`, `KV_REST_API` e `CONTACT_EMAIL` mais o padrão `re_[A-Za-z0-9_-]{20,}`, contra `STATIC_DIR`, sem nenhum resultado. Mecânico — `scripts/security-check.sh` verificação 4.
+5. exatamente 1 Function serverless (a partir da Fase 5; Fase 1: 0). Mecânico — `scripts/security-check.sh` verificação 5.
 6. gate do Lighthouse: mobile `>= 95` nas quatro categorias (Performance, SEO, Best Practices, Accessibility) contra o preview. Mecânico — `scripts/security-check.sh` verificação 7.
 7. achados registrados na tabela com severidade, responsável e prazo; nenhuma fase fecha com achado High em aberto. Julgamento — `scripts/security-check.sh` produz o resumo PASS/FAIL/SKIP que alimenta a triagem, mas o preenchimento e a decisão de aceite são manuais.
+8. nenhum `console.*` em `src/lib` e `src/pages/api` (LGPD-04: o servidor não registra PII). Mecânico — `scripts/security-check.sh` verificação 8.
 
 ## Itens de julgamento (respondidos à mão)
 

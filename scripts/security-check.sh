@@ -82,7 +82,7 @@ fi
 if [ ! -d "$STATIC_DIR" ]; then
   skip "verificacao 4 - $STATIC_DIR ausente para varredura de segredos"
 else
-  secret_files=$(grep -rIlE 're_[A-Za-z0-9_-]{20,}|RESEND_API_KEY' "$STATIC_DIR" 2>/dev/null | sort -u)
+  secret_files=$(grep -rIlE 're_[A-Za-z0-9_-]{20,}|RESEND_API_KEY|RATE_LIMIT_SALT|UPSTASH_REDIS_REST|KV_REST_API|CONTACT_EMAIL' "$STATIC_DIR" 2>/dev/null | sort -u)
   if [ -n "$secret_files" ]; then
     fail "verificacao 4 - nome ou valor de segredo em saida servida ao cliente ($(echo "$secret_files" | tr '\n' ' '))"
   else
@@ -91,10 +91,10 @@ else
 fi
 
 func_count=$(find .vercel/output/functions -maxdepth 1 -name '*.func' 2>/dev/null | wc -l | tr -d ' ')
-if [ "$func_count" -gt 1 ]; then
-  fail "verificacao 5 - contagem de Functions = $func_count (esperado no maximo 1)"
+if [ "$func_count" -ne 1 ]; then
+  fail "verificacao 5 - contagem de Functions = $func_count (esperado exatamente 1)"
 else
-  pass "verificacao 5 - contagem de Functions = $func_count (no maximo 1)"
+  pass "verificacao 5 - contagem de Functions = $func_count (exatamente 1)"
 fi
 
 if [ -z "$PREVIEW_URL" ]; then
@@ -121,6 +121,14 @@ else
   else
     fail "verificacao 7 - gate do Lighthouse reprovado"
   fi
+fi
+
+console_hits=$(grep -rnE 'console\.' --include='*.ts' src/lib src/pages/api 2>/dev/null)
+if [ -n "$console_hits" ]; then
+  fail "verificacao 8 - console.* no codigo do servidor (LGPD-04)"
+  echo "$console_hits" | head -n 20
+else
+  pass "verificacao 8 - nenhum console.* no codigo do servidor"
 fi
 
 echo "== resumo: ${pass_count} PASS / ${fail_count} FAIL / ${skip_count} SKIP =="
