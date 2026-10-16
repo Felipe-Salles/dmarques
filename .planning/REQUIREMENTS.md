@@ -135,7 +135,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 - [x] **FORM-10**: Endpoint retorna erros genéricos (sem stack trace), não faz
   redirect para URL fornecida pelo cliente, e limita o tamanho do corpo da
   requisição
-- [ ] **FORM-11**: Regra de rate-limit no Vercel WAF aplicada a `/api/*`
+- [x] **FORM-11**: Regra de rate-limit no Vercel WAF aplicada a `/api/*`
 - [x] **FORM-12**: Estado de erro do formulário oferece o WhatsApp como caminho
   alternativo
 - [x] **FORM-13**: Deep-links de WhatsApp com `?text=` pré-preenchido por ponto de
@@ -229,12 +229,12 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   inline, `curl -I` dos headers, varredura de segredos em `dist/`, verificação de
   "uma única Function", gate do Lighthouse, achados registrados com
   severidade/responsável/prazo); nenhuma fase fecha com achado High em aberto
-- [ ] **SEC-08**: Declaração de risco residual escrita no ROADMAP — v1 não tem
+- [x] **SEC-08**: Declaração de risco residual escrita no ROADMAP — v1 não tem
   proteção de borda L3/L7 (DDoS/WAF), adiada para o milestone 2 (Cloudflare) —
   com os controles compensatórios da v1 listados (site 100% estático, rate-limit
   durável e global em `/api`, regra WAF da Vercel em `/api/*`, spend cap com
   alertas, DNS com TTL baixo para cutover rápido, runbook de flood)
-- [ ] **SEC-09**: SPF, DKIM e DMARC (`p=none` → quarantine) configurados para o
+- [x] **SEC-09**: SPF, DKIM e DMARC (`p=none` → quarantine) configurados para o
   domínio de envio no Resend; nota mail-tester ≥ 8 antes do formulário ir ao ar
 - [ ] **SEC-10**: Sem Astro View Transitions na v1 (decisão registrada) para não
   quebrar listeners de script na segunda navegação
@@ -375,7 +375,7 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | FORM-08 | Phase 5 | Complete |
 | FORM-09 | Phase 5 | Complete |
 | FORM-10 | Phase 5 | Complete |
-| FORM-11 | Phase 5 | Pending |
+| FORM-11 | Phase 5 | Complete |
 | FORM-12 | Phase 5 | Complete |
 | FORM-13 | Phase 5 | Complete |
 | LGPD-01 | Phase 5 | Complete |
@@ -407,8 +407,8 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | SEC-05 | Phase 7 | Pending |
 | SEC-06 | Phase 7 | Pending |
 | SEC-07 | Phase 1 (runs every phase) | Pending |
-| SEC-08 | Phase 5 (statement written in ROADMAP.md) | Pending |
-| SEC-09 | Phase 5 | Pending |
+| SEC-08 | Phase 5 (statement written in ROADMAP.md) | Complete |
+| SEC-09 | Phase 5 | Complete |
 | SEC-10 | Phase 7 | Pending |
 | PERF-01 | Phase 1 (gate runs every phase) | Complete |
 | PERF-02 | Phase 1 | Complete |
