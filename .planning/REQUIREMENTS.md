@@ -135,7 +135,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 - [x] **FORM-10**: Endpoint retorna erros genéricos (sem stack trace), não faz
   redirect para URL fornecida pelo cliente, e limita o tamanho do corpo da
   requisição
-- [ ] **FORM-11**: Regra de rate-limit no Vercel WAF aplicada a `/api/*`
+- [x] **FORM-11**: Regra de rate-limit no Vercel WAF aplicada a `/api/*`
 - [x] **FORM-12**: Estado de erro do formulário oferece o WhatsApp como caminho
   alternativo
 - [x] **FORM-13**: Deep-links de WhatsApp com `?text=` pré-preenchido por ponto de
@@ -373,7 +373,7 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | FORM-08 | Phase 5 | Complete |
 | FORM-09 | Phase 5 | Complete |
 | FORM-10 | Phase 5 | Complete |
-| FORM-11 | Phase 5 | Pending |
+| FORM-11 | Phase 5 | Complete |
 | FORM-12 | Phase 5 | Complete |
 | FORM-13 | Phase 5 | Complete |
 | LGPD-01 | Phase 5 | Removido por decisão do Felipe (D-29) |

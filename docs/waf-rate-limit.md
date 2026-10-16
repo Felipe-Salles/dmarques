@@ -12,16 +12,20 @@ Configuração:
 2. Nome: `api-flood`.
 3. Condição: Request Path, starts with, `/api/`.
 4. Ação: Rate Limit, 10 requisições por 60 s, chave IP.
-5. Ao exceder: primeiro `Log`, por pelo menos 24 h. Depois de revisar os eventos, trocar para `Too Many Requests (429)` (ou Deny).
+5. Ao exceder: no Hobby só `Log` e `Deny` estão disponíveis. `Too Many Requests (429)` exige upgrade do plano. A ação atual é `Deny` (resposta 403 com `X-Vercel-Mitigated: deny`).
 6. Publicar (Review Changes, Publish).
 
-Esta regra é mais frouxa que o limite do app (3 envios por 10 min por IP no Upstash). Ela serve só contra flood, não contra uso abusivo fino do formulário.
+Estado atual (2026-10-16): regra `api-flood` ativa, path starts with `/api/`, fixed window de 60 s, limite 10, chave ip, ação deny. Vale também para deploys de preview.
+
+Esta regra é mais frouxa que o limite do app (3 envios por 10 min por IP no Upstash). Ela serve só contra flood, não contra uso abusivo fino do formulário. O formulário trata 429 como limite do app; um 403 de borda cai no estado de falha genérico, que oferece o WhatsApp.
 
 ## Verificação
 
-1. Com a ação já em 429, enviar uma rajada de 12 GETs a `/api/orcamento` em menos de 60 s. Cada um recebe 405 barato do app.
-2. A partir da requisição 11, a resposta deve ser 429 vinda do edge.
-3. Eventos aparecem em Firewall, Traffic (filtrar pela regra `api-flood`).
+1. Esperar a janela zerar (61 s) e enviar uma rajada de 12 GETs a `/api/orcamento` em menos de 60 s (com o header de bypass de proteção do preview). Cada um dentro do limite recebe 405 barato do app.
+2. A partir da requisição 11, a resposta deve ser 403 vinda do edge, com `Server: Vercel` e `X-Vercel-Mitigated: deny`, sem invocar a Function.
+3. Eventos podem aparecer em Firewall, Traffic (filtrar pela regra `api-flood`), com atraso.
+
+Medição de 2026-10-16 (04:15:48 UTC): `405 405 405 405 405 405 405 405 405 405 403 403`. A requisição seguinte na janela também devolveu 403.
 
 ## Runbook de flood
 

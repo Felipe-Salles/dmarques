@@ -34,9 +34,10 @@ gap is knowingly accepted for v1, mitigated by the following compensating contro
   risk, D-27), a 16 KB body-size limit, an Origin allow-list, and
   `application/x-www-form-urlencoded` only.
 
-- A **Vercel WAF rate-limit rule on `/api/*`** (1 regra de rate limit em `/api/*`,
-  limite do plano Hobby, ~10 req/min/IP, contadores por região) enforces limiting
-  at the edge (no serverless-statelessness gap).
+- A **Vercel WAF rate-limit rule `api-flood` on `/api/*`** is active (10 req/60 s/IP,
+  fixed window, contadores por região, ação **Deny**: 403 na borda com
+  `X-Vercel-Mitigated: deny`, sem invocar a Function; provado no preview em
+  2026-10-16). A ação 429 só existe com upgrade do plano Hobby.
 
 - The project stays on the **Vercel Hobby plan with no payment method on file**, so
   spend is structurally capped at $0 — the project pauses when the free-tier ceiling
@@ -309,7 +310,7 @@ Plans:
 
 **Wave 6** *(blocked on Wave 5 completion)*
 
-- [ ] 05-13-PLAN.md — Regra WAF api-flood (Log -> 429) e rajada de confirmação
+- [x] 05-13-PLAN.md — Regra WAF api-flood (Log -> Deny 403) e rajada de confirmação
 
 **Wave 7** *(blocked on Wave 6 completion)*
 
@@ -358,7 +359,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 4.1 -> 5 -> 6 -> 7
 | 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 9/9 | Complete   | 2026-09-17 |
 | 4. Progressive-Enhancement Effects | 4/4 | Complete   | 2026-09-17 |
 | 4.1. Redesign Aurora técnica (INSERTED) | 11/11 | Complete   | 2026-10-15 |
-| 5. Form Backend + Enhancement + LGPD | 12/14 | In Progress|  |
+| 5. Form Backend + Enhancement + LGPD | 13/14 | In Progress|  |
 | 6. SEO / Metadata / Structured Data | 0/TBD | Not started | - |
 | 7. Security Headers Finalize | 0/TBD | Not started | - |
 
