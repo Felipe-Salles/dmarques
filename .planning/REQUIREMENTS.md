@@ -111,11 +111,11 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   `preventDefault`, mostra estados idle / enviando / sucesso / erro inline,
   preserva o que foi digitado em caso de erro e desabilita o submit durante o
   envio
-- [ ] **FORM-04**: Validação server-side com Zod (nome 2–80 chars, canal ∈
+- [x] **FORM-04**: Validação server-side com Zod (nome 2–80 chars, canal ∈
   {whatsapp, email} obrigatório e o contato do canal escolhido bem-formado, tipo
   ∈ enum, mensagem ≤ 2000 chars) — servidor é a fonte da verdade
   - Nota (Fase 5 D-28): o campo do canal não escolhido é descartado e nunca usado.
-- [ ] **FORM-05**: Validação client-side inline (no blur / no submit, nunca a cada
+- [x] **FORM-05**: Validação client-side inline (no blur / no submit, nunca a cada
   tecla) espelhando o schema, sem bloquear o submit
 - [ ] **FORM-06**: Mensagens de erro e status acessíveis — texto (não só cor),
   `aria-invalid`, `aria-describedby` ligando campo→erro, região `aria-live`,
@@ -128,7 +128,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
     aceito; honeypot e rate limits seguem valendo).
 - [ ] **FORM-08**: Rate limiting no endpoint — por IP (janela deslizante) mais um
   teto global horário e um teto diário rígido; resposta 429 com mensagem amigável
-- [ ] **FORM-09**: E-mail enviado via Resend com `from`/`to`/`subject` fixos no
+- [x] **FORM-09**: E-mail enviado via Resend com `from`/`to`/`subject` fixos no
   servidor (nunca escolhidos pelo cliente), todo campo interpolado é
   HTML-escapado, CR/LF removidos de campos usados em subject/endereço, e sempre
   há corpo `text` além do HTML
@@ -138,7 +138,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 - [ ] **FORM-11**: Regra de rate-limit no Vercel WAF aplicada a `/api/*`
 - [ ] **FORM-12**: Estado de erro do formulário oferece o WhatsApp como caminho
   alternativo
-- [ ] **FORM-13**: Deep-links de WhatsApp com `?text=` pré-preenchido por ponto de
+- [x] **FORM-13**: Deep-links de WhatsApp com `?text=` pré-preenchido por ponto de
   entrada (hero genérico; cards de serviço mencionam o serviço), URL-encoded,
   `rel="noopener"`
   - Exceção registrada (decisão de Felipe, 2026-10-15, Fase 5 D-26): na Fase 5 os
@@ -368,16 +368,16 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | FORM-01 | Phase 5 | Pending |
 | FORM-02 | Phase 5 | Pending |
 | FORM-03 | Phase 5 | Pending |
-| FORM-04 | Phase 5 | Pending |
-| FORM-05 | Phase 5 | Pending |
+| FORM-04 | Phase 5 | Complete |
+| FORM-05 | Phase 5 | Complete |
 | FORM-06 | Phase 5 | Pending |
 | FORM-07 | Phase 5 | Pending |
 | FORM-08 | Phase 5 | Pending |
-| FORM-09 | Phase 5 | Pending |
+| FORM-09 | Phase 5 | Complete |
 | FORM-10 | Phase 5 | Pending |
 | FORM-11 | Phase 5 | Pending |
 | FORM-12 | Phase 5 | Pending |
-| FORM-13 | Phase 5 | Pending |
+| FORM-13 | Phase 5 | Complete |
 | LGPD-01 | Phase 5 | Pending |
 | LGPD-02 | Phase 5 | Pending |
 | LGPD-03 | Phase 5 | Pending |
