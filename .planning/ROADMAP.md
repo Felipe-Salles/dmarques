@@ -46,7 +46,9 @@ gap is knowingly accepted for v1, mitigated by the following compensating contro
   configurable USD cap, no tunable auto-pause action, and no "form off, site up"
   graceful degradation. Milestone 2 revisits this alongside the Cloudflare layer.
   Risco adicional: as Fair Use Guidelines da Vercel restringem o Hobby a uso não
-  comercial; a decisão de migrar para Pro é registrada na Fase 5 (05-14).
+  comercial. Decisão do Felipe em 2026-10-16 (05-14): manter o Hobby e aceitar o risco
+  por ora (achado P05-003, Med, revisão antes do go-live no domínio próprio); o Deny 403
+  do WAF atende o anti-flood e o 429 exigiria Pro, não desejado agora.
 
 - **DNS is kept at low TTL** with no registrar lock-in, so Cloudflare can be put in
   front quickly if v1 is attacked (Milestone 2 pulled forward).
