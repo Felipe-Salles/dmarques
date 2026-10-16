@@ -1,0 +1,108 @@
+---
+import Aurora from '../../components/Aurora.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { GENERIC_WA_TEXT, buildWaUrl } from '../../lib/whatsapp.ts';
+
+export function getStaticPaths() {
+  return [
+    { params: { motivo: 'limite' } },
+    { params: { motivo: 'invalido' } },
+    { params: { motivo: 'falha' } },
+  ];
+}
+
+const copy = {
+  limite: {
+    titulo: 'Recebemos muitos pedidos em pouco tempo.',
+    lead: 'Para não perder o seu, fale com a gente direto pelo WhatsApp. Respondemos no mesmo dia útil.',
+    waPrimario: true,
+  },
+  invalido: {
+    titulo: 'Faltou preencher algo.',
+    lead: 'Volte ao formulário e confira seu nome e o contato do canal escolhido (WhatsApp ou e-mail).',
+    waPrimario: false,
+  },
+  falha: {
+    titulo: 'Não conseguimos enviar agora.',
+    lead: 'Tente de novo em instantes ou fale com a gente pelo WhatsApp.',
+    waPrimario: true,
+  },
+};
+
+const { motivo } = Astro.params;
+const page = copy[motivo as keyof typeof copy];
+const waHref = buildWaUrl(GENERIC_WA_TEXT);
+---
+
+<BaseLayout
+  title="Não foi possível enviar — Dmarques"
+  description="Não foi possível enviar o seu pedido de orçamento."
+  noindex
+>
+  <main id="conteudo">
+    <section class="intro">
+      <Aurora variant="small" />
+      <div class="wrap content-block">
+        <h1 class="h2">{page.titulo}</h1>
+        <p class="lead">{page.lead}</p>
+        <div class="actions">
+          {
+            page.waPrimario ? (
+              <>
+                <a
+                  class="btn btn-primary"
+                  href={waHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Chamar no WhatsApp
+                </a>
+                <a class="btn btn-ghost" href="/#contato">
+                  Voltar ao formulário
+                </a>
+              </>
+            ) : (
+              <>
+                <a class="btn btn-primary" href="/#contato">
+                  Voltar ao formulário
+                </a>
+                <a class="btn btn-ghost" href={waHref} target="_blank" rel="noopener noreferrer">
+                  Chamar no WhatsApp
+                </a>
+              </>
+            )
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .intro {
+    position: relative;
+    isolation: isolate;
+    padding: clamp(56px, 9cqi, 120px) 0;
+    text-align: center;
+  }
+
+  .content-block {
+    max-width: 40rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  h1,
+  p {
+    margin: 0;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-4);
+  }
+</style>
