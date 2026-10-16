@@ -3,6 +3,8 @@ import { Image } from 'astro:assets';
 import logotipo from '../assets/brand/logotipo.png';
 import simbolo from '../assets/brand/simbolo.png';
 
+import { GENERIC_WA_TEXT, buildWaUrl } from '../lib/whatsapp.ts';
+
 const prefix = Astro.url.pathname === '/' ? '' : '/';
 const year = new Date().getFullYear();
 ---
@@ -28,7 +30,7 @@ const year = new Date().getFullYear();
         </div>
         <div>
           <h2 class="foot-title">Contato</h2>
-          <a href="https://wa.me/5516996111785" target="_blank" rel="noopener noreferrer">(16) 99611-1785</a>
+          <a href={buildWaUrl(GENERIC_WA_TEXT)} target="_blank" rel="noopener noreferrer">(16) 99611-1785</a>
           <a href="mailto:contato@agenciadmarques.com.br">contato@agenciadmarques.com.br</a>
         </div>
       </div>
@@ -43,7 +45,7 @@ const year = new Date().getFullYear();
 
 <a
   class="wa-float"
-  href="https://wa.me/5516996111785"
+  href={buildWaUrl(GENERIC_WA_TEXT)}
   target="_blank"
   rel="noopener noreferrer"
 >
