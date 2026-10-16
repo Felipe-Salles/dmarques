@@ -357,7 +357,7 @@ const localChecks = {
       );
       if ((await activeId(page)) !== 'email') fails.push('foco fora de #email');
       fields = ['canal'];
-      await page.press('#email', 'Enter');
+      await page.click(SUBMIT);
       await page.waitForFunction(() => !document.querySelector('#form-erro')?.hidden, null, {
         timeout: 5000,
       });

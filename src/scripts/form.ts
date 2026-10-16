@@ -50,6 +50,7 @@ export function initForm(): void {
   let sending = false;
   let attempted = false;
   let lockTimer = 0;
+  let submitPressed = false;
 
   const announce = (text: string): void => {
     if (!status) return;
@@ -227,11 +228,23 @@ export function initForm(): void {
 
   for (const radio of radios) radio.addEventListener('change', syncChannel);
 
+  submit?.addEventListener('pointerdown', () => {
+    submitPressed = true;
+  });
+  window.addEventListener('pointerup', () => {
+    window.setTimeout(() => {
+      submitPressed = false;
+    });
+  });
+  window.addEventListener('pointercancel', () => {
+    submitPressed = false;
+  });
+
   for (const field of FIELDS) {
     const el = controls[field];
     if (!el) continue;
     el.addEventListener('blur', () => {
-      if (sending || el.disabled) return;
+      if (sending || el.disabled || submitPressed) return;
       if (field === 'whatsapp') {
         const digits = normalizePhone(el.value);
         if (digits) el.value = formatPhone(digits);
