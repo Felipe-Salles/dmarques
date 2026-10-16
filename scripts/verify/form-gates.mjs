@@ -1,4 +1,4 @@
-import { existsSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import process from 'node:process';
 import { launchBrowser, STATIC_DIR, startStaticServer } from './static-server.mjs';
@@ -447,39 +447,33 @@ const localChecks = {
     try {
       const page = await openHome(ctx, base);
       const info = await page.evaluate(() => {
-        const details = document.querySelector('#form-orcamento details.privacy');
-        const summary = details?.querySelector('summary');
-        const links = [...document.querySelectorAll('a[href]')]
-          .map((a) => a.getAttribute('href'))
-          .filter((href) => href.includes('politica'));
+        const form = document.querySelector('#form-orcamento');
         return {
-          exists: !!details,
-          open: !!details?.open,
-          summary: summary?.textContent?.trim() ?? '',
-          summaryHeight: summary?.getBoundingClientRect().height ?? 0,
-          links,
+          details: form?.querySelectorAll('details').length ?? -1,
+          privacy: document.querySelectorAll('.privacy').length,
+          legal: form?.querySelector('.legal')?.textContent?.trim() ?? '',
+          legalLinks: form?.querySelectorAll('.legal a').length ?? -1,
+          links: [...document.querySelectorAll('a[href]')]
+            .map((a) => a.getAttribute('href'))
+            .filter((href) => href.includes('politica')),
         };
       });
-      if (!info.exists) fails.push('details.privacy ausente no form');
-      if (info.open) fails.push('details.privacy aberto por padrao');
-      if (info.summary !== 'Como usamos seus dados') fails.push(`summary "${info.summary}"`);
-      if (info.summaryHeight < 44) fails.push(`summary com ${info.summaryHeight}px (< 44)`);
+      if (info.details !== 0) fails.push(`details no form: ${info.details}`);
+      if (info.privacy !== 0) fails.push(`elementos .privacy: ${info.privacy}`);
+      if (info.legal !== 'Usamos seus dados só para responder a este pedido.')
+        fails.push(`frase curta "${info.legal}"`);
+      if (info.legalLinks !== 0) fails.push('frase curta com link');
       if (info.links.length) fails.push(`links para politica: ${info.links.join(',')}`);
-      await page.locator('#form-orcamento details.privacy summary').click();
-      const opened = await page.evaluate(() => {
-        const details = document.querySelector('#form-orcamento details.privacy');
-        const text = details?.textContent ?? '';
-        return {
-          open: !!details?.open,
-          visible: !!details && details.querySelector('.privacy-body').offsetParent !== null,
-          email: text.includes('contato@agenciadmarques.com.br'),
-          legalBasis: text.includes('art. 7'),
-        };
-      });
-      if (!opened.open) fails.push('details nao abre sem JS');
-      if (!opened.visible) fails.push('conteudo do details invisivel apos abrir');
-      if (!opened.email) fails.push('contato@ ausente no details');
-      if (!opened.legalBasis) fails.push('"art. 7" ausente no details');
+      const stack = [STATIC_DIR];
+      while (stack.length) {
+        const dir = stack.pop();
+        for (const entry of readdirSync(dir, { withFileTypes: true })) {
+          const full = join(dir, entry.name);
+          if (entry.isDirectory()) stack.push(full);
+          else if (entry.name.endsWith('.html') && readFileSync(full, 'utf8').includes('politica-de-privacidade'))
+            fails.push(`referencia a politica em ${full}`);
+        }
+      }
       if (existsSync(join(STATIC_DIR, 'politica-de-privacidade')))
         fails.push('pasta politica-de-privacidade presente no build');
       if (existsSync(join(STATIC_DIR, 'politica-de-privacidade.html')))
