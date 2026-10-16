@@ -91,13 +91,16 @@ test('readBodyCapped rejeita stream acima do teto sem Content-Length', async () 
 
 test('readBodyCapped rejeita Content-Length grande sem ler o stream', async () => {
   let pulled = false;
-  const stream = new ReadableStream({
-    pull(controller) {
-      pulled = true;
-      controller.enqueue(new Uint8Array(10));
-      controller.close();
+  const stream = new ReadableStream(
+    {
+      pull(controller) {
+        pulled = true;
+        controller.enqueue(new Uint8Array(10));
+        controller.close();
+      },
     },
-  });
+    { highWaterMark: 0 },
+  );
   const r = req({ 'content-length': '999999' }, stream);
   assert.equal(await readBodyCapped(r, MAX_BODY_BYTES), null);
   assert.equal(pulled, false);
