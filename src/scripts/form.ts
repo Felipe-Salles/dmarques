@@ -1,8 +1,8 @@
 import { PROJECT_TYPES } from '../content/project-types.ts';
 import {
   CHANNEL_FIELD,
-  ELAPSED_FIELD,
   type Channel,
+  ELAPSED_FIELD,
   type FieldError,
   formatPhone,
   normalizePhone,
@@ -37,7 +37,9 @@ export function initForm(): void {
   const radios = Array.from(
     form.querySelectorAll<HTMLInputElement>(`input[name="${CHANNEL_FIELD}"]`),
   );
-  const typeRadios = Array.from(form.querySelectorAll<HTMLInputElement>('input[name="tipo-projeto"]'));
+  const typeRadios = Array.from(
+    form.querySelectorAll<HTMLInputElement>('input[name="tipo-projeto"]'),
+  );
 
   const controls = {} as Record<Field, Control | null>;
   const originalDescribed = {} as Record<Field, string>;
