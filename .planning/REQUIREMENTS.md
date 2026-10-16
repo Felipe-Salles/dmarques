@@ -147,9 +147,9 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 
 ### LGPD & Privacidade (LGPD)
 
-- [ ] **LGPD-01**: Página `/politica-de-privacidade` em pt-BR publicada **no mesmo
+- [x] **LGPD-01**: Página `/politica-de-privacidade` em pt-BR publicada **no mesmo
   release** do formulário ativo
-- [ ] **LGPD-02**: Política cobre: identificação do controlador, encarregado/contato,
+- [x] **LGPD-02**: Política cobre: identificação do controlador, encarregado/contato,
   dados coletados, finalidades, bases legais (Art. 7º V + IX), operadores
   (Vercel, Resend, ferramenta de analytics), transferência internacional (EUA),
   retenção, direitos do titular (Art. 18) e como exercê-los, ausência de cookies
@@ -163,7 +163,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   formulário
 - [ ] **LGPD-06**: Analytics sem cookies verificado no DevTools (zero cookies,
   sem ID persistente) antes do lançamento
-- [ ] **LGPD-07**: Base legal e prazo de retenção documentados no repositório e
+- [x] **LGPD-07**: Base legal e prazo de retenção documentados no repositório e
   refletidos na política (decisão do fundador registrada como Key Decision)
 
 ### SEO & Descoberta (SEO)
@@ -378,13 +378,13 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | FORM-11 | Phase 5 | Pending |
 | FORM-12 | Phase 5 | Pending |
 | FORM-13 | Phase 5 | Complete |
-| LGPD-01 | Phase 5 | Pending |
-| LGPD-02 | Phase 5 | Pending |
+| LGPD-01 | Phase 5 | Complete |
+| LGPD-02 | Phase 5 | Complete |
 | LGPD-03 | Phase 5 | Pending |
 | LGPD-04 | Phase 5 | Pending |
 | LGPD-05 | Phase 5 | Pending |
 | LGPD-06 | Phase 5 | Pending |
-| LGPD-07 | Phase 5 | Pending |
+| LGPD-07 | Phase 5 | Complete |
 | SEO-01 | Phase 6 | Pending |
 | SEO-02 | Phase 3 | Complete |
 | SEO-03 | Phase 6 | Pending |
