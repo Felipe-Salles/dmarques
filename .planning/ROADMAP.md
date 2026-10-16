@@ -296,7 +296,7 @@ Plans:
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 05-09-PLAN.md — Handler puro, wiring de dependências e rota única /api/orcamento (TDD)
+- [x] 05-09-PLAN.md — Handler puro, wiring de dependências e rota única /api/orcamento (TDD)
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
@@ -358,7 +358,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 4.1 -> 5 -> 6 -> 7
 | 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 9/9 | Complete   | 2026-09-17 |
 | 4. Progressive-Enhancement Effects | 4/4 | Complete   | 2026-09-17 |
 | 4.1. Redesign Aurora técnica (INSERTED) | 11/11 | Complete   | 2026-10-15 |
-| 5. Form Backend + Enhancement + LGPD | 8/14 | In Progress|  |
+| 5. Form Backend + Enhancement + LGPD | 9/14 | In Progress|  |
 | 6. SEO / Metadata / Structured Data | 0/TBD | Not started | - |
 | 7. Security Headers Finalize | 0/TBD | Not started | - |
 
