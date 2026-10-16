@@ -1,4 +1,5 @@
 import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import process from 'node:process';
 import { launchBrowser, STATIC_DIR, startStaticServer } from './static-server.mjs';
 
@@ -17,22 +18,6 @@ const DEEP_LINK_ROUTES = [
   '/',
   '/obrigado',
   ...Object.keys(ERROR_PAGES),
-  '/politica-de-privacidade',
-];
-
-const POLICY_TERMS = [
-  'Art. 7º, V',
-  'Art. 7º, IX',
-  'Art. 18',
-  'Vercel',
-  'Resend',
-  'Upstash',
-  'GoDaddy',
-  'Estados Unidos',
-  '6 meses',
-  'ANPD',
-  'decisões automatizadas',
-  'Última atualização',
 ];
 
 const IGNORED_HOSTS = [/\.kaspersky-labs\.com$/];
@@ -456,36 +441,51 @@ const localChecks = {
     return fails;
   },
 
-  async politica({ browser, base }) {
+  async privacidadeNoForm({ browser, base }) {
     const fails = [];
-    const ctx = await newContext(browser);
+    const ctx = await newContext(browser, { javaScriptEnabled: false });
     try {
-      const page = await ctx.newPage();
-      await page.goto(`${base}/politica-de-privacidade`, { waitUntil: 'load' });
+      const page = await openHome(ctx, base);
       const info = await page.evaluate(() => {
-        const nav = document.querySelector('nav[aria-label="Nesta página"]');
-        const anchors = nav ? [...nav.querySelectorAll('a[href^="#"]')] : [];
+        const details = document.querySelector('#form-orcamento details.privacy');
+        const summary = details?.querySelector('summary');
+        const links = [...document.querySelectorAll('a[href]')]
+          .map((a) => a.getAttribute('href'))
+          .filter((href) => href.includes('politica'));
         return {
-          h1: document.querySelectorAll('h1').length,
-          h2: document.querySelectorAll('main h2').length,
-          nav: !!nav,
-          anchors: anchors.length,
-          broken: anchors
-            .filter((a) => !document.getElementById(a.getAttribute('href').slice(1)))
-            .map((a) => a.getAttribute('href')),
-          caption: !!document.querySelector('table caption'),
-          text: document.body.textContent,
+          exists: !!details,
+          open: !!details?.open,
+          summary: summary?.textContent?.trim() ?? '',
+          summaryHeight: summary?.getBoundingClientRect().height ?? 0,
+          links,
         };
       });
-      if (info.h1 !== 1) fails.push(`h1 = ${info.h1}`);
-      if (info.h2 !== 10) fails.push(`h2 = ${info.h2}`);
-      if (!info.nav) fails.push('nav "Nesta página" ausente');
-      if (info.anchors !== 10) fails.push(`ancoras = ${info.anchors}`);
-      if (info.broken.length) fails.push(`ancoras quebradas: ${info.broken.join(',')}`);
-      if (!info.caption) fails.push('table sem caption');
-      for (const term of POLICY_TERMS) {
-        if (!info.text.includes(term)) fails.push(`termo ausente: ${term}`);
-      }
+      if (!info.exists) fails.push('details.privacy ausente no form');
+      if (info.open) fails.push('details.privacy aberto por padrao');
+      if (info.summary !== 'Como usamos seus dados') fails.push(`summary "${info.summary}"`);
+      if (info.summaryHeight < 44) fails.push(`summary com ${info.summaryHeight}px (< 44)`);
+      if (info.links.length) fails.push(`links para politica: ${info.links.join(',')}`);
+      await page.locator('#form-orcamento details.privacy summary').click();
+      const opened = await page.evaluate(() => {
+        const details = document.querySelector('#form-orcamento details.privacy');
+        const text = details?.textContent ?? '';
+        return {
+          open: !!details?.open,
+          visible: !!details && details.querySelector('.privacy-body').offsetParent !== null,
+          email: text.includes('contato@agenciadmarques.com.br'),
+          legalBasis: text.includes('art. 7'),
+        };
+      });
+      if (!opened.open) fails.push('details nao abre sem JS');
+      if (!opened.visible) fails.push('conteudo do details invisivel apos abrir');
+      if (!opened.email) fails.push('contato@ ausente no details');
+      if (!opened.legalBasis) fails.push('"art. 7" ausente no details');
+      if (existsSync(join(STATIC_DIR, 'politica-de-privacidade')))
+        fails.push('pasta politica-de-privacidade presente no build');
+      if (existsSync(join(STATIC_DIR, 'politica-de-privacidade.html')))
+        fails.push('politica-de-privacidade.html presente no build');
+      const response = await page.goto(`${base}/politica-de-privacidade`, { waitUntil: 'load' });
+      if (response?.status() !== 404) fails.push(`/politica-de-privacidade status ${response?.status()}`);
     } finally {
       await ctx.close();
     }
@@ -503,14 +503,12 @@ const localChecks = {
         return {
           adjacent: !!submit && !!legal && submit.nextElementSibling === legal,
           text: legal?.textContent ?? '',
-          link: !!legal?.querySelector('a[href="/politica-de-privacidade"]'),
           checkbox: !!document.querySelector('#form-orcamento input[type="checkbox"]'),
         };
       });
       if (!info.adjacent) fails.push('p.legal nao esta logo apos o submit');
       if (!info.text.includes('Usamos seus dados só para responder a este pedido.'))
         fails.push('texto do aviso diferente');
-      if (!info.link) fails.push('link da politica ausente no aviso');
       if (info.checkbox) fails.push('checkbox presente no form');
     } finally {
       await ctx.close();

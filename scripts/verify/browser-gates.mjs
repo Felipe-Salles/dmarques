@@ -16,7 +16,6 @@ const ROUTES = [
   '/',
   '/404',
   '/obrigado',
-  '/politica-de-privacidade',
   '/erro-envio/limite',
   '/erro-envio/invalido',
   '/erro-envio/falha',
@@ -339,7 +338,7 @@ const checks = {
     const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
     const fails = [];
     try {
-      for (const route of ['/404', '/obrigado', '/politica-de-privacidade']) {
+      for (const route of ['/404', '/obrigado']) {
         await withPage(ctx, base, route, async (page) => {
           const r = await page.evaluate(() => {
             const aurora = document.querySelector('.aurora');
