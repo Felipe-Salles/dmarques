@@ -137,6 +137,7 @@ um orçamento — com um site que carrega rápido e nunca sai do ar.
 | Contato real: contato@agenciadmarques.com.br, @agenciadmarques, foto real do fundador | Substitui e-mail/Instagram pessoais e placeholder — confiança na hora da conversão | ✓ Aplicado 2026-10-15 (quick 261015-2fr / 261015-2ks) |
 | Direção visual "Aurora técnica" (sketch 001, variante A) | Escolhida pelo Felipe entre 6 propostas: elegante tech, premium, nada genérico; paleta da logo (#070A14, aurora #00C8FF→#3A5BFF→#0E1E5B, ember #FF6A3D só como ação), Sora + Inter Tight; polida com Impeccable | — Pending (Fase 04.1) |
 | Voz "nós" e CTA único "Pedir orçamento" | Consistência; linguagem leiga e só claims já publicados (FAQ/case) | — Pending (Fase 04.1) |
+| D-29: sem página de política de privacidade; aviso no formulário | Decisão do Felipe (2026-10-16); transparência do art. 9º mantida via bloco `<details>` "Como usamos seus dados" no formulário (controlador, finalidade, base legal art. 7º V, retenção, operadores, direitos) | ✓ Aplicado 2026-10-16 (05-12) |
 | Movimento "a luz acende" hand-rolled (CSS + IntersectionObserver) | Reveal ao rolar distinto por seção sem biblioteca; fallback sem JS e reduced-motion; canvas de partículas aposentado | — Pending (Fase 04.1) |
 | Sem hero fixado / scrollytelling (modo cinemático) | Testado no sketch e rejeitado pelo Felipe | ✓ Decidido 2026-10-15 |
 | Redesign como Fase 04.1, antes da Fase 5 | Formulário é ligado ao backend já no markup novo (evita retrabalho) | ✓ Decidido 2026-10-15 |

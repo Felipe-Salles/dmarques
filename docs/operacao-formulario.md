@@ -79,7 +79,7 @@ D-15, LGPD-07.
 
 - Lembrete mensal.
 - Na caixa GoDaddy, apagar pedidos com mais de 6 meses de quem não virou cliente, inclusive da lixeira.
-- Conferir no painel do Resend o período de retenção de logs do plano e registrá-lo na política de privacidade se mudar.
+- Conferir no painel do Resend o período de retenção de logs do plano e registrá-lo no bloco "Como usamos seus dados" do formulário se mudar.
 
 ## Hobby e uso comercial
 

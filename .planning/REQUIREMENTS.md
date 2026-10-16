@@ -147,24 +147,30 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 
 ### LGPD & Privacidade (LGPD)
 
-- [x] **LGPD-01**: Página `/politica-de-privacidade` em pt-BR publicada **no mesmo
-  release** do formulário ativo
-- [x] **LGPD-02**: Política cobre: identificação do controlador, encarregado/contato,
+- [x] **LGPD-01**: ~~Página `/politica-de-privacidade`~~ Modificado por D-29
+  (2026-10-16): não há página de política; o aviso de privacidade em pt-BR fica no
+  próprio formulário (bloco `<details>` "Como usamos seus dados"), publicado **no
+  mesmo release** do formulário ativo
+- [x] **LGPD-02**: Modificado por D-29: o aviso no formulário cobre (a página de
+  política foi removida; itens que o bloco compacto não traz, como reclamação à ANPD,
+  ausência de cookies, inexistência de decisões automatizadas e data da última
+  atualização, deixaram de ser exigidos): identificação do controlador, encarregado/contato,
   dados coletados, finalidades, bases legais (Art. 7º V + IX), operadores
   (Vercel, Resend, ferramenta de analytics), transferência internacional (EUA),
   retenção, direitos do titular (Art. 18) e como exercê-los, ausência de cookies
   de rastreamento, inexistência de decisões automatizadas, reclamação à ANPD,
   data da última atualização
 - [x] **LGPD-03**: Aviso de uso de dados visível ao lado do botão de envio, com
-  link para a Política de Privacidade (padrão notice-only, sem checkbox)
+  bloco `<details>` "Como usamos seus dados" logo abaixo (D-29, substitui o link para
+  a Política; padrão notice-only, sem checkbox)
 - [x] **LGPD-04**: IP, user-agent e timestamp usados apenas durante a requisição
   (rate-limit e timing), nunca persistidos ou logados
 - [x] **LGPD-05**: Nenhum script de analytics/marketing dispara na interação com o
   formulário
-- [ ] **LGPD-06**: Analytics sem cookies verificado no DevTools (zero cookies,
+- [x] **LGPD-06**: Analytics sem cookies verificado no DevTools (zero cookies,
   sem ID persistente) antes do lançamento
 - [x] **LGPD-07**: Base legal e prazo de retenção documentados no repositório e
-  refletidos na política (decisão do fundador registrada como Key Decision)
+  refletidos no aviso do formulário (D-29; decisão do fundador registrada como Key Decision)
 
 ### SEO & Descoberta (SEO)
 
@@ -383,7 +389,7 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | LGPD-03 | Phase 5 | Complete |
 | LGPD-04 | Phase 5 | Complete |
 | LGPD-05 | Phase 5 | Complete |
-| LGPD-06 | Phase 5 | Pending |
+| LGPD-06 | Phase 5 | Complete |
 | LGPD-07 | Phase 5 | Complete |
 | SEO-01 | Phase 6 | Pending |
 | SEO-02 | Phase 3 | Complete |

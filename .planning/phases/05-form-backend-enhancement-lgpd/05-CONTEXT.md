@@ -179,6 +179,15 @@ are out of scope.
   - Card height must stay proportional to the sketch (one contact field, like
     the sketch): form card height at 1440px ≤ sketch + 40px.
 
+### Decision recorded during live validation (Felipe, 2026-10-16)
+- **D-29:** The `/politica-de-privacidade` page is **removed** (supersedes the
+  Privacy Policy decisions above, D-18 included). Rationale: decisão do Felipe;
+  transparência do art. 9º mantida via bloco no formulário. A native `<details>`
+  "Como usamos seus dados" under the form's LGPD notice states controller,
+  purpose, legal basis (art. 7º, V), retention, processors and rights. The
+  footer link was removed too; the footer now ends with a divider and the
+  centered copyright.
+
 ### Claude's Discretion
 - Response to honeypot/timing rejections: silently return a fake success
   (200 / 303 to `/obrigado`) so bots get no signal. No email is sent.
