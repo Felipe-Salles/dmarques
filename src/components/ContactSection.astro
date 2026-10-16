@@ -452,12 +452,14 @@ const waIcon = 'M4 20l1.3-3.9A8 8 0 1112 20a8 8 0 01-4.1-1.1z';
   .form h3 {
     font-family: var(--font-display);
     font-size: var(--text-xl);
+    line-height: 1.25;
     margin: 0;
     font-weight: 600;
   }
 
   .form .sub {
     margin: -10px 0 2px;
+    line-height: 1.25;
     font-size: var(--text-sm);
     color: var(--color-text-muted);
   }
@@ -473,6 +475,7 @@ const waIcon = 'M4 20l1.3-3.9A8 8 0 1112 20a8 8 0 01-4.1-1.1z';
   }
 
   .field label {
+    line-height: 1.25;
     font-size: var(--text-sm);
     font-weight: 500;
     color: var(--color-text);
@@ -624,9 +627,9 @@ const waIcon = 'M4 20l1.3-3.9A8 8 0 1112 20a8 8 0 01-4.1-1.1z';
   }
 
   .legal a {
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
+    display: inline-block;
+    padding-block: 12px;
+    margin-block: -12px;
     margin-left: 0.3em;
     color: var(--color-text);
     text-decoration: underline;
