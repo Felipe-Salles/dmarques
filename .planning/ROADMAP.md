@@ -27,11 +27,16 @@ gap is knowingly accepted for v1, mitigated by the following compensating contro
   CDN, so a flood of GET requests is absorbed at the edge at negligible cost.
 
 - The only dynamic surface, `/api/orcamento`, is protected by **durable per-IP
-  rate-limiting plus a global hourly cap and a hard daily cap**, a honeypot, a
-  submit-timing check, a request body-size limit, and an Origin allow-list.
+  rate-limiting (3 envios/IP/10 min, janela deslizante) plus a global cap of
+  20/hora and 50/dia** (abaixo dos 100/dia do Resend free), **fail-closed** if
+  Redis fails, a honeypot, a submit-timing window of 3 s–24 h measured on the
+  client when JS is active (without JS the field is empty and tolerated — accepted
+  risk, D-27), a 16 KB body-size limit, an Origin allow-list, and
+  `application/x-www-form-urlencoded` only.
 
-- A **Vercel WAF rate-limit rule on `/api/*`** enforces limiting at the edge
-  (no serverless-statelessness gap).
+- A **Vercel WAF rate-limit rule on `/api/*`** (1 regra de rate limit em `/api/*`,
+  limite do plano Hobby, ~10 req/min/IP, contadores por região) enforces limiting
+  at the edge (no serverless-statelessness gap).
 
 - The project stays on the **Vercel Hobby plan with no payment method on file**, so
   spend is structurally capped at $0 — the project pauses when the free-tier ceiling
@@ -39,12 +44,15 @@ gap is knowingly accepted for v1, mitigated by the following compensating contro
   100%. This is weaker than the Pro-only Spend Management feature: there is no
   configurable USD cap, no tunable auto-pause action, and no "form off, site up"
   graceful degradation. Milestone 2 revisits this alongside the Cloudflare layer.
+  Risco adicional: as Fair Use Guidelines da Vercel restringem o Hobby a uso não
+  comercial; a decisão de migrar para Pro é registrada na Fase 5 (05-14).
 
 - **DNS is kept at low TTL** with no registrar lock-in, so Cloudflare can be put in
   front quickly if v1 is attacked (Milestone 2 pulled forward).
 
 - A **flood runbook** exists: enable Vercel Attack Challenge Mode / firewall rules,
-  then accelerate Cloudflare onboarding.
+  then accelerate Cloudflare onboarding. Versionado em `docs/waf-rate-limit.md`
+  (seção "Runbook de flood").
 
 Milestone 2 (Cloudflare layer) closes this statement.
 
