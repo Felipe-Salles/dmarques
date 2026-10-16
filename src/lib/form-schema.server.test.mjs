@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { validateFields } from './form-schema.ts';
 import { parseSubmission } from './form-schema.server.ts';
+import { validateFields } from './form-schema.ts';
 
 const base = { nome: 'Ana', canal: 'email', email: 'x@y.co' };
 
@@ -97,7 +97,11 @@ test('chaves desconhecidas nao chegam ao resultado', () => {
 });
 
 test('telefone com 23 caracteres e rejeitado', () => {
-  const r = parseSubmission({ nome: 'Ana', canal: 'whatsapp', whatsapp: '+55 - (16) - 99611-1785' });
+  const r = parseSubmission({
+    nome: 'Ana',
+    canal: 'whatsapp',
+    whatsapp: '+55 - (16) - 99611-1785',
+  });
   assert.ok(r.fields.includes('whatsapp'));
 });
 
