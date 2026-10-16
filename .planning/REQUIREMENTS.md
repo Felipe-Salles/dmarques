@@ -132,7 +132,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   servidor (nunca escolhidos pelo cliente), todo campo interpolado é
   HTML-escapado, CR/LF removidos de campos usados em subject/endereço, e sempre
   há corpo `text` além do HTML
-- [ ] **FORM-10**: Endpoint retorna erros genéricos (sem stack trace), não faz
+- [x] **FORM-10**: Endpoint retorna erros genéricos (sem stack trace), não faz
   redirect para URL fornecida pelo cliente, e limita o tamanho do corpo da
   requisição
 - [ ] **FORM-11**: Regra de rate-limit no Vercel WAF aplicada a `/api/*`
@@ -157,7 +157,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   data da última atualização
 - [ ] **LGPD-03**: Aviso de uso de dados visível ao lado do botão de envio, com
   link para a Política de Privacidade (padrão notice-only, sem checkbox)
-- [ ] **LGPD-04**: IP, user-agent e timestamp usados apenas durante a requisição
+- [x] **LGPD-04**: IP, user-agent e timestamp usados apenas durante a requisição
   (rate-limit e timing), nunca persistidos ou logados
 - [ ] **LGPD-05**: Nenhum script de analytics/marketing dispara na interação com o
   formulário
@@ -374,14 +374,14 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | FORM-07 | Phase 5 | Pending |
 | FORM-08 | Phase 5 | Complete |
 | FORM-09 | Phase 5 | Complete |
-| FORM-10 | Phase 5 | Pending |
+| FORM-10 | Phase 5 | Complete |
 | FORM-11 | Phase 5 | Pending |
 | FORM-12 | Phase 5 | Pending |
 | FORM-13 | Phase 5 | Complete |
 | LGPD-01 | Phase 5 | Complete |
 | LGPD-02 | Phase 5 | Complete |
 | LGPD-03 | Phase 5 | Pending |
-| LGPD-04 | Phase 5 | Pending |
+| LGPD-04 | Phase 5 | Complete |
 | LGPD-05 | Phase 5 | Pending |
 | LGPD-06 | Phase 5 | Pending |
 | LGPD-07 | Phase 5 | Complete |
