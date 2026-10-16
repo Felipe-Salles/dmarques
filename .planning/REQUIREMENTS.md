@@ -99,42 +99,46 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 
 ### Formulário de Orçamento (FORM)
 
-- [ ] **FORM-01**: Formulário "Pedir orçamento" com campos Nome, WhatsApp,
-  E-mail, Tipo de projeto e Mensagem; ao menos um entre WhatsApp e e-mail é
-  obrigatório
-- [ ] **FORM-02**: `<form method="POST" action="/api/orcamento">` funciona sem
+- [x] **FORM-01**: Formulário "Pedir orçamento" com campos Nome, canal preferido
+  (WhatsApp ou E-mail) com um campo de contato, Tipo de projeto e Mensagem; o
+  contato do canal escolhido é obrigatório
+  - Nota (Fase 5 D-28, Felipe 2026-10-15): seletor "Prefiro contato por"
+    (WhatsApp | E-mail, WhatsApp por padrão) acima de um único campo de contato
+    visível; funciona sem JS com rádios `canal` + CSS `:has()`.
+- [x] **FORM-02**: `<form method="POST" action="/api/orcamento">` funciona sem
   JavaScript — envio nativo redireciona (303) para `/obrigado`
-- [ ] **FORM-03**: Island de progressive enhancement faz `fetch` com
+- [x] **FORM-03**: Island de progressive enhancement faz `fetch` com
   `preventDefault`, mostra estados idle / enviando / sucesso / erro inline,
   preserva o que foi digitado em caso de erro e desabilita o submit durante o
   envio
-- [ ] **FORM-04**: Validação server-side com Zod (nome 2–80 chars, telefone ou
-  e-mail bem-formados, tipo ∈ enum, mensagem ≤ 2000 chars) — servidor é a fonte
-  da verdade
-- [ ] **FORM-05**: Validação client-side inline (no blur / no submit, nunca a cada
+- [x] **FORM-04**: Validação server-side com Zod (nome 2–80 chars, canal ∈
+  {whatsapp, email} obrigatório e o contato do canal escolhido bem-formado, tipo
+  ∈ enum, mensagem ≤ 2000 chars) — servidor é a fonte da verdade
+  - Nota (Fase 5 D-28): o campo do canal não escolhido é descartado e nunca usado.
+- [x] **FORM-05**: Validação client-side inline (no blur / no submit, nunca a cada
   tecla) espelhando o schema, sem bloquear o submit
-- [ ] **FORM-06**: Mensagens de erro e status acessíveis — texto (não só cor),
+- [x] **FORM-06**: Mensagens de erro e status acessíveis — texto (não só cor),
   `aria-invalid`, `aria-describedby` ligando campo→erro, região `aria-live`,
   foco movido para o primeiro erro; sucesso e falha anunciados
-- [ ] **FORM-07**: Honeypot oculto (descartado, nunca enviado nem armazenado) +
+- [x] **FORM-07**: Honeypot oculto (descartado, nunca enviado nem armazenado) +
   verificação de tempo de submissão (rejeita < ~3 s ou > ~24 h, tempo decorrido medido no cliente), ambos no servidor
   - Nota (Fase 5 D-27, Felipe 2026-10-15): o tempo é o decorrido medido no cliente
     (`elapsed-ms`), sem comparar relógios; teto alargado para 24 h para não perder
     lead de aba aberta; sem JS o campo não existe e o timing não se aplica (risco
     aceito; honeypot e rate limits seguem valendo).
-- [ ] **FORM-08**: Rate limiting no endpoint — por IP (janela deslizante) mais um
+- [x] **FORM-08**: Rate limiting no endpoint — por IP (janela deslizante) mais um
   teto global horário e um teto diário rígido; resposta 429 com mensagem amigável
-- [ ] **FORM-09**: E-mail enviado via Resend com `from`/`to`/`subject` fixos no
+- [x] **FORM-09**: E-mail enviado via Resend com `from`/`to`/`subject` fixos no
   servidor (nunca escolhidos pelo cliente), todo campo interpolado é
   HTML-escapado, CR/LF removidos de campos usados em subject/endereço, e sempre
   há corpo `text` além do HTML
-- [ ] **FORM-10**: Endpoint retorna erros genéricos (sem stack trace), não faz
+- [x] **FORM-10**: Endpoint retorna erros genéricos (sem stack trace), não faz
   redirect para URL fornecida pelo cliente, e limita o tamanho do corpo da
   requisição
-- [ ] **FORM-11**: Regra de rate-limit no Vercel WAF aplicada a `/api/*`
-- [ ] **FORM-12**: Estado de erro do formulário oferece o WhatsApp como caminho
+- [x] **FORM-11**: Regra de rate-limit no Vercel WAF aplicada a `/api/*`
+- [x] **FORM-12**: Estado de erro do formulário oferece o WhatsApp como caminho
   alternativo
-- [ ] **FORM-13**: Deep-links de WhatsApp com `?text=` pré-preenchido por ponto de
+- [x] **FORM-13**: Deep-links de WhatsApp com `?text=` pré-preenchido por ponto de
   entrada (hero genérico; cards de serviço mencionam o serviço), URL-encoded,
   `rel="noopener"`
   - Exceção registrada (decisão de Felipe, 2026-10-15, Fase 5 D-26): na Fase 5 os
@@ -143,24 +147,22 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 
 ### LGPD & Privacidade (LGPD)
 
-- [ ] **LGPD-01**: Página `/politica-de-privacidade` em pt-BR publicada **no mesmo
-  release** do formulário ativo
-- [ ] **LGPD-02**: Política cobre: identificação do controlador, encarregado/contato,
-  dados coletados, finalidades, bases legais (Art. 7º V + IX), operadores
-  (Vercel, Resend, ferramenta de analytics), transferência internacional (EUA),
-  retenção, direitos do titular (Art. 18) e como exercê-los, ausência de cookies
-  de rastreamento, inexistência de decisões automatizadas, reclamação à ANPD,
-  data da última atualização
-- [ ] **LGPD-03**: Aviso de uso de dados visível ao lado do botão de envio, com
-  link para a Política de Privacidade (padrão notice-only, sem checkbox)
-- [ ] **LGPD-04**: IP, user-agent e timestamp usados apenas durante a requisição
+- [ ] **LGPD-01**: ~~Página `/politica-de-privacidade`~~ Removido por decisão do
+  Felipe (D-29, 2026-10-16): não há página de política nem aviso detalhado no site
+- [ ] **LGPD-02**: ~~Conteúdo completo da política (controlador, dados, finalidades,
+  bases legais, operadores, retenção, direitos, ANPD)~~ Removido por decisão do
+  Felipe (D-29); risco registrado: transparência do art. 9º da LGPD não é publicada
+- [x] **LGPD-03**: Frase curta de uso de dados visível sob o botão de envio, sem
+  link (D-29; padrão notice-only, sem checkbox)
+- [x] **LGPD-04**: IP, user-agent e timestamp usados apenas durante a requisição
   (rate-limit e timing), nunca persistidos ou logados
-- [ ] **LGPD-05**: Nenhum script de analytics/marketing dispara na interação com o
+- [x] **LGPD-05**: Nenhum script de analytics/marketing dispara na interação com o
   formulário
-- [ ] **LGPD-06**: Analytics sem cookies verificado no DevTools (zero cookies,
+- [x] **LGPD-06**: Analytics sem cookies verificado no DevTools (zero cookies,
   sem ID persistente) antes do lançamento
-- [ ] **LGPD-07**: Base legal e prazo de retenção documentados no repositório e
-  refletidos na política (decisão do fundador registrada como Key Decision)
+- [ ] **LGPD-07**: Base legal e prazo de retenção documentados no repositório
+  (mantido internamente em PROJECT.md); a parte "refletidos no aviso do formulário"
+  foi removida por decisão do Felipe (D-29)
 
 ### SEO & Descoberta (SEO)
 
@@ -225,12 +227,12 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   inline, `curl -I` dos headers, varredura de segredos em `dist/`, verificação de
   "uma única Function", gate do Lighthouse, achados registrados com
   severidade/responsável/prazo); nenhuma fase fecha com achado High em aberto
-- [ ] **SEC-08**: Declaração de risco residual escrita no ROADMAP — v1 não tem
+- [x] **SEC-08**: Declaração de risco residual escrita no ROADMAP — v1 não tem
   proteção de borda L3/L7 (DDoS/WAF), adiada para o milestone 2 (Cloudflare) —
   com os controles compensatórios da v1 listados (site 100% estático, rate-limit
   durável e global em `/api`, regra WAF da Vercel em `/api/*`, spend cap com
   alertas, DNS com TTL baixo para cutover rápido, runbook de flood)
-- [ ] **SEC-09**: SPF, DKIM e DMARC (`p=none` → quarantine) configurados para o
+- [x] **SEC-09**: SPF, DKIM e DMARC (`p=none` → quarantine) configurados para o
   domínio de envio no Resend; nota mail-tester ≥ 8 antes do formulário ir ao ar
 - [ ] **SEC-10**: Sem Astro View Transitions na v1 (decisão registrada) para não
   quebrar listeners de script na segunda navegação
@@ -361,26 +363,26 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | ANIM-07 | Phase 3 | Complete |
 | ANIM-08 | Phase 3 | Complete |
 | ANIM-09 | Phase 4 | Complete |
-| FORM-01 | Phase 5 | Pending |
-| FORM-02 | Phase 5 | Pending |
-| FORM-03 | Phase 5 | Pending |
-| FORM-04 | Phase 5 | Pending |
-| FORM-05 | Phase 5 | Pending |
-| FORM-06 | Phase 5 | Pending |
-| FORM-07 | Phase 5 | Pending |
-| FORM-08 | Phase 5 | Pending |
-| FORM-09 | Phase 5 | Pending |
-| FORM-10 | Phase 5 | Pending |
-| FORM-11 | Phase 5 | Pending |
-| FORM-12 | Phase 5 | Pending |
-| FORM-13 | Phase 5 | Pending |
-| LGPD-01 | Phase 5 | Pending |
-| LGPD-02 | Phase 5 | Pending |
-| LGPD-03 | Phase 5 | Pending |
-| LGPD-04 | Phase 5 | Pending |
-| LGPD-05 | Phase 5 | Pending |
-| LGPD-06 | Phase 5 | Pending |
-| LGPD-07 | Phase 5 | Pending |
+| FORM-01 | Phase 5 | Complete |
+| FORM-02 | Phase 5 | Complete |
+| FORM-03 | Phase 5 | Complete |
+| FORM-04 | Phase 5 | Complete |
+| FORM-05 | Phase 5 | Complete |
+| FORM-06 | Phase 5 | Complete |
+| FORM-07 | Phase 5 | Complete |
+| FORM-08 | Phase 5 | Complete |
+| FORM-09 | Phase 5 | Complete |
+| FORM-10 | Phase 5 | Complete |
+| FORM-11 | Phase 5 | Complete |
+| FORM-12 | Phase 5 | Complete |
+| FORM-13 | Phase 5 | Complete |
+| LGPD-01 | Phase 5 | Removido por decisão do Felipe (D-29) |
+| LGPD-02 | Phase 5 | Removido por decisão do Felipe (D-29) |
+| LGPD-03 | Phase 5 | Complete |
+| LGPD-04 | Phase 5 | Complete |
+| LGPD-05 | Phase 5 | Complete |
+| LGPD-06 | Phase 5 | Complete |
+| LGPD-07 | Phase 5 | Removido por decisão do Felipe (D-29); base legal só interna |
 | SEO-01 | Phase 6 | Pending |
 | SEO-02 | Phase 3 | Complete |
 | SEO-03 | Phase 6 | Pending |
@@ -403,8 +405,8 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | SEC-05 | Phase 7 | Pending |
 | SEC-06 | Phase 7 | Pending |
 | SEC-07 | Phase 1 (runs every phase) | Pending |
-| SEC-08 | Phase 5 (statement written in ROADMAP.md) | Pending |
-| SEC-09 | Phase 5 | Pending |
+| SEC-08 | Phase 5 (statement written in ROADMAP.md) | Complete |
+| SEC-09 | Phase 5 | Complete |
 | SEC-10 | Phase 7 | Pending |
 | PERF-01 | Phase 1 (gate runs every phase) | Complete |
 | PERF-02 | Phase 1 | Complete |

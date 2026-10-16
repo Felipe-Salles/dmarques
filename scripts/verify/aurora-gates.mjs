@@ -50,10 +50,6 @@ const ROUTES = {
   '/': ['index.html'],
   '/404': ['404.html'],
   '/obrigado': ['obrigado/index.html', 'obrigado.html'],
-  '/politica-de-privacidade': [
-    'politica-de-privacidade/index.html',
-    'politica-de-privacidade.html',
-  ],
 };
 
 function readPage(route) {
@@ -292,7 +288,7 @@ const checks = {
     const missing = needBuild();
     if (missing) return missing;
     const fails = [];
-    for (const route of ['/404', '/obrigado', '/politica-de-privacidade']) {
+    for (const route of ['/404', '/obrigado']) {
       const html = readPage(route);
       if (html === null) {
         fails.push(`pagina ${route} ausente`);

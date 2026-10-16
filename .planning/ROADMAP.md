@@ -27,11 +27,17 @@ gap is knowingly accepted for v1, mitigated by the following compensating contro
   CDN, so a flood of GET requests is absorbed at the edge at negligible cost.
 
 - The only dynamic surface, `/api/orcamento`, is protected by **durable per-IP
-  rate-limiting plus a global hourly cap and a hard daily cap**, a honeypot, a
-  submit-timing check, a request body-size limit, and an Origin allow-list.
+  rate-limiting (3 envios/IP/10 min, janela deslizante) plus a global cap of
+  20/hora and 50/dia** (abaixo dos 100/dia do Resend free), **fail-closed** if
+  Redis fails, a honeypot, a submit-timing window of 3 s–24 h measured on the
+  client when JS is active (without JS the field is empty and tolerated — accepted
+  risk, D-27), a 16 KB body-size limit, an Origin allow-list, and
+  `application/x-www-form-urlencoded` only.
 
-- A **Vercel WAF rate-limit rule on `/api/*`** enforces limiting at the edge
-  (no serverless-statelessness gap).
+- A **Vercel WAF rate-limit rule `api-flood` on `/api/*`** is active (10 req/60 s/IP,
+  fixed window, contadores por região, ação **Deny**: 403 na borda com
+  `X-Vercel-Mitigated: deny`, sem invocar a Function; provado no preview em
+  2026-10-16). A ação 429 só existe com upgrade do plano Hobby.
 
 - The project stays on the **Vercel Hobby plan with no payment method on file**, so
   spend is structurally capped at $0 — the project pauses when the free-tier ceiling
@@ -39,12 +45,17 @@ gap is knowingly accepted for v1, mitigated by the following compensating contro
   100%. This is weaker than the Pro-only Spend Management feature: there is no
   configurable USD cap, no tunable auto-pause action, and no "form off, site up"
   graceful degradation. Milestone 2 revisits this alongside the Cloudflare layer.
+  Risco adicional: as Fair Use Guidelines da Vercel restringem o Hobby a uso não
+  comercial. Decisão do Felipe em 2026-10-16 (05-14): manter o Hobby e aceitar o risco
+  por ora (achado P05-003, Med, revisão antes do go-live no domínio próprio); o Deny 403
+  do WAF atende o anti-flood e o 429 exigiria Pro, não desejado agora.
 
 - **DNS is kept at low TTL** with no registrar lock-in, so Cloudflare can be put in
   front quickly if v1 is attacked (Milestone 2 pulled forward).
 
 - A **flood runbook** exists: enable Vercel Attack Challenge Mode / firewall rules,
-  then accelerate Cloudflare onboarding.
+  then accelerate Cloudflare onboarding. Versionado em `docs/waf-rate-limit.md`
+  (seção "Runbook de flood").
 
 Milestone 2 (Cloudflare layer) closes this statement.
 
@@ -263,7 +274,7 @@ Plans:
 **Exceções registradas**: FORM-13 — pontos de entrada nesta fase são Contato, Footer (inclusive o botão flutuante) e cards de serviço; hero excluído por decisão de Felipe em 2026-10-15 (05-CONTEXT D-26). FORM-07 — timing pelo tempo decorrido medido no cliente (teto 24 h); omitir o campo sem JS contorna o timing, risco aceito por Felipe em 2026-10-15 (05-CONTEXT D-27).
 **Success Criteria** (what must be TRUE):
 
-  1. With JavaScript disabled, submitting the form (Nome, WhatsApp, E-mail, Tipo de projeto, Mensagem; at least one of WhatsApp/e-mail required) natively POSTs to `/api/orcamento` and redirects (303) to `/obrigado`; with JavaScript, the enhancer does a `fetch` with inline idle/sending/success/error states, mirrors the schema in on-blur client validation, preserves typed input on error, disables submit in-flight, surfaces accessible errors (text not just color, `aria-invalid`, `aria-describedby`, `aria-live`, focus to first error), and offers a pre-filled WhatsApp deep-link as the fallback path.
+  1. With JavaScript disabled, submitting the form (Nome, canal preferido (WhatsApp ou E-mail) com um campo de contato, Tipo de projeto, Mensagem; the chosen channel's contact is required — 05-CONTEXT D-28) natively POSTs to `/api/orcamento` and redirects (303) to `/obrigado`; with JavaScript, the enhancer does a `fetch` with inline idle/sending/success/error states, mirrors the schema in on-blur client validation, preserves typed input on error, disables submit in-flight, surfaces accessible errors (text not just color, `aria-invalid`, `aria-describedby`, `aria-live`, focus to first error), and offers a pre-filled WhatsApp deep-link as the fallback path.
   2. The endpoint validates every field server-side with Zod (project-type must match the content enum), rejects a populated honeypot and out-of-window submit timing, enforces durable per-IP + global hourly + hard daily rate limits (429 with a friendly message), HTML-escapes and CR/LF-strips all interpolated email fields with hard-coded `from`/`to`/`subject` and a `text` body, returns generic errors with no stack trace and no client-supplied redirect, and caps request body size; a Vercel WAF rate-limit rule covers `/api/*`.
   3. `/politica-de-privacidade` (pt-BR) goes live in this same release covering controller, encarregado/contato, data collected, purposes, legal bases (Art. 7 V + IX), operators (Vercel, Resend, analytics), international transfer (USA), retention, Art. 18 rights and how to exercise them, absence of tracking cookies, no automated decisions, ANPD complaint, and last-updated date; a notice-only data-use sentence with a policy link sits next to the submit button.
   4. IP, user-agent, and timestamp are used only during the request (rate-limit + timing) and never persisted or logged; no analytics/marketing script fires on form interaction; analytics is verified in DevTools to set zero cookies / no persistent ID; the chosen legal basis and retention period are recorded as a Key Decision in the repo and reflected in the policy.
@@ -274,34 +285,34 @@ Plans:
 Plans:
 **Wave 1**
 
-- [ ] 05-01-PLAN.md — Módulos puros compartilhados: form-schema, whatsapp, escape-html (TDD)
-- [ ] 05-02-PLAN.md — Checkpoint de legitimidade + instalação de resend/zod/@upstash e segredos no astro:env
-- [ ] 05-03-PLAN.md — Política de Privacidade completa + Key Decision de base legal e retenção
+- [x] 05-01-PLAN.md — Módulos puros compartilhados: form-schema, whatsapp, escape-html (TDD)
+- [x] 05-02-PLAN.md — Checkpoint de legitimidade + instalação de resend/zod/@upstash e segredos no astro:env
+- [x] 05-03-PLAN.md — Política de Privacidade completa + Key Decision de base legal e retenção
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 05-04-PLAN.md — Schema Zod do servidor e montagem segura do e-mail (TDD)
-- [ ] 05-05-PLAN.md — Guardas de requisição e rate limit em três camadas com IP em HMAC (TDD)
-- [ ] 05-06-PLAN.md — /obrigado, /erro-envio/{limite,invalido,falha}, noindex e deep-links de WhatsApp
-- [ ] 05-07-PLAN.md — Markup do card de contato e enhancer form.ts com estados acessíveis
-- [ ] 05-08-PLAN.md — Runbooks (WAF, flood, operação), script do mail-tester e SEC-08 atualizado
+- [x] 05-04-PLAN.md — Schema Zod do servidor e montagem segura do e-mail (TDD)
+- [x] 05-05-PLAN.md — Guardas de requisição e rate limit em três camadas com IP em HMAC (TDD)
+- [x] 05-06-PLAN.md — /obrigado, /erro-envio/{limite,invalido,falha}, noindex e deep-links de WhatsApp
+- [x] 05-07-PLAN.md — Markup do card de contato (seletor de canal D-28), enhancer form.ts com estados acessíveis e medição de altura vs sketch
+- [x] 05-08-PLAN.md — Runbooks (WAF, flood, operação), script do mail-tester e SEC-08 atualizado
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 05-09-PLAN.md — Handler puro, wiring de dependências e rota única /api/orcamento (TDD)
+- [x] 05-09-PLAN.md — Handler puro, wiring de dependências e rota única /api/orcamento (TDD)
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
-- [ ] 05-10-PLAN.md — Gates Playwright do formulário, security-check endurecido e CI
-- [ ] 05-11-PLAN.md — Provisionamento manual: Resend + DNS GoDaddy + Upstash + env vars + mail-tester
+- [x] 05-10-PLAN.md — Gates Playwright do formulário, security-check endurecido e CI
+- [x] 05-11-PLAN.md — Provisionamento manual: Resend + DNS GoDaddy + Upstash + env vars + mail-tester
 
 **Wave 5** *(blocked on Wave 4 completion)*
 
-- [ ] 05-12-PLAN.md — PR, sondas e gates live no preview + teste ponta a ponta do Felipe
+- [x] 05-12-PLAN.md — PR, sondas e gates live no preview + teste ponta a ponta do Felipe
 
 **Wave 6** *(blocked on Wave 5 completion)*
 
-- [ ] 05-13-PLAN.md — Regra WAF api-flood (Log -> 429) e rajada de confirmação
+- [x] 05-13-PLAN.md — Regra WAF api-flood (Log -> Deny 403) e rajada de confirmação
 
 **Wave 7** *(blocked on Wave 6 completion)*
 
@@ -350,7 +361,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 4.1 -> 5 -> 6 -> 7
 | 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 9/9 | Complete   | 2026-09-17 |
 | 4. Progressive-Enhancement Effects | 4/4 | Complete   | 2026-09-17 |
 | 4.1. Redesign Aurora técnica (INSERTED) | 11/11 | Complete   | 2026-10-15 |
-| 5. Form Backend + Enhancement + LGPD | 0/TBD | Not started | - |
+| 5. Form Backend + Enhancement + LGPD | 13/14 | In Progress|  |
 | 6. SEO / Metadata / Structured Data | 0/TBD | Not started | - |
 | 7. Security Headers Finalize | 0/TBD | Not started | - |
 

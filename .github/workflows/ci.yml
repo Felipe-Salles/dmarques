@@ -25,6 +25,8 @@ jobs:
       - run: node scripts/verify/aurora-gates.mjs
       - run: pnpm exec playwright install --with-deps chromium
       - run: node scripts/verify/browser-gates.mjs
+      - run: node scripts/verify/form-gates.mjs
+      - run: node scripts/verify/form-card-height.mjs
       - run: pnpm audit --audit-level=high
       - run: bash scripts/js-weight-check.sh "$STATIC_DIR"
       - run: bash scripts/security-check.sh --ci

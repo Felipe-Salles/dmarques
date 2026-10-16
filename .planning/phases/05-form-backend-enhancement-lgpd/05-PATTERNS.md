@@ -146,7 +146,7 @@ status.textContent = '';
 status.textContent = 'texto';
 ```
 
-Regras do UI-SPEC/RESEARCH Pattern 4: `form.noValidate = true` no init, corpo `URLSearchParams`, `Accept: application/json`, `AbortController` 15 s, `elapsed-ms` com `performance.now()` decorrido desde o init (D-27, nunca `Date.now()`), `textContent` e `setAttribute('href', ...)` apenas, zero `style`/`innerHTML`. Importa so `form-schema.ts` e `whatsapp.ts`. Classes de estado: `.sending`, `.done`, `.failed`, `.limited`, `.err-contato` e `.field.err`.
+Regras do UI-SPEC/RESEARCH Pattern 4: `form.noValidate = true` no init, corpo `URLSearchParams`, `Accept: application/json`, `AbortController` 15 s, `elapsed-ms` com `performance.now()` decorrido desde o init (D-27, nunca `Date.now()`), `textContent` e `setAttribute('href', ...)` apenas, zero `style`/`innerHTML`. Importa so `form-schema.ts` e `whatsapp.ts`. Classes de estado: `.sending`, `.done`, `.failed`, `.limited` e `.field.err` (`.err-contato` foi removida pelo D-28; o campo do canal oculto recebe `disabled`).
 
 ---
 
@@ -165,7 +165,7 @@ Regras do UI-SPEC/RESEARCH Pattern 4: `form.noValidate = true` no init, corpo `U
 - Link WhatsApp do canal (linhas 24-29): `href` com `?text=` via helper (ou literal URL-encoded) mantendo `target="_blank" rel="noopener noreferrer"`.
 - Estados `err`, `sending`, `done` e `.msg` ja existem em CSS (430-474, 537-547); so ligar por JS.
 
-Markup de erro de campo existente a respeitar para `aria-describedby` (linhas 135-148): `<span class="msg" id="erro-whatsapp">` e inputs com `aria-describedby="contato-nota-obrigatorio"`.
+Markup de erro de campo para `aria-describedby`: `<span class="msg" id="erro-whatsapp">`/`<span class="msg" id="erro-email">`. Superado pelo D-28: a nota `contato-nota-obrigatorio` e o `aria-describedby` estático para ela deixam de existir (ver 05-07, que traz as linhas atuais).
 
 ---
 
@@ -293,7 +293,7 @@ Dependencias exatas, sem `^` (padrao da linhas 21-25): `resend@6.33.0`, `zod@4.6
 **Aplicar a:** todos os arquivos novos. Documentacao do WAF e do expurgo vai em `docs/*.md`.
 
 ### Classes e `hidden` em vez de estilo inline
-**Fonte:** `src/components/ContactSection.astro` linhas 430-447, 537-547 (`.form.done`, `.form.sending`, `.form.err-contato`).
+**Fonte:** `src/components/ContactSection.astro` linhas 436-455, 477-480, 543-553 (`.field.err`/`.msg`, `.form.sending`, `.form.done`; conferidas em 2026-10-15). `.form.err-contato` é removida pelo D-28.
 **Aplicar a:** `form.ts` e qualquer novo estado de UI.
 
 ### Tokens e hover/focus pareados

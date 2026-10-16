@@ -12,7 +12,14 @@ async function scrollThrough(page, step = 400, wait = 120) {
   await page.waitForTimeout(wait);
 }
 
-const ROUTES = ['/', '/404', '/obrigado', '/politica-de-privacidade'];
+const ROUTES = [
+  '/',
+  '/404',
+  '/obrigado',
+  '/erro-envio/limite',
+  '/erro-envio/invalido',
+  '/erro-envio/falha',
+];
 
 const REVEAL_TARGETS = [
   '[data-r]',
@@ -116,7 +123,7 @@ const checks = {
             if (r.width <= 0 || r.height <= 0 || cs.visibility === 'hidden') continue;
             const forced = always.has(el);
             if (!forced) {
-              if (el.closest('p') || el.classList.contains('skip-link')) continue;
+              if (el.closest('p, .hp') || el.classList.contains('skip-link')) continue;
               if (r.width < 44 || r.height < 44) out.push(`alvo < 44: ${describe(el, r)}`);
             } else if (r.height < 44) {
               out.push(`alvo < 44: ${describe(el, r)}`);
@@ -327,41 +334,11 @@ const checks = {
     }
   },
 
-  async form({ browser, base }) {
-    const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
-    try {
-      return await withPage(ctx, base, '/', async (page) => {
-        const fails = [];
-        const method = await page.evaluate(
-          () => document.querySelector('#form-orcamento')?.method ?? null,
-        );
-        if (method === null) return ['#form-orcamento ausente'];
-        if (method !== 'post') fails.push(`form method ${method} (esperado post)`);
-        await page.fill('#nome', 'Fulano');
-        await page.fill('#email', 'fulano@exemplo.com');
-        await page.locator('#form-orcamento button[type=submit]').click();
-        await page.waitForTimeout(400);
-        const state = await page.evaluate(() => ({
-          url: location.href,
-          pending: document.querySelector('#form-pendente')?.hidden === false,
-          status: (document.querySelector('#form-status')?.textContent || '').trim(),
-        }));
-        if (state.url.includes('?') || /fulano/i.test(state.url))
-          fails.push(`dados na URL: ${state.url}`);
-        if (!state.pending) fails.push('#form-pendente oculto apos envio');
-        if (!state.status) fails.push('#form-status vazio apos envio');
-        return fails;
-      });
-    } finally {
-      await ctx.close();
-    }
-  },
-
   async secondary({ browser, base }) {
     const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
     const fails = [];
     try {
-      for (const route of ['/404', '/obrigado', '/politica-de-privacidade']) {
+      for (const route of ['/404', '/obrigado']) {
         await withPage(ctx, base, route, async (page) => {
           const r = await page.evaluate(() => {
             const aurora = document.querySelector('.aurora');

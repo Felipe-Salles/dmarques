@@ -1,5 +1,6 @@
 ---
 import { getServices } from '../content';
+import { buildWaUrl, serviceWaText } from '../lib/whatsapp.ts';
 import Words from './Words.astro';
 
 const services = await getServices();
@@ -67,6 +68,24 @@ const iconShapes: Record<(typeof services)[number]['data']['icon'], IconShape[]>
               </svg>
               <h3>{item.data.titulo}</h3>
               <p>{item.data.descricao}</p>
+              <a
+                class="svc-wa"
+                href={buildWaUrl(serviceWaText(item.data.titulo))}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Falar sobre isso no WhatsApp — ${item.data.titulo}`}
+              >
+                Falar sobre isso no WhatsApp
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <path d="M7 17L17 7M9 7h8v8" />
+                </svg>
+              </a>
             </li>
           ))
         }
@@ -135,7 +154,7 @@ const iconShapes: Record<(typeof services)[number]['data']['icon'], IconShape[]>
     bottom: 0;
   }
 
-  .svc svg {
+  .svc > svg {
     grid-row: 1 / span 2;
     width: 30px;
     height: 30px;
@@ -159,18 +178,60 @@ const iconShapes: Record<(typeof services)[number]['data']['icon'], IconShape[]>
     max-width: 52ch;
   }
 
+  .svc-wa {
+    grid-column: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-self: start;
+    gap: 6px;
+    min-height: 44px;
+    font-size: var(--text-sm);
+    font-weight: 400;
+    color: var(--color-text-muted);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: var(--color-border);
+    transition:
+      color 0.2s,
+      text-decoration-color 0.2s;
+  }
+
+  .svc-wa svg {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.2s;
+  }
+
+  .svc-wa:hover,
+  .svc-wa:focus-visible {
+    color: var(--color-text);
+    text-decoration-color: var(--aurora-cyan);
+  }
+
+  .svc-wa:hover svg,
+  .svc-wa:focus-visible svg {
+    transform: translateX(2px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .svc-wa:hover svg,
+    .svc-wa:focus-visible svg {
+      transform: none;
+    }
+  }
+
   .svc h3,
   .svc p,
-  .svc svg {
+  .svc > svg {
     transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
   .svc:hover h3,
   .svc:hover p,
-  .svc:hover svg,
+  .svc:hover > svg,
   .svc:focus-within h3,
   .svc:focus-within p,
-  .svc:focus-within svg {
+  .svc:focus-within > svg {
     transform: translateX(10px);
   }
 
@@ -190,7 +251,7 @@ const iconShapes: Record<(typeof services)[number]['data']['icon'], IconShape[]>
       padding: 22px 0;
     }
 
-    .svc svg {
+    .svc > svg {
       width: 26px;
       height: 26px;
     }
@@ -208,7 +269,7 @@ const iconShapes: Record<(typeof services)[number]['data']['icon'], IconShape[]>
       translate: 0 12px;
     }
 
-    :global(html.js-ready) .svc svg :global(*) {
+    :global(html.js-ready) .svc > svg :global(*) {
       stroke-dasharray: 1;
       stroke-dashoffset: 1;
     }
@@ -238,7 +299,7 @@ const iconShapes: Record<(typeof services)[number]['data']['icon'], IconShape[]>
       transition-delay: calc(var(--i, 0) * 110ms + 200ms), calc(var(--i, 0) * 110ms + 200ms), 0s;
     }
 
-    :global(html.js-ready) .svc.in svg :global(*) {
+    :global(html.js-ready) .svc.in > svg :global(*) {
       stroke-dashoffset: 0;
       transition: stroke-dashoffset 1.4s var(--ease-out) calc(var(--i, 0) * 110ms);
     }

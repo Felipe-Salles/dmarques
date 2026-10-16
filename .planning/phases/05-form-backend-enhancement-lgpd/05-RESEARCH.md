@@ -59,7 +59,7 @@
 
 | ID | Description | Research Support |
 |----|-------------|------------------|
-| FORM-01 | Campos Nome, WhatsApp, E-mail, Tipo de projeto, Mensagem; ao menos um entre WhatsApp e e-mail | Markup já existe; regra cruzada no `superRefine` Zod e no cliente (Pattern 2) |
+| FORM-01 | Campos Nome, canal preferido (WhatsApp ou E-mail) com um campo de contato, Tipo de projeto, Mensagem (D-28, substitui "ao menos um entre WhatsApp e e-mail") | Seletor `canal` + CSS `:has()` no 05-07; `superRefine` exige só o contato do canal escolhido (05-04) |
 | FORM-02 | POST nativo sem JS, 303 para `/obrigado` | `Response` 303 manual; `/obrigado` estático (Pattern 1) |
 | FORM-03 | Enhancer com fetch e estados, preserva entrada, desabilita submit | `form.ts` reescrito, `Accept: application/json`, urlencoded (Pattern 4) |
 | FORM-04 | Zod server-side (nome 2–80, contato, enum, mensagem) | `form-schema.server.ts` com constantes compartilhadas (Pattern 2) |
@@ -225,7 +225,7 @@ const REASON_PATH = { limited: '/erro-envio/limite', invalid: '/erro-envio/inval
 `Location` só recebe valores desta tabela fixa. [CITED: docs.astro.build/en/guides/endpoints] (POST/ALL, `prerender = false` em `static`).
 
 ### Pattern 2: Schema em duas camadas com constantes compartilhadas
-`form-schema.ts` (puro, entra no bundle) exporta `LIMITS`, `EMAIL_RE`, `normalizePhone`, `stripControl`, e uma `validateFields(input)` que devolve `{ ok, errors: {campo: codigo} }`. `form-schema.server.ts` monta o Zod 4 com `z.enum(PROJECT_TYPE_VALUES)` (D-25), `z.string().regex(EMAIL_RE)` (mesma regex do cliente, não `z.email()`, para não haver divergência) e `superRefine` para "WhatsApp ou e-mail".
+`form-schema.ts` (puro, entra no bundle) exporta `LIMITS`, `EMAIL_RE`, `normalizePhone`, `stripControl`, e uma `validateFields(input)` que devolve `{ ok, errors: {campo: codigo} }`. `form-schema.server.ts` monta o Zod 4 com `z.enum(PROJECT_TYPE_VALUES)` (D-25), `z.string().regex(EMAIL_RE)` (mesma regex do cliente, não `z.email()`, para não haver divergência) e `superRefine` para "WhatsApp ou e-mail". Superado pelo D-28: `canal` é `z.enum(CHANNELS)` obrigatório e o `superRefine` exige só o contato do canal escolhido; o exemplo abaixo com `path: ['contato']` não vale mais (ver 05-04).
 ```typescript
 import { z } from 'zod';
 import { PROJECT_TYPE_VALUES } from '../content/project-types.ts';

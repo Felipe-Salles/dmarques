@@ -141,6 +141,47 @@ are out of scope.
   and the three rate-limit layers still apply. Recorded in the 05-14 SEC-07 run
   as an already-accepted risk, not asked again.
 
+### Decision recorded after plan revision (Felipe, 2026-10-15)
+- **D-28:** The quote form does **not** show WhatsApp and E-mail as two
+  separate fields (the extra field makes the card taller and out of proportion
+  with the sketch). Instead:
+  - A channel selector "Prefiro contato por" with two pills **WhatsApp | E-mail**
+    (WhatsApp checked by default) sits above a **single** visible contact field.
+  - The visible field follows the chosen channel. WhatsApp: `type=tel`,
+    `inputmode=tel`, `autocomplete=tel`, placeholder "(16) 99999-9999". E-mail:
+    `type=email`, `inputmode=email`, `autocomplete=email`, placeholder
+    "voce@empresa.com.br".
+  - Works without JavaScript (FORM-02): real radio inputs `name="canal"`
+    (`whatsapp`/`email`) styled like the `ProjectTypeChips` pills, plus two
+    inputs in the DOM (`name="whatsapp"`, `name="email"`). CSS `:has()` shows
+    only the one matching the checked radio. Without JS the hidden one is
+    submitted (usually empty). With JS the enhancer also sets `disabled` on the
+    hidden one (so it is neither validated nor submitted) and keeps focus/ARIA
+    on the visible one. Neither contact input carries `required`.
+  - The helper line "Preencha WhatsApp ou e-mail." and the cross-field
+    "WhatsApp ou e-mail" error are removed (supersedes the Phase 3 rule).
+  - Server (Zod): `canal` is a required enum (`whatsapp` | `email`). Only the
+    chosen channel's field is required and validated; the other is discarded
+    before validation and never used. `replyTo` only when canal = email; the
+    `wa.me` link in the email body only when canal = whatsapp (refines D-03).
+    Subject and body show the chosen channel (refines D-06).
+  - Client validation mirrors the same rule; a missing/unknown `canal` is a
+    server error, while the client resolves it to the default `whatsapp`.
+  - Errors in pt-BR, accessible: `aria-invalid`/`aria-describedby` on the
+    visible field; the selector is a `fieldset` with legend "Prefiro contato por".
+  - Accepted no-JS degradations: (a) browsers without `:has()` show both fields
+    (still submits, server uses only the chosen channel); (b) without JS, if
+    the visitor types a malformed e-mail and then switches to WhatsApp, native
+    validation of the hidden `type=email` field can block the submit (rare;
+    with JS the hidden field is `disabled` and skipped).
+  - LGPD minimization improves: the policy lists name + the chosen contact
+    (WhatsApp OR e-mail) + type + message.
+  - Card height must stay proportional to the sketch (one contact field, like
+    the sketch): form card height at 1440px ≤ sketch + 40px.
+
+### Decision recorded during live validation (Felipe, 2026-10-16)
+- **D-29:** Felipe decidiu remover a Política de Privacidade e não exibir aviso de privacidade detalhado no formulário; permanece só a frase curta sob o botão ("Usamos seus dados só para responder a este pedido."), sem link. A página `/politica-de-privacidade` está removida (supersedes D-18 e as decisões de política acima) e o rodapé não a referencia. Risco registrado: transparência do art. 9º da LGPD (controlador, finalidade, base legal, retenção, operadores, direitos) deixa de ser publicada no site.
+
 ### Claude's Discretion
 - Response to honeypot/timing rejections: silently return a fake success
   (200 / 303 to `/obrigado`) so bots get no signal. No email is sent.
@@ -187,7 +228,7 @@ are out of scope.
 ## Existing Code Insights
 
 ### Reusable Assets
-- `src/components/ContactSection.astro`: form with all 5 fields (`nome`, `whatsapp`, `email`, `tipo-projeto`, `mensagem`), labels, and the `contato-nota-obrigatorio` note. It has no `action`/`method` yet. The submit label is "Enviar pedido de orçamento".
+- `src/components/ContactSection.astro`: form with all 5 fields (`nome`, `whatsapp`, `email`, `tipo-projeto`, `mensagem`), labels, and the `contato-nota-obrigatorio` note (D-28 replaces the two contact fields and the note with the `canal` selector + one visible contact field). It has no `action`/`method` yet. The submit label is "Enviar pedido de orçamento".
 - `src/content/project-types.ts`: `PROJECT_TYPE_VALUES` (for `z.enum`) and `PROJECT_TYPES` (value/label).
 - `src/pages/obrigado.astro`: exists as the no-JS success target.
 - `src/pages/politica-de-privacidade.astro`: Phase 3 placeholder shell, to be replaced with full content.

@@ -61,8 +61,8 @@ um orçamento — com um site que carrega rápido e nunca sai do ar.
   `robots.txt`, JSON-LD `LocalBusiness`
 - [ ] Analytics sem cookies (Vercel Analytics ou Plausible/Umami) — sem dado
   pessoal, sem banner obrigatório
-- [ ] Conformidade LGPD: página de Política de Privacidade (o formulário coleta
-  nome e WhatsApp) e aviso de uso de dados no formulário
+- [ ] Conformidade LGPD: coleta mínima; política e aviso detalhado removidos (D-29),
+  resta só a frase curta de uso de dados sob o botão
 - [ ] Seção de portfólio / cases (pode iniciar com 1–2 exemplos ou placeholders)
 - [ ] Segurança revisada a cada fase: Content-Security-Policy e cabeçalhos de
   segurança (HSTS, X-Content-Type-Options, Referrer-Policy, Permissions-Policy),
@@ -118,8 +118,8 @@ um orçamento — com um site que carrega rápido e nunca sai do ar.
 - **Acessibilidade**: `prefers-reduced-motion`, contraste AA, navegação por
   teclado, HTML semântico.
 - **Idioma**: pt-BR apenas.
-- **LGPD**: coleta mínima de dados no formulário, com base legal e política
-  publicada.
+- **LGPD**: coleta mínima de dados no formulário, com base legal registrada
+  internamente; política e aviso detalhado removidos por decisão do Felipe (D-29).
 
 ## Key Decisions
 
@@ -137,9 +137,11 @@ um orçamento — com um site que carrega rápido e nunca sai do ar.
 | Contato real: contato@agenciadmarques.com.br, @agenciadmarques, foto real do fundador | Substitui e-mail/Instagram pessoais e placeholder — confiança na hora da conversão | ✓ Aplicado 2026-10-15 (quick 261015-2fr / 261015-2ks) |
 | Direção visual "Aurora técnica" (sketch 001, variante A) | Escolhida pelo Felipe entre 6 propostas: elegante tech, premium, nada genérico; paleta da logo (#070A14, aurora #00C8FF→#3A5BFF→#0E1E5B, ember #FF6A3D só como ação), Sora + Inter Tight; polida com Impeccable | — Pending (Fase 04.1) |
 | Voz "nós" e CTA único "Pedir orçamento" | Consistência; linguagem leiga e só claims já publicados (FAQ/case) | — Pending (Fase 04.1) |
+| D-29: sem página de política de privacidade e sem aviso detalhado no formulário | Felipe decidiu remover a Política de Privacidade e não exibir aviso de privacidade detalhado no formulário; permanece só a frase curta sob o botão. Risco registrado: transparência do art. 9º da LGPD (controlador, finalidade, base legal, retenção, operadores, direitos) deixa de ser publicada no site. | Aplicado 2026-10-16 (05-12, revisado) |
 | Movimento "a luz acende" hand-rolled (CSS + IntersectionObserver) | Reveal ao rolar distinto por seção sem biblioteca; fallback sem JS e reduced-motion; canvas de partículas aposentado | — Pending (Fase 04.1) |
 | Sem hero fixado / scrollytelling (modo cinemático) | Testado no sketch e rejeitado pelo Felipe | ✓ Decidido 2026-10-15 |
 | Redesign como Fase 04.1, antes da Fase 5 | Formulário é ligado ao backend já no markup novo (evita retrabalho) | ✓ Decidido 2026-10-15 |
+| LGPD: bases legais Art. 7º V (pedido de orçamento) + IX (antiabuso e medição agregada); retenção de 6 meses para pedidos de quem não virou cliente; sem encarregado formal (Res. CD/ANPD nº 2/2022) | Decisão do fundador (Fase 5, D-15/D-16); coleta mínima; expurgo manual mensal da caixa GoDaddy documentado em docs/operacao-formulario.md | ✓ Decidido (2026-09-24) — refletido em /politica-de-privacidade |
 
 ## Evolution
 

@@ -1,18 +1,29 @@
 ---
 import Aurora from '../components/Aurora.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { GENERIC_WA_TEXT, buildWaUrl } from '../lib/whatsapp.ts';
 ---
 
-<BaseLayout title="Pedido enviado — Dmarques" description="Recebemos o seu pedido de orçamento. Em breve entraremos em contato pelo WhatsApp.">
+<BaseLayout
+  title="Pedido enviado — Dmarques"
+  description="Recebemos o seu pedido de orçamento. Respondemos no mesmo dia útil."
+  noindex
+>
   <main id="conteudo">
     <section class="intro">
       <Aurora variant="small" />
       <div class="wrap content-block">
-        <h1 class="h2">Recebemos seu pedido</h1>
+        <h1 class="h2">Pedido enviado.</h1>
         <p class="lead">
-          Respondemos no mesmo dia útil. Enquanto isso, fale com a gente no WhatsApp se preferir.
+          Recebemos o seu pedido. Respondemos no mesmo dia útil, pelo contato que você informou.
         </p>
         <div class="actions">
+          <a
+            class="btn btn-primary"
+            href={buildWaUrl(GENERIC_WA_TEXT)}
+            target="_blank"
+            rel="noopener noreferrer">Falar agora no WhatsApp</a
+          >
           <a href="/" class="btn btn-ghost">Voltar ao início</a>
         </div>
       </div>
