@@ -305,7 +305,7 @@ Plans:
 
 **Wave 5** *(blocked on Wave 4 completion)*
 
-- [ ] 05-12-PLAN.md — PR, sondas e gates live no preview + teste ponta a ponta do Felipe
+- [x] 05-12-PLAN.md — PR, sondas e gates live no preview + teste ponta a ponta do Felipe
 
 **Wave 6** *(blocked on Wave 5 completion)*
 
@@ -358,7 +358,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 4.1 -> 5 -> 6 -> 7
 | 3. Static Zero-JS Sections + CSP-safe Refactor + A11y | 9/9 | Complete   | 2026-09-17 |
 | 4. Progressive-Enhancement Effects | 4/4 | Complete   | 2026-09-17 |
 | 4.1. Redesign Aurora técnica (INSERTED) | 11/11 | Complete   | 2026-10-15 |
-| 5. Form Backend + Enhancement + LGPD | 11/14 | In Progress|  |
+| 5. Form Backend + Enhancement + LGPD | 12/14 | In Progress|  |
 | 6. SEO / Metadata / Structured Data | 0/TBD | Not started | - |
 | 7. Security Headers Finalize | 0/TBD | Not started | - |
 
