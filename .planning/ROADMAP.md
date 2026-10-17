@@ -340,7 +340,7 @@ Plans:
 - [x] 06-01-PLAN.md — Fonte única de NAP/identidade (business.ts) + builder/serializer de JSON-LD com testes (TDD)
 - [x] 06-02-PLAN.md — Gate de dist scripts/verify/seo-gates.mjs (10 checagens, Wave 0)
 - [x] 06-03-PLAN.md — Lighthouse CI dividido: SEO por auditoria no preview, categories:seo error no job de produção
-- [ ] 06-04-PLAN.md — Checkpoint de legitimidade + @astrojs/sitemap 3.7.4 com filtro + robots.txt
+- [x] 06-04-PLAN.md — Checkpoint de legitimidade + @astrojs/sitemap 3.7.4 com filtro + robots.txt
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
@@ -386,7 +386,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 4.1 -> 5 -> 6 -> 7
 | 4. Progressive-Enhancement Effects | 4/4 | Complete   | 2026-09-17 |
 | 4.1. Redesign Aurora técnica (INSERTED) | 11/11 | Complete   | 2026-10-15 |
 | 5. Form Backend + Enhancement + LGPD | 14/14 | Complete   | 2026-10-16 |
-| 6. SEO / Metadata / Structured Data | 3/8 | In Progress|  |
+| 6. SEO / Metadata / Structured Data | 4/8 | In Progress|  |
 | 7. Security Headers Finalize | 0/TBD | Not started | - |
 
 ## Coverage
