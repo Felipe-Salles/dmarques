@@ -44,6 +44,16 @@ um orçamento — com um site que carrega rápido e nunca sai do ar.
   ANIM-03, ANIM-04, ANIM-05, ANIM-06, ANIM-09 validados. (float/pulse e hover nos
   cards/botões já existiam como CSS puro desde a Fase 3 — não fazem parte do escopo
   desta fase.)
+- **Fase 6 (SEO, metadados e dados estruturados) — 2026-10-17.** Head de SEO completo
+  (title, description, canonical absoluto, Open Graph, Twitter `summary_large_image`,
+  ícones, theme-color), imagem de compartilhamento 1200×630 (31 KB), `sitemap.xml`
+  via `@astrojs/sitemap` só com a home, `robots.txt` e JSON-LD
+  `ProfessionalService`/`LocalBusiness` gerado de `src/lib/business.ts`, a fonte única
+  de NAP que alimenta também o rodapé e o contato. Gate `seo-gates.mjs` (10 checks) no
+  CI; Lighthouse de preview com 9 auditorias de SEO em nível error e job de produção
+  exigindo ≥0.95 nas quatro categorias (passou). Rich Results 0 erros no código e na
+  URL real, card do LinkedIn e prévia do WhatsApp aprovados por Felipe. PR #6.
+  SEO-01, SEO-03, SEO-04, SEO-05, SEO-06, SEO-08 validados.
 
 ### Active
 
@@ -61,8 +71,8 @@ um orçamento — com um site que carrega rápido e nunca sai do ar.
   API do Resend, com validação server-side, honeypot e rate-limiting
 - [ ] Conteúdo (serviços, passos do processo, diferenciais, FAQ, textos) em Astro
   Content Collections / Markdown — 100% estático, sem CMS
-- [ ] SEO técnico: meta tags, Open Graph/Twitter cards, `sitemap.xml`,
-  `robots.txt`, JSON-LD `LocalBusiness`
+- [x] SEO técnico: meta tags, Open Graph/Twitter cards, `sitemap.xml`,
+  `robots.txt`, JSON-LD `LocalBusiness` (Fase 6)
 - [ ] Analytics sem cookies (Vercel Analytics ou Plausible/Umami) — sem dado
   pessoal, sem banner obrigatório
 - [ ] Conformidade LGPD: coleta mínima; política e aviso detalhado removidos (D-29),
@@ -170,4 +180,4 @@ de rate-limiting, mitigação de DDoS/flood de requisições e Turnstile (captch
 formulário de orçamento.
 
 ---
-*Last updated: 2026-09-17 after Phase 4 completion*
+*Last updated: 2026-10-17 after Phase 6 completion*
