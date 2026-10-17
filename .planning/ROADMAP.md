@@ -73,7 +73,7 @@ Milestone 2 (Cloudflare layer) closes this statement.
 - [x] **Phase 4: Progressive-Enhancement Effects** - Scroll reveal, cursor glow, particle canvas, and reduced-motion handling as small vanilla islands (completed 2026-09-17)
 - [x] **Phase 04.1: Redesign Aurora técnica** (INSERTED) - Apply the validated Aurora direction (sketch 001-A): logo, palette, Sora + Inter Tight, section compositions, honest proof, "nós" voice and the "a luz acende" motion system (completed 2026-10-15)
 - [x] **Phase 5: Form Backend + Enhancement + LGPD** - Working quote form (no-JS + enhanced) via Resend behind layered spam/abuse defenses, shipped with the Privacy Policy page and inline data-use notice (completed 2026-10-16)
-- [ ] **Phase 6: SEO / Metadata / Structured Data** - Titles, canonical, OG/Twitter cards, sitemap, robots, favicons, and single-sourced ProfessionalService/LocalBusiness JSON-LD (FAQPage removido na 04.1, D-02)
+- [x] **Phase 6: SEO / Metadata / Structured Data** - Titles, canonical, OG/Twitter cards, sitemap, robots, favicons, and single-sourced ProfessionalService/LocalBusiness JSON-LD (FAQPage removido na 04.1, D-02) (completed 2026-10-17)
 - [ ] **Phase 7: Security Headers Finalize** - Full security-header set + strict CSP in vercel.json, Report-Only then enforced, sourcemaps off, securityheaders.com >= A
 
 ### Milestone 2 (planned) — Cloudflare layer
@@ -356,7 +356,7 @@ Plans:
 
 **Wave 5** *(blocked on Wave 4 completion)*
 
-- [ ] 06-08-PLAN.md — Abre/usa o PR da fase, merge para produção, sondas + Lighthouse de produção (regressão bloqueia o fechamento), Rich Results/cartão social na URL, SEC-07 phase-06
+- [x] 06-08-PLAN.md — Abre/usa o PR da fase, merge para produção, sondas + Lighthouse de produção (regressão bloqueia o fechamento), Rich Results/cartão social na URL, SEC-07 phase-06
 
 ### Phase 7: Security Headers Finalize
 
@@ -386,7 +386,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 4.1 -> 5 -> 6 -> 7
 | 4. Progressive-Enhancement Effects | 4/4 | Complete   | 2026-09-17 |
 | 4.1. Redesign Aurora técnica (INSERTED) | 11/11 | Complete   | 2026-10-15 |
 | 5. Form Backend + Enhancement + LGPD | 14/14 | Complete   | 2026-10-16 |
-| 6. SEO / Metadata / Structured Data | 7/8 | In Progress|  |
+| 6. SEO / Metadata / Structured Data | 8/8 | Complete   | 2026-10-17 |
 | 7. Security Headers Finalize | 0/TBD | Not started | - |
 
 ## Coverage
