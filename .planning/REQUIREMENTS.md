@@ -166,7 +166,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 
 ### SEO & Descoberta (SEO)
 
-- [ ] **SEO-01**: `<title>`, meta description (~150 chars, cita Ibitinga, sites,
+- [x] **SEO-01**: `<title>`, meta description (~150 chars, cita Ibitinga, sites,
   sistemas, automação) e `<link rel="canonical">` absoluto por página
 - [x] **SEO-02**: `<html lang="pt-BR">`
 - [ ] **SEO-03**: Open Graph + Twitter Card completos e imagem de compartilhamento
@@ -175,14 +175,14 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   tudo, aponta o sitemap)
 - [ ] **SEO-05**: Conjunto de favicons + `apple-touch-icon` + `theme-color`
   (#070A14)
-- [ ] **SEO-06**: JSON-LD com `@type: ["ProfessionalService","LocalBusiness"]` —
+- [x] **SEO-06**: JSON-LD com `@type: ["ProfessionalService","LocalBusiness"]` —
   nome, descrição, url, telefone E.164, e-mail, `areaServed`, `address`
   (localidade, `addressRegion: "SP"`, `addressCountry: "BR"`), `sameAs`
   (Instagram), `image`/`logo`, `founder` (Person)
 - [ ] ~~**SEO-07**: JSON-LD `FAQPage` (D-02) gerado da mesma fonte da FAQ visível, validado
   no Google Rich Results Test~~ Removido na Fase 04.1 (D-02): o Google só aceita
   FAQPage para FAQ visível, e a FAQ saiu do site. (D-02)
-- [ ] **SEO-08**: NAP (nome, endereço, telefone) idêntico entre rodapé e JSON-LD
+- [x] **SEO-08**: NAP (nome, endereço, telefone) idêntico entre rodapé e JSON-LD
 
 ### Acessibilidade (A11Y)
 
@@ -383,14 +383,14 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | LGPD-05 | Phase 5 | Complete |
 | LGPD-06 | Phase 5 | Complete |
 | LGPD-07 | Phase 5 | Removido por decisão do Felipe (D-29); base legal só interna |
-| SEO-01 | Phase 6 | Pending |
+| SEO-01 | Phase 6 | Complete |
 | SEO-02 | Phase 3 | Complete |
 | SEO-03 | Phase 6 | Pending |
 | SEO-04 | Phase 6 | Pending |
 | SEO-05 | Phase 6 | Pending |
-| SEO-06 | Phase 6 | Pending |
+| SEO-06 | Phase 6 | Complete |
 | SEO-07 | Phase 6 | Dropped (04.1 D-02) |
-| SEO-08 | Phase 6 | Pending |
+| SEO-08 | Phase 6 | Complete |
 | A11Y-01 | Phase 3 | Complete |
 | A11Y-02 | Phase 3 | Complete |
 | A11Y-03 | Phase 3 | Complete |
