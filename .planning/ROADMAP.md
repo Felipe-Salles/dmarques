@@ -352,7 +352,7 @@ Plans:
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
-- [ ] 06-07-PLAN.md — seo-gates no CI, suíte completa, nome oficial no PROJECT.md, Rich Results (código) antes do merge
+- [x] 06-07-PLAN.md — seo-gates no CI, suíte completa, nome oficial no PROJECT.md, Rich Results (código) antes do merge
 
 **Wave 5** *(blocked on Wave 4 completion)*
 
@@ -386,7 +386,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 4.1 -> 5 -> 6 -> 7
 | 4. Progressive-Enhancement Effects | 4/4 | Complete   | 2026-09-17 |
 | 4.1. Redesign Aurora técnica (INSERTED) | 11/11 | Complete   | 2026-10-15 |
 | 5. Form Backend + Enhancement + LGPD | 14/14 | Complete   | 2026-10-16 |
-| 6. SEO / Metadata / Structured Data | 6/8 | In Progress|  |
+| 6. SEO / Metadata / Structured Data | 7/8 | In Progress|  |
 | 7. Security Headers Finalize | 0/TBD | Not started | - |
 
 ## Coverage
