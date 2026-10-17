@@ -169,11 +169,11 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 - [x] **SEO-01**: `<title>`, meta description (~150 chars, cita Ibitinga, sites,
   sistemas, automação) e `<link rel="canonical">` absoluto por página
 - [x] **SEO-02**: `<html lang="pt-BR">`
-- [ ] **SEO-03**: Open Graph + Twitter Card completos e imagem de compartilhamento
+- [x] **SEO-03**: Open Graph + Twitter Card completos e imagem de compartilhamento
   1200×630 estática (< 300 KB) desenhada, servida de `public/`
-- [ ] **SEO-04**: `sitemap.xml` (via `@astrojs/sitemap`) e `robots.txt` (libera
+- [x] **SEO-04**: `sitemap.xml` (via `@astrojs/sitemap`) e `robots.txt` (libera
   tudo, aponta o sitemap)
-- [ ] **SEO-05**: Conjunto de favicons + `apple-touch-icon` + `theme-color`
+- [x] **SEO-05**: Conjunto de favicons + `apple-touch-icon` + `theme-color`
   (#070A14)
 - [x] **SEO-06**: JSON-LD com `@type: ["ProfessionalService","LocalBusiness"]` —
   nome, descrição, url, telefone E.164, e-mail, `areaServed`, `address`
@@ -385,9 +385,9 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | LGPD-07 | Phase 5 | Removido por decisão do Felipe (D-29); base legal só interna |
 | SEO-01 | Phase 6 | Complete |
 | SEO-02 | Phase 3 | Complete |
-| SEO-03 | Phase 6 | Pending |
-| SEO-04 | Phase 6 | Pending |
-| SEO-05 | Phase 6 | Pending |
+| SEO-03 | Phase 6 | Complete |
+| SEO-04 | Phase 6 | Complete |
+| SEO-05 | Phase 6 | Complete |
 | SEO-06 | Phase 6 | Complete |
 | SEO-07 | Phase 6 | Dropped (04.1 D-02) |
 | SEO-08 | Phase 6 | Complete |
