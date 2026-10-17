@@ -4,6 +4,7 @@ import logotipo from '../assets/brand/logotipo.png';
 import simbolo from '../assets/brand/simbolo.png';
 
 import { GENERIC_WA_TEXT, buildWaUrl } from '../lib/whatsapp.ts';
+import { BUSINESS, phoneDisplay } from '../lib/business.ts';
 
 const prefix = Astro.url.pathname === '/' ? '' : '/';
 const year = new Date().getFullYear();
@@ -13,11 +14,11 @@ const year = new Date().getFullYear();
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
-        <a href="/" class="lockup" aria-label="Dmarques Desenvolvimento Web — página inicial">
+        <a href="/" class="lockup" aria-label={`${BUSINESS.name} — página inicial`}>
           <Image src={simbolo} alt="" height={34} densities={[1, 2]} class="logo-symbol" />
           <Image src={logotipo} alt="" height={34} densities={[1, 2]} class="logo-type" />
         </a>
-        <p>Sites, sistemas, soluções web e automações sob medida. Ibitinga · SP.</p>
+        <p>Sites, sistemas, soluções web e automações sob medida. {BUSINESS.locality} · {BUSINESS.region}.</p>
       </div>
       <div class="foot-cols">
         <div>
@@ -30,13 +31,13 @@ const year = new Date().getFullYear();
         </div>
         <div>
           <h2 class="foot-title">Contato</h2>
-          <a href={buildWaUrl(GENERIC_WA_TEXT)} target="_blank" rel="noopener noreferrer">(16) 99611-1785</a>
-          <a href="mailto:contato@agenciadmarques.com.br">contato@agenciadmarques.com.br</a>
+          <a href={buildWaUrl(GENERIC_WA_TEXT)} target="_blank" rel="noopener noreferrer">{phoneDisplay()}</a>
+          <a href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a>
         </div>
       </div>
     </div>
     <hr class="foot-rule" />
-    <p class="foot-copy">© {year} Dmarques Soluções Web</p>
+    <p class="foot-copy">© {year} {BUSINESS.name}</p>
   </div>
 </footer>
 

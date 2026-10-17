@@ -2,6 +2,7 @@
 import Aurora from './Aurora.astro';
 import { CHANNELS, CHANNEL_LABELS, DEFAULT_CHANNEL } from '../lib/form-schema.ts';
 import { GENERIC_WA_TEXT, buildWaUrl } from '../lib/whatsapp.ts';
+import { BUSINESS, phoneDisplay } from '../lib/business.ts';
 import ChipGroup from './ChipGroup.astro';
 import ProjectTypeChips from './ProjectTypeChips.astro';
 import Words from './Words.astro';
@@ -46,7 +47,7 @@ const waIcon = 'M4 20l1.3-3.9A8 8 0 1112 20a8 8 0 01-4.1-1.1z';
               ><path d="M4 20l1.3-3.9A8 8 0 1112 20a8 8 0 01-4.1-1.1z"></path></svg
             >
           </span>
-          <div><b>WhatsApp</b><span>(16) 99611-1785 · resposta mais rápida</span></div>
+          <div><b>WhatsApp</b><span>{phoneDisplay()} · resposta mais rápida</span></div>
           <svg
             class="go"
             viewBox="0 0 24 24"
@@ -57,7 +58,7 @@ const waIcon = 'M4 20l1.3-3.9A8 8 0 1112 20a8 8 0 01-4.1-1.1z';
             aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"></path></svg
           >
         </a>
-        <a class="channel i1" href="mailto:contato@agenciadmarques.com.br">
+        <a class="channel i1" href={`mailto:${BUSINESS.email}`}>
           <span class="ic">
             <svg
               width="18"
@@ -71,7 +72,7 @@ const waIcon = 'M4 20l1.3-3.9A8 8 0 1112 20a8 8 0 01-4.1-1.1z';
               ></path></svg
             >
           </span>
-          <div><b>E-mail</b><span>contato@agenciadmarques.com.br</span></div>
+          <div><b>E-mail</b><span>{BUSINESS.email}</span></div>
           <svg
             class="go"
             viewBox="0 0 24 24"

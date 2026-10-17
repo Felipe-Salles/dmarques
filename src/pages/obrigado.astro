@@ -2,10 +2,11 @@
 import Aurora from '../components/Aurora.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { GENERIC_WA_TEXT, buildWaUrl } from '../lib/whatsapp.ts';
+import { SECONDARY_TITLE_SUFFIX } from '../lib/business.ts';
 ---
 
 <BaseLayout
-  title="Pedido enviado — Dmarques"
+  title={`Pedido enviado${SECONDARY_TITLE_SUFFIX}`}
   description="Recebemos o seu pedido de orçamento. Respondemos no mesmo dia útil."
   noindex
 >
