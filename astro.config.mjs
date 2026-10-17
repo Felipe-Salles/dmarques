@@ -1,3 +1,4 @@
+import sitemap from '@astrojs/sitemap';
 import vercel from '@astrojs/vercel';
 import { defineConfig, envField, fontProviders } from 'astro/config';
 
@@ -5,6 +6,14 @@ export default defineConfig({
   site: 'https://agenciadmarques.com.br',
   output: 'static',
   adapter: vercel(),
+  integrations: [
+    sitemap({
+      filter: (page) => {
+        const { pathname } = new URL(page);
+        return !pathname.startsWith('/obrigado') && !pathname.startsWith('/erro-envio');
+      },
+    }),
+  ],
   build: {
     inlineStylesheets: 'never',
   },

@@ -21,6 +21,7 @@
     "verify:form-height": "node scripts/verify/form-card-height.mjs"
   },
   "dependencies": {
+    "@astrojs/sitemap": "3.7.4",
     "@astrojs/vercel": "11.0.14",
     "@upstash/ratelimit": "2.2.0",
     "@upstash/redis": "1.39.0",
