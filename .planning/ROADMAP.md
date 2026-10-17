@@ -344,7 +344,7 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 06-05-PLAN.md — Script generate-og.mjs e public/og-image.jpg 1200x630 < 300 KB
+- [x] 06-05-PLAN.md — Script generate-og.mjs e public/og-image.jpg 1200x630 < 300 KB
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
@@ -386,7 +386,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 4.1 -> 5 -> 6 -> 7
 | 4. Progressive-Enhancement Effects | 4/4 | Complete   | 2026-09-17 |
 | 4.1. Redesign Aurora técnica (INSERTED) | 11/11 | Complete   | 2026-10-15 |
 | 5. Form Backend + Enhancement + LGPD | 14/14 | Complete   | 2026-10-16 |
-| 6. SEO / Metadata / Structured Data | 4/8 | In Progress|  |
+| 6. SEO / Metadata / Structured Data | 5/8 | In Progress|  |
 | 7. Security Headers Finalize | 0/TBD | Not started | - |
 
 ## Coverage
