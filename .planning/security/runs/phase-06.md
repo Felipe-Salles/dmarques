@@ -60,7 +60,7 @@ Primeiro run do `lhci` de preview (39072489611) falhou só em `robots-txt`: o Li
 - **Lighthouse de produção:** run `39073723615` (https://github.com/Felipe-Salles/dmarques/actions/runs/39073723615), job `lhci-production` concluído com sucesso em 47 s, 3 execuções. As asserções de `lighthouserc.production.json` estão em nível `error`: `categories:performance`, `categories:seo`, `categories:best-practices` e `categories:accessibility` com `minScore` 0.95, mais LCP <= 2500 ms, CLS <= 0.05, TBT <= 200 ms e `resource-summary:script:size` <= 20480 B. Todas passaram, logo as quatro categorias são >= 0.95. Os números exatos não ficam disponíveis (`uploadArtifacts: false`, P03-006).
 - **Peso de JS da landing:** `6115 B` gzip de 20480 B (era 5501 B na Fase 5; +614 B vêm dos módulos de SEO/estrutura da fase, sem biblioteca nova).
 - **Rich Results Test (plano 06-07, JSON-LD extraído do HTML construído):** "2 itens válidos detectados" — Empresas locais (LocalBusiness) e Organização, 0 erros.
-- **Rich Results na URL de produção e card de compartilhamento (LinkedIn Post Inspector, WhatsApp):** pendentes da verificação humana da Tarefa 3; resultado será anexado aqui.
+- **Rich Results na URL de produção e card de compartilhamento (LinkedIn Post Inspector, WhatsApp):** verificados por Felipe em 2026-10-17 (Tarefa 3). Rich Results Test em `https://agenciadmarques.com.br/`, LinkedIn Post Inspector e prévia do WhatsApp conferidos; resposta literal: "aprovado".
 
 ## Itens mecânicos do gabarito
 
@@ -109,4 +109,4 @@ Convenção de ID: `P06-NNN`. Responsável padrão: `Felipe Salles`.
 
 ## Linha de fechamento — regra dura
 
-Nenhuma linha é `High` e `Aberto`. Verificações mecânicas 1 a 5 e 8 passam; 6 sem regressão; 7 passa em produção. O fechamento depende ainda da confirmação humana da Tarefa 3 (Rich Results na URL de produção, LinkedIn Post Inspector e WhatsApp).
+Nenhuma linha é `High` e `Aberto`. Verificações mecânicas 1 a 5 e 8 passam; 6 sem regressão; 7 passa em produção. A confirmação humana da Tarefa 3 (Rich Results na URL de produção, LinkedIn Post Inspector e WhatsApp) foi dada por Felipe em 2026-10-17 ("aprovado"). Fase apta ao fechamento.
