@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://agenciadmarques.com.br/sitemap-index.xml

@@ -332,7 +332,31 @@ Plans:
   4. JSON-LD `["ProfessionalService","LocalBusiness"]` (with `founder` Person, E.164 phone, `areaServed`, `address` with `addressRegion: "SP"` / `addressCountry: "BR"`, `sameAs` Instagram, `image`/`logo`) passes the Google Rich Results Test, and NAP is byte-identical between the footer and the JSON-LD.
   5. Lighthouse mobile stays >=95 in all four categories and the SEC-07 checklist run passes with no open High finding.
 
-**Plans**: TBD
+**Plans**: 8 plans
+
+Plans:
+**Wave 1**
+
+- [x] 06-01-PLAN.md — Fonte única de NAP/identidade (business.ts) + builder/serializer de JSON-LD com testes (TDD)
+- [x] 06-02-PLAN.md — Gate de dist scripts/verify/seo-gates.mjs (10 checagens, Wave 0)
+- [x] 06-03-PLAN.md — Lighthouse CI dividido: SEO por auditoria no preview, categories:seo error no job de produção
+- [x] 06-04-PLAN.md — Checkpoint de legitimidade + @astrojs/sitemap 3.7.4 com filtro + robots.txt
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [x] 06-05-PLAN.md — Script generate-og.mjs e public/og-image.jpg 1200x630 < 300 KB
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
+- [x] 06-06-PLAN.md — Head completo no BaseLayout (canonical, OG/Twitter, theme-color, JSON-LD na home) + rodapé/contato via business.ts + títulos secundários
+
+**Wave 4** *(blocked on Wave 3 completion)*
+
+- [x] 06-07-PLAN.md — seo-gates no CI, suíte completa, nome oficial no PROJECT.md, Rich Results (código) antes do merge
+
+**Wave 5** *(blocked on Wave 4 completion)*
+
+- [ ] 06-08-PLAN.md — Abre/usa o PR da fase, merge para produção, sondas + Lighthouse de produção (regressão bloqueia o fechamento), Rich Results/cartão social na URL, SEC-07 phase-06
 
 ### Phase 7: Security Headers Finalize
 
@@ -362,7 +386,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 4.1 -> 5 -> 6 -> 7
 | 4. Progressive-Enhancement Effects | 4/4 | Complete   | 2026-09-17 |
 | 4.1. Redesign Aurora técnica (INSERTED) | 11/11 | Complete   | 2026-10-15 |
 | 5. Form Backend + Enhancement + LGPD | 14/14 | Complete   | 2026-10-16 |
-| 6. SEO / Metadata / Structured Data | 0/TBD | Not started | - |
+| 6. SEO / Metadata / Structured Data | 7/8 | In Progress|  |
 | 7. Security Headers Finalize | 0/TBD | Not started | - |
 
 ## Coverage

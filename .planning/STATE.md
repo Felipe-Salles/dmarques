@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: verifying
-stopped_at: Phase 5 UI-SPEC approved
-last_updated: "2026-10-16T04:28:09.816Z"
-last_activity: 2026-10-16
+status: executing
+stopped_at: Completed 06-02-PLAN.md
+last_updated: "2026-10-17T21:47:36.090Z"
+last_activity: 2026-10-17
 progress:
   total_phases: 8
   completed_phases: 6
-  total_plans: 50
-  completed_plans: 50
+  total_plans: 58
+  completed_plans: 57
   percent: 75
 ---
 
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-10-15)
 
 **Core value:** Um visitante entende em segundos o que a Dmarques faz, confia na agência e pede um orçamento — com um site que carrega rápido e nunca sai do ar.
-**Current focus:** Phase 05 — form-backend-enhancement-lgpd
+**Current focus:** Phase 06 — seo-metadata-structured-data
 
 ## Current Position
 
-Phase: 05 (form-backend-enhancement-lgpd) — EXECUTING
-Plan: 14 of 14
-Status: Phase complete — ready for verification
-Last activity: 2026-10-16
+Phase: 06 (seo-metadata-structured-data) — EXECUTING
+Plan: 8 of 8
+Status: Ready to execute
+Last activity: 2026-10-17
 
 Progress: [██████████] 98%
 
@@ -85,6 +85,8 @@ Progress: [██████████] 98%
 | Phase 04.1 P07 | 20min | 3 tasks | 3 files |
 | Phase 04.1 P08 | 20min | 3 tasks | 5 files |
 | Phase 04.1 P09 | 15min | 3 tasks | 8 files |
+| Phase 06 P02 | 10min | 2 tasks | 1 files |
+| Phase 06 P07 | 15min | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -156,6 +158,7 @@ Relevant to current work:
 - [Phase 04.1]: Form do contato sem JS: estados err/sending/done e aria-invalid prontos em CSS para a Fase 5
 - [Phase 04.1]: Seta do card destaque e span aria-hidden (sem pagina de detalhe, D-08); rolagem dos mocks via scrollsite com 100cqh em .screen container-type size
 - [Phase 04.1]: Captura do site nao recursiva (CSS injetado so no navegador de captura); fallbackFormat webp no Picture; SEO lhci segue warn (0,58) ate a Fase 6
+- [Phase 06-07]: seo-gates enforced in CI after aurora-gates; official name recorded in PROJECT.md — Blocks SEO/NAP regressions at merge
 
 ### Open Decisions To Resolve Before Their Phase
 
@@ -198,6 +201,6 @@ yet.
 
 ## Session Continuity
 
-Last session: 2026-10-16T04:17:12.008Z
-Stopped at: Phase 5 UI-SPEC approved
+Last session: 2026-10-17T21:47:27.814Z
+Stopped at: Completed 06-02-PLAN.md
 Resume file: None

@@ -1,6 +1,7 @@
 name: lighthouse
 on:
   deployment_status:
+  workflow_dispatch:
 permissions:
   contents: read
   statuses: write
@@ -18,11 +19,27 @@ jobs:
           code=$(curl -sS -o /dev/null -w '%{http_code}' -H "x-vercel-protection-bypass: $BYPASS" "$TARGET/")
           echo "bypass header HTTP status: $code"
           test "$code" = "200"
-          jq --arg h "$BYPASS" '.ci.collect.settings.extraHeaders = {"x-vercel-protection-bypass": $h} | .ci.collect.settings.blockedUrlPatterns = ["*vercel.live*"]' lighthouserc.json > "$RUNNER_TEMP/lighthouserc.ci.json"
+          jq --arg h "$BYPASS" '.ci.collect.settings.extraHeaders = {"x-vercel-protection-bypass": $h, "x-vercel-set-bypass-cookie": "true"} | .ci.collect.settings.blockedUrlPatterns = ["*vercel.live*"]' lighthouserc.json > "$RUNNER_TEMP/lighthouserc.ci.json"
       - uses: treosh/lighthouse-ci-action@v12
         with:
           urls: ${{ github.event.deployment_status.target_url }}
           configPath: ${{ runner.temp }}/lighthouserc.ci.json
+          uploadArtifacts: false
+      - name: Report failing Lighthouse audits
+        if: failure()
+        run: |
+          for f in .lighthouseci/lhr-*.json; do
+            jq -r '.categories as $c | .audits as $a | ["best-practices","seo","accessibility","performance"][] as $k | $c[$k].auditRefs[] | select(.weight > 0) | .id as $id | $a[$id] | select(.score != null and .score < 1) | "\($k)\t\($id)\t\(.score)\t\(.title)\t\([.details.items[]? | (.url // .description // .source // "")] | .[0:3] | join(" | "))"' "$f"
+          done | sort -u
+  lhci-production:
+    if: github.event_name == 'workflow_dispatch' || (github.event.deployment_status.state == 'success' && contains(github.event.deployment_status.environment, 'Production'))
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: https://agenciadmarques.com.br/
+          configPath: ./lighthouserc.production.json
           uploadArtifacts: false
       - name: Report failing Lighthouse audits
         if: failure()

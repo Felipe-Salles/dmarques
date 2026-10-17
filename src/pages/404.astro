@@ -1,9 +1,10 @@
 ---
 import Aurora from '../components/Aurora.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { SECONDARY_TITLE_SUFFIX } from '../lib/business.ts';
 ---
 
-<BaseLayout title="Página não encontrada — Dmarques" description="Não encontramos essa página. Volte para o início e conheça o que a Dmarques faz.">
+<BaseLayout title={`Página não encontrada${SECONDARY_TITLE_SUFFIX}`} description="Não encontramos essa página. Volte para o início e conheça o que a Dmarques faz." noindex>
   <main id="conteudo">
     <section class="intro">
       <Aurora variant="small" />
