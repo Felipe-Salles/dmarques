@@ -332,7 +332,18 @@ Plans:
   4. JSON-LD `["ProfessionalService","LocalBusiness"]` (with `founder` Person, E.164 phone, `areaServed`, `address` with `addressRegion: "SP"` / `addressCountry: "BR"`, `sameAs` Instagram, `image`/`logo`) passes the Google Rich Results Test, and NAP is byte-identical between the footer and the JSON-LD.
   5. Lighthouse mobile stays >=95 in all four categories and the SEC-07 checklist run passes with no open High finding.
 
-**Plans**: TBD
+**Plans**: 8 plans
+
+Plans:
+
+- [ ] 06-01-PLAN.md — Fonte única de NAP/identidade (business.ts) + builder/serializer de JSON-LD com testes (TDD)
+- [ ] 06-02-PLAN.md — Gate de dist scripts/verify/seo-gates.mjs (10 checagens, Wave 0)
+- [ ] 06-03-PLAN.md — Lighthouse CI dividido: SEO por auditoria no preview, categories:seo error no job de produção
+- [ ] 06-04-PLAN.md — Checkpoint de legitimidade + @astrojs/sitemap 3.7.4 com filtro + robots.txt
+- [ ] 06-05-PLAN.md — Script generate-og.mjs e public/og-image.jpg 1200x630 < 300 KB
+- [ ] 06-06-PLAN.md — Head completo no BaseLayout (canonical, OG/Twitter, theme-color, JSON-LD na home) + rodapé/contato via business.ts + títulos secundários
+- [ ] 06-07-PLAN.md — seo-gates no CI, suíte completa, nome oficial no PROJECT.md, Rich Results (código) antes do merge
+- [ ] 06-08-PLAN.md — Merge para produção, sondas + Lighthouse de produção, Rich Results/cartão social na URL, SEC-07 phase-06
 
 ### Phase 7: Security Headers Finalize
 
