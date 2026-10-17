@@ -23,6 +23,7 @@ jobs:
       - run: pnpm test
       - run: pnpm build
       - run: node scripts/verify/aurora-gates.mjs
+      - run: node scripts/verify/seo-gates.mjs
       - run: pnpm exec playwright install --with-deps chromium
       - run: node scripts/verify/browser-gates.mjs
       - run: node scripts/verify/form-gates.mjs

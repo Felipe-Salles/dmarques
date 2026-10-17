@@ -8,6 +8,10 @@ sistemas sob medida, soluções web e automações. O site é a vitrine e o cana
 captação de orçamentos da agência: apresenta os serviços, o método de trabalho e
 o fundador, e converte visitantes em contato via formulário e WhatsApp.
 
+O nome oficial do negócio (Google Business Profile, JSON-LD, copyright do rodapé,
+og:site_name e títulos de páginas secundárias) é **Dmarques Desenvolvimento Web**
+(Fase 6, D-01).
+
 ## Core Value
 
 Um visitante entende em segundos o que a Dmarques faz, confia na agência e pede
@@ -141,6 +145,7 @@ um orçamento — com um site que carrega rápido e nunca sai do ar.
 | Movimento "a luz acende" hand-rolled (CSS + IntersectionObserver) | Reveal ao rolar distinto por seção sem biblioteca; fallback sem JS e reduced-motion; canvas de partículas aposentado | — Pending (Fase 04.1) |
 | Sem hero fixado / scrollytelling (modo cinemático) | Testado no sketch e rejeitado pelo Felipe | ✓ Decidido 2026-10-15 |
 | Redesign como Fase 04.1, antes da Fase 5 | Formulário é ligado ao backend já no markup novo (evita retrabalho) | ✓ Decidido 2026-10-15 |
+| NAP em fonte única (`src/lib/business.ts`) | Nome, telefone, e-mail e cidade alimentam JSON-LD, rodapé e contato a partir de um só módulo; `seo-gates.mjs` no CI bloqueia regressões | ✓ Aplicado (Fase 6) |
 | LGPD: bases legais Art. 7º V (pedido de orçamento) + IX (antiabuso e medição agregada); retenção de 6 meses para pedidos de quem não virou cliente; sem encarregado formal (Res. CD/ANPD nº 2/2022) | Decisão do fundador (Fase 5, D-15/D-16); coleta mínima; expurgo manual mensal da caixa GoDaddy documentado em docs/operacao-formulario.md | ✓ Decidido (2026-09-24) — refletido em /politica-de-privacidade |
 
 ## Evolution
