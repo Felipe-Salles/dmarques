@@ -348,7 +348,7 @@ Plans:
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 06-06-PLAN.md — Head completo no BaseLayout (canonical, OG/Twitter, theme-color, JSON-LD na home) + rodapé/contato via business.ts + títulos secundários
+- [x] 06-06-PLAN.md — Head completo no BaseLayout (canonical, OG/Twitter, theme-color, JSON-LD na home) + rodapé/contato via business.ts + títulos secundários
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
@@ -386,7 +386,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 4.1 -> 5 -> 6 -> 7
 | 4. Progressive-Enhancement Effects | 4/4 | Complete   | 2026-09-17 |
 | 4.1. Redesign Aurora técnica (INSERTED) | 11/11 | Complete   | 2026-10-15 |
 | 5. Form Backend + Enhancement + LGPD | 14/14 | Complete   | 2026-10-16 |
-| 6. SEO / Metadata / Structured Data | 5/8 | In Progress|  |
+| 6. SEO / Metadata / Structured Data | 6/8 | In Progress|  |
 | 7. Security Headers Finalize | 0/TBD | Not started | - |
 
 ## Coverage
