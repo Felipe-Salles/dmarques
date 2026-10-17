@@ -18,7 +18,8 @@
     "verify:gates": "node scripts/verify/aurora-gates.mjs",
     "verify:browser": "node scripts/verify/browser-gates.mjs",
     "verify:forms": "node scripts/verify/form-gates.mjs",
-    "verify:form-height": "node scripts/verify/form-card-height.mjs"
+    "verify:form-height": "node scripts/verify/form-card-height.mjs",
+    "og:generate": "node scripts/generate-og.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.4",
