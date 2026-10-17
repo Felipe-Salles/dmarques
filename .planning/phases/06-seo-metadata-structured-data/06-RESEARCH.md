@@ -364,17 +364,20 @@ Run after `pnpm build`, in the style of `scripts/verify/aurora-gates.mjs` (which
 | A6 | `is-crawlable` weight ~4 and category math (~0.7 cap) | Pitfall 1 | Low: only affects expected score numbers; STATE.md measured 0.45 earlier |
 | A7 | Google FAQ rich results restriction | State of Art | None (SEO-07 already dropped) |
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Canonical GBP URL for `sameAs` (D-05)**
    - Known: `https://share.google/5cU7xCYeXu5uWD9Yq` returns 302 to `https://www.google.com/share.google?q=5cU7xCYeXu5uWD9Yq` and ultimately to a Google Search result for "Dmarques Desenvolvimento Web" with `kgmid=/g/11zyld6fyl` (the business knowledge-panel entity), i.e. it resolves to the GBP/knowledge panel, not to a Maps place. No `cid=` or `g.page` appears. Web search found no official Google statement on `cid` in `sameAs`/`hasMap`.
    - Unclear: the Maps CID or `maps.app.goo.gl` link (needs the GBP "Compartilhar" action by Felipe).
    - Recommendation: keep `share.google/...` as locked (it identifies the same entity; schema.org `sameAs` only requires an unambiguous URL). Optionally add `hasMap` later with a `maps.app.goo.gl` link copied from the GBP. Do not fabricate a CID. Alternative acceptable value if the shortlink ever breaks: `https://www.google.com/search?kgmid=/g/11zyld6fyl` (MEDIUM/LOW confidence, not verified as stable).
+   - **RESOLVED:** keep the `https://share.google/5cU7xCYeXu5uWD9Yq` shortlink in `sameAs` (D-05), single-sourced in `src/lib/business.ts` (06-01); no `hasMap`/CID added; verified on production in 06-08 Task 3.
 
 2. **Production LHCI trigger**
    - Recommend `workflow_dispatch` + `deployment_status` with `environment == 'Production'` calling `treosh/lighthouse-ci-action@v12` with `lighthouserc.production.json`. Planner to choose; must not break the existing preview job (`if` currently requires `Preview`).
+   - **RESOLVED:** new job `lhci-production` in `.github/workflows/lighthouse.yml`, triggered by `deployment_status` (environment `Production`, state success) plus `workflow_dispatch`, using `lighthouserc.production.json` (06-03); preview job condition unchanged. A production regression blocks phase closure (06-08 Task 2).
 
 3. **Secondary page titles**: proposals: 404 "Página não encontrada | Dmarques", obrigado "Pedido enviado | Dmarques", erro-envio "Não foi possível enviar | Dmarques". Existing use em dash ("— Dmarques"); D-14 uses a pipe on home. Either acceptable; keep one separator consistently (recommend pipe to match home, or update home to... D-14 is locked with pipe).
+   - **RESOLVED:** secondary titles use `<Página> | Dmarques Desenvolvimento Web` (pipe + official name, D-01/D-14): "Página não encontrada | Dmarques Desenvolvimento Web", "Pedido enviado | Dmarques Desenvolvimento Web", "Não foi possível enviar | Dmarques Desenvolvimento Web" (06-06, via `SECONDARY_TITLE_SUFFIX`).
 
 ## Environment Availability
 

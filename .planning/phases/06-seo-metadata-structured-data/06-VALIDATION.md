@@ -46,11 +46,11 @@ created: 2026-10-17
 | 06-03-T2 | 06-03 | 1 | SEO-01 | T-06-07 | production job uses no secret | config | node string check on `lighthouse.yml` | ✅ | ⬜ pending |
 | 06-04-T1..T3 | 06-04 | 1 | SEO-04 | T-06-SC, T-06-09, T-06-10 | human legitimacy check before install; sitemap excludes noindex pages | dist | `pnpm build` + sitemap/robots node check + `pnpm audit --audit-level=high` | ❌ W0 | ⬜ pending |
 | 06-05-T1..T2 | 06-05 | 2 | SEO-03 | T-06-11, T-06-13 | no third-party fetch; image < 300 KB | file | sharp metadata check on `public/og-image.jpg` | ❌ W0 | ⬜ pending |
-| 06-06-T1 | 06-06 | 2 | SEO-01, SEO-03, SEO-05, SEO-06 | T-06-14, T-06-15 | canonical from `Astro.site`; escaped ld+json | dist | `node scripts/verify/seo-gates.mjs --check=head-home,og-twitter,icones,json-ld` | ❌ W0 | ⬜ pending |
-| 06-06-T2 | 06-06 | 2 | SEO-01, SEO-08 | T-06-17 | NAP parity footer vs JSON-LD | dist | `seo-gates.mjs --check=head-home,secundarias,og-twitter,icones,json-ld,nap,marca` + aurora-gates + `pnpm test` | ❌ W0 | ⬜ pending |
-| 06-07-T1 | 06-07 | 3 | SEO-01, SEO-03, SEO-04, SEO-05, SEO-06, SEO-08 | T-06-18 | seo-gates enforced in CI | dist + CI | full suite incl. `node scripts/verify/seo-gates.mjs` (10 PASS) | ❌ W0 | ⬜ pending |
-| 06-07-T2 | 06-07 | 3 | SEO-03, SEO-06 | T-06-19 | — | manual | Rich Results Test (code snippet) + share image review | manual | ⬜ pending |
-| 06-08-T1..T3 | 06-08 | 4 | SEO-03, SEO-04, SEO-06 | T-06-20, T-06-21, T-06-22 | merge only after human approval; SEC-07 run | production + manual | curl probes + `lhci-production` + Rich Results on URL | manual | ⬜ pending |
+| 06-06-T1 | 06-06 | 3 | SEO-01, SEO-03, SEO-05, SEO-06 | T-06-14, T-06-15 | canonical from `Astro.site`; escaped ld+json | dist | `node scripts/verify/seo-gates.mjs --check=head-home,og-twitter,icones,json-ld` | ❌ W0 | ⬜ pending |
+| 06-06-T2 | 06-06 | 3 | SEO-01, SEO-08 | T-06-17 | NAP parity footer vs JSON-LD | dist | `seo-gates.mjs --check=head-home,secundarias,og-twitter,icones,json-ld,nap,marca` + aurora-gates + `pnpm test` | ❌ W0 | ⬜ pending |
+| 06-07-T1 | 06-07 | 4 | SEO-01, SEO-03, SEO-04, SEO-05, SEO-06, SEO-08 | T-06-18 | seo-gates enforced in CI | dist + CI | full suite incl. `node scripts/verify/seo-gates.mjs` (10 PASS) | ❌ W0 | ⬜ pending |
+| 06-07-T2 | 06-07 | 4 | SEO-03, SEO-06 | T-06-19 | — | manual | Rich Results Test (code snippet) + share image review | manual | ⬜ pending |
+| 06-08-T1..T3 | 06-08 | 5 | SEO-03, SEO-04, SEO-06 | T-06-20, T-06-21, T-06-22 | merge only after human approval; SEC-07 run | production + manual | curl probes + `lhci-production` + Rich Results on URL | manual | ⬜ pending |
 
 *Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
 

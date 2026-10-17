@@ -335,15 +335,28 @@ Plans:
 **Plans**: 8 plans
 
 Plans:
+**Wave 1**
 
 - [ ] 06-01-PLAN.md — Fonte única de NAP/identidade (business.ts) + builder/serializer de JSON-LD com testes (TDD)
 - [ ] 06-02-PLAN.md — Gate de dist scripts/verify/seo-gates.mjs (10 checagens, Wave 0)
 - [ ] 06-03-PLAN.md — Lighthouse CI dividido: SEO por auditoria no preview, categories:seo error no job de produção
 - [ ] 06-04-PLAN.md — Checkpoint de legitimidade + @astrojs/sitemap 3.7.4 com filtro + robots.txt
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
 - [ ] 06-05-PLAN.md — Script generate-og.mjs e public/og-image.jpg 1200x630 < 300 KB
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
 - [ ] 06-06-PLAN.md — Head completo no BaseLayout (canonical, OG/Twitter, theme-color, JSON-LD na home) + rodapé/contato via business.ts + títulos secundários
+
+**Wave 4** *(blocked on Wave 3 completion)*
+
 - [ ] 06-07-PLAN.md — seo-gates no CI, suíte completa, nome oficial no PROJECT.md, Rich Results (código) antes do merge
-- [ ] 06-08-PLAN.md — Merge para produção, sondas + Lighthouse de produção, Rich Results/cartão social na URL, SEC-07 phase-06
+
+**Wave 5** *(blocked on Wave 4 completion)*
+
+- [ ] 06-08-PLAN.md — Abre/usa o PR da fase, merge para produção, sondas + Lighthouse de produção (regressão bloqueia o fechamento), Rich Results/cartão social na URL, SEC-07 phase-06
 
 ### Phase 7: Security Headers Finalize
 
