@@ -1,4 +1,8 @@
 ---
+import { getImage } from 'astro:assets';
+import simbolo from '../assets/brand/simbolo.png';
+import { HOME_DESCRIPTION, HOME_TITLE, OG_IMAGE } from '../lib/business.ts';
+import { buildLocalBusinessJsonLd } from '../lib/json-ld.ts';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroBleed from '../components/HeroBleed.astro';
 import ServicesSection from '../components/ServicesSection.astro';
@@ -6,9 +10,15 @@ import ProjectsSection from '../components/ProjectsSection.astro';
 import ProcessSection from '../components/ProcessSection.astro';
 import AboutSection from '../components/AboutSection.astro';
 import ContactSection from '../components/ContactSection.astro';
+
+const logo = await getImage({ src: simbolo, format: 'png' });
+const jsonLd = buildLocalBusinessJsonLd({
+  logoUrl: new URL(logo.src, Astro.site).href,
+  imageUrl: new URL(OG_IMAGE.path, Astro.site).href,
+});
 ---
 
-<BaseLayout>
+<BaseLayout title={HOME_TITLE} description={HOME_DESCRIPTION} jsonLd={jsonLd}>
   <main id="conteudo">
     <HeroBleed />
     <ServicesSection />
