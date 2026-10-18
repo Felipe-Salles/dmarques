@@ -1,3 +1,4 @@
+import { initAuroraGL } from './aurora-gl.ts';
 import { initForm } from './form.ts';
 import { initHero } from './hero.ts';
 import { initReveal } from './reveal.ts';
@@ -13,3 +14,4 @@ initReveal(reduced);
 initScroll(reduced);
 initVisibility();
 initTilt(reduced);
+initAuroraGL(reduced);
