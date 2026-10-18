@@ -7,12 +7,14 @@ import Words from './Words.astro';
   <Aurora variant="hero" />
   <div class="wrap">
     <div class="hero-copy">
-      <h1 class="h-display hero-title" id="hero-title">
-        <Words text="Software sob medida, com acabamento de produto." accentFrom={4} />
+      <h1 class="h-display hero-title" id="hero-title" aria-label="Onde ideias encontram a luz.">
+        <span aria-hidden="true"
+          ><Words text="Onde ideias encontram a luz." accentFrom={3} chars /></span
+        >
       </h1>
       <p class="lead d520">
-        Sites, sistemas e automações desenhados para o seu processo — rápidos, seguros e prontos
-        para crescer. Você fala direto com quem desenvolve.
+        Toda grande transformação começa com uma ideia. Nós damos a ela forma, propósito e presença
+        digital.
       </p>
       <div class="hero-ctas d680">
         <a href="#contato" class="btn btn-primary">
@@ -158,22 +160,86 @@ import Words from './Words.astro';
     }
   }
 
+  .hero-title :global(.w) {
+    overflow: visible;
+  }
+
+  .hero-title :global(.ch) {
+    text-shadow: 0 0 calc(var(--g, 0) * 0.55em) rgba(120, 225, 255, calc(var(--g, 0) * 0.75));
+  }
+
+  .hero-title :global(.accent .ch) {
+    text-shadow:
+      0 0 0.5em rgba(0, 200, 255, 0.32),
+      0 0 calc(var(--g, 0) * 0.6em) rgba(120, 225, 255, calc(var(--g, 0) * 0.8));
+  }
+
   @media (prefers-reduced-motion: no-preference) {
-    :global(html.js-ready) .hero-title :global(.w) > :global(span) {
-      transform: translateY(105%);
-      filter: blur(8px);
-      opacity: 0;
+    :global(html.js-ready) .hero-title :global(.ch) {
+      opacity: 0.1;
+      filter: blur(7px);
     }
 
-    :global(html.js-ready) .hero:global(.in) .hero-title :global(.w) > :global(span) {
-      transform: none;
-      filter: blur(0);
+    :global(html.js-ready) .hero-title:global(.lit) :global(.ch) {
       opacity: 1;
-      transition:
-        transform 0.9s var(--ease-out),
-        filter 0.9s var(--ease-out),
-        opacity 0.6s var(--ease-out);
-      transition-delay: calc(var(--d, 0ms) + var(--i, 0) * 55ms);
+      filter: blur(0);
+      animation: ignite 1.4s var(--ease-out) backwards;
+      animation-delay: var(--t, 0ms);
+    }
+
+    :global(html.js-ready) .hero-title:global(.lit) :global(.accent .ch) {
+      animation-name: ignite-accent;
+      animation-duration: 1.9s;
+    }
+
+    @keyframes ignite {
+      0% {
+        opacity: 0.1;
+        filter: blur(7px);
+        text-shadow: 0 0 0 rgba(120, 225, 255, 0);
+      }
+
+      32% {
+        opacity: 1;
+        filter: blur(0);
+        color: #fff;
+        text-shadow:
+          0 0 0.3em rgba(190, 240, 255, 0.95),
+          0 0 0.9em rgba(0, 200, 255, 0.6);
+      }
+
+      100% {
+        opacity: 1;
+        filter: blur(0);
+        text-shadow: 0 0 0 rgba(120, 225, 255, 0);
+      }
+    }
+
+    @keyframes ignite-accent {
+      0% {
+        opacity: 0.1;
+        filter: blur(7px);
+        text-shadow:
+          0 0 0 rgba(0, 200, 255, 0),
+          0 0 0 rgba(120, 225, 255, 0);
+      }
+
+      30% {
+        opacity: 1;
+        filter: blur(0);
+        color: #e8fbff;
+        text-shadow:
+          0 0 0.35em rgba(200, 245, 255, 1),
+          0 0 1.2em rgba(0, 200, 255, 0.85);
+      }
+
+      100% {
+        opacity: 1;
+        filter: blur(0);
+        text-shadow:
+          0 0 0.5em rgba(0, 200, 255, 0.32),
+          0 0 0 rgba(120, 225, 255, 0);
+      }
     }
 
     :global(html.js-ready) .hero .lead,
