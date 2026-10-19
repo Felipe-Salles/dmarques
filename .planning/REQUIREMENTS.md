@@ -203,7 +203,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 
 ### Segurança (SEC)
 
-- [ ] **SEC-01**: Cabeçalhos de segurança em `vercel.json` cobrindo todas as
+- [x] **SEC-01**: Cabeçalhos de segurança em `vercel.json` cobrindo todas as
   respostas: HSTS (com preload), `X-Content-Type-Options: nosniff`,
   `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy`
   (nega câmera/mic/geo), `X-Frame-Options: DENY` / `frame-ancestors 'none'`,
@@ -220,7 +220,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 - [ ] **SEC-05**: v1 carrega zero assets de terceiros (fontes self-hosted,
   analytics same-origin); qualquer asset externo futuro exige SRI (regra
   documentada)
-- [ ] **SEC-06**: `securityheaders.com` nota ≥ A e verificação `curl -I` dos
+- [x] **SEC-06**: `securityheaders.com` nota ≥ A e verificação `curl -I` dos
   cabeçalhos no CI como checagem de regressão
 - [ ] **SEC-07**: Checklist de revisão de segurança versionado em `.planning/`,
   executado ao fim de cada fase (`pnpm audit` limpo, grep por nova superfície
@@ -398,12 +398,12 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | A11Y-05 | Phase 3 | Complete |
 | A11Y-06 | Phase 3 | Complete |
 | A11Y-07 | Phase 3 | Complete |
-| SEC-01 | Phase 7 | Pending |
+| SEC-01 | Phase 7 | Complete |
 | SEC-02 | Phase 7 | Pending |
 | SEC-03 | Phase 7 | Pending |
 | SEC-04 | Phase 7 | Pending |
 | SEC-05 | Phase 7 | Pending |
-| SEC-06 | Phase 7 | Pending |
+| SEC-06 | Phase 7 | Complete |
 | SEC-07 | Phase 1 (runs every phase) | Pending |
 | SEC-08 | Phase 5 (statement written in ROADMAP.md) | Complete |
 | SEC-09 | Phase 5 | Complete |
