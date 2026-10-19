@@ -215,9 +215,9 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
 - [ ] **SEC-03**: CSP publicada primeiro como `Content-Security-Policy-Report-Only`
   no preview, confirmada sem violações no load e no submit do formulário, então
   promovida para enforcing
-- [ ] **SEC-04**: `build.sourcemap` desativado em produção; páginas de erro
+- [x] **SEC-04**: `build.sourcemap` desativado em produção; páginas de erro
   customizadas sem informação de diagnóstico
-- [ ] **SEC-05**: v1 carrega zero assets de terceiros (fontes self-hosted,
+- [x] **SEC-05**: v1 carrega zero assets de terceiros (fontes self-hosted,
   analytics same-origin); qualquer asset externo futuro exige SRI (regra
   documentada)
 - [x] **SEC-06**: `securityheaders.com` nota ≥ A e verificação `curl -I` dos
@@ -234,7 +234,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   alertas, DNS com TTL baixo para cutover rápido, runbook de flood)
 - [x] **SEC-09**: SPF, DKIM e DMARC (`p=none` → quarantine) configurados para o
   domínio de envio no Resend; nota mail-tester ≥ 8 antes do formulário ir ao ar
-- [ ] **SEC-10**: Sem Astro View Transitions na v1 (decisão registrada) para não
+- [x] **SEC-10**: Sem Astro View Transitions na v1 (decisão registrada) para não
   quebrar listeners de script na segunda navegação
 
 ### Performance (PERF)
@@ -401,13 +401,13 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | SEC-01 | Phase 7 | Complete |
 | SEC-02 | Phase 7 | Pending |
 | SEC-03 | Phase 7 | Pending |
-| SEC-04 | Phase 7 | Pending |
-| SEC-05 | Phase 7 | Pending |
+| SEC-04 | Phase 7 | Complete |
+| SEC-05 | Phase 7 | Complete |
 | SEC-06 | Phase 7 | Complete |
 | SEC-07 | Phase 1 (runs every phase) | Pending |
 | SEC-08 | Phase 5 (statement written in ROADMAP.md) | Complete |
 | SEC-09 | Phase 5 | Complete |
-| SEC-10 | Phase 7 | Pending |
+| SEC-10 | Phase 7 | Complete |
 | PERF-01 | Phase 1 (gate runs every phase) | Complete |
 | PERF-02 | Phase 1 | Complete |
 | PERF-03 | Phase 1 | Complete |

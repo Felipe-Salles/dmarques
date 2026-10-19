@@ -381,7 +381,7 @@ Plans:
 **Wave 1**
 
 - [x] 07-01-PLAN.md — vercel.json header set, header-gates (offline + --live), headers.yml, preview probe of header coexistence (wave 1)
-- [ ] 07-03-PLAN.md — 500 page, outer catch on the form Function, security-check verifs 6 and 9-13 (wave 1)
+- [x] 07-03-PLAN.md — 500 page, outer catch on the form Function, security-check verifs 6 and 9-13 (wave 1)
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
@@ -417,7 +417,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 4.1 -> 5 -> 6 -> 7
 | 4.1. Redesign Aurora técnica (INSERTED) | 11/11 | Complete   | 2026-10-15 |
 | 5. Form Backend + Enhancement + LGPD | 14/14 | Complete   | 2026-10-16 |
 | 6. SEO / Metadata / Structured Data | 8/8 | Complete   | 2026-10-17 |
-| 7. Security Headers Finalize | 1/7 | In Progress|  |
+| 7. Security Headers Finalize | 2/7 | In Progress|  |
 
 ## Coverage
 
