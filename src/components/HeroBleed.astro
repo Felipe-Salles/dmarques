@@ -13,8 +13,8 @@ import Words from './Words.astro';
         >
       </h1>
       <p class="lead d520">
-        Toda grande transformação começa com uma ideia. Nós damos a ela forma, propósito e presença
-        digital.
+        Você traz a ideia; nós damos forma a ela — em site, sistema ou automação, rápido, seguro e
+        feito para o seu processo. Fale direto com quem desenvolve.
       </p>
       <div class="hero-ctas d680">
         <a href="#contato" class="btn btn-primary">
@@ -39,7 +39,7 @@ import Words from './Words.astro';
       <li class="i3">
         <a
           class="proof-link"
-          href="https://pagespeed.web.dev/"
+          href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fagenciadmarques.com.br%2F"
           target="_blank"
           rel="noopener noreferrer"
           >Confira você mesmo
@@ -156,7 +156,11 @@ import Words from './Words.astro';
     }
 
     .proof {
-      gap: 8px 18px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 18px;
+      text-align: center;
+      text-wrap: balance;
     }
   }
 

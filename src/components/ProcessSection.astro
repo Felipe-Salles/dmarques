@@ -9,7 +9,7 @@ const steps = await getProcess();
   <div class="wrap">
     <div class="process-head">
       <h2 class="h2" id="met-title" data-r="words">
-        <Words text="Método claro, do primeiro contato à entrega." />
+        <Words text="Do primeiro contato à entrega, tudo às claras." />
       </h2>
       <p class="lead d200" data-r="fade">
         Quatro etapas, sempre nesta ordem. Você sabe o que está acontecendo e o que vem depois.
@@ -169,6 +169,46 @@ const steps = await getProcess();
 
     .step h3 {
       margin: 8px 0 4px;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    :global(html.js-ready) .steps::after {
+      content: '';
+      position: absolute;
+      top: 18px;
+      left: 0;
+      right: 0;
+      height: 7px;
+      pointer-events: none;
+      background: radial-gradient(
+        70px 3.5px at calc(100% - 2px) 50%,
+        rgba(190, 240, 255, 0.95),
+        rgba(0, 200, 255, 0.4) 45%,
+        transparent 100%
+      );
+      transform: translateX(calc((var(--p) - 1) * 100%));
+      opacity: clamp(0, min(var(--p) * 14, (1 - var(--p)) * 14), 1);
+    }
+  }
+
+  @container site (max-width: 560px) {
+    @media (prefers-reduced-motion: no-preference) {
+      :global(html.js-ready) .steps::after {
+        top: 0;
+        bottom: 0;
+        left: 18px;
+        right: auto;
+        width: 7px;
+        height: auto;
+        background: radial-gradient(
+          3.5px 70px at 50% calc(100% - 2px),
+          rgba(190, 240, 255, 0.95),
+          rgba(0, 200, 255, 0.4) 45%,
+          transparent 100%
+        );
+        transform: translateY(calc((var(--p) - 1) * 100%));
+      }
     }
   }
 

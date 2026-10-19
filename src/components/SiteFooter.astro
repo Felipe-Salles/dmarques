@@ -18,7 +18,7 @@ const year = new Date().getFullYear();
           <Image src={simbolo} alt="" height={34} densities={[1, 2]} class="logo-symbol" />
           <Image src={logotipo} alt="" height={34} densities={[1, 2]} class="logo-type" />
         </a>
-        <p>Sites, sistemas, soluções web e automações sob medida. {BUSINESS.locality} · {BUSINESS.region}.</p>
+        <p>Onde ideias encontram a luz. Sites, sistemas, soluções web e automações sob medida. {BUSINESS.locality} · {BUSINESS.region}.</p>
       </div>
       <div class="foot-cols">
         <div>
@@ -56,7 +56,7 @@ const year = new Date().getFullYear();
     stroke-width="1.8"
     aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1112 20a8 8 0 01-4.1-1.1z"></path></svg
   >
-  WhatsApp
+  <span class="wa-label">WhatsApp</span>
 </a>
 
 <style>
@@ -163,7 +163,31 @@ const year = new Date().getFullYear();
 
   @container site (max-width: 900px) {
     .wa-float {
-      display: inline-flex;
+      display: flex;
+    }
+  }
+
+  @container site (max-width: 560px) {
+    .wa-float {
+      width: 52px;
+      height: 52px;
+      padding: 0;
+      justify-content: center;
+      margin-top: -68px;
+    }
+
+    .wa-float svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .wa-label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
     }
   }
 
