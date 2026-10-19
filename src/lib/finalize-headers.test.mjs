@@ -26,8 +26,8 @@ function fixture(csp = CSP) {
   ];
 }
 
-test('modo padrao e report-only', () => {
-  assert.equal(DEFAULT_CSP_MODE, 'report-only');
+test('modo padrao e enforce', () => {
+  assert.equal(DEFAULT_CSP_MODE, 'enforce');
 });
 
 test('headerNameFor mapeia os modos e rejeita invalido', () => {

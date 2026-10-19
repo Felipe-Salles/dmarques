@@ -1,4 +1,4 @@
-export const DEFAULT_CSP_MODE = 'report-only';
+export const DEFAULT_CSP_MODE = 'enforce';
 
 const HEADER_NAMES = {
   'report-only': 'content-security-policy-report-only',
