@@ -81,12 +81,12 @@ void main(){
 
 type Ctx = WebGLRenderingContext;
 
-function compile(gl: Ctx, type: number, src: string): WebGLShader | null {
+function shader(gl: Ctx, type: number, src: string): WebGLShader | null {
   const s = gl.createShader(type);
   if (!s) return null;
   gl.shaderSource(s, src);
   gl.compileShader(s);
-  return gl.getShaderParameter(s, gl.COMPILE_STATUS) ? s : null;
+  return s;
 }
 
 function boot(hero: HTMLElement, aurora: HTMLElement): void {
@@ -103,13 +103,33 @@ function boot(hero: HTMLElement, aurora: HTMLElement): void {
     failIfMajorPerformanceCaveat: true,
   });
   if (!gl) return;
-  const vs = compile(gl, gl.VERTEX_SHADER, VERT);
-  const fs = compile(gl, gl.FRAGMENT_SHADER, FRAG);
+  const parallel = gl.getExtension('KHR_parallel_shader_compile') as {
+    COMPLETION_STATUS_KHR: number;
+  } | null;
+  const vs = shader(gl, gl.VERTEX_SHADER, VERT);
+  const fs = shader(gl, gl.FRAGMENT_SHADER, FRAG);
   const prog = gl.createProgram();
   if (!vs || !fs || !prog) return;
   gl.attachShader(prog, vs);
   gl.attachShader(prog, fs);
   gl.linkProgram(prog);
+  const wait = () => {
+    if (parallel && !gl.getProgramParameter(prog, parallel.COMPLETION_STATUS_KHR)) {
+      setTimeout(wait, 50);
+      return;
+    }
+    setTimeout(() => run(hero, aurora, canvas, gl, prog), 0);
+  };
+  setTimeout(wait, 0);
+}
+
+function run(
+  hero: HTMLElement,
+  aurora: HTMLElement,
+  canvas: HTMLCanvasElement,
+  gl: Ctx,
+  prog: WebGLProgram,
+): void {
   if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
   gl.useProgram(prog);
   gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
