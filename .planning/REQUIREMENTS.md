@@ -222,7 +222,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   documentada)
 - [x] **SEC-06**: `securityheaders.com` nota ≥ A e verificação `curl -I` dos
   cabeçalhos no CI como checagem de regressão
-- [ ] **SEC-07**: Checklist de revisão de segurança versionado em `.planning/`,
+- [x] **SEC-07**: Checklist de revisão de segurança versionado em `.planning/`,
   executado ao fim de cada fase (`pnpm audit` limpo, grep por nova superfície
   inline, `curl -I` dos headers, varredura de segredos em `dist/`, verificação de
   "uma única Function", gate do Lighthouse, achados registrados com
@@ -404,7 +404,7 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | SEC-04 | Phase 7 | Complete |
 | SEC-05 | Phase 7 | Complete |
 | SEC-06 | Phase 7 | Complete |
-| SEC-07 | Phase 1 (runs every phase) | Pending |
+| SEC-07 | Phase 1 (runs every phase) | Complete |
 | SEC-08 | Phase 5 (statement written in ROADMAP.md) | Complete |
 | SEC-09 | Phase 5 | Complete |
 | SEC-10 | Phase 7 | Complete |

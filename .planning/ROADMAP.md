@@ -75,7 +75,7 @@ Milestone 2 (Cloudflare layer) closes this statement.
 - [x] **Phase 04.1: Redesign Aurora técnica** (INSERTED) - Apply the validated Aurora direction (sketch 001-A): logo, palette, Sora + Inter Tight, section compositions, honest proof, "nós" voice and the "a luz acende" motion system (completed 2026-10-15)
 - [x] **Phase 5: Form Backend + Enhancement + LGPD** - Working quote form (no-JS + enhanced) via Resend behind layered spam/abuse defenses, shipped with the Privacy Policy page and inline data-use notice (completed 2026-10-16)
 - [x] **Phase 6: SEO / Metadata / Structured Data** - Titles, canonical, OG/Twitter cards, sitemap, robots, favicons, and single-sourced ProfessionalService/LocalBusiness JSON-LD (FAQPage removido na 04.1, D-02) (completed 2026-10-17)
-- [ ] **Phase 7: Security Headers Finalize** - Full security-header set + strict CSP in vercel.json, Report-Only then enforced, sourcemaps off, securityheaders.com >= A
+- [x] **Phase 7: Security Headers Finalize** - Full security-header set + strict CSP in vercel.json, Report-Only then enforced, sourcemaps off, securityheaders.com >= A (completed 2026-10-19)
 
 ### Milestone 2 (planned) — Cloudflare layer
 
@@ -401,7 +401,7 @@ Plans:
 
 **Wave 6** *(blocked on Wave 5 completion)*
 
-- [ ] 07-07-PLAN.md — securityheaders.com grade, HSTS preload decision, final SEC-07 run file (wave 6, checkpoints)
+- [x] 07-07-PLAN.md — securityheaders.com grade, HSTS preload decision, final SEC-07 run file (wave 6, checkpoints)
 
 ## Progress
 
@@ -417,7 +417,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 4.1 -> 5 -> 6 -> 7
 | 4.1. Redesign Aurora técnica (INSERTED) | 11/11 | Complete   | 2026-10-15 |
 | 5. Form Backend + Enhancement + LGPD | 14/14 | Complete   | 2026-10-16 |
 | 6. SEO / Metadata / Structured Data | 8/8 | Complete   | 2026-10-17 |
-| 7. Security Headers Finalize | 6/7 | In Progress|  |
+| 7. Security Headers Finalize | 7/7 | Complete   | 2026-10-19 |
 
 ## Coverage
 
