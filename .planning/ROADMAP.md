@@ -371,7 +371,16 @@ Plans:
   4. Production source maps are disabled, custom 404/500 pages leak no diagnostics, v1 loads zero third-party assets with a documented SRI rule for any future external asset, no Astro View Transitions are used (decision recorded), and `securityheaders.com` grades >= A verified by a `curl -I` header-regression check in CI.
   5. The final SEC-07 checklist run passes with no open High finding and Lighthouse mobile stays >=95 in all four categories.
 
-**Plans**: TBD
+**Plans**: 7 plans
+
+Plans:
+- [ ] 07-01-PLAN.md — vercel.json header set, header-gates (offline + --live), headers.yml, preview probe of header coexistence (wave 1)
+- [ ] 07-03-PLAN.md — 500 page, outer catch on the form Function, security-check verifs 6 and 9-13 (wave 1)
+- [ ] 07-02-PLAN.md — hashed CSP pipeline: js-ready single source, security.csp + staticHeaders, finalize-headers (Report-Only default), sourcemaps off (wave 2)
+- [ ] 07-04-PLAN.md — header-emulating server, CSP violation harness in browser/form gates, clean Report-Only preview run (wave 3)
+- [ ] 07-05-PLAN.md — promotion to enforcing in its own commit + docs/seguranca-headers.md decision record (wave 4)
+- [ ] 07-06-PLAN.md — PR, approved merge, production header/CSP/HSTS/Lighthouse verification (wave 5, checkpoint)
+- [ ] 07-07-PLAN.md — securityheaders.com grade, HSTS preload decision, final SEC-07 run file (wave 6, checkpoints)
 
 ## Progress
 

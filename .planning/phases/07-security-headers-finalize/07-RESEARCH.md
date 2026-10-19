@@ -343,14 +343,18 @@ No `ClientRouter`, `astro:transitions` or `transition:*` directives in `src` (gr
 | A9 | Vercel's WAF Deny 403 does not carry route headers | Pitfall 7 | Header assert on API may flake if probing too fast |
 | A10 | `astro.config.mjs` can import a `.ts` module | Pattern 1 | Use `.mjs` constant instead |
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Does `vercel.json` `headers` reach the Function response and the 404 catch-all together with the adapter routes?**
    - Known: official docs say `vercel.json` is the place for custom response headers; nothing authoritative about merging with adapter Build Output.
    - Recommendation: Wave 0/1 probe on a preview; fall back to script injection.
+   - RESOLVED: settled by the 07-01 Task 3 preview probe (PROBE_RESULT), with the injection fallback in 07-02.
 2. **Report-Only default location (code constant vs Vercel env var).** Recommend code constant flipped in a dedicated promotion commit for an auditable trail; env override `CSP_MODE` allowed for emergencies (instant rollback by env change + redeploy).
+   - RESOLVED: code constant DEFAULT_CSP_MODE flipped in the 07-05 promotion commit; CSP_MODE env override kept.
 3. **HSTS preload submission:** human step at hstspreload.org after production shows the final header; needs Felipe's decision and the subdomain check (A5).
+   - RESOLVED: handled as the blocking human checkpoint in 07-07 Task 2.
 4. **Unknown-URL 404 on Vercel returns `404.html` with `status: 404`:** confirm the global route applies on that path in the preview probe.
+   - RESOLVED: asserted by header-gates --live on /nao-existe in the 07-01 Task 3 probe; fallback in 07-02.
 
 ## Environment Availability
 
