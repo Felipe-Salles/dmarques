@@ -4,7 +4,7 @@ milestone: v1.0
 milestone_name: milestone
 status: executing
 stopped_at: Completed 06-02-PLAN.md
-last_updated: "2026-10-19T13:23:50.928Z"
+last_updated: "2026-10-19T13:24:00.325Z"
 last_activity: 2026-10-19
 progress:
   total_phases: 8
@@ -89,6 +89,7 @@ Progress: [█████████░] 94%
 | Phase 06 P02 | 10min | 2 tasks | 1 files |
 | Phase 06 P07 | 15min | 2 tasks | 3 files |
 | Phase 07 P03 | 20min | 3 tasks | 9 files |
+| Phase 07 P07-02 | 30min | 3 tasks | 9 files |
 
 ## Accumulated Context
 
@@ -162,6 +163,7 @@ Relevant to current work:
 - [Phase 04.1]: Captura do site nao recursiva (CSS injetado so no navegador de captura); fallbackFormat webp no Picture; SEO lhci segue warn (0,58) ate a Fase 6
 - [Phase 06-07]: seo-gates enforced in CI after aurora-gates; official name recorded in PROJECT.md — Blocks SEO/NAP regressions at merge
 - [Phase 07]: failureResponse compartilhado entre respond('failed') e catch externo da Function
+- [Phase 07]: 07-02: CSP Report-Only por padrao (CSP_MODE=enforce alterna); SEC-02 via script-src self + hashes sha256
 
 ### Open Decisions To Resolve Before Their Phase
 
