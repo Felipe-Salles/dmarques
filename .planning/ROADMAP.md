@@ -397,7 +397,7 @@ Plans:
 
 **Wave 5** *(blocked on Wave 4 completion)*
 
-- [ ] 07-06-PLAN.md — PR, approved merge, production header/CSP/HSTS/Lighthouse verification (wave 5, checkpoint)
+- [x] 07-06-PLAN.md — PR, approved merge, production header/CSP/HSTS/Lighthouse verification (wave 5, checkpoint)
 
 **Wave 6** *(blocked on Wave 5 completion)*
 
@@ -417,7 +417,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 4.1 -> 5 -> 6 -> 7
 | 4.1. Redesign Aurora técnica (INSERTED) | 11/11 | Complete   | 2026-10-15 |
 | 5. Form Backend + Enhancement + LGPD | 14/14 | Complete   | 2026-10-16 |
 | 6. SEO / Metadata / Structured Data | 8/8 | Complete   | 2026-10-17 |
-| 7. Security Headers Finalize | 5/7 | In Progress|  |
+| 7. Security Headers Finalize | 6/7 | In Progress|  |
 
 ## Coverage
 
