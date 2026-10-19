@@ -100,13 +100,37 @@ fi
 if [ -z "$PREVIEW_URL" ]; then
   skip "verificacao 6 - PREVIEW_URL nao definido; inspecao curl -I de cabecalhos adiada"
 else
-  echo "  cabecalhos de $PREVIEW_URL:"
   if [ -n "$BYPASS" ]; then
-    curl -sI -H "x-vercel-protection-bypass: $BYPASS" "$PREVIEW_URL" 2>/dev/null | sed 's/^/    /'
+    hdrs=$(curl -sI -H "x-vercel-protection-bypass: $BYPASS" "$PREVIEW_URL" 2>/dev/null)
   else
-    curl -sI "$PREVIEW_URL" 2>/dev/null | sed 's/^/    /'
+    hdrs=$(curl -sI "$PREVIEW_URL" 2>/dev/null)
   fi
-  pass "verificacao 6 - cabecalhos do preview registrados (baseline da Fase 1; assercoes valem a partir da Fase 7)"
+  echo "  cabecalhos de $PREVIEW_URL:"
+  echo "$hdrs" | sed 's/^/    /'
+  v6_missing=0
+  while IFS='|' read -r hname hpat; do
+    if ! echo "$hdrs" | tr -d '
+' | grep -qiE "$hpat"; then
+      fail "verificacao 6 - cabecalho ausente ou incorreto: $hname"
+      v6_missing=$((v6_missing + 1))
+    fi
+  done <<'HDRS'
+strict-transport-security|^strict-transport-security:.*includeSubDomains.*preload
+x-content-type-options|^x-content-type-options: *nosniff
+x-frame-options|^x-frame-options: *DENY
+referrer-policy|^referrer-policy: *strict-origin-when-cross-origin
+permissions-policy|^permissions-policy:.*camera=\(\)
+cross-origin-opener-policy|^cross-origin-opener-policy: *same-origin
+cross-origin-resource-policy|^cross-origin-resource-policy:
+content-security-policy|^content-security-policy(-report-only)?:.*frame-ancestors 'none'
+HDRS
+  if echo "$hdrs" | grep -qiE '^x-powered-by:'; then
+    fail "verificacao 6 - cabecalho ausente ou incorreto: x-powered-by deveria estar ausente"
+    v6_missing=$((v6_missing + 1))
+  fi
+  if [ "$v6_missing" -eq 0 ]; then
+    pass "verificacao 6 - conjunto de cabecalhos de seguranca presente em $PREVIEW_URL"
+  fi
 fi
 
 if [ -z "$PREVIEW_URL" ]; then
@@ -129,6 +153,88 @@ if [ -n "$console_hits" ]; then
   echo "$console_hits" | head -n 20
 else
   pass "verificacao 8 - nenhum console.* no codigo do servidor"
+fi
+
+if [ -d "$STATIC_DIR" ]; then
+  map_hits=$(find "$STATIC_DIR" .vercel/output/functions -name '*.map' 2>/dev/null)
+  smu_hits=$(grep -rl 'sourceMappingURL' --include='*.js' --include='*.css' "$STATIC_DIR" 2>/dev/null)
+  if [ -n "$map_hits" ] || [ -n "$smu_hits" ]; then
+    fail "verificacao 9 - sourcemaps na saida servida ($(echo "$map_hits $smu_hits" | tr '
+' ' '))"
+  else
+    pass "verificacao 9 - nenhum .map nem sourceMappingURL na saida servida"
+  fi
+else
+  skip "verificacao 9 - $STATIC_DIR ausente para varredura de sourcemaps"
+fi
+
+if [ -d src ]; then
+  vt_hits=$(grep -rnE 'ClientRouter|astro:transitions|transition:(name|animate|persist)' src/ 2>/dev/null)
+  if [ -n "$vt_hits" ]; then
+    fail "verificacao 10 - View Transitions encontradas em src/"
+    echo "$vt_hits" | head -n 20
+  else
+    pass "verificacao 10 - nenhum ClientRouter ou astro:transitions em src/"
+  fi
+else
+  skip "verificacao 10 - diretorio src/ ausente"
+fi
+
+if [ -z "$html_files" ] && [ ! -d "$STATIC_DIR" ]; then
+  skip "verificacao 11 - $STATIC_DIR ausente para varredura de cargas externas"
+else
+  ext_hits=""
+  while IFS= read -r hf; do
+    [ -n "$hf" ] || continue
+    h=$(perl -0777 -ne 'while(/<(script|img|iframe|source)\b[^>]*?\b(?:src|srcset)\s*=\s*["\047]?([^"\047\s>]+)/gis){print "$2\n"} while(/<link\b[^>]*>/gis){my $t=$&; if($t=~/\brel\s*=\s*["\047]?(?:stylesheet|preload|modulepreload)/i && $t=~/\bhref\s*=\s*["\047]?([^"\047\s>]+)/i){print "$1\n"}}' "$hf" 2>/dev/null | grep -E '^(https?:|//)')
+    [ -n "$h" ] && ext_hits="$ext_hits $hf:$(echo "$h" | tr '\n' ',')"
+  done <<< "$html_files"
+  css_files=$(find "$STATIC_DIR" -type f -name '*.css' 2>/dev/null)
+  while IFS= read -r cf; do
+    [ -n "$cf" ] || continue
+    c=$(perl -0777 -ne 'while(/url\(\s*["\047]?([^"\047)\s]+)/gis){print "$1\n"} while(/\@import\s+["\047]?([^"\047;\s]+)/gis){print "$1\n"}' "$cf" 2>/dev/null | grep -E '^(https?:|//)')
+    [ -n "$c" ] && ext_hits="$ext_hits $cf:$(echo "$c" | tr '\n' ',')"
+  done <<< "$css_files"
+  if [ -n "$ext_hits" ]; then
+    fail "verificacao 11 - carga de recurso de terceiros em:$ext_hits"
+  else
+    pass "verificacao 11 - nenhuma carga de recurso de origem externa no HTML e CSS construidos"
+  fi
+fi
+
+if [ -z "$html_files" ]; then
+  skip "verificacao 12 - nenhum HTML construido em $STATIC_DIR"
+else
+  meta_csp=$(grep -rliE 'http-equiv="content-security-policy"' --include='*.html' "$STATIC_DIR" 2>/dev/null)
+  if [ -n "$meta_csp" ]; then
+    fail "verificacao 12 - meta http-equiv CSP encontrado em $(echo "$meta_csp" | tr '
+' ' ')"
+  else
+    pass "verificacao 12 - nenhum meta http-equiv CSP no HTML construido"
+  fi
+fi
+
+v13_bad=0
+v13_checked=0
+for page in 404.html 500.html 500/index.html erro-envio/falha/index.html erro-envio/falha.html; do
+  pf="$STATIC_DIR/$page"
+  if [ ! -f "$pf" ]; then
+    case "$page" in
+      500/index.html|erro-envio/falha.html) ;;
+      *) skip "verificacao 13 - $page ausente em $STATIC_DIR" ;;
+    esac
+    continue
+  fi
+  v13_checked=$((v13_checked + 1))
+  leak=$(grep -nE 'node_modules|/var/task|[A-Z]:\\|at [A-Za-z_$.]+ \(|Error:|stack' "$pf" 2>/dev/null)
+  if [ -n "$leak" ]; then
+    fail "verificacao 13 - diagnostico vazado em $page"
+    echo "$leak" | cut -c1-200 | head -n 5
+    v13_bad=$((v13_bad + 1))
+  fi
+done
+if [ "$v13_checked" -gt 0 ] && [ "$v13_bad" -eq 0 ]; then
+  pass "verificacao 13 - paginas 404, 500 e erro-envio/falha sem texto de diagnostico"
 fi
 
 echo "== resumo: ${pass_count} PASS / ${fail_count} FAIL / ${skip_count} SKIP =="
