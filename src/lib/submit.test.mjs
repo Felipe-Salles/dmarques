@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { handleSubmission } from './submit.ts';
+import { failureResponse, handleSubmission } from './submit.ts';
 
 const ORIGIN = 'https://agenciadmarques.com.br';
 const VALID = { nome: 'Ana', canal: 'whatsapp', whatsapp: '16996111785' };
@@ -219,4 +219,20 @@ test('Vary Accept em todas as respostas', async () => {
 test('nenhum Location fora da tabela fixa', () => {
   assert.ok(seenLocations.length > 0);
   for (const loc of seenLocations) assert.ok(ALLOWED_LOCATIONS.has(loc), loc);
+});
+
+test('failureResponse sem JSON redireciona para falha', async () => {
+  const res = failureResponse(req());
+  assert.equal(res.status, 303);
+  assert.equal(res.headers.get('location'), '/erro-envio/falha');
+  assert.equal(res.headers.get('cache-control'), 'no-store');
+  assert.equal(res.headers.get('vary'), 'Accept');
+  assert.equal(await res.text(), '');
+});
+
+test('failureResponse com Accept JSON devolve 502 generico', async () => {
+  const res = failureResponse(req(VALID, JSON_ACCEPT));
+  assert.equal(res.status, 502);
+  assert.equal(res.headers.get('content-type'), 'application/json; charset=utf-8');
+  assert.deepEqual(await res.json(), { ok: false, code: 'failed' });
 });
