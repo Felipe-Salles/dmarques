@@ -1,6 +1,9 @@
+import { createHash } from 'node:crypto';
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import process from 'node:process';
+import { DEFAULT_CSP_MODE } from '../../src/lib/finalize-headers.pure.mjs';
+import { JS_READY } from '../../src/lib/js-ready.ts';
 import { checkCsp, checkNonCspHeaders, headersFor, loadRules } from './headers.mjs';
 import { STATIC_DIR } from './static-server.mjs';
 
@@ -9,7 +12,7 @@ const args = process.argv.slice(2);
 const live = args.includes('--live');
 const bypass = process.env.VERCEL_AUTOMATION_BYPASS_SECRET;
 const expectArg = args.find((a) => a.startsWith('--expect='));
-const expect = expectArg ? expectArg.slice('--expect='.length) : 'none';
+const expect = expectArg ? expectArg.slice('--expect='.length) : DEFAULT_CSP_MODE;
 
 if (!['none', 'report-only', 'enforce'].includes(expect)) {
   console.log(`FAIL: valor invalido para --expect: ${expect}`);
@@ -125,6 +128,21 @@ const checks = {
       if (!want.includes(r.status)) {
         failures.push(`${r.path}: status ${r.status}, esperado ${want.join('/')}`);
       }
+    }
+    return failures;
+  },
+  jsReady: async ({ results }) => {
+    const hash = `'sha256-${createHash('sha256').update(JS_READY).digest('base64')}'`;
+    const home = results.find((r) => r.path === '/');
+    if (!home) return ['pagina / ausente'];
+    const csp =
+      home.headers['content-security-policy'] ??
+      home.headers['content-security-policy-report-only'];
+    const failures = [];
+    if (!csp || !csp.includes(hash)) failures.push('hash do js-ready ausente na CSP de /');
+    if (!live) {
+      const html = readFileSync(join(STATIC_DIR, 'index.html'), 'utf8');
+      if (!html.includes(JS_READY)) failures.push('texto do js-ready ausente em index.html');
     }
     return failures;
   },
