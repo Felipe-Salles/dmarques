@@ -1,0 +1,50 @@
+---
+import Aurora from '../components/Aurora.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SECONDARY_TITLE_SUFFIX } from '../lib/business.ts';
+---
+
+<BaseLayout title={`Algo deu errado${SECONDARY_TITLE_SUFFIX}`} description="Tivemos um problema temporário. Volte ao início ou fale com a Dmarques pelo WhatsApp." noindex>
+  <main id="conteudo">
+    <section class="intro">
+      <Aurora variant="small" />
+      <div class="wrap content-block">
+        <h1 class="h2">Algo deu errado do nosso lado</h1>
+        <p class="lead">Tente de novo em instantes. Se preferir, volte ao início ou peça seu orçamento.</p>
+        <div class="actions">
+          <a href="/" class="btn btn-ghost">Voltar ao início</a>
+          <a href="/#contato" class="btn btn-primary">Pedir orçamento</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .intro {
+    position: relative;
+    isolation: isolate;
+    padding: clamp(56px, 9cqi, 120px) 0;
+    text-align: center;
+  }
+
+  .content-block {
+    max-width: 40rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  h1,
+  p {
+    margin: 0;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-4);
+  }
+</style>

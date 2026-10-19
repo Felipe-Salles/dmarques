@@ -1,0 +1,76 @@
+name: headers
+on:
+  deployment_status:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  headers-preview:
+    if: github.event.deployment_status.state == 'success' && contains(github.event.deployment_status.environment, 'Preview')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Verify protection-bypass
+        env:
+          BYPASS: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+          TARGET: ${{ github.event.deployment_status.target_url }}
+        run: |
+          code=$(curl -sS -o /dev/null -w '%{http_code}' -H "x-vercel-protection-bypass: $BYPASS" "$TARGET/")
+          echo "bypass header HTTP status: $code"
+          test "$code" = "200"
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Raw curl -I
+        env:
+          BYPASS: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+          TARGET: ${{ github.event.deployment_status.target_url }}
+        run: |
+          out=$(curl -sI -H "x-vercel-protection-bypass: $BYPASS" "$TARGET/")
+          echo "$out"
+          for h in strict-transport-security x-content-type-options x-frame-options referrer-policy permissions-policy cross-origin-opener-policy cross-origin-resource-policy; do
+            echo "$out" | grep -qi "^$h:" || { echo "cabecalho ausente: $h"; exit 1; }
+          done
+      - name: Header gates
+        if: ${{ !cancelled() }}
+        env:
+          PREVIEW_URL: ${{ github.event.deployment_status.target_url }}
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+        run: node scripts/verify/header-gates.mjs --live --expect=enforce
+      - run: pnpm exec playwright install --with-deps chromium
+      - name: Form gates
+        env:
+          PREVIEW_URL: ${{ github.event.deployment_status.target_url }}
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+        run: node scripts/verify/form-gates.mjs --live
+  headers-production:
+    if: github.event_name == 'workflow_dispatch' || (github.event.deployment_status.state == 'success' && contains(github.event.deployment_status.environment, 'Production'))
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Raw curl -I
+        run: |
+          out=$(curl -sI https://agenciadmarques.com.br/)
+          echo "$out"
+          for h in strict-transport-security x-content-type-options x-frame-options referrer-policy permissions-policy cross-origin-opener-policy cross-origin-resource-policy; do
+            echo "$out" | grep -qi "^$h:" || { echo "cabecalho ausente: $h"; exit 1; }
+          done
+      - name: Header gates
+        if: ${{ !cancelled() }}
+        env:
+          PREVIEW_URL: https://agenciadmarques.com.br
+        run: node scripts/verify/header-gates.mjs --live --expect=enforce
+      - run: pnpm exec playwright install --with-deps chromium
+      - name: Form gates
+        env:
+          PREVIEW_URL: https://agenciadmarques.com.br
+        run: node scripts/verify/form-gates.mjs --live --check=cspCarga,cookiesZero,terceiros

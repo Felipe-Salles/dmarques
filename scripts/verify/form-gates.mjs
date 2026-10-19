@@ -1,6 +1,7 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import process from 'node:process';
+import { attachCspRecorder } from './csp-recorder.mjs';
 import { launchBrowser, STATIC_DIR, startStaticServer } from './static-server.mjs';
 
 const FORM = '#form-orcamento';
@@ -689,6 +690,52 @@ const localChecks = {
     }
     return fails;
   },
+
+  async cspEnvio({ browser, base }) {
+    const fails = [];
+    const ctxJs = await newContext(browser);
+    try {
+      const page = await ctxJs.newPage();
+      const violations = await attachCspRecorder(page);
+      await mockApi(page, json(200, { ok: true }));
+      await page.goto(`${base}/`, { waitUntil: 'load' });
+      await page.waitForFunction(() => document.querySelector('#email')?.disabled === true, null, {
+        timeout: 5000,
+      });
+      await page.locator(FORM).scrollIntoViewIfNeeded();
+      await fillBasic(page);
+      await page.click(SUBMIT);
+      await page.waitForFunction(
+        () => document.querySelector('#form-orcamento')?.classList.contains('done'),
+        null,
+        { timeout: 5000 },
+      );
+      await page.waitForTimeout(500);
+      for (const entry of violations) fails.push(`js: ${entry}`);
+    } finally {
+      await ctxJs.close();
+    }
+    const ctxNative = await newContext(browser);
+    try {
+      const page = await ctxNative.newPage();
+      const violations = await attachCspRecorder(page);
+      await mockApi(page, (route) =>
+        route.fulfill({ status: 303, headers: { Location: '/obrigado' } }),
+      );
+      await page.goto(`${base}/`, { waitUntil: 'load' });
+      await fillBasic(page);
+      await Promise.all([
+        page.waitForURL('**/obrigado', { timeout: 10000 }),
+        page.evaluate(() => document.querySelector('#form-orcamento').submit()),
+      ]);
+      await page.waitForLoadState('load');
+      await page.waitForTimeout(500);
+      for (const entry of violations) fails.push(`nativo: ${entry}`);
+    } finally {
+      await ctxNative.close();
+    }
+    return fails;
+  },
 };
 
 async function scrollThrough(page) {
@@ -744,13 +791,77 @@ const liveChecks = {
       page.on('request', (request) => {
         if (!/^https?:/.test(request.url())) return;
         const target = new URL(request.url());
+        if (target.hostname === 'va.vercel-scripts.com') {
+          outside.add('va.vercel-scripts.com (proibido)');
+          return;
+        }
         if (IGNORED_HOSTS.some((host) => host.test(target.hostname))) return;
         if (target.origin !== origin) outside.add(target.origin);
       });
       await page.goto(`${base}/`, { waitUntil: 'networkidle' });
       await scrollThrough(page);
       await page.waitForTimeout(500);
-      for (const found of outside) fails.push(`requisicao a ${found}`);
+      for (const found of outside) {
+        fails.push(
+          found.startsWith('va.vercel-scripts.com')
+            ? 'requisicao a va.vercel-scripts.com'
+            : `requisicao a ${found}`,
+        );
+      }
+    } finally {
+      await ctx.close();
+    }
+    return fails;
+  },
+
+  async cspCarga({ browser, base }) {
+    const fails = [];
+    const ctx = await liveContext(browser);
+    try {
+      const page = await ctx.newPage();
+      const violations = await attachCspRecorder(page);
+      const response = await page.goto(`${base}/`, { waitUntil: 'networkidle' });
+      const h = response.headers();
+      if (!h['content-security-policy-report-only'] && !h['content-security-policy']) {
+        fails.push('resposta de / sem cabecalho CSP');
+      }
+      await scrollThrough(page);
+      await page.waitForTimeout(500);
+      for (const route of ['/nao-existe', '/obrigado']) {
+        await page.goto(`${base}${route}`, { waitUntil: 'networkidle' });
+        await page.waitForTimeout(300);
+      }
+      for (const entry of violations) fails.push(entry);
+    } finally {
+      await ctx.close();
+    }
+    return fails;
+  },
+
+  async cspEnvio({ browser, base }) {
+    const fails = [];
+    const ctx = await liveContext(browser);
+    try {
+      const page = await ctx.newPage();
+      const violations = await attachCspRecorder(page);
+      let posts = 0;
+      page.on('request', (request) => {
+        if (request.method() === 'POST' && request.url().includes('/api/orcamento')) posts++;
+      });
+      await page.goto(`${base}/`, { waitUntil: 'networkidle' });
+      await page.locator(FORM).scrollIntoViewIfNeeded();
+      await fillBasic(page);
+      await page.evaluate(() => {
+        const hp = document.querySelector('.hp input[name="empresa-site"]');
+        if (hp) hp.value = 'x';
+      });
+      await Promise.all([
+        page.waitForResponse((r) => r.url().includes('/api/orcamento'), { timeout: 15000 }),
+        page.click(SUBMIT),
+      ]);
+      await page.waitForTimeout(1000);
+      if (posts !== 1) fails.push(`${posts} POSTs em vez de 1`);
+      for (const entry of violations) fails.push(entry);
     } finally {
       await ctx.close();
     }

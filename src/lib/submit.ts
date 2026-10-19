@@ -43,6 +43,12 @@ function bare(status: number): Response {
   return new Response(null, { status, headers: { ...BASE_HEADERS } });
 }
 
+const failedJson = (): Response => json(502, { ok: false, code: 'failed' });
+
+export function failureResponse(request: Request): Response {
+  return wantsJson(request) ? failedJson() : seeOther('failed');
+}
+
 function isBot(form: Record<string, string>): boolean {
   const trap = form[HONEYPOT_FIELD];
   if (typeof trap === 'string' && trap.trim() !== '') return true;
@@ -70,7 +76,7 @@ export async function handleSubmission(request: Request, deps: Deps): Promise<Re
         { 'Retry-After': String(extra?.retryAfter ?? 60) },
       );
     }
-    return json(502, { ok: false, code: 'failed' });
+    return failedJson();
   };
 
   try {

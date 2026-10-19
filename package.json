@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/finalize-headers.mjs",
     "sync": "astro sync",
     "check": "astro sync && astro check",
     "test": "node --test \"src/**/*.test.mjs\"",
@@ -20,6 +20,7 @@
     "verify:browser": "node scripts/verify/browser-gates.mjs",
     "verify:forms": "node scripts/verify/form-gates.mjs",
     "verify:form-height": "node scripts/verify/form-card-height.mjs",
+    "verify:headers": "node scripts/verify/header-gates.mjs",
     "og:generate": "node scripts/generate-og.mjs"
   },
   "dependencies": {

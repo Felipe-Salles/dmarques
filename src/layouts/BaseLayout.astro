@@ -8,6 +8,7 @@ import '../styles/base.css';
 import '../styles/motion.css';
 import { BUSINESS, HOME_DESCRIPTION, HOME_TITLE, OG_IMAGE } from '../lib/business.ts';
 import { serializeJsonLd } from '../lib/json-ld.ts';
+import { JS_READY } from '../lib/js-ready.ts';
 
 const {
   title = HOME_TITLE,
@@ -53,13 +54,7 @@ const ogImageUrl = new URL(OG_IMAGE.path, Astro.site).href;
     <Font cssVariable="--font-display" preload={[{ weight: 600, style: 'normal' }]} />
     <Font cssVariable="--font-sans" preload={[{ weight: 400, style: 'normal' }]} />
     <Font cssVariable="--font-mono" />
-    <script is:inline>
-      var d = document.documentElement;
-      d.classList.add('js-ready');
-      setTimeout(function () {
-        if (!d.classList.contains('fx')) d.classList.remove('js-ready');
-      }, 3000);
-    </script>
+    <script is:inline set:html={JS_READY}></script>
     {jsonLd && <script type="application/ld+json" set:html={serializeJsonLd(jsonLd)} />}
   </head>
   <body>

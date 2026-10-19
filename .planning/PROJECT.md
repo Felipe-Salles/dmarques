@@ -157,6 +157,8 @@ um orçamento — com um site que carrega rápido e nunca sai do ar.
 | Redesign como Fase 04.1, antes da Fase 5 | Formulário é ligado ao backend já no markup novo (evita retrabalho) | ✓ Decidido 2026-10-15 |
 | NAP em fonte única (`src/lib/business.ts`) | Nome, telefone, e-mail e cidade alimentam JSON-LD, rodapé e contato a partir de um só módulo; `seo-gates.mjs` no CI bloqueia regressões | ✓ Aplicado (Fase 6) |
 | LGPD: bases legais Art. 7º V (pedido de orçamento) + IX (antiabuso e medição agregada); retenção de 6 meses para pedidos de quem não virou cliente; sem encarregado formal (Res. CD/ANPD nº 2/2022) | Decisão do fundador (Fase 5, D-15/D-16); coleta mínima; expurgo manual mensal da caixa GoDaddy documentado em docs/operacao-formulario.md | ✓ Decidido (2026-09-24) — refletido em /politica-de-privacidade |
+| Sem Astro View Transitions na v1 (SEC-10) | CSP não é suportada com ClientRouter e os listeners quebram na segunda navegação | ✓ Registrado 2026-10 (Fase 7) |
+| CSP por hash entregue como header, Report-Only antes de enforcing | script-src/style-src 'self' + hashes do Astro, sem unsafe-*; detalhes em docs/seguranca-headers.md | ✓ Aplicado (Fase 7) |
 
 ## Evolution
 

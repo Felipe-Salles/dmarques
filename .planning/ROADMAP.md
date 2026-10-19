@@ -70,6 +70,7 @@ Milestone 2 (Cloudflare layer) closes this statement.
 - [x] **Phase 2: Content Collections** - All copy and portfolio cases as typed, build-validated Astro Content Collections (no CMS) (completed 2026-09-15)
 - [x] **Phase 3: Static Zero-JS Sections + CSP-safe Refactor + A11y** - The 9 design sections + privacy/thank-you/404 pages as fully static HTML, every inline style converted to token CSS, accessibility and AA contrast fixed
  (completed 2026-09-17)
+
 - [x] **Phase 4: Progressive-Enhancement Effects** - Scroll reveal, cursor glow, particle canvas, and reduced-motion handling as small vanilla islands (completed 2026-09-17)
 - [x] **Phase 04.1: Redesign Aurora técnica** (INSERTED) - Apply the validated Aurora direction (sketch 001-A): logo, palette, Sora + Inter Tight, section compositions, honest proof, "nós" voice and the "a luz acende" motion system (completed 2026-10-15)
 - [x] **Phase 5: Form Backend + Enhancement + LGPD** - Working quote form (no-JS + enhanced) via Resend behind layered spam/abuse defenses, shipped with the Privacy Policy page and inline data-use notice (completed 2026-10-16)
@@ -253,6 +254,7 @@ Plans:
 **Plans**: 11 plans
 
 Plans:
+
 - [x] 04.1-01-PLAN.md — gates de validação (aurora-gates.mjs com 13 verificações incl. tokens, browser-gates.mjs com Playwright) e atualização de REQUIREMENTS/ROADMAP (AUR-01..18, SEO-07, CONTENT-01/03/04, ANIM-03/04/05, Fase 6 sem FAQPage — D-02)
 - [x] 04.1-02-PLAN.md — fundação: Fonts API Sora/Inter Tight/JetBrains Mono, tokens Aurora, base/motion.css, BaseLayout com .site + header/footer, Words e Aurora, remoção de FAQ/Diferenciais/CtaFinal (D-02)
 - [x] 04.1-03-PLAN.md — motor de motion "a luz acende" (reveal, scroll rAF, visibilidade, nav ativa) e remoção de glow/partículas
@@ -264,6 +266,7 @@ Plans:
 - [x] 04.1-09-PLAN.md — seção Projetos (bento honesto, mocks HTML/CSS, tilt) na ordem final da home
 - [x] 04.1-10-PLAN.md — suíte completa de gates contra o build (checklist C1-C12, lhci local cedo) e pass /impeccable polish
 - [x] 04.1-11-PLAN.md — captura real do site no card destaque, gates no CI, PR com lhci verde e SEC-07
+
 **UI hint**: yes
 
 ### Phase 5: Form Backend + Enhancement + LGPD
@@ -317,6 +320,7 @@ Plans:
 **Wave 7** *(blocked on Wave 6 completion)*
 
 - [x] 05-14-PLAN.md — Run SEC-07, decisões do Felipe (Hobby/hero), merge e verificação de produção
+
 **UI hint**: yes
 
 ### Phase 6: SEO / Metadata / Structured Data
@@ -371,7 +375,33 @@ Plans:
   4. Production source maps are disabled, custom 404/500 pages leak no diagnostics, v1 loads zero third-party assets with a documented SRI rule for any future external asset, no Astro View Transitions are used (decision recorded), and `securityheaders.com` grades >= A verified by a `curl -I` header-regression check in CI.
   5. The final SEC-07 checklist run passes with no open High finding and Lighthouse mobile stays >=95 in all four categories.
 
-**Plans**: TBD
+**Plans**: 7 plans
+
+Plans:
+**Wave 1**
+
+- [x] 07-01-PLAN.md — vercel.json header set, header-gates (offline + --live), headers.yml, preview probe of header coexistence (wave 1)
+- [x] 07-03-PLAN.md — 500 page, outer catch on the form Function, security-check verifs 6 and 9-13 (wave 1)
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [x] 07-02-PLAN.md — hashed CSP pipeline: js-ready single source, security.csp + staticHeaders, finalize-headers (Report-Only default), sourcemaps off (wave 2)
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
+- [x] 07-04-PLAN.md — header-emulating server, CSP violation harness in browser/form gates, clean Report-Only preview run (wave 3)
+
+**Wave 4** *(blocked on Wave 3 completion)*
+
+- [x] 07-05-PLAN.md — promotion to enforcing in its own commit + docs/seguranca-headers.md decision record (wave 4)
+
+**Wave 5** *(blocked on Wave 4 completion)*
+
+- [ ] 07-06-PLAN.md — PR, approved merge, production header/CSP/HSTS/Lighthouse verification (wave 5, checkpoint)
+
+**Wave 6** *(blocked on Wave 5 completion)*
+
+- [ ] 07-07-PLAN.md — securityheaders.com grade, HSTS preload decision, final SEC-07 run file (wave 6, checkpoints)
 
 ## Progress
 
@@ -387,7 +417,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 4.1 -> 5 -> 6 -> 7
 | 4.1. Redesign Aurora técnica (INSERTED) | 11/11 | Complete   | 2026-10-15 |
 | 5. Form Backend + Enhancement + LGPD | 14/14 | Complete   | 2026-10-16 |
 | 6. SEO / Metadata / Structured Data | 8/8 | Complete   | 2026-10-17 |
-| 7. Security Headers Finalize | 0/TBD | Not started | - |
+| 7. Security Headers Finalize | 5/7 | In Progress|  |
 
 ## Coverage
 

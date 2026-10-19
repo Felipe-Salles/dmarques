@@ -1,18 +1,22 @@
 import { getSecret } from 'astro:env/server';
 import type { APIRoute } from 'astro';
 import { createDeps } from '../../lib/deps.ts';
-import { handleSubmission } from '../../lib/submit.ts';
+import { failureResponse, handleSubmission } from '../../lib/submit.ts';
 
 export const prerender = false;
 
 export const POST: APIRoute = async (context) => {
-  let ip: string | undefined;
   try {
-    ip = context.clientAddress;
+    let ip: string | undefined;
+    try {
+      ip = context.clientAddress;
+    } catch {
+      ip = undefined;
+    }
+    return await handleSubmission(context.request, createDeps(getSecret, ip, import.meta.env.DEV));
   } catch {
-    ip = undefined;
+    return failureResponse(context.request);
   }
-  return handleSubmission(context.request, createDeps(getSecret, ip, import.meta.env.DEV));
 };
 
 export const ALL: APIRoute = () =>
