@@ -17,10 +17,10 @@ const waIcon = 'M4 20l1.3-3.9A8 8 0 1112 20a8 8 0 01-4.1-1.1z';
   <div class="wrap contact-grid">
     <div class="contact-copy">
       <h2 class="h2" id="ct-title" data-r="words">
-        <Words text="Vamos construir algo sólido juntos." accentFrom={3} />
+        <Words text="Traga a ideia. Nós acendemos." accentFrom={3} />
       </h2>
       <p class="lead d200" data-r="fade">
-        Conte o que você precisa. Respondemos no mesmo dia útil, e quem responde é quem vai
+        Conte a sua ideia. Respondemos no mesmo dia útil, e quem responde é quem vai
         desenvolver.
       </p>
       <ol class="next d300" aria-label="O que acontece depois" data-r="list">
@@ -196,7 +196,7 @@ const waIcon = 'M4 20l1.3-3.9A8 8 0 1112 20a8 8 0 01-4.1-1.1z';
             id="mensagem"
             name="mensagem"
             maxlength="1000"
-            placeholder="Conte em poucas linhas o que precisa."></textarea>
+            placeholder="Conte em poucas linhas a sua ideia ou o que precisa resolver."></textarea>
           <span class="msg" id="erro-mensagem"
             >A mensagem passou de 1000 caracteres. Resuma em poucas linhas.</span
           >
@@ -257,6 +257,7 @@ const waIcon = 'M4 20l1.3-3.9A8 8 0 1112 20a8 8 0 01-4.1-1.1z';
           <span class="btn-label">Enviar pedido de orçamento</span>
         </button>
         <p class="legal">Usamos seus dados só para responder a este pedido.</p>
+        <p class="assure">Nada é cobrado antes de você aprovar o plano.</p>
       </div>
       <div class="success">
         <span class="ok" aria-hidden="true">
@@ -617,11 +618,16 @@ const waIcon = 'M4 20l1.3-3.9A8 8 0 1112 20a8 8 0 01-4.1-1.1z';
     }
   }
 
+  .assure,
   .legal {
     margin: 0;
     font-size: var(--text-sm);
     color: var(--color-text-muted);
     line-height: 1.5;
+  }
+
+  .legal + .assure {
+    margin-top: -14px;
   }
 
   .success {

@@ -28,7 +28,12 @@ try {
   const page = await ctx.newPage();
   await page.goto(`${base}/`, { waitUntil: 'load' });
   await page.addStyleTag({ content: '#projetos, .wa-float { display: none !important }' });
-  await page.evaluate(() => document.fonts.ready);
+  await page.evaluate(async () => {
+    const imgs = Array.from(document.images);
+    for (const img of imgs) img.loading = 'eager';
+    await Promise.all(imgs.map((img) => img.decode().catch(() => undefined)));
+    await document.fonts.ready;
+  });
   await page.waitForTimeout(400);
   await page.screenshot({ path: TMP, fullPage: true });
   const meta = await sharp(TMP).metadata();

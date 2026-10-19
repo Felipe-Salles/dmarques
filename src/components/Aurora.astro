@@ -70,6 +70,22 @@ const { variant } = Astro.props;
       animation-play-state: paused;
     }
 
+    :global(html.js-ready) .aurora--hero:global(.lit):global(.gl) {
+      opacity: calc(var(--aurora-opacity) * 0.5);
+      transition: opacity 2.6s var(--ease-out);
+    }
+
+    :global(.aurora-gl) {
+      position: absolute;
+      pointer-events: none;
+      z-index: -1;
+      left: -15%;
+      top: -30%;
+      width: 130%;
+      height: 1100px;
+      display: block;
+    }
+
     :global(html.js-ready) .aurora--contact {
       opacity: 0;
       transform: scaleY(-1) scale(0.94);

@@ -2,11 +2,12 @@
 interface Props {
   text: string;
   accentFrom?: number;
+  chars?: boolean;
 }
 
-const { text, accentFrom } = Astro.props;
+const { text, accentFrom, chars = false } = Astro.props;
 const words = text.split(' ');
 ---
 {words.map((word, i) => (
-  <><span class={`w i${i}`}><span class={accentFrom !== undefined && i >= accentFrom ? 'accent' : undefined}>{word}</span></span>{i < words.length - 1 ? ' ' : ''}</>
+  <><span class={`w i${i}`}><span class={accentFrom !== undefined && i >= accentFrom ? 'accent' : undefined}>{chars ? Array.from(word).map((c) => <span class="ch">{c}</span>) : word}</span></span>{i < words.length - 1 ? ' ' : ''}</>
 ))}

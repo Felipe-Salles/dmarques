@@ -53,5 +53,5 @@ export const OG_IMAGE = {
   width: 1200,
   height: 630,
   type: 'image/jpeg',
-  alt: 'Dmarques Desenvolvimento Web: Software sob medida, com acabamento de produto.',
+  alt: 'Dmarques Desenvolvimento Web: onde ideias encontram a luz. Sites, sistemas e automações em Ibitinga/SP.',
 } as const;
