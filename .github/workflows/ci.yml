@@ -22,6 +22,7 @@ jobs:
       - run: pnpm astro check
       - run: pnpm test
       - run: pnpm build
+      - run: node scripts/verify/header-gates.mjs
       - run: node scripts/verify/aurora-gates.mjs
       - run: node scripts/verify/seo-gates.mjs
       - run: pnpm exec playwright install --with-deps chromium
