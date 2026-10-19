@@ -4,7 +4,7 @@ milestone: v1.0
 milestone_name: milestone
 status: executing
 stopped_at: Completed 06-02-PLAN.md
-last_updated: "2026-10-19T13:20:20.037Z"
+last_updated: "2026-10-19T13:20:27.923Z"
 last_activity: 2026-10-19
 progress:
   total_phases: 8
@@ -88,6 +88,7 @@ Progress: [█████████░] 92%
 | Phase 04.1 P09 | 15min | 3 tasks | 8 files |
 | Phase 06 P02 | 10min | 2 tasks | 1 files |
 | Phase 06 P07 | 15min | 2 tasks | 3 files |
+| Phase 07 P03 | 20min | 3 tasks | 9 files |
 
 ## Accumulated Context
 
@@ -160,6 +161,7 @@ Relevant to current work:
 - [Phase 04.1]: Seta do card destaque e span aria-hidden (sem pagina de detalhe, D-08); rolagem dos mocks via scrollsite com 100cqh em .screen container-type size
 - [Phase 04.1]: Captura do site nao recursiva (CSS injetado so no navegador de captura); fallbackFormat webp no Picture; SEO lhci segue warn (0,58) ate a Fase 6
 - [Phase 06-07]: seo-gates enforced in CI after aurora-gates; official name recorded in PROJECT.md — Blocks SEO/NAP regressions at merge
+- [Phase 07]: failureResponse compartilhado entre respond('failed') e catch externo da Function
 
 ### Open Decisions To Resolve Before Their Phase
 
