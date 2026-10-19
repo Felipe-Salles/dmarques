@@ -47,6 +47,7 @@ function read(file) {
 const ROUTES = {
   '/': ['index.html'],
   '/404': ['404.html'],
+  '/500': ['500.html', '500/index.html'],
   '/obrigado': ['obrigado/index.html', 'obrigado.html'],
   '/erro-envio/limite': ['erro-envio/limite/index.html', 'erro-envio/limite.html'],
   '/erro-envio/invalido': ['erro-envio/invalido/index.html', 'erro-envio/invalido.html'],
