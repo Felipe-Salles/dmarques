@@ -103,6 +103,12 @@ function boot(hero: HTMLElement, aurora: HTMLElement): void {
     failIfMajorPerformanceCaveat: true,
   });
   if (!gl) return;
+  const info = gl.getExtension('WEBGL_debug_renderer_info');
+  const renderer = String(gl.getParameter(info ? info.UNMASKED_RENDERER_WEBGL : gl.RENDERER));
+  if (/swiftshader|llvmpipe|softpipe|software|basic render/i.test(renderer)) {
+    gl.getExtension('WEBGL_lose_context')?.loseContext();
+    return;
+  }
   const parallel = gl.getExtension('KHR_parallel_shader_compile') as {
     COMPLETION_STATUS_KHR: number;
   } | null;
@@ -180,6 +186,7 @@ function run(
   let prev = 0;
   let frames = 0;
   let slow = 0;
+  let bad = 0;
   let dead = false;
 
   const teardown = () => {
@@ -198,6 +205,10 @@ function run(
     const dt = prev ? now - prev : 16;
     prev = now;
     frames++;
+    if (frames > 3 && frames <= 24 && dt > 50 && ++bad >= 6) {
+      teardown();
+      return;
+    }
     if (frames > 30 && frames < 150) {
       slow = slow * 0.9 + (dt > 34 ? 0.1 : 0);
       if (slow > 0.5) {
