@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/finalize-headers.mjs",
     "sync": "astro sync",
     "check": "astro sync && astro check",
     "test": "node --test \"src/**/*.test.mjs\"",

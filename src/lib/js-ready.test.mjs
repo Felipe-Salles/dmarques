@@ -33,7 +33,11 @@ test('cabecalho CSP da config contem o hash do script js-ready', (t) => {
   if (!existsSync(CONFIG)) return t.skip('build ausente');
   const routes = JSON.parse(readFileSync(CONFIG, 'utf8')).routes ?? [];
   const values = routes
-    .map((r) => r.headers?.['content-security-policy'] ?? r.headers?.['content-security-policy-report-only'])
+    .map(
+      (r) =>
+        r.headers?.['content-security-policy'] ??
+        r.headers?.['content-security-policy-report-only'],
+    )
     .filter(Boolean);
   if (values.length === 0) return t.skip('sem rota CSP');
   const hash = createHash('sha256').update(JS_READY).digest('base64');
