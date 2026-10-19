@@ -72,7 +72,7 @@ void main(){
   vec2 c0 = vec2(x / 0.95, (uv.y - 0.52) / 0.13);
   col *= 1.0 - 0.6 * exp(-dot(c0, c0));
   col *= smoothstep(0.3, 0.6, uv.y) * smoothstep(1.0, 0.88, uv.y);
-  col = (1.0 - exp(-col * 1.05)) * f;
+  col = (1.0 - exp(-col * 0.95)) * f * 0.9;
   col += (h(gl_FragCoord.xy + fract(t)) - 0.5) / 255.0;
   col = max(col, 0.0);
   gl_FragColor = vec4(col, max(col.r, max(col.g, col.b)));

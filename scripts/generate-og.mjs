@@ -88,7 +88,7 @@ h1 span { color: #00c8ff; }
     <img class="s" alt="" src="${asDataUri('simbolo.png')}">
     <img class="l" alt="" src="${asDataUri('logotipo.png')}">
   </div>
-  <h1>Software sob medida, com <span>acabamento de produto.</span></h1>
+  <h1>Onde ideias encontram <span>a luz.</span></h1>
 </div>
 </body>
 </html>`;
