@@ -109,8 +109,7 @@ else
   echo "$hdrs" | sed 's/^/    /'
   v6_missing=0
   while IFS='|' read -r hname hpat; do
-    if ! echo "$hdrs" | tr -d '
-' | grep -qiE "$hpat"; then
+    if ! echo "$hdrs" | tr -d '\r' | grep -qiE "$hpat"; then
       fail "verificacao 6 - cabecalho ausente ou incorreto: $hname"
       v6_missing=$((v6_missing + 1))
     fi
