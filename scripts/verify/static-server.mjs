@@ -3,6 +3,7 @@ import { createServer } from 'node:http';
 import { extname, join, resolve, sep } from 'node:path';
 import process from 'node:process';
 import { chromium } from 'playwright';
+import { headersFor, loadRules } from './headers.mjs';
 
 const ROOT = process.cwd();
 
@@ -41,7 +42,18 @@ function locate(pathname, base) {
   return null;
 }
 
-export function startStaticServer(root = STATIC_DIR) {
+function stripUpgrade(value) {
+  return String(value)
+    .split(';')
+    .map((part) => part.trim())
+    .filter((part) => part && part !== 'upgrade-insecure-requests')
+    .join('; ');
+}
+
+export function startStaticServer(root = STATIC_DIR, options = {}) {
+  const configPath = join(root, '..', 'config.json');
+  const withHeaders = options.withHeaders ?? existsSync(configPath);
+  const rules = withHeaders ? loadRules({ configPath, vercelJsonPath: join(ROOT, 'vercel.json') }) : [];
   return new Promise((resolveStart, rejectStart) => {
     const server = createServer((req, res) => {
       let pathname;
@@ -69,7 +81,11 @@ export function startStaticServer(root = STATIC_DIR) {
         status = 404;
       }
       const type = MIME[extname(file).toLowerCase()] || 'application/octet-stream';
-      res.writeHead(status, { 'content-type': type });
+      const extra = headersFor(rules, pathname);
+      for (const name of ['content-security-policy', 'content-security-policy-report-only']) {
+        if (extra[name] !== undefined) extra[name] = stripUpgrade(extra[name]);
+      }
+      res.writeHead(status, { 'content-type': type, ...extra });
       res.end(readFileSync(file));
     });
     server.once('error', rejectStart);
@@ -84,6 +100,10 @@ export async function launchBrowser() {
   try {
     return await chromium.launch();
   } catch {
-    return await chromium.launch({ channel: 'chrome' });
+    try {
+      return await chromium.launch({ channel: 'chrome' });
+    } catch {
+      return await chromium.launch({ channel: 'msedge' });
+    }
   }
 }

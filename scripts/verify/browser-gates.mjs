@@ -1,5 +1,6 @@
 import { existsSync } from 'node:fs';
 import process from 'node:process';
+import { attachCspRecorder } from './csp-recorder.mjs';
 import { STATIC_DIR, launchBrowser, startStaticServer } from './static-server.mjs';
 
 async function scrollThrough(page, step = 400, wait = 120) {
@@ -15,6 +16,7 @@ async function scrollThrough(page, step = 400, wait = 120) {
 const ROUTES = [
   '/',
   '/404',
+  '/500',
   '/obrigado',
   '/erro-envio/limite',
   '/erro-envio/invalido',
@@ -358,6 +360,39 @@ const checks = {
       }
     } finally {
       await ctx.close();
+    }
+    return fails;
+  },
+
+  async csp({ browser, base }) {
+    const fails = [];
+    for (const mode of ['no-preference', 'reduce']) {
+      const ctx = await browser.newContext({
+        viewport: { width: 1280, height: 900 },
+        reducedMotion: mode,
+      });
+      try {
+        for (const route of ROUTES) {
+          const page = await ctx.newPage();
+          try {
+            const violations = await attachCspRecorder(page);
+            const response = await page.goto(base + route, { waitUntil: 'load' });
+            if (route === '/' && mode === 'no-preference') {
+              const h = response.headers();
+              if (!h['content-security-policy-report-only'] && !h['content-security-policy']) {
+                fails.push('emulador sem cabecalho CSP');
+              }
+            }
+            await scrollThrough(page);
+            await page.waitForTimeout(500);
+            for (const entry of violations) fails.push(`${route} [${mode}]: ${entry}`);
+          } finally {
+            await page.close();
+          }
+        }
+      } finally {
+        await ctx.close();
+      }
     }
     return fails;
   },
