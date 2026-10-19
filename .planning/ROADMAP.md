@@ -389,7 +389,7 @@ Plans:
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 07-04-PLAN.md — header-emulating server, CSP violation harness in browser/form gates, clean Report-Only preview run (wave 3)
+- [x] 07-04-PLAN.md — header-emulating server, CSP violation harness in browser/form gates, clean Report-Only preview run (wave 3)
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
@@ -417,7 +417,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 4.1 -> 5 -> 6 -> 7
 | 4.1. Redesign Aurora técnica (INSERTED) | 11/11 | Complete   | 2026-10-15 |
 | 5. Form Backend + Enhancement + LGPD | 14/14 | Complete   | 2026-10-16 |
 | 6. SEO / Metadata / Structured Data | 8/8 | Complete   | 2026-10-17 |
-| 7. Security Headers Finalize | 3/7 | In Progress|  |
+| 7. Security Headers Finalize | 4/7 | In Progress|  |
 
 ## Coverage
 
