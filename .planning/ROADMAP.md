@@ -385,7 +385,7 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 07-02-PLAN.md — hashed CSP pipeline: js-ready single source, security.csp + staticHeaders, finalize-headers (Report-Only default), sourcemaps off (wave 2)
+- [x] 07-02-PLAN.md — hashed CSP pipeline: js-ready single source, security.csp + staticHeaders, finalize-headers (Report-Only default), sourcemaps off (wave 2)
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
@@ -417,7 +417,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 4.1 -> 5 -> 6 -> 7
 | 4.1. Redesign Aurora técnica (INSERTED) | 11/11 | Complete   | 2026-10-15 |
 | 5. Form Backend + Enhancement + LGPD | 14/14 | Complete   | 2026-10-16 |
 | 6. SEO / Metadata / Structured Data | 8/8 | Complete   | 2026-10-17 |
-| 7. Security Headers Finalize | 2/7 | In Progress|  |
+| 7. Security Headers Finalize | 3/7 | In Progress|  |
 
 ## Coverage
 

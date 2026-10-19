@@ -208,11 +208,11 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy`
   (nega câmera/mic/geo), `X-Frame-Options: DENY` / `frame-ancestors 'none'`,
   COOP/CORP
-- [ ] **SEC-02**: Content-Security-Policy entregue como header (não `<meta>`),
+- [x] **SEC-02**: Content-Security-Policy entregue como header (não `<meta>`),
   `default-src 'self'`, `script-src 'self'` sem `unsafe-inline`/`unsafe-eval`,
   `style-src 'self'`, `object-src 'none'`, `base-uri 'none'`, `form-action 'self'`,
   `frame-ancestors 'none'`, `upgrade-insecure-requests`
-- [ ] **SEC-03**: CSP publicada primeiro como `Content-Security-Policy-Report-Only`
+- [x] **SEC-03**: CSP publicada primeiro como `Content-Security-Policy-Report-Only`
   no preview, confirmada sem violações no load e no submit do formulário, então
   promovida para enforcing
 - [x] **SEC-04**: `build.sourcemap` desativado em produção; páginas de erro
@@ -399,8 +399,8 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | A11Y-06 | Phase 3 | Complete |
 | A11Y-07 | Phase 3 | Complete |
 | SEC-01 | Phase 7 | Complete |
-| SEC-02 | Phase 7 | Pending |
-| SEC-03 | Phase 7 | Pending |
+| SEC-02 | Phase 7 | Complete |
+| SEC-03 | Phase 7 | Complete |
 | SEC-04 | Phase 7 | Complete |
 | SEC-05 | Phase 7 | Complete |
 | SEC-06 | Phase 7 | Complete |
