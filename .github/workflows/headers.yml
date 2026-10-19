@@ -39,7 +39,7 @@ jobs:
         env:
           PREVIEW_URL: ${{ github.event.deployment_status.target_url }}
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
-        run: node scripts/verify/header-gates.mjs --live --expect=report-only
+        run: node scripts/verify/header-gates.mjs --live --expect=enforce
       - run: pnpm exec playwright install --with-deps chromium
       - name: Form gates
         env:
@@ -68,7 +68,7 @@ jobs:
         if: ${{ !cancelled() }}
         env:
           PREVIEW_URL: https://agenciadmarques.com.br
-        run: node scripts/verify/header-gates.mjs --live --expect=report-only
+        run: node scripts/verify/header-gates.mjs --live --expect=enforce
       - run: pnpm exec playwright install --with-deps chromium
       - name: Form gates
         env:
