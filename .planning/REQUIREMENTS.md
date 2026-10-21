@@ -115,11 +115,11 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   {whatsapp, email} obrigatório e o contato do canal escolhido bem-formado, tipo
   ∈ enum, mensagem ≤ 2000 chars) — servidor é a fonte da verdade
   - Nota (Fase 5 D-28): o campo do canal não escolhido é descartado e nunca usado.
-- [ ] **FORM-05**: Validação client-side inline (no blur / no submit, nunca a cada
+- [x] **FORM-05**: Validação client-side inline (no blur / no submit, nunca a cada
   tecla) espelhando o schema, sem bloquear o submit
-  - Verificação retroativa de 2026-10-21: o plano 05-07 e o código revalidam no
-    `input` após erro e impedem o envio inválido; contrato pendente de reconciliação
-    em `05-VERIFICATION.md`.
+  - Corrigido em 2026-10-21: o erro local não impede o POST; a resposta do servidor
+    decide o resultado. Regra de `input`/bloqueio do plano 05-07 substituída pela
+    correção registrada em `debug/resolved/form-05-submit-contract.md`.
 - [x] **FORM-06**: Mensagens de erro e status acessíveis — texto (não só cor),
   `aria-invalid`, `aria-describedby` ligando campo→erro, região `aria-live`,
   foco movido para o primeiro erro; sucesso e falha anunciados
@@ -370,7 +370,7 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | FORM-02 | Phase 5 | Complete |
 | FORM-03 | Phase 5 | Complete |
 | FORM-04 | Phase 5 | Complete |
-| FORM-05 | Phase 5 | Pending: contrato divergente do plano 05-07 e do código (05-VERIFICATION, 2026-10-21) |
+| FORM-05 | Phase 5 | Complete (correção e regressão de navegador, 2026-10-21) |
 | FORM-06 | Phase 5 | Complete |
 | FORM-07 | Phase 5 | Complete |
 | FORM-08 | Phase 5 | Complete |
@@ -449,4 +449,4 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 
 ---
 *Requirements defined: 2026-09-05*
-*Last updated: 2026-10-21 after Phase 05 retroactive verification (FORM-05 pending; LGPD-07 internal scope verified; requirement count corrected)*
+*Last updated: 2026-10-21 after FORM-05 correction (server-authoritative submit and blur validation); LGPD-07 internal scope verified; requirement count corrected*

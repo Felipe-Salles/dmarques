@@ -1,8 +1,8 @@
 ﻿---
 phase: 05
 slug: form-backend-enhancement-lgpd
-status: partial
-nyquist_compliant: false
+status: complete
+nyquist_compliant: true
 wave_0_complete: true
 created: 2026-10-15
 updated: 2026-10-21
@@ -10,7 +10,7 @@ updated: 2026-10-21
 
 # Fase 05 — Estratégia de validação reconciliada
 
-Contrato atualizado pela quick 261021-of0. A cobertura automatizada existe; FORM-05 continua divergente do requisito. A conformidade não foi marcada como verdadeira para esconder essa pendência.
+Contrato atualizado pela quick 261021-of0 e pelo debug form-05-submit-contract. A regressão de FORM-05 passou após corrigir o enhancer: o gate verifica o contrato vigente. Cobertura Nyquist reconciliada nos 14 planos, com checkpoints históricos e limites de ambiente discriminados.
 
 ## Infraestrutura e comandos
 
@@ -35,7 +35,7 @@ Build novo deve preceder gates que leem `.vercel/output`. Em PowerShell, executa
 | FORM-02 | POST nativo e 303 | submit.test.mjs; form-gates semJsPostNativo | GREEN, resposta mockada no navegador |
 | FORM-03 | Estados, preservação e bloqueio em trânsito | form-gates sucesso/falha/limite/erro400 | GREEN |
 | FORM-04 | Schema Zod, enum, limites e descarte do outro canal | form-schema.test.mjs; form-schema.server.test.mjs | GREEN |
-| FORM-05 | Blur/submit, sem validação por tecla ou bloqueio por erro local | 05-VERIFICATION; form.ts; plano 05-07; gate validacaoInline | PENDING: código e gate seguem plano conflitante com REQUIREMENTS |
+| FORM-05 | Blur/submit, sem validação por tecla ou bloqueio por erro local | form-gates validacaoInline: POST inválido, 400, digitação sem limpar erro, blur e reenvio | GREEN: falhou antes da correção e passou depois do build novo |
 | FORM-06 | Erros associados, foco e anúncios | form-gates validacaoInline/erro400/sucesso/falha/limite | GREEN no comportamento atual |
 | FORM-07 | Honeypot e timing de 3 s–24 h antes de envio | submit.test.mjs; D-27 para campo ausente | GREEN |
 | FORM-08 | Limites IP/hora/dia e fail-closed | rate-limit.test.mjs; submit.test.mjs; deps.ts | GREEN em testes com dependências injetadas; provisionamento histórico 05-11 |
@@ -62,10 +62,10 @@ Build novo deve preceder gates que leem `.vercel/output`. Em PowerShell, executa
 | 05-01 | Constantes, normalização, escape e WhatsApp; testes puros |
 | 05-02 | Dependências pinadas, glob de teste e segredos server-only em Astro |
 | 05-03 | Base/retenção internas verificadas; página e revisão publicada substituídas por D-29 |
-| 05-04 | Zod e mail com testes; FORM-05 pendente no comportamento do cliente |
+| 05-04 | Zod e mail com testes; concordância cliente/servidor mantida |
 | 05-05 | Guardas, HMAC e três camadas de limites; testes com fakes |
 | 05-06 | Destinos estáticos e deep-links; gates de páginas |
-| 05-07 | Markup, canal, enhancer e altura; conflito FORM-05 identificado |
+| 05-07 | Markup, canal, enhancer e altura; conflito FORM-05 corrigido conforme REQUIREMENTS |
 | 05-08 | Runbooks, retenção e declaração SEC-08 |
 | 05-09 | Handler e dependências; testes e exatamente uma Function no build |
 | 05-10 | Gates de formulário/altura e ligação em ci.yml |
@@ -82,16 +82,16 @@ Build novo deve preceder gates que leem `.vercel/output`. Em PowerShell, executa
 - [x] Gate de segurança verifica uma Function, segredos e ausência de console no servidor.
 - [x] Não há necessidade de criar testes que somente espelhem a implementação nesta tarefa documental.
 
-## Limites e próximos ajustes
+## Limites e fechamento da regressão
 
-O gate validacaoInline atual espera que formulário inválido não faça POST e que o erro seja limpo durante input após tentativa. Ele comprova o comportamento implementado, não a conformidade literal com FORM-05. Reconciliar o requisito e ajustar o gate em conjunto com eventual correção do enhancer.
+O gate validacaoInline agora exige POST mesmo com valores inválidos, 400 vindo do servidor, manutenção de aria-invalid enquanto digita, limpeza no blur e reenvio válido. O comportamento anterior falhou por POST ausente e revalidação por input nos dois campos testados (nome e WhatsApp). Não foi criada uma suíte paralela: a verificação existente foi corrigida para exigir o requisito.
 
 Nenhum teste desta tarefa enviou leads ou e-mails reais. Disponibilidade e TTL efetivo do Redis, configuração WAF e DNS não foram reatestados. Os checkpoints históricos continuam como evidência identificada por data, não como testes atuais.
 
 A meta histórica de feedback completo em menos de 120 s não foi certificada: o build local atual levou cerca de três minutos. Não foram usados comandos em watch mode.
 
-**Fechamento:** parcial; FORM-05 pendente. Estado detalhado e resultados em 05-VERIFICATION.md. Nenhuma nova aprovação humana foi presumida.
+**Fechamento:** cobertura completa no escopo dos planos; FORM-05 corrigido. Estado detalhado e resultados em 05-VERIFICATION.md. Nenhuma nova aprovação humana foi presumida. Conformidade Nyquist descreve cobertura de verificação, não reatesta estado externo nem elimina riscos aceitos.
 
 ## Resultados locais em 2026-10-21
 
-Check: zero erros, zero warnings e um hint (76 arquivos). Testes: 160 PASS. Build: exit 0. Formulário: 16 PASS. Altura: 6 PASS. Segurança: 11 PASS e dois SKIP de preview/Lighthouse. JS: 9.177 bytes gzip. Os gates de artefatos foram executados somente após o build e a finalização de headers concluírem. Os skips e o uso de API mockada estão explicitados no relatório.
+Após correção: check com zero erros/warnings e um hint (76 arquivos). Testes: 160 PASS. Biome dos dois arquivos alterados: PASS. Build: exit 0. Formulário: 16 PASS. Altura: 6 PASS. Segurança: 11 PASS e dois SKIP de preview/Lighthouse. JS: 9.146 bytes gzip. Gates de artefatos executados somente após build/finalização de headers. Skips e API mockada explicitados no relatório. A meta de latência <120 s é desvio local registrado, sem alterar a cobertura funcional dos planos.
