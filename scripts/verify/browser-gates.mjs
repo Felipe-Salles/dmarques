@@ -1,7 +1,7 @@
 import { existsSync } from 'node:fs';
 import process from 'node:process';
 import { attachCspRecorder } from './csp-recorder.mjs';
-import { STATIC_DIR, launchBrowser, startStaticServer } from './static-server.mjs';
+import { launchBrowser, STATIC_DIR, startStaticServer } from './static-server.mjs';
 
 async function scrollThrough(page, step = 400, wait = 120) {
   const height = await page.evaluate(() => document.documentElement.scrollHeight);

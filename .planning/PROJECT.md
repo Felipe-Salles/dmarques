@@ -54,6 +54,14 @@ um orçamento — com um site que carrega rápido e nunca sai do ar.
   exigindo ≥0.95 nas quatro categorias (passou). Rich Results 0 erros no código e na
   URL real, card do LinkedIn e prévia do WhatsApp aprovados por Felipe. PR #6.
   SEO-01, SEO-03, SEO-04, SEO-05, SEO-06, SEO-08 validados.
+- **Fase 7 (Cabeçalhos de segurança e CSP) — 2026-10-19.** Conjunto de cabeçalhos
+  não-CSP no `vercel.json` (HSTS 2 anos com includeSubDomains/preload, nosniff,
+  X-Frame-Options DENY, Referrer-Policy, Permissions-Policy, COOP, CORP) e CSP por
+  hash entregue como header (sem unsafe-*), validada em Report-Only com zero
+  violações e promovida a enforcing. Sourcemaps desligados, página 500 genérica,
+  catch externo na Function, gates `header-gates`, `csp` em browser/form-gates e
+  verificações 6 e 9-13 no `security-check.sh`. Produção verificada (PR #9),
+  securityheaders.com A+, preload do HSTS adiado. SEC-01..06 e SEC-10 validados.
 
 ### Active
 
@@ -78,10 +86,10 @@ um orçamento — com um site que carrega rápido e nunca sai do ar.
 - [ ] Conformidade LGPD: coleta mínima; política e aviso detalhado removidos (D-29),
   resta só a frase curta de uso de dados sob o botão
 - [ ] Seção de portfólio / cases (pode iniciar com 1–2 exemplos ou placeholders)
-- [ ] Segurança revisada a cada fase: Content-Security-Policy e cabeçalhos de
+- [x] Segurança revisada a cada fase: Content-Security-Policy e cabeçalhos de
   segurança (HSTS, X-Content-Type-Options, Referrer-Policy, Permissions-Policy),
   superfície de dependências mínima, sem segredos no cliente, deploy imutável na
-  Vercel
+  Vercel (Fase 7)
 
 ### Out of Scope
 
@@ -182,4 +190,4 @@ de rate-limiting, mitigação de DDoS/flood de requisições e Turnstile (captch
 formulário de orçamento.
 
 ---
-*Last updated: 2026-10-17 after Phase 6 completion*
+*Last updated: 2026-10-19 after Phase 7 completion*

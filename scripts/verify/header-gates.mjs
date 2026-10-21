@@ -101,6 +101,9 @@ async function collect(base) {
 
 function perPath(results, fn) {
   const failures = [];
+  if (results.length === 0 || results.every((r) => r.skip)) {
+    return ['nenhuma resposta avaliada (todas bloqueadas pelo WAF ou vazias)'];
+  }
   for (const r of results) {
     if (r.skip) continue;
     for (const failure of fn(r)) failures.push(`${r.path}: ${failure}`);
@@ -139,7 +142,7 @@ const checks = {
       home.headers['content-security-policy'] ??
       home.headers['content-security-policy-report-only'];
     const failures = [];
-    if (!csp || !csp.includes(hash)) failures.push('hash do js-ready ausente na CSP de /');
+    if (!csp?.includes(hash)) failures.push('hash do js-ready ausente na CSP de /');
     if (!live) {
       const html = readFileSync(join(STATIC_DIR, 'index.html'), 'utf8');
       if (!html.includes(JS_READY)) failures.push('texto do js-ready ausente em index.html');
@@ -148,6 +151,7 @@ const checks = {
   },
   artefatos: async () => {
     if (live) return [];
+    if (!existsSync(STATIC_DIR)) return ['build ausente'];
     const failures = [];
     const functionsDir = join(STATIC_DIR, '..', 'functions');
     const maps = [...walk(STATIC_DIR), ...walk(functionsDir)].filter((f) => f.endsWith('.map'));
