@@ -1,89 +1,86 @@
 ---
-phase: 6
+phase: 06
 slug: seo-metadata-structured-data
-status: draft
+status: complete
 nyquist_compliant: true
-wave_0_complete: false
+wave_0_complete: true
 created: 2026-10-17
+updated: 2026-10-21
 ---
 
-# Phase 6 — Validation Strategy
+# Fase 06 - Validacao Nyquist reconciliada
 
-> Per-phase validation contract for feedback sampling during execution.
+## Escopo vigente e historico
 
----
+seo.test.mjs e os dez gates existem, foram executados e estao no CI. Preview noindex usa auditorias individuais; categoria SEO >=95 de producao esta em lighthouserc.production.json e workflow correspondente. SEO-07/FAQPage foi descartado por D-02. Rich Results, imagem e previews sociais sao checkpoints historicos aprovados em 06-07/08 e VERIFICATION; nao foram simulados como novos aceites. OG/captura e copy evoluiram no PR #8 e foram vistos no polish atual. P06-003 foi fechado pela Fase 07; P06-002/observabilidade permanece divida.
 
-## Test Infrastructure
+## Infraestrutura e evidencias compartilhadas
 
-| Property | Value |
-|----------|-------|
-| **Framework** | `node:test` (`pnpm test` = `node --test "src/**/*.test.mjs"`) + dist-level scripts under `scripts/verify/` |
-| **Config file** | none (package.json scripts) |
-| **Quick run command** | `pnpm test` |
-| **Full suite command** | `pnpm build && node scripts/verify/seo-gates.mjs && pnpm verify:gates && bash scripts/security-check.sh` |
-| **Estimated runtime** | ~90 seconds |
+Estado A do workflow: VALIDATION existia e a fase tem PLAN/SUMMARY e VERIFICATION. Foram lidos os planos e resumos para mapear tarefas, IDs, arquivos e comandos; infraestrutura atual e estados historicos foram cruzados. Nao foram encontradas lacunas novas de comportamento sem verificacao: os itens aparentes eram registros pendentes, checkpoints ja resolvidos ou componentes intencionalmente substituidos. Aplicado o caminho do passo 3 diretamente ao passo 6, sem gerar testes redundantes nem modificar implementacao.
 
----
+Comandos atuais: `pnpm check`, `pnpm test`, `pnpm build`, `node scripts/verify/aurora-gates.mjs`, `node scripts/verify/browser-gates.mjs`, `node scripts/verify/form-gates.mjs`, `node scripts/verify/seo-gates.mjs`, `node scripts/verify/header-gates.mjs`, `bash scripts/security-check.sh --ci` e `bash scripts/js-weight-check.sh .vercel/output/static`. O Bash local e `C:/Program Files/Git/bin/bash.exe`.
 
-## Sampling Rate
+Na implementacao 77a4716/HEAD documental 0941164: check/build aprovados, Aurora 13/13, browser 10/10, form mockado 16/16, SEO 10/10, headers offline 6/6, seguranca 11 PASS/2 SKIP e JS 9.146 B gzip. CI verify/dependency-review/LHCI/headers-preview do PR #13 passou em 0941164: runs 39677407399, 39677452014 e 39677452042. A suite de modulos roda pelo CI; nao foi repetida por alteracao apenas documental.
 
-- **After every task commit:** Run `pnpm test`
-- **After every plan wave:** Run `pnpm build && node scripts/verify/seo-gates.mjs`
-- **Before `/gsd:verify-work`:** Full suite must be green, Rich Results Test manual pass, production LHCI >= 0.95, SEC-07 run with no open High
-- **Max feedback latency:** 90 seconds
+Headers e Lighthouse de producao atuais nao foram sondados de novo. A evidencia historica de producao fica em 07-VERIFICATION e runs ali identificados; preview noindex usa auditorias SEO individuais. O audit passa com limiar high e exclusoes antigas; nao significa ausencia de advisories. INP de campo, estado de conta e checkpoints manuais nao sao certificados por mocks ou TBT.
 
----
 
-## Per-Task Verification Map
+## Requisito para verificacao
 
-| Task ID | Plan | Wave | Requirement | Threat Ref | Secure Behavior | Test Type | Automated Command | File Exists | Status |
-|---------|------|------|-------------|------------|-----------------|-----------|-------------------|-------------|--------|
-| 06-01-T1 | 06-01 | 1 | SEO-06, SEO-08 | T-06-01 | tests lock JSON-LD shape and escaping | unit (RED) | `node --test src/lib/seo.test.mjs` (expected to fail) | created by task | ⬜ pending |
-| 06-01-T2 | 06-01 | 1 | SEO-01, SEO-06, SEO-08 | T-06-01, T-06-03 | JSON.stringify + `<` escape; NAP single source | unit | `pnpm test` | ❌ W0 | ⬜ pending |
-| 06-02-T1 | 06-02 | 1 | SEO-01, SEO-03, SEO-05 | — | gate reads built HTML only | dist | `node scripts/verify/seo-gates.mjs --list` | ❌ W0 | ⬜ pending |
-| 06-02-T2 | 06-02 | 1 | SEO-03, SEO-04, SEO-06, SEO-08 | T-06-04, T-06-05, T-06-06 | sitemap lists only `/`; no raw `<` in ld+json | dist | `node scripts/verify/seo-gates.mjs --list` | ❌ W0 | ⬜ pending |
-| 06-03-T1 | 06-03 | 1 | SEO-01, SEO-04, SEO-05 | T-06-08 | per-audit SEO on preview, category on production | config | node assertion on `lighthouserc*.json` | ✅ | ⬜ pending |
-| 06-03-T2 | 06-03 | 1 | SEO-01 | T-06-07 | production job uses no secret | config | node string check on `lighthouse.yml` | ✅ | ⬜ pending |
-| 06-04-T1..T3 | 06-04 | 1 | SEO-04 | T-06-SC, T-06-09, T-06-10 | human legitimacy check before install; sitemap excludes noindex pages | dist | `pnpm build` + sitemap/robots node check + `pnpm audit --audit-level=high` | ❌ W0 | ⬜ pending |
-| 06-05-T1..T2 | 06-05 | 2 | SEO-03 | T-06-11, T-06-13 | no third-party fetch; image < 300 KB | file | sharp metadata check on `public/og-image.jpg` | ❌ W0 | ⬜ pending |
-| 06-06-T1 | 06-06 | 3 | SEO-01, SEO-03, SEO-05, SEO-06 | T-06-14, T-06-15 | canonical from `Astro.site`; escaped ld+json | dist | `node scripts/verify/seo-gates.mjs --check=head-home,og-twitter,icones,json-ld` | ❌ W0 | ⬜ pending |
-| 06-06-T2 | 06-06 | 3 | SEO-01, SEO-08 | T-06-17 | NAP parity footer vs JSON-LD | dist | `seo-gates.mjs --check=head-home,secundarias,og-twitter,icones,json-ld,nap,marca` + aurora-gates + `pnpm test` | ❌ W0 | ⬜ pending |
-| 06-07-T1 | 06-07 | 4 | SEO-01, SEO-03, SEO-04, SEO-05, SEO-06, SEO-08 | T-06-18 | seo-gates enforced in CI | dist + CI | full suite incl. `node scripts/verify/seo-gates.mjs` (10 PASS) | ❌ W0 | ⬜ pending |
-| 06-07-T2 | 06-07 | 4 | SEO-03, SEO-06 | T-06-19 | — | manual | Rich Results Test (code snippet) + share image review | manual | ⬜ pending |
-| 06-08-T1..T3 | 06-08 | 5 | SEO-03, SEO-04, SEO-06 | T-06-20, T-06-21, T-06-22 | merge only after human approval; SEC-07 run | production + manual | curl probes + `lhci-production` + Rich Results on URL | manual | ⬜ pending |
+| ID | Estado | Teste / evidencia |
+|---|---|---|
+| SEO-01 | COVERED | seo-gates head-home/secundarias; seo.test, canonical e meta. |
+| SEO-03 | COVERED | OG/Twitter e imagem 1200x630 <300 KB; seo-gates, visual atual e previews sociais historicos aprovados. |
+| SEO-04 | COVERED | Sitemap/robots, exclusao de noindex e integracao no build; seo-gates. |
+| SEO-05 | COVERED | Icones/apple-touch/theme-color Aurora; seo-gates icones. |
+| SEO-06 | COVERED | seo.test e json-ld gate, escape e identidade; Rich Results historico em 06-07/08 aprovado pelo Felipe. |
+| SEO-07 | SUPERSEDED/EXCLUDED | Decisao expressa em REQUIREMENTS; nao e teste faltante |
+| SEO-08 | COVERED | Identidade/NAP em fonte unica e parity gate nap; seo.test. |
 
-*Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
+## Mapa dos planos e tarefas
 
-*Task IDs/Plan/Wave filled by planner 2026-10-17.*
+Tn indica ordem do task no XML do plano; o nome original e preservado. A coluna IDs identifica o contrato do PLAN; a matriz acima individualiza a evidencia de cada requisito. Checkpoints nao sao reescritos como testes automaticos novos.
 
----
+| Tarefa | Plano | Onda | IDs do PLAN | Comportamento / nome original | Estado |
+|---|---|---|---|---|---|
+| 06-01-T1 | 06-01-PLAN | 1 | SEO-01, SEO-06, SEO-08 | Task 1: Write failing unit tests for business data and JSON-LD | COVERED: gate atual + evidencia SUMMARY |
+| 06-01-T2 | 06-01-PLAN | 1 | SEO-01, SEO-06, SEO-08 | Task 2: Implement business.ts and json-ld.ts until tests pass | COVERED: gate atual + evidencia SUMMARY |
+| 06-02-T1 | 06-02-PLAN | 1 | SEO-01, SEO-03, SEO-04, SEO-05, SEO-06, SEO-08 | Task 1: Build seo-gates.mjs skeleton, helpers and head/meta checks | COVERED: gate atual + evidencia SUMMARY |
+| 06-02-T2 | 06-02-PLAN | 1 | SEO-01, SEO-03, SEO-04, SEO-05, SEO-06, SEO-08 | Task 2: Add og-image, sitemap, robots, json-ld and nap checks | COVERED: gate atual + evidencia SUMMARY |
+| 06-03-T1 | 06-03-PLAN | 1 | SEO-01, SEO-04, SEO-05 | Task 1: Preview config with per-audit SEO assertions and production config | COVERED: gate atual + evidencia SUMMARY |
+| 06-03-T2 | 06-03-PLAN | 1 | SEO-01, SEO-04, SEO-05 | Task 2: Add lhci-production job to the Lighthouse workflow | COVERED: gate atual + evidencia SUMMARY |
+| 06-04-T1 | 06-04-PLAN | 1 | SEO-04 | Task 1: Collect legitimacy evidence for @astrojs/sitemap (no install) | COVERED: gate atual + evidencia SUMMARY |
+| 06-04-T2 | 06-04-PLAN | 1 | SEO-04 | Task 2: Felipe confirms @astrojs/sitemap legitimacy before install | HISTORICAL: checkpoint registrado |
+| 06-04-T3 | 06-04-PLAN | 1 | SEO-04 | Task 3: Install, configure sitemap filter and add robots.txt | COVERED: gate atual + evidencia SUMMARY |
+| 06-05-T1 | 06-05-PLAN | 2 | SEO-03 | Task 1: Write scripts/generate-og.mjs and the og:generate script | COVERED: gate atual + evidencia SUMMARY |
+| 06-05-T2 | 06-05-PLAN | 2 | SEO-03 | Task 2: Generate public/og-image.jpg and validate it | COVERED: gate atual + evidencia SUMMARY |
+| 06-06-T1 | 06-06-PLAN | 3 | SEO-01, SEO-03, SEO-05, SEO-06, SEO-08 | Task 1: Extend BaseLayout head and pass home metadata + JSON-LD | COVERED: gate atual + evidencia SUMMARY |
+| 06-06-T2 | 06-06-PLAN | 3 | SEO-01, SEO-03, SEO-05, SEO-06, SEO-08 | Task 2: Footer and contact NAP from business.ts; secondary page titles | COVERED: gate atual + evidencia SUMMARY |
+| 06-07-T1 | 06-07-PLAN | 4 | SEO-01, SEO-03, SEO-04, SEO-05, SEO-06, SEO-08 | Task 1: Wire seo-gates into package.json and CI, note official name, run full suite | COVERED: gate atual + evidencia SUMMARY |
+| 06-07-T2 | 06-07-PLAN | 4 | SEO-01, SEO-03, SEO-04, SEO-05, SEO-06, SEO-08 | Task 2: Pre-merge validation of JSON-LD and share image | HISTORICAL: checkpoint registrado |
+| 06-08-T1 | 06-08-PLAN | 5 | SEO-03, SEO-04, SEO-06 | Task 1: Open the phase PR if needed, then Felipe approves merging it to production | HISTORICAL: checkpoint registrado |
+| 06-08-T2 | 06-08-PLAN | 5 | SEO-03, SEO-04, SEO-06 | Task 2: Production checks, production Lighthouse and SEC-07 run | COVERED: gate atual + evidencia SUMMARY |
+| 06-08-T3 | 06-08-PLAN | 5 | SEO-03, SEO-04, SEO-06 | Task 3: Rich Results on production URL and social card render | HISTORICAL: checkpoint registrado |
 
-## Wave 0 Requirements
+## Onda 0 e verificacoes manuais
 
-- [ ] `src/lib/seo.test.mjs` with `src/lib/business.ts` / `json-ld.ts` — SEO-06, SEO-08
-- [ ] `scripts/verify/seo-gates.mjs` — SEO-01, SEO-03, SEO-04, SEO-05, SEO-08
-- [ ] `lighthouserc.production.json` and workflow job — Lighthouse SEO gate
-- [ ] `public/robots.txt`, `public/og-image.jpg` (generated)
+- [x] Infraestrutura exigida existe ou foi substituida por decisao identificada acima.
+- [x] Testes/gates executados depois do build finalizado.
+- [x] Checkpoints manuais historicos tem fonte identificada; nenhum aceite novo foi atribuido ao Felipe.
+- [x] Comandos sem watch mode; nao houve alteracao de implementacao nesta reconciliacao.
 
----
+As metas antigas de latencia local (<5/25/30/90/120 s) nao foram certificadas: build atual levou 3m13s e CI verify 2m5s. Registrar como desvio de feedback, sem declarar cumprimento por trocar uma flag. Conformidade Nyquist aqui descreve cobertura/rastreabilidade do escopo dos planos e checkpoints, nao elimina divida operacional, substitui revisao humana ou promete ausencia de falhas.
 
-## Manual-Only Verifications
+## Validation Audit 2026-10-21
 
-| Behavior | Requirement | Why Manual | Test Instructions |
-|----------|-------------|------------|-------------------|
-| Google Rich Results Test passes | SEO-06 | no public API | Run https://search.google.com/test/rich-results against https://agenciadmarques.com.br/ after deploy |
-| Share card renders on WhatsApp/LinkedIn | SEO-03 | third-party crawlers | Paste production URL in WhatsApp chat and LinkedIn Post Inspector |
-| SEC-07 checklist run | SEC-07 | judgment items | `bash scripts/security-check.sh` + write `.planning/security/runs/phase-06.md` |
+| Metrica | Quantidade |
+|---|---|
+| PLANs lidos | 8 |
+| Tarefas mapeadas | 18 |
+| IDs de origem | 7 |
+| IDs ativos cobertos | 6 |
+| Lacunas novas de verificacao | 0 |
+| Testes permanentes novos | 0 |
+| Registros de estrategia corrigidos | 1 |
 
----
-
-## Validation Sign-Off
-
-- [x] All tasks have `<automated>` verify or Wave 0 dependencies
-- [x] Sampling continuity: no 3 consecutive tasks without automated verify
-- [x] Wave 0 covers all MISSING references
-- [x] No watch-mode flags
-- [ ] Feedback latency < 90s
-- [x] `nyquist_compliant: true` set in frontmatter
-
-**Approval:** pending
+**Fechamento:** cobertura reconciliada. Nao e nova assinatura humana nem reatestado de contas/DNS/servicos. A auditoria do milestone preserva todos esses limites.

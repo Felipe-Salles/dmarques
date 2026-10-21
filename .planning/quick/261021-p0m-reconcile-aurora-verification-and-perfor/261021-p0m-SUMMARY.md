@@ -11,7 +11,7 @@ requirements-completed: [AUR-01, AUR-02, AUR-03, AUR-04, AUR-05, AUR-06, AUR-07,
 
 # Fechamento Aurora
 
-Reverificação dos 18 requisitos e das sete pendências antigas, executando Impeccable polish no sistema vigente. A fase passa a passed; a auditoria passa a 87/87 requisitos ativos e 8/8 fases verificadas, com tech_debt pelos registros Nyquist restantes e dívidas aceitas.
+Reverificação dos 18 requisitos e das sete pendências antigas, executando Impeccable polish no sistema vigente. A fase passa a passed; a auditoria passa a 94/94 requisitos ativos e 8/8 fases verificadas, com tech_debt pelos registros Nyquist restantes e dívidas aceitas.
 
 ## Entregas
 
@@ -46,3 +46,5 @@ O relatório não atribui aprovação visual nova ao Felipe. Foram preservadas d
 ## Continuidade
 
 Reconciliar Nyquist de 01/02/03/04/06, repetir auditoria final e preparar encerramento. PR #13 atualizado; merge continua exigindo aprovação explícita do Felipe.
+
+Corre??o posterior de contagem (2026-10-21): sete IDs A11Y omitidos pela extra??o anterior foram restaurados; 101 totais e 94 ativos. As contagens deste resumo foram corrigidas; o resultado funcional da etapa permanece o mesmo.

@@ -19,7 +19,7 @@ Criado 05-VERIFICATION.md com os 22 IDs da fase: 19 satisfeitos, um insatisfeito
 - FORM-05 foi desmarcado: o plano 05-07 e o código exigem revalidação no input após erro e bloqueio de requisição inválida, em conflito com REQUIREMENTS. O comportamento e os testes não foram alterados.
 - LGPD-07 foi marcado como satisfeito no escopo interno já aprovado. Política e aviso detalhado continuam excluídos.
 - VALIDATION tem onda 0 real, matriz e comandos atuais, preservando nyquist_compliant false enquanto houver o conflito.
-- Contagem real de requisitos corrigida: 94 IDs totais, sete excluídos, 87 ativos. Auditoria atualizada de 49/87 para 68/87 satisfeitos, sem alterar pendências Aurora.
+- Contagem real de requisitos corrigida: 94 IDs totais, sete excluídos, 87 ativos. Auditoria atualizada de 56/94 para 75/94 satisfeitos, sem alterar pendências Aurora.
 - STATE passa a refletir auditoria com lacunas, preservando o histórico dos oito conjuntos de planos executados.
 
 ## Verificação atual
@@ -33,7 +33,7 @@ Criado 05-VERIFICATION.md com os 22 IDs da fase: 19 satisfeitos, um insatisfeito
 | form-card-height | 6 PASS; 752,8 px de card / 756 px de limite |
 | security-check --ci | 11 PASS, zero FAIL, dois SKIP (preview/Lighthouse) |
 | js-weight-check | 9.177 bytes gzip / limite de 20.480 |
-| Consistência documental | 94 IDs, 22 linhas da Fase 05 e matriz 68/87 conferidos por script temporário |
+| Consistência documental | 101 IDs, 22 linhas da Fase 05 e matriz 75/94 conferidos por script temporário |
 
 Nenhum envio real ou alteração de serviços externos. DNS/WAF/mail-tester, Redis e aceite de Felipe são evidências históricas, não novas sondas. Gates executados após build. Limiar high/allowlist do audit preservados, sem certificar ausência de vulnerabilidades.
 
@@ -44,3 +44,5 @@ Nenhuma alteração funcional. Reconciliadas também a contagem incorreta de IDs
 ## Continuidade
 
 Corrigir FORM-05 via gsd-debug ou registrar decisão explícita de revisão do requisito. Depois reconciliar os aceites/polish de 04.1 e Nyquist das demais fases; repetir a auditoria antes de arquivar. PR #13 recebe esta tarefa; merge depende de Felipe.
+
+Corre??o posterior de contagem (2026-10-21): sete IDs A11Y omitidos pela extra??o anterior foram restaurados; 101 totais e 94 ativos. As contagens deste resumo foram corrigidas; o resultado funcional da etapa permanece o mesmo.

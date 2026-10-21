@@ -52,4 +52,6 @@ limits: API mockada no navegador; nenhum e-mail/lead real enviado. Preview/Light
 
 ## Continuidade
 
-FORM-05 concluído, Fase 05 passou 20/20 e milestone passou a 69/87 requisitos ativos, 7/8 fases aprovadas. Cobertura Nyquist da Fase 05 reconciliada; latência completa local acima de 120 s registrada como desvio. Restam reconciliação Aurora e registros Nyquist das fases 01/02/03/04/06.
+FORM-05 concluído, Fase 05 passou 20/20 e milestone passou a 76/94 requisitos ativos, 7/8 fases aprovadas. Cobertura Nyquist da Fase 05 reconciliada; latência completa local acima de 120 s registrada como desvio. Restam reconciliação Aurora e registros Nyquist das fases 01/02/03/04/06.
+
+Corre??o posterior de contagem: a extra??o omitia sete A11Y; o resultado desta etapa era 76/94, preservando seu contexto hist?rico anterior ? reconcilia??o Aurora.

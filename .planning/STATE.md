@@ -3,7 +3,7 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in_progress
-stopped_at: Aurora reconciliada e polish concluído; registros Nyquist restantes pendentes
+stopped_at: Auditoria final reconciliada; 94/94 requisitos e Nyquist 8/8; revisar PR #13
 last_updated: 2026-10-21
 last_activity: 2026-10-21
 progress:
@@ -21,7 +21,7 @@ progress:
 See: .planning/PROJECT.md (updated 2026-10-15)
 
 **Core value:** Um visitante entende em segundos o que a Dmarques faz, confia na agência e pede um orçamento — com um site que carrega rápido e nunca sai do ar.
-**Current focus:** Auditoria v1.0 com tech_debt: 87/87 requisitos e 8/8 fases verificadas; reconciliar registros Nyquist restantes antes de encerrar
+**Current focus:** Auditoria v1.0 com tech_debt: 94/94 requisitos, 8/8 fases verificadas e Nyquist 8/8; revisar PR #13 e dividas
 
 ## Current Position
 
@@ -30,7 +30,7 @@ Plan: Planos executados; auditoria do milestone em andamento
 Status: Auditoria tech_debt; não arquivado
 Last activity: 2026-10-21 - Completed quick task 261021-p0m: Aurora 18/18, polish real e menu mobile legível (77a4716)
 
-Progress: [██████████] 100% dos planos executados; 87/87 requisitos ativos satisfeitos e 8/8 fases verificadas na auditoria
+Progress: [██████████] 100% dos planos executados; 94/94 requisitos ativos satisfeitos e 8/8 fases verificadas na auditoria
 
 ## Performance Metrics
 
@@ -223,5 +223,5 @@ yet.
 ## Session Continuity
 
 Last session: 2026-10-21
-Stopped at: Quick 261021-p0m concluída; próximos registros Nyquist: 01/02/03/04/06; depois auditoria final do milestone
+Stopped at: Auditoria final reconciliada; revisar PR #13 e dividas; milestone nao arquivado
 Resume file: None

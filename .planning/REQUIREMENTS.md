@@ -436,10 +436,10 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | AUR-18 | Phase 04.1 | Complete |
 
 **Coverage:**
-- v1 requirements: 94 total (76 originais + 18 AUR da Fase 04.1), contados nos
+- v1 requirements: 101 total (83 originais + 18 AUR da Fase 04.1), contados nos
   IDs definidos e na tabela de rastreabilidade em 2026-10-21
-- Mapped to phases: 94 / 94 ✓
-- Escopo ativo: 87; sete removidos/substituídos (SEO-07, CONTENT-04,
+- Mapped to phases: 101 / 101 ✓
+- Escopo ativo: 94; sete removidos/substituídos (SEO-07, CONTENT-04,
   ANIM-03/04/05 e LGPD-01/02). LGPD-07 permanece ativo somente no escopo interno.
 - SEO-07 descartado; CONTENT-04, ANIM-03, ANIM-04 e ANIM-05 superseded pela Fase
   04.1 (D-02/D-12)
@@ -450,3 +450,5 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 ---
 *Requirements defined: 2026-09-05*
 *Last updated: 2026-10-21 after FORM-05 correction (server-authoritative submit and blur validation); LGPD-07 internal scope verified; requirement count corrected*
+
+Corre??o da auditoria (2026-10-21): a extra??o anterior omitiu A11Y-01..07. O padr?o correto inclui n?meros no prefixo: `[A-Z][A-Z0-9]*-\d+`. S?o 101 IDs, sete exclu?dos e 94 ativos.

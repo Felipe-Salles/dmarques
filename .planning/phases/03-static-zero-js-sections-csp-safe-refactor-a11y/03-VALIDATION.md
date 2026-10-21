@@ -1,85 +1,104 @@
 ---
-phase: 3
+phase: 03
 slug: static-zero-js-sections-csp-safe-refactor-a11y
-status: draft
-nyquist_compliant: false
-wave_0_complete: false
+status: complete
+nyquist_compliant: true
+wave_0_complete: true
 created: 2026-09-16
+updated: 2026-10-21
 ---
 
-# Phase 3 — Validation Strategy
+# Fase 03 - Validacao Nyquist reconciliada
 
-> Per-phase validation contract for feedback sampling during execution.
+## Escopo vigente e historico
 
----
+Hero Bleed, FAQ, CtaFinal, secao clara de diferenciais e politica sao escopos posteriormente substituidos por Aurora/D-29; nao criar regressao para exigir componentes aposentados. SITE/A11Y mantem os comportamentos semanticos, responsivos, estaticos e de teclado no sistema vigente. O solver de contraste era temporario por D-13, nao uma dependencia ausente a instalar. 03-09 transcreve aprovado e fecha design/SEC-07; a quick p0m recalcula contrastes de tokens atuais e exercita menu/skip e tres tamanhos. Sharp esta explicito e as imagens sao geradas no build. Nao afirmar teste humano de leitor de tela novo.
 
-## Test Infrastructure
+## Infraestrutura e evidencias compartilhadas
 
-| Property | Value |
-|----------|-------|
-| **Framework** | None (no Jest/Vitest/Playwright in this repo) — validation is gate-script + build-assertion based |
-| **Config file** | `.github/workflows/ci.yml` (orchestrates `astro check` → `pnpm build` → `pnpm audit` → `js-weight-check.sh` → `security-check.sh --ci`), `lighthouserc.json` |
-| **Quick run command** | `pnpm build && bash scripts/security-check.sh --ci` (skips the Lighthouse network round-trip; runs checks 1-5 locally) |
-| **Full suite command** | full `security-check.sh --ci` against a live `PREVIEW_URL` (checks 6-7, headers + Lighthouse) — requires a Vercel preview deployment |
-| **Estimated runtime** | ~30s quick / ~3-5min full (Lighthouse network round-trip) |
+Estado A do workflow: VALIDATION existia e a fase tem PLAN/SUMMARY e VERIFICATION. Foram lidos os planos e resumos para mapear tarefas, IDs, arquivos e comandos; infraestrutura atual e estados historicos foram cruzados. Nao foram encontradas lacunas novas de comportamento sem verificacao: os itens aparentes eram registros pendentes, checkpoints ja resolvidos ou componentes intencionalmente substituidos. Aplicado o caminho do passo 3 diretamente ao passo 6, sem gerar testes redundantes nem modificar implementacao.
 
----
+Comandos atuais: `pnpm check`, `pnpm test`, `pnpm build`, `node scripts/verify/aurora-gates.mjs`, `node scripts/verify/browser-gates.mjs`, `node scripts/verify/form-gates.mjs`, `node scripts/verify/seo-gates.mjs`, `node scripts/verify/header-gates.mjs`, `bash scripts/security-check.sh --ci` e `bash scripts/js-weight-check.sh .vercel/output/static`. O Bash local e `C:/Program Files/Git/bin/bash.exe`.
 
-## Sampling Rate
+Na implementacao 77a4716/HEAD documental 0941164: check/build aprovados, Aurora 13/13, browser 10/10, form mockado 16/16, SEO 10/10, headers offline 6/6, seguranca 11 PASS/2 SKIP e JS 9.146 B gzip. CI verify/dependency-review/LHCI/headers-preview do PR #13 passou em 0941164: runs 39677407399, 39677452014 e 39677452042. A suite de modulos roda pelo CI; nao foi repetida por alteracao apenas documental.
 
-- **After every task commit:** `pnpm build` (catches `MissingSharp`, broken markup, missing content-collection fields) + local `security-check.sh --ci` checks 1-5
-- **After every plan wave:** full `security-check.sh --ci` against the phase's Vercel preview URL (checks 6-7: header baseline + Lighthouse gate)
-- **Before `/gsd:verify-work`:** Lighthouse mobile ≥95 all four categories on the real preview (PERF-01); manual contrast-solver run confirming every changed token clears its target ratio; manual `curl -I` 404 check; manual keyboard-only nav pass
-- **Max feedback latency:** ~30s (build-based checks after each task)
+Headers e Lighthouse de producao atuais nao foram sondados de novo. A evidencia historica de producao fica em 07-VERIFICATION e runs ali identificados; preview noindex usa auditorias SEO individuais. O audit passa com limiar high e exclusoes antigas; nao significa ausencia de advisories. INP de campo, estado de conta e checkpoints manuais nao sao certificados por mocks ou TBT.
 
----
 
-## Per-Task Verification Map
+## Requisito para verificacao
 
-| Task ID | Plan | Wave | Requirement | Threat Ref | Secure Behavior | Test Type | Automated Command | File Exists | Status |
-|---------|------|------|-------------|------------|-----------------|-----------|-------------------|-------------|--------|
-| 03-00-01 | 00 | 0 | (prereq) | — | N/A | build | `pnpm build` (must fail loudly with MissingSharp BEFORE this task, pass AFTER) | ✅ exists | ⬜ pending |
-| 03-XX-XX | — | — | SITE-04 | — | No `style=""` anywhere in `src/` | grep-gate | `bash scripts/security-check.sh --ci` (check 2) | ✅ exists | ⬜ pending |
-| 03-XX-XX | — | — | SITE-09 / PERF-05 | — | Images processed at build only, AVIF/WebP present | build assertion | `pnpm build` + manual inspect of `.vercel/output/static/_astro/*.avif`/`*.webp` | ✅ build gate exists; manual inspection needed | ⬜ pending |
-| 03-XX-XX | — | — | A11Y-06 | — | WCAG AA contrast (4.5:1 body / 3:1 large text) | computed, not automated | Contrast-solver script run against final token values before commit | ❌ Wave 0 gap | ⬜ pending |
-| 03-XX-XX | — | — | A11Y-03 | — | Focus ring ≥3:1 on dark and light sections | computed, not automated | Same contrast-solver script, run against composited `--focus-ring` value | ❌ Wave 0 gap | ⬜ pending |
-| 03-XX-XX | — | — | SITE-08 | — | Branded 404 actually served by Vercel (not a generic host 404) | manual/live check | `curl -I https://<preview>/this-does-not-exist` after deploy | ❌ Wave 0 gap | ⬜ pending |
-| 03-XX-XX | — | — | SITE-06 / A11Y-04 | — | Mobile nav keyboard-operable, no focus trap | manual | Tab-through test with keyboard only, no mouse | ❌ Wave 0 gap (inherently manual) | ⬜ pending |
+| ID | Estado | Teste / evidencia |
+|---|---|---|
+| SITE-01 | COVERED | Composicao estatica segue Aurora apos D-02; structure gate e inspecao atual. |
+| SITE-02 | COVERED | Hero legado substituido pela Aurora e PR #8; HTML estatico, CTAs e fallback CSS verificados. |
+| SITE-03 | COVERED | Collections/getters abastecem secoes; build/schema e structure/cta/contact. |
+| SITE-04 | COVERED | Sem atributo style=; security-check 2, CSP e estilos externos. |
+| SITE-05 | COVERED | Anchors/scroll e reduced-motion; browser-gates reduced/reveal e nav atual. |
+| SITE-06 | COVERED | Menu nativo details, CTA externo e teclado; inspecao Enter/Tab/Enter e gate targets. |
+| SITE-07 | COVERED | Obrigado e destinos estaticos; politica removida por D-29. secondary e form-gates. |
+| SITE-08 | COVERED | 404 branded atual em build e csp/headers; Vercel historico em 03-09/07 e headers-preview atual. |
+| SITE-09 | COVERED | Sharp e imagens em build com dimensoes/formats; build atual e PERF-05. |
+| ANIM-02 | COVERED | HTML visivel sem JS; browser-gates nojs/fallback. |
+| ANIM-07 | COVERED | Hover/foco CSS e estados preservados; contratos source/gates e inspecao vigente. |
+| ANIM-08 | COVERED | Sem scroll-jacking/parallax/preloader; anchors nativas e reduced/fallback; hero fixado rejeitado no sketch. |
+| SEO-02 | COVERED | html lang pt-BR em BaseLayout e paginas construidas. |
+| A11Y-01 | COVERED | Skip primeiro foco visivel; hash #conteudo e proximo Tab no main, confirmado por browser e CLI na quick p0m. |
+| A11Y-02 | COVERED | Landmarks/H1/lang pt-BR e headings semanticos; render, snapshot e SEO/Lighthouse. |
+| A11Y-03 | COVERED | Focus-visible ciano; calculo atual 9,33:1 no menu, teclado e aceite historico 03-09. |
+| A11Y-04 | COVERED | Menu, CTA e canais/chips operaveis; inspecao teclado e form-gates. |
+| A11Y-05 | COVERED | Retrato carregado com alt real e decoracoes escondidas; inspecao e artefatos atuais. |
+| A11Y-06 | COVERED | Aceite historico D-13/03-09, paleta Aurora posterior e contraste calculado no polish; Lighthouse de acessibilidade verde. |
+| A11Y-07 | COVERED | browser-gates reduced/nojs/fallback; loops none sob reduce em tres tamanhos. |
+| PERF-05 | COVERED | Imagem em build Sharp, sem otimizacao de runtime; config e output aprovados. |
 
-*Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
-*Task IDs are placeholders — the planner assigns real plan/task numbers; this map's Requirement/Test Type/Command columns are the binding contract.*
+## Mapa dos planos e tarefas
 
----
+Tn indica ordem do task no XML do plano; o nome original e preservado. A coluna IDs identifica o contrato do PLAN; a matriz acima individualiza a evidencia de cada requisito. Checkpoints nao sao reescritos como testes automaticos novos.
 
-## Wave 0 Requirements
+| Tarefa | Plano | Onda | IDs do PLAN | Comportamento / nome original | Estado |
+|---|---|---|---|---|---|
+| 03-01-T1 | 03-01-PLAN | 1 | SITE-09, PERF-05 | Task 1: Promover sharp a devDependency explícita pinada | COVERED: gate atual + evidencia SUMMARY |
+| 03-01-T2 | 03-01-PLAN | 1 | SITE-09, PERF-05 | Task 2: Gerar os dois assets placeholder branded via Sharp | COVERED: gate atual + evidencia SUMMARY |
+| 03-02-T1 | 03-02-PLAN | 1 | A11Y-03, A11Y-06, A11Y-07, ANIM-02, ANIM-07, ANIM-08, SITE-05 | Task 1: Criar o verificador de contraste WCAG (scaffold Wave 0) | COVERED: gate atual + evidencia SUMMARY |
+| 03-02-T2 | 03-02-PLAN | 1 | A11Y-03, A11Y-06, A11Y-07, ANIM-02, ANIM-07, ANIM-08, SITE-05 | Task 2: Aplicar as correcoes de contraste e adicionar --nav-height em tokens.css | COVERED: gate atual + evidencia SUMMARY |
+| 03-02-T3 | 03-02-PLAN | 1 | A11Y-03, A11Y-06, A11Y-07, ANIM-02, ANIM-07, ANIM-08, SITE-05 | Task 3: Escrever os contratos globais em base.css (foco, scroll, reveal, keyframes) | COVERED: gate atual + evidencia SUMMARY |
+| 03-03-T1 | 03-03-PLAN | 2 | SITE-06, SITE-07, SITE-08, A11Y-01, A11Y-02, A11Y-04, A11Y-07, ANIM-07, SEO-02 | Task 1: SiteHeader.astro — skip link, nav desktop, disclosure mobile e CTA | COVERED: gate atual + evidencia SUMMARY |
+| 03-03-T2 | 03-03-PLAN | 2 | SITE-06, SITE-07, SITE-08, A11Y-01, A11Y-02, A11Y-04, A11Y-07, ANIM-07, SEO-02 | Task 2: As três rotas utilitárias (/obrigado, /politica-de-privacidade, /404) | COVERED: gate atual + evidencia SUMMARY |
+| 03-04-T1 | 03-04-PLAN | 2 | SITE-02, SITE-09, A11Y-02, A11Y-05, ANIM-02, ANIM-07, PERF-05 | Task 1: HeroBleed.astro — o Hero "03 Bleed" fiel, zero JS | COVERED: gate atual + evidencia SUMMARY |
+| 03-04-T2 | 03-04-PLAN | 2 | SITE-02, SITE-09, A11Y-02, A11Y-05, ANIM-02, ANIM-07, PERF-05 | Task 2: AboutSection.astro — retrato do fundador com alt real e bio | COVERED: gate atual + evidencia SUMMARY |
+| 03-05-T1 | 03-05-PLAN | 2 | SITE-01, SITE-03, SITE-04, A11Y-02, A11Y-06, ANIM-02, ANIM-07 | Task 1: ServicesSection.astro — 4 cards vindos da collection, com mapa de ícones | COVERED: gate atual + evidencia SUMMARY |
+| 03-05-T2 | 03-05-PLAN | 2 | SITE-01, SITE-03, SITE-04, A11Y-02, A11Y-06, ANIM-02, ANIM-07 | Task 2: ProcessSection.astro — 4 etapas numeradas vindas da collection | COVERED: gate atual + evidencia SUMMARY |
+| 03-06-T1 | 03-06-PLAN | 2 | SITE-01, SITE-03, SITE-04, A11Y-02, A11Y-06, ANIM-02, ANIM-07 | Task 1: DifferentiatorsSection.astro — grade clara com numeração derivada e contraste corrigido | COVERED: gate atual + evidencia SUMMARY |
+| 03-06-T2 | 03-06-PLAN | 2 | SITE-01, SITE-03, SITE-04, A11Y-02, A11Y-06, ANIM-02, ANIM-07 | Task 2: FaqSection.astro — 4 pares pergunta/resposta como fonte única | COVERED: gate atual + evidencia SUMMARY |
+| 03-07-T1 | 03-07-PLAN | 2 | SITE-01, SITE-03, SITE-04, A11Y-02, A11Y-04, A11Y-06, ANIM-02, ANIM-07 | Task 1: ContactSection.astro — coluna de argumentos + formulário estático de 5 campos | COVERED: gate atual + evidencia SUMMARY |
+| 03-07-T2 | 03-07-PLAN | 2 | SITE-01, SITE-03, SITE-04, A11Y-02, A11Y-04, A11Y-06, ANIM-02, ANIM-07 | Task 2: CtaFinal.astro — bloco de chamada final | COVERED: gate atual + evidencia SUMMARY |
+| 03-07-T3 | 03-07-PLAN | 2 | SITE-01, SITE-03, SITE-04, A11Y-02, A11Y-04, A11Y-06, ANIM-02, ANIM-07 | Task 3: SiteFooter.astro — navegação, contato, NAP e watermark decorativo | COVERED: gate atual + evidencia SUMMARY |
+| 03-08-T1 | 03-08-PLAN | 3 | SITE-01, SITE-03, SITE-04, SITE-05, A11Y-01, A11Y-02, A11Y-04, ANIM-02, ANIM-07, SEO-02, PERF-05 | Task 1: Compor index.astro com as 9 seções na ordem de SITE-01 | COVERED: gate atual + evidencia SUMMARY |
+| 03-08-T2 | 03-08-PLAN | 3 | SITE-01, SITE-03, SITE-04, SITE-05, A11Y-01, A11Y-02, A11Y-04, ANIM-02, ANIM-07, SEO-02, PERF-05 | Task 2: Medir a altura real do cabeçalho e fixar --nav-height | COVERED: gate atual + evidencia SUMMARY |
+| 03-08-T3 | 03-08-PLAN | 3 | SITE-01, SITE-03, SITE-04, SITE-05, A11Y-01, A11Y-02, A11Y-04, ANIM-02, ANIM-07, SEO-02, PERF-05 | Task 3: Rodar a bateria completa de gates locais da fase | COVERED: gate atual + evidencia SUMMARY |
+| 03-09-T1 | 03-09-PLAN | 4 | SITE-06, SITE-08, SITE-09, A11Y-01, A11Y-03, A11Y-04, A11Y-06, A11Y-07, ANIM-02, ANIM-07, PERF-05 | Task 1: Verificações automatizadas contra o preview real da fase | COVERED: gate atual + evidencia SUMMARY |
+| 03-09-T2 | 03-09-PLAN | 4 | SITE-06, SITE-08, SITE-09, A11Y-01, A11Y-03, A11Y-04, A11Y-06, A11Y-07, ANIM-02, ANIM-07, PERF-05 | Task 2: Escrever o arquivo de execução SEC-07 da fase 3 | COVERED: gate atual + evidencia SUMMARY |
+| 03-09-T3 | 03-09-PLAN | 4 | SITE-06, SITE-08, SITE-09, A11Y-01, A11Y-03, A11Y-04, A11Y-06, A11Y-07, ANIM-02, ANIM-07, PERF-05 | Task 3: Aceite do Felipe — teclado, sem JS, contraste e fidelidade visual | HISTORICAL: checkpoint registrado |
 
-- [ ] **`sharp` devDependency addition** — `pnpm add -D sharp@0.35.4` (pinned to the version already resolved transitively in `pnpm-lock.yaml`). Must land as the phase's first task: `astro:assets` `<Image>`/`<Picture>` throw `MissingSharp` under this repo's strict pnpm layout without it, and every later image-based task's build verification depends on this being fixed first.
-- [ ] **Contrast-solver script** (ad hoc, not committed to the repo per D-13 — "calculate and apply", no approval-table tooling required) — computes minimum alpha of white against `#0A0A12` / `#05050A` / the `#0A0A12→#0D1B2A` gradient for 4.5:1 (body) and 3:1 (large text/UI), and validates `#6C4CFF` / `--focus-ring` against the same targets. Run manually before committing any token change in `tokens.css`.
-- [ ] **Manual 404-on-Vercel verification step** — no existing script checks this; add as a documented manual step (`curl -I` against the phase's preview URL) rather than a CI gate, since it requires a live deployment.
+## Onda 0 e verificacoes manuais
 
-*Existing infrastructure (`security-check.sh`, `js-weight-check.sh`, `lighthouserc.json`, CI pipeline) covers checks 1-5 and the Lighthouse gate; the three items above are the only gaps.*
+- [x] Infraestrutura exigida existe ou foi substituida por decisao identificada acima.
+- [x] Testes/gates executados depois do build finalizado.
+- [x] Checkpoints manuais historicos tem fonte identificada; nenhum aceite novo foi atribuido ao Felipe.
+- [x] Comandos sem watch mode; nao houve alteracao de implementacao nesta reconciliacao.
 
----
+As metas antigas de latencia local (<5/25/30/90/120 s) nao foram certificadas: build atual levou 3m13s e CI verify 2m5s. Registrar como desvio de feedback, sem declarar cumprimento por trocar uma flag. Conformidade Nyquist aqui descreve cobertura/rastreabilidade do escopo dos planos e checkpoints, nao elimina divida operacional, substitui revisao humana ou promete ausencia de falhas.
 
-## Manual-Only Verifications
+## Validation Audit 2026-10-21
 
-| Behavior | Requirement | Why Manual | Test Instructions |
-|----------|-------------|------------|-------------------|
-| WCAG AA contrast on every recalculated color token | A11Y-06 | No automated contrast-ratio check exists in this repo's CI; contrast math must be verified against final hex/alpha values before commit | Run the contrast-solver script against `tokens.css` for every background × text-color pair changed in this phase; confirm ≥4.5:1 (body) / ≥3:1 (large text, UI, focus ring) |
-| Focus ring contrast ≥3:1 on dark AND light sections | A11Y-03 | Same reason — contrast math, not a build assertion | Same contrast-solver script, run against the composited `--focus-ring` value on both a dark-section and a light-section background |
-| Branded `/404` actually served by Vercel (not a platform default) | SITE-08 | Requires a live Vercel preview deployment; cannot be asserted at build time | `curl -I https://<preview-url>/this-does-not-exist` after deploy; confirm response body is the branded page, not a Vercel platform 404 |
-| Mobile nav keyboard operability, no focus trap | SITE-06 / A11Y-04 | Native `<details>` behavior is well-established but the specific implementation (icon `<summary>`, CTA outside the disclosure) should still be spot-checked by a human | Tab through the entire header (skip link → logo → nav disclosure → CTA) using keyboard only, no mouse; confirm focus never gets stuck and the disclosure opens/closes via Enter/Space on `<summary>` |
-| Whole page visible with JavaScript disabled | ANIM-02 | Requires disabling JS in a real browser, not a build assertion | Disable JavaScript in DevTools, reload the page, confirm every section is fully visible (no `opacity:0` elements stuck hidden) |
+| Metrica | Quantidade |
+|---|---|
+| PLANs lidos | 9 |
+| Tarefas mapeadas | 22 |
+| IDs de origem | 21 |
+| IDs ativos cobertos | 21 |
+| Lacunas novas de verificacao | 0 |
+| Testes permanentes novos | 0 |
+| Registros de estrategia corrigidos | 1 |
 
----
-
-## Validation Sign-Off
-
-- [ ] All tasks have `<automated>` verify or Wave 0 dependencies
-- [ ] Sampling continuity: no 3 consecutive tasks without automated verify
-- [ ] Wave 0 covers all MISSING references (sharp dependency, contrast-solver, manual 404 check)
-- [ ] No watch-mode flags
-- [ ] Feedback latency < 30s (quick path)
-- [ ] `nyquist_compliant: true` set in frontmatter
-
-**Approval:** pending
+**Fechamento:** cobertura reconciliada. Nao e nova assinatura humana nem reatestado de contas/DNS/servicos. A auditoria do milestone preserva todos esses limites.
