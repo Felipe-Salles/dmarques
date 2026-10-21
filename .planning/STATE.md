@@ -204,6 +204,7 @@ yet.
 | 261014-gl5 | Atualizar dependencias para zerar pnpm audit high/critical | 2026-10-14 | 9227d3e | [261014-gl5-atualizar-dependencias-para-zerar-pnpm-a](./quick/261014-gl5-atualizar-dependencias-para-zerar-pnpm-a/) |
 | 261015-2fr | Foto real do fundador e e-mail contato@agenciadmarques.com.br | 2026-10-15 | a71a82e | [261015-2fr-aplicar-foto-real-do-fundador-e-e-mail-c](./quick/261015-2fr-aplicar-foto-real-do-fundador-e-e-mail-c/) |
 | 261015-2ks | Instagram @agenciadmarques | 2026-10-15 | cd97828 | [261015-2ks-trocar-instagram-para-agenciadmarques](./quick/261015-2ks-trocar-instagram-para-agenciadmarques/) |
+| 261021-agt | AGENTS.md como fonte única de instruções (CLAUDE.md importa via @AGENTS.md) para alternar entre Claude Code e Codex | 2026-10-21 | 3879a58 | fast |
 
 ## Deferred Items
 
