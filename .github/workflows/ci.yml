@@ -18,6 +18,7 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm exec biome check scripts/finalize-headers.mjs scripts/verify/browser-gates.mjs scripts/verify/csp-recorder.mjs scripts/verify/form-gates.mjs scripts/verify/header-gates.mjs scripts/verify/headers.mjs scripts/verify/seo-gates.mjs scripts/verify/static-server.mjs src/lib/finalize-headers.pure.mjs src/lib/finalize-headers.test.mjs src/lib/header-rules.test.mjs src/lib/js-ready.test.mjs src/lib/js-ready.ts src/lib/submit.test.mjs src/lib/submit.ts src/pages/api/orcamento.ts astro.config.mjs package.json vercel.json
       - run: pnpm astro sync
       - run: pnpm astro check
       - run: pnpm test

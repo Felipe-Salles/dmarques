@@ -53,7 +53,9 @@ function stripUpgrade(value) {
 export function startStaticServer(root = STATIC_DIR, options = {}) {
   const configPath = join(root, '..', 'config.json');
   const withHeaders = options.withHeaders ?? existsSync(configPath);
-  const rules = withHeaders ? loadRules({ configPath, vercelJsonPath: join(ROOT, 'vercel.json') }) : [];
+  const rules = withHeaders
+    ? loadRules({ configPath, vercelJsonPath: join(ROOT, 'vercel.json') })
+    : [];
   return new Promise((resolveStart, rejectStart) => {
     const server = createServer((req, res) => {
       let pathname;

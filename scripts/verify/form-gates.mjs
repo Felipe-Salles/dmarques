@@ -15,11 +15,7 @@ const ERROR_PAGES = {
   '/erro-envio/falha': 'Não conseguimos enviar agora.',
 };
 
-const DEEP_LINK_ROUTES = [
-  '/',
-  '/obrigado',
-  ...Object.keys(ERROR_PAGES),
-];
+const DEEP_LINK_ROUTES = ['/', '/obrigado', ...Object.keys(ERROR_PAGES)];
 
 const IGNORED_HOSTS = [/\.kaspersky-labs\.com$/];
 
@@ -471,7 +467,10 @@ const localChecks = {
         for (const entry of readdirSync(dir, { withFileTypes: true })) {
           const full = join(dir, entry.name);
           if (entry.isDirectory()) stack.push(full);
-          else if (entry.name.endsWith('.html') && readFileSync(full, 'utf8').includes('politica-de-privacidade'))
+          else if (
+            entry.name.endsWith('.html') &&
+            readFileSync(full, 'utf8').includes('politica-de-privacidade')
+          )
             fails.push(`referencia a politica em ${full}`);
         }
       }
@@ -480,7 +479,8 @@ const localChecks = {
       if (existsSync(join(STATIC_DIR, 'politica-de-privacidade.html')))
         fails.push('politica-de-privacidade.html presente no build');
       const response = await page.goto(`${base}/politica-de-privacidade`, { waitUntil: 'load' });
-      if (response?.status() !== 404) fails.push(`/politica-de-privacidade status ${response?.status()}`);
+      if (response?.status() !== 404)
+        fails.push(`/politica-de-privacidade status ${response?.status()}`);
     } finally {
       await ctx.close();
     }
