@@ -165,10 +165,20 @@ const localChecks = {
     const ctx = await newContext(browser);
     try {
       const page = await openReady(ctx, base);
-      const seen = await mockApi(page, json(200, { ok: true }));
+      const seen = await mockApi(page, (route, attempt) =>
+        attempt === 1
+          ? json(400, { ok: false, code: 'invalid', fields: ['nome', 'whatsapp'] })(route)
+          : json(200, { ok: true })(route),
+      );
       const before = await state(page, '#nome');
+      const response = page
+        .waitForResponse((res) => res.url().endsWith('/api/orcamento') && res.status() === 400, {
+          timeout: 3000,
+        })
+        .catch(() => null);
       await page.click(SUBMIT);
-      await page.waitForTimeout(150);
+      if (!(await response)) fails.push('resposta 400 do servidor nao recebida');
+      await page.waitForFunction(() => !document.querySelector('#nome')?.readOnly);
       const nome = await state(page, '#nome');
       const wa = await state(page, '#whatsapp');
       const email = await state(page, '#email');
@@ -184,19 +194,33 @@ const localChecks = {
         () => !!document.querySelector('#erro-contato') || !!document.querySelector('.err-contato'),
       );
       if (extra) fails.push('#erro-contato ou .err-contato presente');
-      if (seen.length) fails.push('requisicao enviada com formulario invalido');
+      if (seen.length !== 1) fails.push('submit invalido nao chegou uma vez ao servidor');
+      if (seen[0]) {
+        const body = params(seen[0].body);
+        if (body.get('nome') !== '' || body.get('whatsapp') !== '')
+          fails.push('valores invalidos alterados antes da validacao do servidor');
+      }
       await page.fill('#whatsapp', '16996111785');
+      if ((await state(page, '#whatsapp')).invalid !== 'true')
+        fails.push('WhatsApp revalidado durante input apos erro');
       await page.locator('#whatsapp').blur();
       const formatted = (await state(page, '#whatsapp')).value;
       if (formatted !== '(16) 99611-1785') fails.push(`mascara "${formatted}"`);
       await page.fill('#nome', 'Ana');
       await page.waitForTimeout(100);
+      if ((await state(page, '#nome')).invalid !== 'true')
+        fails.push('nome revalidado durante input apos erro');
+      await page.locator('#nome').blur();
       const nomeOk = await state(page, '#nome');
       const waOk = await state(page, '#whatsapp');
       if (nomeOk.invalid) fails.push('#nome manteve aria-invalid');
       if (waOk.invalid) fails.push('#whatsapp manteve aria-invalid');
       if (nomeOk.described !== before.described)
         fails.push(`aria-describedby de #nome nao restaurado (${nomeOk.described})`);
+      if (seen.length !== 1) return fails;
+      await page.locator('#nome').press('Enter');
+      await page.locator(`${FORM}.done`).waitFor();
+      if (seen.length !== 2) fails.push('reenvio valido nao chegou uma vez ao servidor');
     } finally {
       await ctx.close();
     }
