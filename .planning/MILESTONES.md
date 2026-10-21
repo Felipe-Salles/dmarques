@@ -25,6 +25,6 @@ Auditoria tech_debt, sem lacunas ativas de requisito/integração/fluxo. [BACKLO
 
 ### Arquivos e próximo passo
 
-[Roadmap](milestones/v1.0-ROADMAP.md), [requisitos](milestones/v1.0-REQUIREMENTS.md), [auditoria](milestones/v1.0-MILESTONE-AUDIT.md), [contexto anterior](milestones/v1.0-PROJECT.md) e [estado anterior](milestones/v1.0-STATE.md). Fases preservadas no diretório original; limpeza opcional futura. Tag v1.0 local aponta para o commit de produção 9ab5e3a; publicação remota pendente. O encerramento documental — revisado em PR própria, sem merge automático.
+[Roadmap](milestones/v1.0-ROADMAP.md), [requisitos](milestones/v1.0-REQUIREMENTS.md), [auditoria](milestones/v1.0-MILESTONE-AUDIT.md), [contexto anterior](milestones/v1.0-PROJECT.md) e [estado anterior](milestones/v1.0-STATE.md). Fases preservadas no diretório original; limpeza opcional futura. Tag v1.0 local aponta para o commit de produção 9ab5e3a; publicação remota pendente. O encerramento documental é revisado em PR própria, sem merge automático.
 
 Próximo passo: `$gsd-new-milestone`; Cloudflare segue como intenção anterior, sem escopo novo aprovado.
