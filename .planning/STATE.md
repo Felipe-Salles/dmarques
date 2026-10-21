@@ -1,9 +1,9 @@
 ---
 gsd_state_version: 1.0
 milestone: v1.0
-milestone_name: milestone
-status: in_progress
-stopped_at: Auditoria final reconciliada; 94/94 requisitos e Nyquist 8/8; revisar PR #13
+milestone_name: Site institucional
+status: completed
+stopped_at: v1.0 arquivada; aguardando defini??o do pr?ximo milestone
 last_updated: 2026-10-21
 last_activity: 2026-10-21
 progress:
@@ -18,214 +18,29 @@ progress:
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-10-15)
+See: .planning/PROJECT.md (updated 2026-10-21)
 
-**Core value:** Um visitante entende em segundos o que a Dmarques faz, confia na agência e pede um orçamento — com um site que carrega rápido e nunca sai do ar.
-**Current focus:** Auditoria v1.0 com tech_debt: 94/94 requisitos, 8/8 fases verificadas e Nyquist 8/8; revisar PR #13 e dividas
+**Core value:** Um visitante entende em segundos o que a Dmarques faz, confia na ag?ncia e pede um or?amento ? com um site que carrega r?pido e nunca sai do ar.
+**Current focus:** Definir o pr?ximo milestone; v1.0 entregue e encerramento documental em PR.
 
 ## Current Position
 
-Phase: 07
-Plan: Planos executados; auditoria do milestone em andamento
-Status: Auditoria tech_debt; não arquivado
-Last activity: 2026-10-21 - Completed quick task 261021-p0m: Aurora 18/18, polish real e menu mobile legível (77a4716)
-
-Progress: [██████████] 100% dos planos executados; 94/94 requisitos ativos satisfeitos e 8/8 fases verificadas na auditoria
-
-## Performance Metrics
-
-**Velocity:**
-
-- Total plans completed: 51
-- Average duration: —
-- Total execution time: 0 hours
-
-**By Phase:**
-
-| Phase | Plans | Total | Avg/Plan |
-|-------|-------|-------|----------|
-| 01 | 8 | - | - |
-| 02 | 4 | - | - |
-| 03 | 9 | - | - |
-| 04 | 4 | - | - |
-| 04.1 | 11 | - | - |
-| 06 | 8 | - | - |
-| 07 | 7 | - | - |
-
-**Recent Trend:**
-
-- Last 5 plans: —
-- Trend: —
-
-*Updated after each plan completion*
-| Phase 01 P01 | 30 | 3 tasks | 10 files |
-| Phase 01 P02 | 20min | 3 tasks | 5 files |
-| Phase 01 P03 | 25min | 3 tasks | 5 files |
-| Phase 01 P04 | 20min | 3 tasks | 3 files |
-| Phase 01 P05 | 10min | 3 tasks | 0 files |
-| Phase 01 P07 | 3h | 4 tasks | 6 files |
-| Phase 01 P08 | 50min | 1 tasks | 1 files |
-| Phase 02 P02 | 20min | 3 tasks | 4 files |
-| Phase 02 P03 | 25min | 2 tasks | 1 files |
-| Phase 03 P01 | 5min | 2 tasks tasks | 4 files files |
-| Phase 03 P02 | 6min | 3 tasks | 2 files |
-| Phase 03 P03 | 12min | 2 tasks | 4 files |
-| Phase 03 P04 | 12min | 2 tasks | 2 files |
-| Phase 03 P05 | 10min | 2 tasks | 2 files |
-| Phase 03 P06 | 10min | 2 tasks | 2 files |
-| Phase 03 P07 | 6min | 3 tasks | 3 files |
-| Phase 03 P08 | 25min | 3 tasks | 10 files |
-| Phase 03 P09 | ~4h | 3 tasks | 13 files |
-| Phase 04 P01 | 3min | 2 tasks | 4 files |
-| Phase 04 P02 | 4min | 2 tasks | 5 files |
-| Phase 04 P03 | 3min | 2 tasks | 2 files |
-| Phase 04 P04 | 55min | 3 tasks tasks | 2 files files |
-| Phase 04.1 P01 | ~40min | 3 tasks | 7 files |
-| Phase 04.1 P04 | 10min | 2 tasks | 12 files |
-| Phase 04.1 P05 | 5min | 2 tasks | 5 files |
-| Phase 04.1 P06 | 20min | 3 tasks | 7 files |
-| Phase 04.1 P07 | 20min | 3 tasks | 3 files |
-| Phase 04.1 P08 | 20min | 3 tasks | 5 files |
-| Phase 04.1 P09 | 15min | 3 tasks | 8 files |
-| Phase 06 P02 | 10min | 2 tasks | 1 files |
-| Phase 06 P07 | 15min | 2 tasks | 3 files |
-| Phase 07 P03 | 20min | 3 tasks | 9 files |
-| Phase 07 P07-02 | 30min | 3 tasks | 9 files |
-| Phase 07 P04 | 25min | 3 tasks | 5 files |
-| Phase 07 P05 | 20min | 2 tasks | 5 files |
-| Phase 07 P07-06 | 20min | 3 tasks | 0 files |
-
-## Accumulated Context
-
-### Roadmap Evolution
-
-- Phase 04.1 inserted after Phase 4: Redesign Aurora técnica — direção validada no sketch 001 (variante A), antes da Fase 5 para o formulário ser ligado já no markup novo
-
-### Decisions
-
-Decisions are logged in PROJECT.md Key Decisions table.
-Relevant to current work:
-
-- Astro static (SSG) + `@astrojs/vercel`; only `/api/orcamento` opts out of prerendering.
-- Content in Markdown / Content Collections, no CMS.
-- Form via Astro endpoint + Resend; secrets server-only via `astro:env`.
-- Cloudflare (WAF / edge rate-limiting / DDoS / Turnstile) deferred to Milestone 2 — v1 residual-risk statement recorded in ROADMAP.md (SEC-08).
-- Security review at the end of every phase via a versioned checklist artifact in `.planning/` (SEC-07); no phase closes with an open High finding.
-- Lighthouse mobile >=95 (all four categories) enforced in CI from Phase 1 (PERF-01 / INFRA-09).
-- [Phase ?]: Phase 1 uses exact version pins for all deps except @astrojs/check (~0.9); pnpm-lock.yaml committed
-- [Phase ?]: pnpm-workspace.yaml added to allow the esbuild native postinstall (pnpm 11 blocks build scripts by default)
-- [Phase ?]: Biome uses single-quote JS + design-folder exclusion so astro.config.mjs passes lint without changing plan-mandated quote style
-- [Phase 1]: STATIC_DIR resolved to .vercel/output/static (dist/ also emitted); later plans use the fallback "${STATIC_DIR:-.vercel/output/static}"
-- [Phase 1]: Analytics ships as the @vercel/analytics/astro <Analytics /> component (2.0.1 exports ./astro), not inject() or the adapter webAnalytics option
-- [Phase 1]: Astro Fonts API injects inline <style> @font-face blocks by design; INFRA-05 met via external token/page CSS; blocks are CSP-hashable via security.csp in Phase 7
-- [Phase ?]: [Phase 1] Gate scripts scripts/js-weight-check.sh + scripts/security-check.sh authored; one script for humans and CI (D-11); .gitattributes pins *.sh to eol=lf so the gate cannot drift between Windows and CI
-- [Phase ?]: [Phase 1] security-check.sh check 3 permits Astro Fonts API inline @font-face <style> blocks (reports count); FAILs only on page/token/bundle CSS inlined
-- [Phase ?]: [Phase 1] SEC-07 gabarito at .planning/security/SECURITY-CHECKLIST.md: hard no-open-High rule + exactly 7 mechanical items mapped to security-check.sh checks + D-12 findings table; per-phase runs in .planning/security/runs/phase-NN.md
-- [Phase ?]: [Phase 1] CI gate authored: ci.yml (verify + dependency-review jobs) blocks PRs on sync/check/build/pnpm audit --audit-level=high/js-weight/security-check --ci; lighthouse.yml runs lhci against the Vercel preview URL via deployment_status with the x-vercel-protection-bypass header
-- [Phase ?]: [Phase 1] GitHub Actions pinned to API-verified major tags: checkout@v7, setup-node@v7, pnpm/action-setup@v6, treosh/lighthouse-ci-action@v12; dependency-review-action@v5.0.0 (no moving major tag published)
-- [Phase ?]: [Phase 1] PERF-02 INP clause consciously deferred: TBT<=200ms is the Lighthouse lab proxy; field INP<200ms monitored via Vercel Analytics post-launch (compensating control), recorded in 01-04-SUMMARY and copied to security run file by plan 08
-- [Phase 01]: Public repo Felipe-Salles/dmarques created; master renamed to main; full Phase 1 tree pushed at 75a90ea. Felipe approved PUBLIC visibility, the rename and the first push (2026-09-08)
-- [Phase 01]: pnpm audit severity threshold confirmed at high (Felipe, 2026-09-08); per plan Task 3 no edit made to scripts/security-check.sh or .github/workflows/ci.yml
-- [Phase 01]: gh token for account Felipe-Salles now carries the workflow scope; .github/workflows/* pushes succeed for plans 05-08
-- [Phase 01 / 01-06]: Vercel project felipe-salles-projects/dmarques (prj_79OkHSNj4o6iS62XwhsFuadjEErG, team_J7rCzdvtFEpWYOgeVz1mEi79) linked via Git integration, production branch main, framework astro. Standard Deployment Protection (ssoProtection all_except_custom_domains) gates preview + production; gitForkProtection true. VERCEL_AUTOMATION_BYPASS_SECRET mirrored to GitHub Actions. First prod deploy 47323f1 READY at https://dmarques-3g4hn76v2-felipe-salles-projects.vercel.app. Spend-cap decision: hobby-structural (SEC-08 bullet in ROADMAP corrected). 2FA active on both accounts. Task 3 visual checks deferred to 01-08. Deviation: Claude drove the Vercel setup via CLI+API at Felipe's request (D-03 framing).
-- [Phase 01 / 01-07]: CI gate proven end-to-end on PR #1 — 3 deliberate failures (ts(2322) in index.astro / gsap devDep / inline style= in index.astro) each turned `verify` red for the named step (astro check / js-weight-check.sh / security-check.sh check 2) and were reverted before the next; a clean README-only branch then went green on verify + dependency-review + lhci. Open Question 4 CLOSED: required-status-check contexts = `verify`, `dependency-review`, `lhci` (GitHub Actions check-runs); `Vercel` + `Vercel Preview Comments` are Vercel-managed and deliberately NOT required contexts. Assumption A7 HELD — the deployment_status-triggered `lhci` job posts against the PR head SHA.
-- [Phase 01 / 01-07]: `main` branch protection applied — strict required checks [verify, dependency-review, lhci], allow_force_pushes false, allow_deletions false, required_linear_history true, required_approving_review_count 0, enforce_admins false. FINDING: with enforce_admins false a plain fast-forward admin `git push origin main` is NOT rejected (GitHub: "Bypassed rule violations"); force-push and branch deletion ARE hard-blocked even for the admin. T-07-05 accepted (solo operator emergency path); revisit enforce_admins if a 2nd contributor joins.
-- [Phase 01 / 01-07]: lighthouserc.json `categories:seo` lowered error -> warn for Phase 1. Bypassed Vercel preview scores SEO 0.45 structurally (X-Robots-Tag: noindex from Deployment Protection fails is-crawlable ~4.0 weight; 01-02 placeholder has no meta description / robots.txt — Phase 6 scope). Performance / Accessibility / Best-Practices stay `error` >= 0.95; LCP/CLS/TBT/script-size budgets unchanged. Phase 6 restores `categories:seo` to `error` against the indexable production site.
-- [Phase 01 / 01-07]: Deviations — (1) Dependency graph + Dependabot enabled on the repo (dependency-review required it: "Dependency review is not supported on this repository"). (2) lighthouse.yml rewritten: LHCI_EXTRA_HEADERS is a no-op on treosh/lighthouse-ci-action@v12 / @lhci/cli; replaced with a curl HTTP-200 bypass pre-check + jq-injected `ci.collect.settings.extraHeaders` in a runtime lighthouserc.ci.json. (3) VERCEL_AUTOMATION_BYPASS_SECRET was corrupted by an earlier `gh secret set --body -` (stdin) call on Windows git-bash; re-set via `--body "<value>"` argument form — never use the stdin form for `gh secret set` on this machine. (4) `ci.yml` `dependency-review` job gated with `if: github.event_name == 'pull_request'` — the action needs PR refs and failed on the squash-merge push to main; it still gates every PR (required status check), skipped on direct main pushes. PR #1 squash-merged as `8eef802`; SUMMARY addendum + this ci.yml fix pushed to protected main as `c34e28a` / `e1407cc` via admin fast-forward (docs + workflow-config only). Production deployment for `8eef802` = success (`https://dmarques-26mf2txeo-felipe-salles-projects.vercel.app`); unauth curl -> 302 SSO.
-- [Phase ?]: [Phase 01 / 01-08]: SEC-07 Phase 1 run file created at .planning/security/runs/phase-01.md (verbatim security-check.sh --ci stdout 6 PASS / 1 FAIL / 0 SKIP exit 1; all 7 gabarito items answered; PERF-02 INP-deferral sentence verbatim; out-of-git config record; D-12 findings table P01-001..P01-007, none High). Local check 7 FAILs on this machine only (Windows chrome-launcher EPERM + host antivirus script injection); authoritative Lighthouse gate is CI lhci job, green (Perf 1.00 / A11y 1.00 / BP 0.96; LCP 1543 ms / CLS 0 / TBT 0 ms). scripts/security-check.sh NOT modified. Task 2 (Felipe sign-off, checkpoint:human-verify gate=blocking) PENDING — no sign-off line appended, phase.complete NOT run, Phase 1 not closed.
-- [Phase 02]: Placeholder cover generated from vector shapes only (no <text>), rasterized to WebP with the Sharp already bundled inside astro@7.3.1 (resolved via node_modules/.pnpm + createRequire) -- zero new dependency
-- [Phase 02]: [02-03]: SEC-07 phase-02 run filed at .planning/security/runs/phase-02.md (verbatim security-check.sh --ci 5 PASS / 0 FAIL / 2 SKIP, exit 0, no phase-02 preview yet). Two extract-zip advisories carried forward from Phase 1 as P02-001/P02-002 (dependency tree unchanged); two Low findings P02-003/P02-004 filed for Phase 3 (HTML-escape case fields) and Phase 6 (JSON-encode FAQ strings). No open High. Negative-test evidence recorded: unknown-key and missing-order probes both fail pnpm build non-zero, reverted cleanly, clean build exits 0.
-- [Phase 03]: 03-01: sharp@0.35.4 promoted to explicit devDependency (matches version already resolved transitively via astro@7.3.1, confirmed via pnpm why sharp); astro.config.mjs and pnpm-workspace.yaml untouched (imageService stays build-time only per PERF-05/SITE-09). Two branded vector-only WebP placeholders added: src/assets/hero-render-placeholder.webp (1920x1440) and src/assets/founder-portrait-placeholder.webp (960x1200), generated via a scratchpad one-off script (never committed) run with node --input-type=module against project cwd so the bare sharp import resolves.
-- [Phase 03 / 03-02]: global :focus-visible uses outline (not the --focus-ring box-shadow token) because outline survives overflow:hidden ancestors in the hero/CTA-final sections; --focus-ring stays reserved for form inputs
-- [Phase 03 / 03-02]: tokens color-text-faint raised to alpha .47 and focus-ring switched to opaque var(color-accent) via a scratchpad-only WCAG contrast solver (D-13); nav-height token added as a provisional 84px value pending 03-08 measurement
-- [Phase 03 / 03-03]: mobile nav panel positioned absolute against .site-header (position:relative), not against .nav-toggle, so the details disclosure renders a true full-width dropdown per the UI-SPEC contract
-- [Phase 03 / 03-03]: utility pages' wrapper class renamed .stack -> .content-block to avoid a false-positive substring match against literal 'stack' in the 404 diagnostic-leak acceptance grep (T-03-03); no functional change
-- [Phase 03 / 03-04]: HeroBleed primary CTA uses var(--color-accent) fill at rest per PLAN.md token contract (not the design source's white-fill styling); hero glow gradient uses the transparent keyword instead of an rgba() literal to avoid hard-coded RGB channels
-- [Phase 03]: [Phase 03 / 03-05]: ServicesSection icons stored as structured shape data (Record<enum, {tag,...}[]>) rendered as real <rect>/<circle>/<path> elements, not a raw-HTML-string map + set:html, to satisfy the plan's own set:html prohibition
-- [Phase 03]: [Phase 03 / 03-05]: ProcessSection closing-quote span kept on var(--color-accent); clamp(19px,2vw,26px) floor stays above the 18.66px large-text contrast threshold at every breakpoint
-- [Phase 03]: [Phase 03 / 03-07]: Contact card micro-labels and helper text all use --color-light-text-muted (never --color-light-text-faint), keeping the light form card AA-compliant without a token edit; contact form <label> elements carry an explicit for attribute alongside implicit wrapping to satisfy the plan's grep contract; decorative glow/watermark containers own their own overflow:hidden, never the section/footer wrapper
-- [Phase ?]: [Phase 03 / 03-08]: cases collection intentionally not rendered on home (SITE-01 lists 9 sections, none portfolio; TRUST-04 defers real cases to v1.x)
-- [Phase ?]: [Phase 03 / 03-08]: --nav-height measured live via headless Chrome CDP (68px desktop >=860px, 86px mobile default in :root); single token with a min-width media query override, base.css consumer unchanged
-- [Phase 04]: pnpm test script uses the quoted-glob form node --test "src/scripts/*.test.mjs", not a directory arg, per the plan's verified note
-- [Phase ?]: [Phase 04 / 04-02]: --z-cursor-glow: 20 introduced instead of reusing --z-glow: 5, because every shipped section is position:relative with an opaque background at z-index:var(--z-section) (10) - a glow at 5 would render invisibly beneath all content
-- [Phase ?]: [Phase 04 / 04-03]: particles.ts uses ctx.globalAlpha for the connection-line fade (not per-line rgba() string concat + toFixed) and Math.sqrt(dx*dx+dy*dy) over Math.hypot in the O(n2) loop, per plan-locked TBT-discipline instructions
-- [Phase ?]: [Phase 04 / 04-03]: single syncLoop() gate routes IntersectionObserver + visibilitychange through exactly one requestAnimationFrame id; reduced-motion checked once at init (never per-frame), draws a single static frame with no loop registered
-- [Phase 04]: [Phase 04 / 04-04]: Instrumented CDP measurement (headless Chrome, native WebSocket, scratchpad-only script) proved reveal fallback, dual-gate canvas pause, glow gating, DPR cap 1.5, and reduced-motion static frame all behave per spec — Opened PR #3 (phases/04-progressive-enhancement-effects) since 04-01..04-03's commits had never been pushed, getting a green CI lhci gate (Perf/A11y/BP>=0.95, TBT<200ms, CLS<0.05) against a real Vercel preview; Felipe approved the full checkpoint (aprovado, no reservations)
-- [Phase quick]: Logo nova aplicada (símbolo + logotipo em src/assets/brand/, lockup no header/footer via astro:assets; header <480px mostra só o símbolo com aria-label) e favicon .ico/.png/apple-touch gerado do símbolo sobre #0a0a12 — Identidade visual entregue pelo Felipe em 2026-10-14 (quick 261014-gfb)
-- [Phase quick]: Dados reais de contato: e-mail contato@agenciadmarques.com.br, Instagram @agenciadmarques, foto real do fundador em src/assets/founder/felipe-salles.png (Picture AVIF/WebP + fallback JPG) — Fornecidos pelo Felipe em 2026-10-15; substituem hotmail/Instagram pessoal/placeholder (quick 261015-2fr, 261015-2ks)
-- [Phase quick]: Dependências: astro 7.3.8, @astrojs/vercel 11.0.14, sharp 0.35.5 e override basic-ftp@<6.2.3 -> 6.2.3 em pnpm-workspace.yaml (get-uri ainda fixa ^5; caminho só de CI) — Zerar pnpm audit high/critical que voltou a falhar com advisories novos (quick 261014-gl5); remover override quando get-uri aceitar 6.x
-- [Phase 04.1]: Direção visual Aurora técnica (sketch 001, variante A) substitui o visual atual: fundo #070A14, aurora estática #00C8FF->#3A5BFF->#0E1E5B, ember #FF6A3D só como marcador de ação, Sora + Inter Tight (saem Outfit/DM Sans e o violeta #6C4CFF), seções sem template, bento honesto — Escolha do Felipe entre 6 propostas (UI UX Pro Max); polida via Impeccable critique (20/32) + polish; registrada na skill sketch-findings-dmarques
-- [Phase 04.1]: Voz nós (agência) em todo o site e CTA único Pedir orçamento; linguagem leiga e apenas claims já publicados (FAQ/case) — Decisão do Felipe na crítica Impeccable; consistência e confiança
-- [Phase 04.1]: Movimento: tese a aurora é a luz da página (acende e o conteúdo entra em foco); reveals distintos por seção, linha do método guiada pela rolagem; hand-rolled CSS+IO, sem lib, com fallback sem JS e reduced-motion. Canvas de partículas da Fase 4 será aposentado. Modo cinemático (hero fixado com auroras cruzando em X) testado e REJEITADO pelo Felipe — Impeccable animate; Felipe aprovou a rodada 3 e preferiu não usar o hero fixado
-- [Phase 04.1]: Redesign entra como Fase 04.1 antes da Fase 5; a Fase 5 passa a depender do markup do formulário redesenhado — Escolha do Felipe: evita refazer o markup do formulário duas vezes
-- [Phase 04.1]: 04.1-04: cases usa z.discriminatedUnion('rotulo'); faq removida
-- [Phase 04.1]: Frase 'Nada é cobrado...' só na legenda .here do ProcessSection
-- [Phase 04.1]: CTA do header sempre visível; logotipo oculto abaixo de 480px de container
-- [Phase 04.1]: Metodo: estado apagado sem opacity em texto (cor faint) para contraste AA
-- [Phase 04.1]: Form do contato sem JS: estados err/sending/done e aria-invalid prontos em CSS para a Fase 5
-- [Phase 04.1]: Seta do card destaque e span aria-hidden (sem pagina de detalhe, D-08); rolagem dos mocks via scrollsite com 100cqh em .screen container-type size
-- [Phase 04.1]: Captura do site nao recursiva (CSS injetado so no navegador de captura); fallbackFormat webp no Picture; SEO lhci segue warn (0,58) ate a Fase 6
-- [Phase 06-07]: seo-gates enforced in CI after aurora-gates; official name recorded in PROJECT.md — Blocks SEO/NAP regressions at merge
-- [Phase 07]: failureResponse compartilhado entre respond('failed') e catch externo da Function
-- [Phase 07]: 07-02: CSP Report-Only por padrao (CSP_MODE=enforce alterna); SEC-02 via script-src self + hashes sha256
-- [Phase 07]: 07-04: upgrade-insecure-requests removido so no servidor local; envio ao vivo com honeypot e 1 POST
-- [Phase 07]: 07-05: CSP promovida para enforcing; headers.yml espera enforce
-- [Phase 07]: 07-06: PR #9 integrado em main (squash 98a0dbf) com aprovacao de Felipe; producao com CSP enforcing e HSTS includeSubDomains; preload
-
-### Open Decisions To Resolve Before Their Phase
-
-- **Phase 5 (form):** Upstash rate-limiter dependency vs. strict minimal-deps fallback (in-memory Map + honeypot + Vercel WAF rule).
-- **Phase 5 (form):** Resend sending domain / DNS control confirmed; SPF/DKIM/DMARC is a launch gate.
-- **Phase 5 (LGPD):** legal basis wording (Art. 7 V pre-contractual + legitimate interest, notice-only) and retention period (e.g. 12–24 months) — founder/legal decision, blocks policy finalization.
-- **Phase 1 / Phase 5:** analytics final pick (Vercel Web Analytics recommended) verified cookieless in DevTools.
-- **Phase 3:** mobile nav pattern (wrapped row vs. `<details>` disclosure) once nav item count is final.
-- **Phase 4:** CSS scroll-driven `animation-timeline: view()` layer + IO fallback vs. single IO island.
-
-### Pending Todos
-
-None yet.
-
-### Blockers/Concerns
-
-yet.
-
-- 01-03 (RESOLVED by orchestrator, Felipe's decision - overrides + allowlist): pnpm-workspace.yaml carries overrides (path-to-regexp 6.3.0, tmp 0.2.7) + auditConfig.ignoreGhsas for the 2 unfixable dev/CI-only extract-zip advisories (GHSA-jmr9-qjv8-65gv, GHSA-7pqw-9j4j-h8q3). `pnpm audit --audit-level=high` now exits 0 on the resolved tree; the 01-04 CI audit step is a plain blocking run (no `|| true`). Plan 08 records the 2 extract-zip GHSAs as accepted Med findings with a target date in .planning/security/runs/phase-01.md. See deferred-items.md D1.
-- 01-07 Task 1b (RESOLVED 2026-09-10): the stale VERCEL_AUTOMATION_BYPASS_SECRET was re-set by the orchestrator via `gh secret set … --body "<value>"` (argument form, not stdin). The `lhci` check now goes green on PR #1 (Performance/Accessibility/Best-Practices median 1.00/1.00/0.96; LCP 1543 ms / CLS 0 / TBT 0 ms; SEO 0.45 is `warn` for Phase 1 — see 01-07 decision). Branch protection on `main` applied and PR #1 squash-merged. See 01-07-SUMMARY.md.
-
-- 2026-10-14 (RESOLVED by quick 261014-gl5): `pnpm audit --audit-level=high` voltou a falhar com advisories novos na árvore inalterada — proxy-addr (critical), devalue, sharp <0.35.5, brace-expansion, basic-ftp, http-cache-semantics, source-map-js, compression. Bloqueia o job `verify` do próximo PR. Ver 261014-gfb-SUMMARY.md.
-
-### Quick Tasks Completed
-
-| # | Description | Date | Commit | Directory |
-|---|-------------|------|--------|-----------|
-| 261014-gfb | Aplicar logotipo e simbolo novos no header, footer e favicon | 2026-10-14 | d6912da, 963e593 | [261014-gfb-aplicar-logotipo-e-simbolo-novos-no-head](./quick/261014-gfb-aplicar-logotipo-e-simbolo-novos-no-head/) |
-| 261015-rhm | Acabamento 04.1: alinhar landing ao sketch (grain, ritmo, Servicos, Projetos, Metodo, Contato, rodape, Instagram so no Contato) | 2026-10-15 | a85bec5, 7f6d437, aaf8734, 127e01f | [261015-rhm-acabamento-04-1-alinhar-landing-ao-sketc](./quick/261015-rhm-acabamento-04-1-alinhar-landing-ao-sketc/) |
-| 261015-s8u | Copiar animacoes do sketch identicas (drift 3 pontos, entrada do hero, reveal .12, timings por secao, regra das etapas) | 2026-10-15 | 23623b2, bd9914f, a378fce | [261015-s8u-copiar-animacoes-do-sketch-identicas](./quick/261015-s8u-copiar-animacoes-do-sketch-identicas/) |
-| 261014-gl5 | Atualizar dependencias para zerar pnpm audit high/critical | 2026-10-14 | 9227d3e | [261014-gl5-atualizar-dependencias-para-zerar-pnpm-a](./quick/261014-gl5-atualizar-dependencias-para-zerar-pnpm-a/) |
-| 261015-2fr | Foto real do fundador e e-mail contato@agenciadmarques.com.br | 2026-10-15 | a71a82e | [261015-2fr-aplicar-foto-real-do-fundador-e-e-mail-c](./quick/261015-2fr-aplicar-foto-real-do-fundador-e-e-mail-c/) |
-| 261015-2ks | Instagram @agenciadmarques | 2026-10-15 | cd97828 | [261015-2ks-trocar-instagram-para-agenciadmarques](./quick/261015-2ks-trocar-instagram-para-agenciadmarques/) |
-| 261021-agt | AGENTS.md como fonte única de instruções (CLAUDE.md importa via @AGENTS.md) para alternar entre Claude Code e Codex | 2026-10-21 | 3879a58 | fast |
-| 261021-of0 | Verificação retroativa da Fase 05; 19/20 requisitos, FORM-05 aberto e LGPD-07 interno reconciliado | 2026-10-21 | f715ecd | [261021-of0-verify-phase-05-against-milestone-audit-](./quick/261021-of0-verify-phase-05-against-milestone-audit-/) |
-| 261021-p0m | Aurora 18/18, polish visual/teclado e fundo legível no menu mobile | 2026-10-21 | 77a4716 | [261021-p0m-reconcile-aurora-verification-and-perfor](./quick/261021-p0m-reconcile-aurora-verification-and-perfor/) |
-
-### Debugs resolvidos
-
-| Sessão | Resultado | Data | Commit | Registro |
-|---|---|---|---|---|
-| form-05-submit-contract | FORM-05 corrigido, regressão RED/GREEN e Fase 05 aprovada 20/20 | 2026-10-21 | 8570396 | [Sessão resolvida](./debug/resolved/form-05-submit-contract.md) |
+Phase: Milestone v1.0 complete
+Plan: Nenhum plano ativo
+Status: Aguardando pr?ximo milestone
+Last activity: 2026-10-21 ? arquivamento da v1.0 ap?s produ??o 9ab5e3a e checks p?s-merge verdes
 
 ## Deferred Items
 
-| Category | Item | Status | Deferred At |
-|----------|------|--------|-------------|
-| Milestone 2 | Cloudflare layer (CF-01..06) — WAF, edge rate-limiting, DDoS L3/L7, Turnstile | Planned | Project start |
+Pend?ncias e decis?es existentes em [BACKLOG.md](BACKLOG.md), sem nova aceita??o de risco. Zero artefatos abertos no scanner local atualizado. N?o h? nova fase em execu??o.
+
+## Hist?rico
+
+Estado completo anterior em [v1.0-STATE.md](milestones/v1.0-STATE.md); decis?es vigentes em PROJECT.md. Fases e quick tasks preservadas nos diret?rios originais.
 
 ## Session Continuity
 
-Last session: 2026-10-21
-Stopped at: Auditoria final reconciliada; revisar PR #13 e dividas; milestone nao arquivado
+Stopped at: v1.0 arquivada; revisar PR documental e definir pr?ximo milestone
 Resume file: None
-
-### Revis?o PR #13 ? corre??o antispam
-
-P2 do submit inv?lido com tempo curto/expirado resolvido via gsd-debug; regress?o RED/GREEN e su?te 165/165. Honeypot preservado. Revis?o corretiva sem novos achados; nenhum merge executado.
+Next action: $gsd-new-milestone; pr?xima fase 08
+Tag: v1.0 local em 9ab5e3a; publica??o remota pendente
