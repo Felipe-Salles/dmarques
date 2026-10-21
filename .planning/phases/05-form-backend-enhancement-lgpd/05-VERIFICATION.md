@@ -104,3 +104,5 @@ Riscos já aceitos (D-27/D-29, Hobby, WAF Deny, Cloudflare M2 e dependências al
 O PASS do audit embutido no gate usa o limiar high e exclusões existentes. Não certifica zero advisories: a auditoria do milestone registra oito moderate e duas high ignoradas. Não houve alteração de dependências.
 
 O CI do HEAD documental de entrada `b20622b` está aprovado no PR #13: job verify do run 39671154609, lhci do run 39671210940 e headers-preview do run 39671210912. São evidências anteriores à correção; não foram reaproveitadas para afirmar aprovação no CI do código novo. A validação nova acima é local; os checks do PR devem rodar no novo SHA.
+
+Revis?o PR #13: intera??o entre FORM-05 e antispam corrigida; dados inv?lidos recebem erros tamb?m com tempo curto/expirado, mantendo descarte de honeypot e filtro temporal de dados v?lidos. Regress?o RED/GREEN e 165 testes em debug/resolved/invalid-submit-antispam.md.

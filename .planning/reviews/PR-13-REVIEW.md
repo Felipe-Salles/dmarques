@@ -21,3 +21,7 @@ Recomenda??o: preservar o requisito de n?o bloquear o POST e garantir que dados 
 Diff funcional completo: form.ts, form-gates.mjs, SiteHeader.astro e .gitignore. Conferidos contratos de schema/handler, estados/foco, coleta de FormData antes de desabilitar radios, token opaco do menu e documenta??o de cobertura/exclus?es. Matriz atual possui 101 IDs, 94 ativos e sete exclu?dos; evid?ncias hist?ricas e mocks s?o identificados separadamente. N?o encontrei outro defeito concreto introduzido no escopo.
 
 Form gates executados nesta revis?o: 16 PASS / 0 FAIL. CI do head revisado: verify, dependency-review, Lighthouse, headers-preview e Vercel aprovados; jobs de produ??o pulados como esperado. Nenhum email real enviado, altera??o de DNS, merge ou nova aprova??o humana presumida. A revis?o foi feita pelo mesmo agente que implementou as mudan?as; n?o representa revis?o independente por outro autor.
+
+## Resolu??o autorizada ap?s a revis?o
+
+P2 corrigido em src/lib/submit.ts: schema antes do filtro temporal; honeypot continua primeiro. Quatro regress?es falharam antes e passaram depois, mais preserva??o do honeypot. Suite completa: 165/165. Revis?o do diff corretivo confirmou que guardas de corpo/Origin, rate limit, envio e respostas permanecem preservados; n?o identificado novo achado. Registro: ../debug/resolved/invalid-submit-antispam.md.

@@ -49,9 +49,7 @@ export function failureResponse(request: Request): Response {
   return wantsJson(request) ? failedJson() : seeOther('failed');
 }
 
-function isBot(form: Record<string, string>): boolean {
-  const trap = form[HONEYPOT_FIELD];
-  if (typeof trap === 'string' && trap.trim() !== '') return true;
+function hasInvalidTiming(form: Record<string, string>): boolean {
   const elapsed = form[ELAPSED_FIELD];
   if (typeof elapsed === 'string' && elapsed.trim() !== '') {
     const ms = Number(elapsed);
@@ -87,10 +85,11 @@ export async function handleSubmission(request: Request, deps: Deps): Promise<Re
     if (raw === null) return bare(413);
 
     const form = Object.fromEntries(new URLSearchParams(raw));
-    if (isBot(form)) return respond('ok');
+    if (form[HONEYPOT_FIELD]?.trim()) return respond('ok');
 
     const parsed = parseSubmission(form);
     if (!parsed.ok) return respond('invalid', { fields: parsed.fields });
+    if (hasInvalidTiming(form)) return respond('ok');
 
     const rate = await deps.rateLimit(deps.clientIp);
     if (rate.kind === 'limited') return respond('limited', { retryAfter: rate.retryAfter });

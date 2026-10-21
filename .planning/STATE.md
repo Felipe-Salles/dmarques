@@ -225,3 +225,7 @@ yet.
 Last session: 2026-10-21
 Stopped at: Auditoria final reconciliada; revisar PR #13 e dividas; milestone nao arquivado
 Resume file: None
+
+### Revis?o PR #13 ? corre??o antispam
+
+P2 do submit inv?lido com tempo curto/expirado resolvido via gsd-debug; regress?o RED/GREEN e su?te 165/165. Honeypot preservado. Revis?o corretiva sem novos achados; nenhum merge executado.
