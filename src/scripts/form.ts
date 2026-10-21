@@ -258,21 +258,14 @@ export function initForm(): void {
       }
       applyErrors(validateFields(values()).errors, field);
     });
-    el.addEventListener('input', () => {
-      if (!attempted || sending) return;
-      applyErrors(validateFields(values()).errors, field);
-    });
   }
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     if (sending) return;
     const result = validateFields(values());
-    if (!result.ok) {
-      handleInvalid(result.errors);
-      return;
-    }
-    for (const field of visibleFields()) clearError(field);
+    attempted = true;
+    applyErrors(result.errors);
     if (elapsed) elapsed.value = String(Math.max(0, Math.round(performance.now() - startedAt)));
 
     const params = new URLSearchParams();

@@ -236,3 +236,30 @@ test('failureResponse com Accept JSON devolve 502 generico', async () => {
   assert.equal(res.headers.get('content-type'), 'application/json; charset=utf-8');
   assert.deepEqual(await res.json(), { ok: false, code: 'failed' });
 });
+
+for (const elapsed of ['1000', '90000000', 'abc', '-5']) {
+  test(`invalid payload with elapsed ${elapsed} reports validation errors`, async () => {
+    const fields = { ...VALID, nome: '', 'elapsed-ms': elapsed };
+    const json = await run(req(fields, JSON_ACCEPT));
+    assert.equal(json.res.status, 400);
+    const body = await json.res.json();
+    assert.equal(body.code, 'invalid');
+    assert.ok(body.fields.includes('nome'));
+    assert.equal(json.state.sent.length, 0);
+    assert.equal(json.state.rate, 0);
+    const native = await run(req(fields));
+    assert.equal(native.res.status, 303);
+    assert.equal(native.res.headers.get('location'), '/erro-envio/invalido');
+    assert.equal(native.state.sent.length, 0);
+    assert.equal(native.state.rate, 0);
+  });
+}
+
+test('invalid honeypot payload still silently drops before validation', async () => {
+  const fields = { nome: '', 'empresa-site': 'spam', 'elapsed-ms': '1000' };
+  const { res, state } = await run(req(fields, JSON_ACCEPT));
+  assert.equal(res.status, 200);
+  assert.deepEqual(await res.json(), { ok: true });
+  assert.equal(state.sent.length, 0);
+  assert.equal(state.rate, 0);
+});

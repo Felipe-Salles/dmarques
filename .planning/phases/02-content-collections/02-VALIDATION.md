@@ -1,91 +1,77 @@
 ---
-phase: 2
+phase: 02
 slug: content-collections
-status: approved
+status: complete
 nyquist_compliant: true
-wave_0_complete: false
+wave_0_complete: true
 created: 2026-09-10
+updated: 2026-10-21
 ---
 
-# Phase 2 — Validation Strategy
+# Fase 02 - Validacao Nyquist reconciliada
 
-> Per-phase validation contract for feedback sampling during execution.
+## Escopo vigente e historico
 
----
+CONTENT-04/FAQ foi substituido por 04.1 D-02. A capa placeholder e o enum antigo evoluiram para captura real e casos discriminados; nao restaurar arquivos removidos. A fase escolheu explicitamente validacao pelo proprio Astro, sem framework adicional. Sonda atual copiou config/content para fixture temporaria, ligou node_modules por junction e executou Astro sync sem tocar nos arquivos do repo: baseline valido exit 0; bogus_key rejeitado por schema; order ausente rejeitado por schema; restaurado exit 0. Nas duas rejeicoes houve tambem o assert libuv conhecido do Windows (exit 3221226505), mas o resultado exigiu mensagem real de schema antes dele. Aviso de src/pages ausente e esperado na fixture de conteudo, nao no build do site. Fixture removida apos validar caminho e soltar a junction. Registro local: output/playwright/aurora-261021/content-probe.json. Os aceites de capa/copy e SEC-07 estao em 02-04-SUMMARY e run phase-02.
 
-## Test Infrastructure
+## Infraestrutura e evidencias compartilhadas
 
-| Property | Value |
-|----------|-------|
-| **Framework** | None (no vitest/jest/`tests/` — confirmed). Validation = `astro sync` schema check + `astro check` + `pnpm build`. No test framework is added this phase (no-new-deps grain, CLAUDE.md). |
-| **Config file** | none — the five `defineCollection` calls in `src/content.config.ts` are the schema contract |
-| **Quick run command** | `pnpm run check` (`astro sync && astro check`) |
-| **Full suite command** | `pnpm build` (sync + full static build; CI also runs `pnpm audit` and `bash scripts/security-check.sh --ci`) |
-| **Estimated runtime** | ~10–25 s local (`pnpm run check`); ~30–60 s `pnpm build` |
+Estado A do workflow: VALIDATION existia e a fase tem PLAN/SUMMARY e VERIFICATION. Foram lidos os planos e resumos para mapear tarefas, IDs, arquivos e comandos; infraestrutura atual e estados historicos foram cruzados. Nao foram encontradas lacunas novas de comportamento sem verificacao: os itens aparentes eram registros pendentes, checkpoints ja resolvidos ou componentes intencionalmente substituidos. Aplicado o caminho do passo 3 diretamente ao passo 6, sem gerar testes redundantes nem modificar implementacao.
 
----
+Comandos atuais: `pnpm check`, `pnpm test`, `pnpm build`, `node scripts/verify/aurora-gates.mjs`, `node scripts/verify/browser-gates.mjs`, `node scripts/verify/form-gates.mjs`, `node scripts/verify/seo-gates.mjs`, `node scripts/verify/header-gates.mjs`, `bash scripts/security-check.sh --ci` e `bash scripts/js-weight-check.sh .vercel/output/static`. O Bash local e `C:/Program Files/Git/bin/bash.exe`.
 
-## Sampling Rate
+Na implementacao 77a4716/HEAD documental 0941164: check/build aprovados, Aurora 13/13, browser 10/10, form mockado 16/16, SEO 10/10, headers offline 6/6, seguranca 11 PASS/2 SKIP e JS 9.146 B gzip. CI verify/dependency-review/LHCI/headers-preview do PR #13 passou em 0941164: runs 39677407399, 39677452014 e 39677452042. A suite de modulos roda pelo CI; nao foi repetida por alteracao apenas documental.
 
-- **After every task commit:** Run `pnpm run check` (fast; catches schema/type breakage)
-- **After every plan wave:** Run `pnpm build` + `bash scripts/security-check.sh --ci`
-- **Before `/gsd:verify-work`:** `pnpm build` green, `astro check` 0 errors, `security-check.sh --ci` PASS, SEC-07 phase-02 run file with no open High
-- **Max feedback latency:** ~25 seconds
+Headers e Lighthouse de producao atuais nao foram sondados de novo. A evidencia historica de producao fica em 07-VERIFICATION e runs ali identificados; preview noindex usa auditorias SEO individuais. O audit passa com limiar high e exclusoes antigas; nao significa ausencia de advisories. INP de campo, estado de conta e checkpoints manuais nao sao certificados por mocks ou TBT.
 
----
 
-## Per-Task Verification Map
+## Requisito para verificacao
 
-| Task ID | Plan | Wave | Requirement | Threat Ref | Secure Behavior | Test Type | Automated Command | File Exists | Status |
-|---------|------|------|-------------|------------|-----------------|-----------|-------------------|-------------|--------|
-| 02-01-T1 | 01 | 1 | CONTENT-05 | T-02-01 | `project-types.ts` imports nothing; five locked slugs present | static check + grep | `pnpm run check` | ❌ W0 (`src/content/project-types.ts`) | ⬜ pending |
-| 02-01-T2 | 01 | 1 | CONTENT-01, CONTENT-04 | T-02-01 | 16 verbatim entries on disk, `order` present, zero comments | build assertion + grep | `pnpm run check` | ❌ W0 (16 `*.yaml` entries) | ⬜ pending |
-| 02-01-T3 | 01 | 1 | CONTENT-01 | T-02-01 / T-02-02 | `z.strictObject` on all four schemas; bad key/missing field fails build | build assertion | `pnpm run check && pnpm build` | ❌ W0 (`src/content.config.ts`) | ⬜ pending |
-| 02-02-T1 | 02 | 2 | CONTENT-02 | T-02-06 / T-02-10 | Placeholder cover is WebP, 1600×1000, <150 KB, under `src/` | script (Sharp metadata check) | see 02-02-PLAN.md Task 1 `&lt;automated&gt;` | ❌ W0 (`dmarques-cover.webp`) | ⬜ pending |
-| 02-02-T2 | 02 | 2 | CONTENT-02, CONTENT-03, CONTENT-05 | T-02-06 / T-02-07 / T-02-08 / T-02-09 | `cases` schema-as-function w/ required `image()`; `tipo` built from `PROJECT_TYPE_VALUES`; exactly one honestly-labeled case | build assertion + grep | `pnpm run check && pnpm build` | ❌ W0 (`dmarques.md` + `cases` collection) | ⬜ pending |
-| 02-02-T3 | 02 | 2 | CONTENT-04 | — | `getFaq()` is the sole read path; `order` sort centralized | build assertion + grep | `pnpm run check && pnpm build` | ❌ W0 (`src/content/index.ts`) | ⬜ pending |
-| 02-03-T1 | 03 | 3 | CONTENT-01 | T-02-11 / T-02-12 | Unknown key AND missing `order` each provably fail `pnpm build`; tree reverts clean | build assertion (negative test) | see 02-03-PLAN.md Task 1 `&lt;automated&gt;` | ✅ (probes target existing entries) | ⬜ pending |
-| 02-03-T2 | 03 | 3 | SEC-07 | T-02-13 / T-02-14 / T-02-15 / T-02-16 / T-02-SC | No new inline surface, `pnpm audit` clean, no new dependency, no High left Open | script | `pnpm build && bash scripts/security-check.sh --ci` | ✅ (`scripts/security-check.sh`, Phase 1) | ⬜ pending |
-| 02-04-T1 | 04 | 4 | CONTENT-02, CONTENT-03 | T-02-17 | Felipe approves cover art, `coverAlt`, and case copy | human-check | manual | n/a | ⬜ pending |
-| 02-04-T2 | 04 | 4 | SEC-07 | T-02-19 / T-02-20 | Felipe signs off SEC-07 run; no High left Open | human-check | manual | n/a | ⬜ pending |
-| 02-04-T3 | 04 | 4 | CONTENT-02, CONTENT-03, SEC-07 | T-02-18 / T-02-19 / T-02-SC | Approved edits applied; build/check/security-check still green; sign-off appended | build assertion + grep | `pnpm run check && pnpm build && bash scripts/security-check.sh --ci` | ✅ | ⬜ pending |
+| ID | Estado | Teste / evidencia |
+|---|---|---|
+| CONTENT-01 | COVERED | Schema estrito em content.config.ts; build/check validos e sonda isolada atual rejeitou chave desconhecida e order ausente. |
+| CONTENT-02 | COVERED | Case proprio com problema/solucao/resultado e capa via astro:assets; aceite historico 02-04, captura real e POLISH atuais. |
+| CONTENT-03 | COVERED | Casos rotulados honestamente; enum e uniao discriminada atuais de 04.1; build e aurora-gates. |
+| CONTENT-04 | SUPERSEDED/EXCLUDED | Decisao expressa em REQUIREMENTS; nao e teste faltante |
+| CONTENT-05 | COVERED | PROJECT_TYPE_VALUES reutilizado em schemas/chips/email; form-schema.server.test e gates de canal. |
 
-*Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
-*Task IDs are the concrete plan/task references from 02-01-PLAN.md..02-04-PLAN.md; every CONTENT-0x row maps to at least one planned task.*
+## Mapa dos planos e tarefas
 
----
+Tn indica ordem do task no XML do plano; o nome original e preservado. A coluna IDs identifica o contrato do PLAN; a matriz acima individualiza a evidencia de cada requisito. Checkpoints nao sao reescritos como testes automaticos novos.
 
-## Wave 0 Requirements
+| Tarefa | Plano | Onda | IDs do PLAN | Comportamento / nome original | Estado |
+|---|---|---|---|---|---|
+| 02-01-T1 | 02-01-PLAN | 1 | CONTENT-01, CONTENT-04, CONTENT-05 | Task 1: Publish the canonical "tipo de projeto" enum module | COVERED: gate atual + evidencia SUMMARY |
+| 02-01-T2 | 02-01-PLAN | 1 | CONTENT-01, CONTENT-04, CONTENT-05 | Task 2: Author the 16 YAML content entries verbatim from the design | COVERED: gate atual + evidencia SUMMARY |
+| 02-01-T3 | 02-01-PLAN | 1 | CONTENT-01, CONTENT-04, CONTENT-05 | Task 3: Define the four collections with strict Zod schemas | COVERED: gate atual + evidencia SUMMARY |
+| 02-02-T1 | 02-02-PLAN | 2 | CONTENT-02, CONTENT-03, CONTENT-04, CONTENT-05 | Task 1: Generate the branded placeholder cover image | COVERED: gate atual + evidencia SUMMARY |
+| 02-02-T2 | 02-02-PLAN | 2 | CONTENT-02, CONTENT-03, CONTENT-04, CONTENT-05 | Task 2: Publish the Dmarques case entry and wire the cases collection | COVERED: gate atual + evidencia SUMMARY |
+| 02-02-T3 | 02-02-PLAN | 2 | CONTENT-02, CONTENT-03, CONTENT-04, CONTENT-05 | Task 3: Add the order-sorted consumption barrel | COVERED: gate atual + evidencia SUMMARY |
+| 02-03-T1 | 02-03-PLAN | 3 | CONTENT-01, CONTENT-02, CONTENT-03, CONTENT-04, CONTENT-05 | Task 1: Run the one-time negative tests and capture the evidence | COVERED: gate atual + evidencia SUMMARY |
+| 02-03-T2 | 02-03-PLAN | 3 | CONTENT-01, CONTENT-02, CONTENT-03, CONTENT-04, CONTENT-05 | Task 2: File the SEC-07 phase-02 security review run | COVERED: gate atual + evidencia SUMMARY |
+| 02-04-T1 | 02-04-PLAN | 4 | CONTENT-02, CONTENT-03 | Task 1: Felipe approves the case cover, alt text and copy | HISTORICAL: checkpoint registrado |
+| 02-04-T2 | 02-04-PLAN | 4 | CONTENT-02, CONTENT-03 | Task 2: Felipe signs off the SEC-07 phase-02 review | HISTORICAL: checkpoint registrado |
+| 02-04-T3 | 02-04-PLAN | 4 | CONTENT-02, CONTENT-03 | Task 3: Apply the approved edits and record the sign-off | COVERED: gate atual + evidencia SUMMARY |
 
-- [ ] `src/content.config.ts` — the five `defineCollection` calls with strict Zod schemas (covers CONTENT-01 / CONTENT-02)
-- [ ] `src/content/project-types.ts` — shared `as const` enum module, no `astro:content` import (covers CONTENT-05)
-- [ ] `src/content/services/*.yaml` ×4, `process/*.yaml` ×4, `differentiators/*.yaml` ×4, `faq/*.yaml` ×4 — design-verbatim entries (covers CONTENT-01 / CONTENT-04)
-- [ ] `src/content/cases/<slug>.md` + co-located placeholder cover `.webp` (covers CONTENT-02 / CONTENT-03)
-- [ ] `src/content/index.ts` — optional barrel with the `order` sort helper (covers CONTENT-04 single-source cleanliness)
-- [ ] One-time negative test (add bogus key → `pnpm build` fails → revert) recorded in the phase SUMMARY as evidence for CONTENT-01 success criterion 1
-- [ ] No test-framework install — intentional; validation is `astro check` + `pnpm build` (already CI-gated)
+## Onda 0 e verificacoes manuais
 
----
+- [x] Infraestrutura exigida existe ou foi substituida por decisao identificada acima.
+- [x] Testes/gates executados depois do build finalizado.
+- [x] Checkpoints manuais historicos tem fonte identificada; nenhum aceite novo foi atribuido ao Felipe.
+- [x] Comandos sem watch mode; nao houve alteracao de implementacao nesta reconciliacao.
 
-## Manual-Only Verifications
+As metas antigas de latencia local (<5/25/30/90/120 s) nao foram certificadas: build atual levou 3m13s e CI verify 2m5s. Registrar como desvio de feedback, sem declarar cumprimento por trocar uma flag. Conformidade Nyquist aqui descreve cobertura/rastreabilidade do escopo dos planos e checkpoints, nao elimina divida operacional, substitui revisao humana ou promete ausencia de falhas.
 
-| Behavior | Requirement | Why Manual | Test Instructions |
-|----------|-------------|------------|-------------------|
-| Bogus/extra key fails `pnpm build` | CONTENT-01 (success criterion 1) | Negative assertion — cannot live as a committed passing test without a framework; run once then revert | Add an unknown key to one `services/*.yaml`, run `pnpm build`, confirm non-zero exit + strict-schema error, revert the edit, record the output snippet in SUMMARY |
-| Copy is verbatim from the design file | CONTENT-01 | Requires human diff against `arquivos de design/Dmarques Landing.dc.html` | Compare each `titulo`/`descricao`/`pergunta`/`resposta` against the design lines cited in CONTEXT.md canonical refs |
-| Placeholder cover art is acceptable + `coverAlt` copy | CONTENT-02 | Subjective (branding) | Felipe reviews the generated placeholder and approves the alt-text string during execution |
-| Dmarques-site case `problema`/`solucao`/`resultado` draft | CONTENT-02 | Editorial judgement | Surface the draft (built from PROJECT.md Core Value + Phase 1 metrics) to Felipe during execution |
-| SEC-07 phase-02 checklist run has no open High | SEC-07 | Checklist ritual signed off by a human | Run the SEC-07 checklist, file `.planning/security/runs/` entry for phase-02 |
+## Validation Audit 2026-10-21
 
----
+| Metrica | Quantidade |
+|---|---|
+| PLANs lidos | 4 |
+| Tarefas mapeadas | 11 |
+| IDs de origem | 5 |
+| IDs ativos cobertos | 4 |
+| Lacunas novas de verificacao | 0 |
+| Testes permanentes novos | 0 |
+| Registros de estrategia corrigidos | 1 |
 
-## Validation Sign-Off
-
-- [x] Every planned task has an `<automated>` verify command (`pnpm run check` or `pnpm build`) or a Wave 0 dependency — the two `checkpoint:human-verify` tasks in 02-04 carry `<human-check>` instead, by design
-- [x] Sampling continuity: no 3 consecutive tasks without an automated verify
-- [x] Wave 0 covers all MISSING references (config file, enum module, entries, cover image)
-- [x] No watch-mode flags in any command
-- [x] Feedback latency < 25s (the 02-03-T1 negative-test chain runs several full `pnpm build`s and is the one exception, accepted per plan-checker WARNING — see 02-03-PLAN.md Task 1)
-- [x] `nyquist_compliant: true` set in frontmatter
-
-**Approval:** approved 2026-09-10 (gsd-plan-checker VERIFICATION PASSED after targeted fix)
+**Fechamento:** cobertura reconciliada. Nao e nova assinatura humana nem reatestado de contas/DNS/servicos. A auditoria do milestone preserva todos esses limites.

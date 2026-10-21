@@ -9,4 +9,5 @@ dist/
 .vercel
 .env*
 screenshots/
+output/playwright/
 .impeccable/

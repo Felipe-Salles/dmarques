@@ -117,6 +117,9 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   - Nota (Fase 5 D-28): o campo do canal não escolhido é descartado e nunca usado.
 - [x] **FORM-05**: Validação client-side inline (no blur / no submit, nunca a cada
   tecla) espelhando o schema, sem bloquear o submit
+  - Corrigido em 2026-10-21: o erro local não impede o POST; a resposta do servidor
+    decide o resultado. Regra de `input`/bloqueio do plano 05-07 substituída pela
+    correção registrada em `debug/resolved/form-05-submit-contract.md`.
 - [x] **FORM-06**: Mensagens de erro e status acessíveis — texto (não só cor),
   `aria-invalid`, `aria-describedby` ligando campo→erro, região `aria-live`,
   foco movido para o primeiro erro; sucesso e falha anunciados
@@ -160,7 +163,7 @@ agência e pede um orçamento — com um site que carrega rápido e nunca sai do
   formulário
 - [x] **LGPD-06**: Analytics sem cookies verificado no DevTools (zero cookies,
   sem ID persistente) antes do lançamento
-- [ ] **LGPD-07**: Base legal e prazo de retenção documentados no repositório
+- [x] **LGPD-07**: Base legal e prazo de retenção documentados no repositório
   (mantido internamente em PROJECT.md); a parte "refletidos no aviso do formulário"
   foi removida por decisão do Felipe (D-29)
 
@@ -367,7 +370,7 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | FORM-02 | Phase 5 | Complete |
 | FORM-03 | Phase 5 | Complete |
 | FORM-04 | Phase 5 | Complete |
-| FORM-05 | Phase 5 | Complete |
+| FORM-05 | Phase 5 | Complete (correção e regressão de navegador, 2026-10-21) |
 | FORM-06 | Phase 5 | Complete |
 | FORM-07 | Phase 5 | Complete |
 | FORM-08 | Phase 5 | Complete |
@@ -382,7 +385,7 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | LGPD-04 | Phase 5 | Complete |
 | LGPD-05 | Phase 5 | Complete |
 | LGPD-06 | Phase 5 | Complete |
-| LGPD-07 | Phase 5 | Removido por decisão do Felipe (D-29); base legal só interna |
+| LGPD-07 | Phase 5 | Complete (escopo interno); publicação removida por D-29 |
 | SEO-01 | Phase 6 | Complete |
 | SEO-02 | Phase 3 | Complete |
 | SEO-03 | Phase 6 | Complete |
@@ -433,9 +436,11 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 | AUR-18 | Phase 04.1 | Complete |
 
 **Coverage:**
-- v1 requirements: 101 total (83 originais + 18 AUR da Fase 04.1; o "78 total"
-  anterior era erro de contagem)
+- v1 requirements: 101 total (83 originais + 18 AUR da Fase 04.1), contados nos
+  IDs definidos e na tabela de rastreabilidade em 2026-10-21
 - Mapped to phases: 101 / 101 ✓
+- Escopo ativo: 94; sete removidos/substituídos (SEO-07, CONTENT-04,
+  ANIM-03/04/05 e LGPD-01/02). LGPD-07 permanece ativo somente no escopo interno.
 - SEO-07 descartado; CONTENT-04, ANIM-03, ANIM-04 e ANIM-05 superseded pela Fase
   04.1 (D-02/D-12)
 - Unmapped: 0 ✓
@@ -444,4 +449,6 @@ Mapped in ROADMAP.md (2026-09-05). Every v1 requirement is assigned to exactly o
 
 ---
 *Requirements defined: 2026-09-05*
-*Last updated: 2026-10-15 after 04.1-01 (AUR-01..18 added; SEO-07 dropped; CONTENT-04/ANIM-03/04/05 superseded)*
+*Last updated: 2026-10-21 after FORM-05 correction (server-authoritative submit and blur validation); LGPD-07 internal scope verified; requirement count corrected*
+
+Corre??o da auditoria (2026-10-21): a extra??o anterior omitiu A11Y-01..07. O padr?o correto inclui n?meros no prefixo: `[A-Z][A-Z0-9]*-\d+`. S?o 101 IDs, sete exclu?dos e 94 ativos.
