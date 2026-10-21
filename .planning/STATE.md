@@ -3,7 +3,7 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in_progress
-stopped_at: FORM-05 corrigido e Fase 05 aprovada; reconciliação Aurora e Nyquist restante pendentes
+stopped_at: Aurora reconciliada e polish concluído; registros Nyquist restantes pendentes
 last_updated: 2026-10-21
 last_activity: 2026-10-21
 progress:
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-10-15)
 
 **Core value:** Um visitante entende em segundos o que a Dmarques faz, confia na agência e pede um orçamento — com um site que carrega rápido e nunca sai do ar.
-**Current focus:** Auditoria v1.0 com lacunas; Fase 05 aprovada (20/20), FORM-05 corrigido; reconciliação Aurora e Nyquist restante pendentes
+**Current focus:** Auditoria v1.0 com tech_debt: 87/87 requisitos e 8/8 fases verificadas; reconciliar registros Nyquist restantes antes de encerrar
 
 ## Current Position
 
 Phase: 07
 Plan: Planos executados; auditoria do milestone em andamento
-Status: Auditoria gaps_found; não arquivado
-Last activity: 2026-10-21 - Debug FORM-05 concluído (8570396): validação no blur/submit e resultado autoritativo do servidor
+Status: Auditoria tech_debt; não arquivado
+Last activity: 2026-10-21 - Completed quick task 261021-p0m: Aurora 18/18, polish real e menu mobile legível (77a4716)
 
-Progress: [██████████] 100% dos planos executados; 69/87 requisitos ativos satisfeitos e 7/8 fases aprovadas na auditoria
+Progress: [██████████] 100% dos planos executados; 87/87 requisitos ativos satisfeitos e 8/8 fases verificadas na auditoria
 
 ## Performance Metrics
 
@@ -206,6 +206,7 @@ yet.
 | 261015-2ks | Instagram @agenciadmarques | 2026-10-15 | cd97828 | [261015-2ks-trocar-instagram-para-agenciadmarques](./quick/261015-2ks-trocar-instagram-para-agenciadmarques/) |
 | 261021-agt | AGENTS.md como fonte única de instruções (CLAUDE.md importa via @AGENTS.md) para alternar entre Claude Code e Codex | 2026-10-21 | 3879a58 | fast |
 | 261021-of0 | Verificação retroativa da Fase 05; 19/20 requisitos, FORM-05 aberto e LGPD-07 interno reconciliado | 2026-10-21 | f715ecd | [261021-of0-verify-phase-05-against-milestone-audit-](./quick/261021-of0-verify-phase-05-against-milestone-audit-/) |
+| 261021-p0m | Aurora 18/18, polish visual/teclado e fundo legível no menu mobile | 2026-10-21 | 77a4716 | [261021-p0m-reconcile-aurora-verification-and-perfor](./quick/261021-p0m-reconcile-aurora-verification-and-perfor/) |
 
 ### Debugs resolvidos
 
@@ -222,5 +223,5 @@ yet.
 ## Session Continuity
 
 Last session: 2026-10-21
-Stopped at: Debug FORM-05 concluído; próximo fechamento é reconciliação Aurora, seguido dos registros Nyquist restantes
+Stopped at: Quick 261021-p0m concluída; próximos registros Nyquist: 01/02/03/04/06; depois auditoria final do milestone
 Resume file: None
