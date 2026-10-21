@@ -2,10 +2,10 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: milestone_complete
-stopped_at: Milestone complete (Phase 07 was final phase)
-last_updated: 2026-10-19T23:16:07.576Z
-last_activity: 2026-10-19
+status: in_progress
+stopped_at: Verificação retroativa da Fase 05 concluída; FORM-05 e reconciliação Aurora pendentes
+last_updated: 2026-10-21
+last_activity: 2026-10-21
 progress:
   total_phases: 8
   completed_phases: 8
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-10-15)
 
 **Core value:** Um visitante entende em segundos o que a Dmarques faz, confia na agência e pede um orçamento — com um site que carrega rápido e nunca sai do ar.
-**Current focus:** Milestone complete
+**Current focus:** Auditoria v1.0 com lacunas; Fase 05 verificada retroativamente (19/20), FORM-05 e reconciliação Aurora pendentes
 
 ## Current Position
 
 Phase: 07
-Plan: Not started
-Status: Milestone complete
-Last activity: 2026-10-19
+Plan: Planos executados; auditoria do milestone em andamento
+Status: Auditoria gaps_found; não arquivado
+Last activity: 2026-10-21 - Completed quick task 261021-of0: verificação retroativa da Fase 05 e reconciliação de evidências
 
-Progress: [██████████] 100%
+Progress: [██████████] 100% dos planos executados; 68/87 requisitos ativos satisfeitos na auditoria
 
 ## Performance Metrics
 
@@ -205,6 +205,7 @@ yet.
 | 261015-2fr | Foto real do fundador e e-mail contato@agenciadmarques.com.br | 2026-10-15 | a71a82e | [261015-2fr-aplicar-foto-real-do-fundador-e-e-mail-c](./quick/261015-2fr-aplicar-foto-real-do-fundador-e-e-mail-c/) |
 | 261015-2ks | Instagram @agenciadmarques | 2026-10-15 | cd97828 | [261015-2ks-trocar-instagram-para-agenciadmarques](./quick/261015-2ks-trocar-instagram-para-agenciadmarques/) |
 | 261021-agt | AGENTS.md como fonte única de instruções (CLAUDE.md importa via @AGENTS.md) para alternar entre Claude Code e Codex | 2026-10-21 | 3879a58 | fast |
+| 261021-of0 | Verificação retroativa da Fase 05; 19/20 requisitos, FORM-05 aberto e LGPD-07 interno reconciliado | 2026-10-21 | f715ecd | [261021-of0-verify-phase-05-against-milestone-audit-](./quick/261021-of0-verify-phase-05-against-milestone-audit-/) |
 
 ## Deferred Items
 
@@ -214,6 +215,6 @@ yet.
 
 ## Session Continuity
 
-Last session: 2026-10-19T23:10:46.424Z
-Stopped at: Completed 06-02-PLAN.md
+Last session: 2026-10-21
+Stopped at: Quick 261021-of0 concluída; próximo fechamento funcional é FORM-05, seguido da reconciliação Aurora e Nyquist
 Resume file: None
