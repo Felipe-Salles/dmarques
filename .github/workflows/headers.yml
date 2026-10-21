@@ -9,7 +9,21 @@ jobs:
     if: github.event.deployment_status.state == 'success' && contains(github.event.deployment_status.environment, 'Preview')
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Validate deployment host
+        id: target
+        env:
+          TARGET: ${{ github.event.deployment_status.target_url }}
+        run: |
+          case "$TARGET" in
+            https://*.vercel.app|https://*.vercel.app/) ;;
+            *) echo "host inesperado para o deployment"; exit 1 ;;
+          esac
+          host="${TARGET#https://}"
+          host="${host%%/*}"
+          case "$host" in
+            *[!a-zA-Z0-9.-]*) echo "host invalido"; exit 1 ;;
+          esac
       - name: Verify protection-bypass
         env:
           BYPASS: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
@@ -18,8 +32,8 @@ jobs:
           code=$(curl -sS -o /dev/null -w '%{http_code}' -H "x-vercel-protection-bypass: $BYPASS" "$TARGET/")
           echo "bypass header HTTP status: $code"
           test "$code" = "200"
-      - uses: pnpm/action-setup@v6
-      - uses: actions/setup-node@v7
+      - uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
         with:
           node-version: 24
           cache: pnpm
@@ -35,7 +49,7 @@ jobs:
             echo "$out" | grep -qi "^$h:" || { echo "cabecalho ausente: $h"; exit 1; }
           done
       - name: Header gates
-        if: ${{ !cancelled() }}
+        if: ${{ !cancelled() && steps.target.conclusion == 'success' }}
         env:
           PREVIEW_URL: ${{ github.event.deployment_status.target_url }}
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
@@ -50,9 +64,9 @@ jobs:
     if: github.event_name == 'workflow_dispatch' || (github.event.deployment_status.state == 'success' && contains(github.event.deployment_status.environment, 'Production'))
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
-      - uses: pnpm/action-setup@v6
-      - uses: actions/setup-node@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
         with:
           node-version: 24
           cache: pnpm
